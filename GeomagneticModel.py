@@ -51,7 +51,7 @@ def get_args():
 		'-p', '--plots', metavar='plots', type=str,nargs='+',
 		help='Which plots to show. Default: GlobalEfield TransformersInDanger WhereNotEnoughSpares',
 		default=['GlobalEfield','TransformersInDanger','WhereNotEnoughSpares'],
-		choices=['EfieldFits','EfieldvsRateperyear','GlobalEfield','GlobalConductivity','TransformersInDanger','WhereNotEnoughSpares'], required=False)
+		choices=['EfieldvsRateperyear','GlobalEfield','GlobalConductivity','TransformersInDanger','WhereNotEnoughSpares','1989Efields'], required=False)
 
 	arg_parser.add_argument(
 		'-r', '--rate-per-year', metavar='rateperyears', type=float, nargs='+',
@@ -100,22 +100,28 @@ if __name__ == '__main__':
 				print("ERROR: Must supply both MT and TF if MTsites are processed with MT sites and TF sites as command line arguments (as opposed to being auto-imported from ModelParams.ods).")
 				quit()
 
-		# earthmodel.processMTsites(mtsites,tfsites)
-		earthmodel.loadAndPlotMTEfields(mtsites)
+		earthmodel.processMTsites(mtsites,tfsites)
 		mtsitesprocessed = True
 		# mts.loadWindowedRates('Data/ModelOutput/MTrepeatrates/MTsite0EfieldRatesPerYearWindow60s.npy')
 		# mts.plotEratesPerYear()
 	if(args['Model']=='GCmodel'): 
 		gcmodelprocessed=True
 
-	#if no MT site was processed, use data from MTsite0 modeloutput for the fit
-	if(not mtsitesprocessed):
+
+	if('EfieldvsRateperyear' in args['plots']):
 		earthmodel.loadPreviousMTfits(mtsites)
 		mtsites[0].plotandFitEratesPerYear()
-	
+
+	if('1989Efields' in args['plots']):
+		earthmodel.loadAndPlotMTEfields(tfsites,mtsites)
+
 	earthmodel.loadApparentCond()
 	# Run earthmodel to first adjust mtsites to a consistent reference ground conductivity and geomagnetic latitude
 	if(args['Model']=='EarthModel'): 
+		#if no MT site was processed, load and use data from MTsite0 modeloutput 	for the plotting
+		if(not mtsitesprocessed):
+			earthmodel.loadPreviousMTfits(mtsites)
+		
 		earthmodel.calcReferenceRateperyear(tfsites,mtsites)
 		earthmodel.plotCombinedRates()
 

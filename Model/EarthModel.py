@@ -64,7 +64,7 @@ class EarthModel:
 
 	def initMTsites(self):
 		mtsites=[]
-		if(not Params.mtsitenames):
+		if(not Params.mtsitenames): #if mt sites were not supplied as params, just use all existing mtsites in the mtsites directory as default data
 			loaddirectory=Params.mtRepeatRatesDir
 			allfiles=glob.glob(loaddirectory+'*.np[yz]')
 			for i in range(0,len(allfiles)):
@@ -74,16 +74,18 @@ class EarthModel:
 				folder=Params.mtsitesdir
 				filename=Params.mtsitenames[i]
 				mtsites=mtsites + [MTsite(folder+filename+'.netcdf',i)]
+
 		return mtsites
 
 	def initGCmodel(self):
 		return GCmodel()
 
+	#the purpose of this function is to process the MT sites while calculating and saving E fields at all durations
 	def processMTsites(self,mtsites,tfsites):
 		for i in range(0,len(tfsites)):
 			mtsite=mtsites[i]
 			tfsite=tfsites[i]
-			mtsite.importSites()
+			mtsite.importSite()
 			for i in range(0,mtsite.nchunks):
 				mtsite.createChunk(i)
 				mtsite.cleanChunkBfields(i)
@@ -91,23 +93,24 @@ class EarthModel:
 				mtsite.calcChunkEfields(tfsite,i)
 				print('')
 				mtsite.saveChunkEfields(i)
-			# mtsite.calcEratesPerYear()
+			mtsite.calcEratesPerYear()
+			mtsite.saveEratesPerYear()
 
-			# mtsite.plotandFitEratesPerYear() 
-			# mtsite.loadEfields()
-			# mtsite.calcEratesPerYear()
-
-	def loadAndPlotMTEfields(self,mtsites):
+	def loadAndPlotMTEfields(self,tfsites,mtsites):
 		for i in range(0,len(mtsites)):
 			mtsite=mtsites[i]
-			mtsite.importSites()
-			mtsite.loadEfields()
-			mtsite.calcEratesPerYear()
-			# mtsite.calcWindowEratesPerYear(1)
-			mtsite.saveEratesPerYear()
-			print('saved')
-			mtsite.plotandFitEratesPerYear() 
-
+			tfsite=tfsites[i]
+			mtsite.importSite()
+			mtsite.createChunks()
+			# mtsite.loadEfields()
+			chunkindex=1
+			mtsite.cleanChunkBfields(chunkindex)
+			mtsite.calcChunkEfields(tfsite,chunkindex)
+			years=mtsite.ds['time_yr']
+			# np.where(np.array(years)==1989)
+			# firstindex=np.where(np.array(years)==1989)[0][0]
+			# lastindex=np.where(np.array(years)==1989)[0][-1]
+			mtsite.plotEfields(chunkindex,732000-5*60-20+12*60,732000-5*60-20+84*60)
 
 	def loadPreviousMTfits(self,mtsites):
 		for i in range(0,len(mtsites)):

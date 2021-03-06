@@ -15,6 +15,7 @@ from itertools import groupby
 import recordtype
 from recordtype import recordtype
 import glob 
+from datetime import datetime, timedelta
 
 import fits
 import Params
@@ -39,8 +40,10 @@ class MTsite:
 		self.maglat=0
 		self.N=0
 		self.nchunks=0
+		self.polyFitFunNS=[]
+		self.polyFitFunEW=[]
 
-	def importSites(self):
+	def importSite(self):
 		# chunk1 = MTsiteChunk([1,2,3],[2,3],[1,2,3],[2,3],[],[])
 		# chunk2 = MTsiteChunk([1,2,3],[2,3],[1,2,3],[2,3,33],[],[])
 		# self.chunks=[chunk1,chunk2]
@@ -70,6 +73,8 @@ class MTsite:
 			self.windows=self.windows+[window]
 			self.windowedRates=self.windowedRates+[window*self.sampleperiod,[],[]]
 
+		self.calcPolyFits()
+
 	#MTsites are usually so large, one must process them in smaller chunks for the fourier transform and convolution with the TF site frequency dependent transfer function to succeed. We also need a TF site for each MT site to determine the transfer function and thus estimate the geoelectric field.
 	def createChunks(self):
 
@@ -80,10 +85,16 @@ class MTsite:
 
 	def createChunk(self,chunkindex):
 		minindex = chunkindex*self.maxchunksize
+		print('minindex')
+		print(minindex)
 		maxindex = min((chunkindex+1)*self.maxchunksize-1,self.N-1)
+		print('maxindex')
+		print(maxindex)
 
 		chunksize= maxindex-minindex+1
+		print('chunksize')
 
+		print(chunksize)
 		print('importing chunkindex '+str(chunkindex)+', (chunk '+str(chunkindex+1)+' of '+str(self.nchunks)+')', end='\r')
 		# print(minindex)
 		# print('maxindex')
@@ -92,8 +103,10 @@ class MTsite:
 		# print(chunksize)
 
 		#getBfield along maglat NS and EW
-		rawNS = self.ds['dbn_geo'][minindex:maxindex]
-		rawEW = self.ds['dbe_geo'][minindex:maxindex]
+		rawNS = self.ds['dbn_geo'][minindex:maxindex+1]
+		rawEW = self.ds['dbe_geo'][minindex:maxindex+1]
+		print('len(rawNS)')
+		print(len(rawNS))
 
 		self.chunks[chunkindex] = self.MTsiteChunk(chunkindex,chunksize,rawNS,rawEW,[],[],[],[],[],[])
 
@@ -108,6 +121,9 @@ class MTsite:
 
 	# 		for chunk in self.chunks:
 
+	# #find the chunk and index for a given time (time in seconds) 
+	# findEfieldindices():
+
 
 	def cleanBfields(self):
 		for chunkindex in range(0,self.nchunks):
@@ -115,8 +131,11 @@ class MTsite:
 
 	def cleanChunkBfields(self,chunkindex):
 		chunk=self.chunks[chunkindex]
+		print('lenrawns')		
 		rawNS=chunk.rawNS
 		rawEW=chunk.rawEW
+		print(len(rawNS))
+
 		if(np.isnan(rawNS[0])):
 			rawNS[0] = 0
 		if(np.isnan(rawNS[chunk.chunksize-2])):
@@ -129,17 +148,63 @@ class MTsite:
 
 		#linearly interpolate any missing "nan" values
 
-		xiEW = np.arange(len(rawEW))
-		xiNS = np.arange(len(rawNS))
-		maskEW = np.isfinite(rawEW)
+		indices = np.arange(len(rawNS))
+		print('indices')
+		print(indices)
+
 		maskNS = np.isfinite(rawNS)
+		maskEW = np.isfinite(rawEW)
 
-		BfieldEW = np.interp(xiEW, xiEW[maskEW], rawEW[maskEW])
-		BfieldNS = np.interp(xiNS, xiNS[maskNS], rawNS[maskNS])
-		self.chunks[chunk.chunkindex].BfieldEW=BfieldEW
+		print('indices[maskNS]')
+		print(indices[maskNS])
+
+		BfieldNS = np.interp(indices, indices[maskNS], rawNS[maskNS])
+		BfieldEW = np.interp(indices, indices[maskEW], rawEW[maskEW])
 		self.chunks[chunk.chunkindex].BfieldNS=BfieldNS
+		self.chunks[chunk.chunkindex].BfieldEW=BfieldEW
+		print('BfieldNS')
+		print(BfieldNS)
 
 
+	def plotEfields(self,chunkindex,startindex,endindex):
+		# chunkE
+		print('loading field from chunkindex '+str(chunkindex)+', chunk '+str(chunkindex+1)+' of '+str(self.nchunks), end='\r')
+		print('')
+		# chunkE=np.load(Params.mtEfieldsloc+str(self.sitename)+'c'+str(chunkindex)+'.npy')
+		# print('chunksize')
+		# print(len(chunkE))
+		
+		Efields=self.chunks[chunkindex].absE[startindex:endindex]
+		startindexds=chunkindex*self.maxchunksize+startindex
+		endindexds=chunkindex*self.maxchunksize+endindex
+
+		dts=[str(datetime(2018, 1,1))]*(endindexds-startindexds)
+		elapsedHours=[0]*(endindexds-startindexds)
+		print('endindexds')
+		print(endindexds)
+		print('startindexds')
+		print(startindexds)
+
+		years=np.array(self.ds['time_yr'][startindexds:endindexds]).astype(int)
+		months=np.array(self.ds['time_mo'][startindexds:endindexds]).astype(int)
+		days=np.array(self.ds['time_dy'][startindexds:endindexds]).astype(int)
+		hours=np.array(self.ds['time_hr'][startindexds:endindexds]).astype(int)
+		minutes=np.array(self.ds['time_mt'][startindexds:endindexds]).astype(int)
+		seconds=np.array(self.ds['time_sc'][startindexds:endindexds]).astype(int)
+			
+		for i in range(0,len(years)):
+			dts[i]=datetime(years[i],months[i],days[i],hours[i],minutes[i],seconds[i])
+			elapsedHours[i]=(dts[i]-dts[0]).total_seconds()/(60*60)+12
+
+		print('elapsedHours '+str(elapsedHours[0]))
+		print('start time '+str(dts[0]))
+		print('end time '+str(dts[-1]))
+		plt.figure()
+		plt.yscale("log")
+		plt.plot(elapsedHours,Efields)
+		# beautify the x-labels
+		plt.gcf().autofmt_xdate()
+		plt.show()
 
 	def saveChunkEfields(self,chunkindex):
 		np.save(Params.mtEfieldsloc+str(self.sitename)+'c'+str(chunkindex),self.chunks[chunkindex].absE)
@@ -149,8 +214,8 @@ class MTsite:
 			# chunkE
 			print('loading field from chunkindex '+str(i)+', chunk '+str(i+1)+' of '+str(self.nchunks), end='\r')
 			print('')
-			# print('')
 			chunkE=np.load(Params.mtEfieldsloc+str(self.sitename)+'c'+str(i)+'.npy')
+			print('chunkstart: '+str(i*self.maxchunksize))
 			# print('chunksize')
 			# print(len(chunkE))
 			self.chunks[i].absE=chunkE
@@ -163,13 +228,56 @@ class MTsite:
 		print('')
 		print('')
 
+	# calculate 2nd order polynomial fits to NS and EW B data (downsample to one in 1000 points), assign array of fitted values to poly fit property
+	def calcPolyFits(self):
+		downsampleratio=1000
+		samplesNS=np.array(self.ds['dbn_geo'][0:-1:downsampleratio])
+		samplesEW=np.array(self.ds['dbe_geo'][0:-1:downsampleratio])
+
+		indices = np.arange(len(samplesNS))
+		maskNS = np.isfinite(samplesNS)
+		maskEW = np.isfinite(samplesEW)
+
+		BfieldNS = np.interp(indices, indices[maskNS], samplesEW[maskNS])
+		BfieldEW = np.interp(indices, indices[maskEW], samplesNS[maskEW])
+
+		coeffsNS=np.polyfit(indices*downsampleratio,BfieldNS,2)
+		coeffsEW=np.polyfit(indices*downsampleratio,BfieldEW,2)
+
+		funNS=np.poly1d(coeffsNS)
+		funEW=np.poly1d(coeffsEW)
+
+		# plt.figure()
+		# plt.plot(BfieldEW)
+		# plt.plot(funEW(indices*downsampleratio))
+		# plt.show()
+		self.polyFitFunNS=funNS
+		self.polyFitFunEW=funEW
+
 	def calcChunkEfields(self,TFsite,chunkindex):
 		chunk=self.chunks[chunkindex]
 		chunksize=chunk.chunksize
+		startindex=chunkindex*self.maxchunksize
+		endindex=startindex+chunksize
+
+		#see love, 2018 for the list of four corrections applied here.
+
+		# first, subtract 2nd order polynomial fit
+
+		indices = np.array(range(startindex,endindex))
+		detrendedBN2=chunk.BfieldNS
+		print('chunk.BfieldNSlen')
+		print(len(chunk.BfieldNS))
+		detrendedBNS=chunk.BfieldNS-self.polyFitFunNS(indices)
+		detrendedBEW=chunk.BfieldEW-self.polyFitFunEW(indices)
+
+
+
 		# see page 381, Love 2019 for an explanation of the math below
-		#first, fourier transform the field into freq space
-		ftNS = fft(chunk.BfieldNS,chunksize)
-		ftEW = fft(chunk.BfieldEW,chunksize)
+
+		#second, apply FFT with 64 bit precision (fast fourier transform the field into freqency space)
+		ftNS = fft(detrendedBNS,chunksize)
+		ftEW = fft(detrendedBEW,chunksize)
 
 		halflength = int(np.floor(chunksize/2))
 			
@@ -515,33 +623,93 @@ class MTsite:
 	def getInterpolation(self,BfieldFreqs,Z,Zfreqs):
 		sortedBFreqs=sorted(BfieldFreqs)
 		sortedZFreqs=sorted(Zfreqs)
+		# plt.figure()
+		# plt.loglog()
+		# print('sortedBfreqs')
+		# plt.plot(sortedBFreqs)
+		# plt.show()
+		# plt.figure()
+		# plt.loglog()
+		# print('sortedZfreqs')
+		# plt.plot(sortedZFreqs)
+		# plt.show()
+
 		sortedZbyFreq = [x for _,x in sorted(zip(Zfreqs,Z))]
+		# plt.show()
+		# plt.figure()
+		# # plt.loglog()
+		# print('sortedZfreqs')
+		# plt.plot(sortedZFreqs,sortedZbyFreq)
+		# plt.show()
 		toInterpolateFreqs = []
 		toInterpolateZ = []
 
+		#we only use well-defined frequencies from 10^-1 to 10^-4. All frequencies outside of that are set to zero impedance.
+		# toohigh=np.where(np.array(sortedZFreqs)>10**-1)
+		# toolow=np.where(np.array(sortedZFreqs)<10**-4)
+		
+		bandpass=np.logical_and(10**-1>np.array(sortedZFreqs),np.array(sortedZFreqs)>10**-4)
+		
+		bandpassedZ=np.array(sortedZbyFreq)*bandpass
+		
+		print('bandpass')
+		print(bandpass)
+		if(sortedZFreqs[0]>10**-4 or sortedZFreqs[-1]<10**-1):
+			print('ERROR!!!: the TFsite has an unsuitable freqency range') 
+			quit()
+
+		#Furthermore, we need to ensure there is no amplification of frequencies higher than the half sampling rate (nyquist limit). Any Z values higher than this frequency is set to zero impedance.
+
+		lowpass=0.5/self.sampleperiod>np.array(sortedZFreqs)
+		lowpassedZ=np.array(sortedZbyFreq)*lowpass
+
 		#if the lowest B field frequency is lower than the lowest Z frequency, extrapolate the Z value of the lowest frequency Z to the same value at the lowest B field frequency
+		# if(sortedBFreqs[0] < sortedZFreqs[0]):
+		# 	print('islower')
+		# 	toInterpolateFreqs = [sortedBFreqs[0]]
+		# 	toInterpolateZ =  [sortedZbyFreq[0]]
+
 		if(sortedBFreqs[0] < sortedZFreqs[0]):
 			toInterpolateFreqs = [sortedBFreqs[0]]
-			toInterpolateZ =  [sortedZbyFreq[0]]
+			toInterpolateZ =  np.array([0])#[sortedZbyFreq[0]]
+		print(len(sortedZFreqs))
+		print(len(bandpassedZ))
 
-		toInterpolateFreqs =toInterpolateFreqs + sortedZFreqs
-		toInterpolateZ = toInterpolateZ + sortedZbyFreq
+		toInterpolateFreqs =np.append(toInterpolateFreqs, sortedZFreqs)
+		toInterpolateZ = np.append(toInterpolateZ, lowpassedZ)
+		print(len(toInterpolateZ))
+		print(len(toInterpolateFreqs))
 
-
-		#if the highest B field frequency is higher than the highest Z frequency, extrapolate the Z value of the highest frequency Z to the same value at the highest B field frequency
+		# #if the highest B field frequency is higher than the highest Z frequency, extrapolate the Z value of the highest frequency Z to the same value at the highest B field frequency
+		# if(sortedBFreqs[-1] > sortedZFreqs[-1]):
+		# 	print('ishigher')
+		# 	toInterpolateFreqs =toInterpolateFreqs + [sortedBFreqs[-1]]
+		# 	toInterpolateZ = toInterpolateZ + [sortedZbyFreq[-1]]
+		
+		# if freq is higher,  
 		if(sortedBFreqs[-1] > sortedZFreqs[-1]):
-			toInterpolateFreqs =toInterpolateFreqs + [sortedBFreqs[-1]]
-			toInterpolateZ = toInterpolateZ + [sortedZbyFreq[-1]]
-
+			print('ishigher')
+			toInterpolateFreqs =np.append(toInterpolateFreqs, [sortedBFreqs[-1]])
+			toInterpolateZ = np.append(oInterpolateZ, np.array([0]))
+		
+		# plt.show()
+		# plt.figure()
+		# # plt.loglog()
+		# print('sortedZfreqs')
+		# plt.plot(toInterpolateFreqs,toInterpolateZ)
+		# plt.show()
 		#return the interpolating function with Z values for every Bfield frequency
 		interpolatedfun=interp1d(toInterpolateFreqs,toInterpolateZ)
 		ZforBfield = interpolatedfun(BfieldFreqs)
 		# plt.figure()
 		# plt.loglog()
 		# plt.plot(BfieldFreqs,ZforBfield)
+		# print('plt.plot(BfieldFreqs,ZforBfield)')
 		# plt.show()
+
 		# plt.figure()
 		# plt.loglog()
-		# plt.plot(toInterpolateFreqs,toInterpolateZ)
+		# print('plt.plot(toInterpolateFreqs,toInterpolateZ)')
+		# plt.plot(toInterpolateFreqs,np.real(toInterpolateZ))
 		# plt.show()
 		return ZforBfield
