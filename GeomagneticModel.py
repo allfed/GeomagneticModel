@@ -108,7 +108,7 @@ if __name__ == '__main__':
 
 
 	if('StormRecurrence' in args['plots']):
-		earthmodel.calcandplotEratesPerYear(mtsites)
+		earthmodel.calcandplotEratesPerYear(mtsites,args['fit'])
 		# earthmodel.loadPreviousMTfits(mtsites)
 		# mtsites[0].plotandFitEratesPerYear()
 		

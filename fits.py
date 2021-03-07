@@ -1,8 +1,10 @@
-#adapted from https://scipy-cookbook.readthedocs.io/items/FittingData.html
+#powerfit adapted from https://scipy-cookbook.readthedocs.io/items/FittingData.html
+#lognormal fit adapted from https://machinelearningmastery.com/curve-fitting-with-python/
 import numpy as np
 from numpy import pi, r_
 import matplotlib.pyplot as plt
 from scipy import optimize
+from scipy.optimize import curve_fit
 
 
 def powerlaw(x,slope,exponent):
@@ -13,6 +15,32 @@ def powerlaw(x,slope,exponent):
 # (y/s)^(1/e)=x
 def powerlawxfromy(y,slope,exponent):
 	return (y/slope)**(1/exponent)
+
+#see Love, 2018 page 9 (equation 7)
+# upsilon is the expected value of the PDF.
+# epsilonsqd is epsilon squared, the variance of the distribution
+def lognormal(x,upsilon,epsilonsqd):
+	# return np.exp(-np.power((np.log(x)-upsilon),2))
+	# return x/(2*x)
+	numerator=np.exp(-np.power((np.log(x)-upsilon),2)/(2*epsilonsqd))
+	denominator=x*np.sqrt(2*np.pi*epsilonsqd)
+	return numerator/denominator
+
+def fitLognormal(xdata,ydata):
+	# plt.figure(45)
+	# plt.subplot(2, 1, 2)
+	guessupsilon=.0005
+	guessepsilonsqd=50000
+	params, _ = curve_fit(lognormal,xdata,ydata)
+	upsilon, epsilonsqd = params
+	# plt.loglog(xdata, lognormal(np.array(xdata),upsilon,epsilonsqd))
+	# plt.loglog(xdata, ydata)
+	# plt.xlabel('X (log scale)')
+	# plt.ylabel('Y (log scale)')
+	# plt.show()
+
+	return [upsilon,epsilonsqd]
+	
 
 def fitPower(xdata,ydata):
 	# print(xdata)

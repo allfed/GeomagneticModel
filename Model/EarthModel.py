@@ -96,7 +96,7 @@ class EarthModel:
 			# mtsite.calcEratesPerYear()
 			# mtste.saveEratesPerYear()
 
-	def calcandplotEratesPerYear(self,mtsites):
+	def calcandplotEratesPerYear(self,mtsites,fittype):
 		for i in range(0,len(mtsites)):
 			mtsite=mtsites[i]
 			mtsite.importSite()
@@ -104,7 +104,7 @@ class EarthModel:
 			mtsite.loadEfields()
 			mtsite.calcEratesPerYear()
 			mtsite.fitEratesPerYear()
-			mtsite.plotEratesPerYear()
+			mtsite.plotEratesPerYear(fittype)
 
 
 

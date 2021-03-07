@@ -38,6 +38,7 @@ class MTsite:
 		self.MTsiteChunk=recordtype('MTsiteChunk','chunkindex chunksize rawNS rawEW BfieldNS BfieldEW EfieldNS EfieldEW absE rateperyearxy storms stormpeaks')
 		self.ds = []
 		self.powerfits=[]
+		self.logfits=[]
 		self.maglat=0
 		self.N=0
 		self.nchunks=0
@@ -406,7 +407,7 @@ class MTsite:
 		return False		
 			
 
-	def plotEratesPerYear(self):
+	def plotEratesPerYear(self,fittype):
 		plt.figure()
 		plt.loglog()
 		for i in range(0,int(np.floor(len(self.windowedRates))/3)):
@@ -418,14 +419,21 @@ class MTsite:
 			rates = self.windowedRates[ratesindex]
 			# [slope,exponent]=fits.fitPower(Efields,rates)
 			#if we've calculated power fits for all the windows
-			if(len(self.powerfits)>0):
+			if(len(self.powerfits)>0 and fittype=='power'):
 
 				slope=self.powerfits[i][1]
 				exponent=self.powerfits[i][2]
-				print('coeffs')
+				print('power coeffs')
 				print([slope,exponent])
 
-				plt.plot(Efields,rates, Efields, fits.powerlaw(Efields,slope,exponent), lw=1,label = "Field averaged over "+str(duration)+" seconds")
+				plt.plot(Efields,rates, Efields, fits.powerlaw(Efields,slope,exponent), lw=1,label = "Field averaged over "+str(duration)+" seconds, powerfit")
+			elif(len(self.logfits)>0 and fittype=='lognormal'):
+				upsilon=self.logfits[i][1]
+				epsilonsqd=self.logfits[i][2]
+				print('lognormal coeffs')
+				print([upsilon,epsilonsqd])
+
+				plt.plot(Efields,rates, Efields, fits.lognormal(np.array(Efields),upsilon,epsilonsqd), lw=1,label = "Field averaged over "+str(duration)+" seconds, lognormalfit")				
 			else:
 				plt.plot(Efields,rates,lw=1,label = "Field averaged over "+str(duration)+" seconds")
 			
@@ -442,6 +450,7 @@ class MTsite:
 		plt.show()
 
 	def fitEratesPerYear(self):
+		self.logfits=[]
 		self.powerfits = []
 		for i in range(0,int(np.floor(len(self.windowedRates))/3)):
 			durationindex = i*3
@@ -453,8 +462,9 @@ class MTsite:
 			rates = self.windowedRates[ratesindex]
 
 			[slope,exponent]=fits.fitPower(Efields,rates)
-
+			[upsilon,epsilonsquared]=fits.fitLognormal(Efields,rates)
 			self.powerfits = self.powerfits + [[windowperiod,slope,exponent]]
+			self.logfits = self.logfits + [[windowperiod,upsilon,epsilonsquared]]
 
 			# plt.plot(Efields,rates, lw=1,label = "Field averaged over "+str(windowperiod)+" seconds")
 
