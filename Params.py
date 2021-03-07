@@ -38,6 +38,7 @@ def importModelParams():
 	global mtsitenames
 	global nchunks
 	global sampleperiod
+	global betaThreshold
 	global windows
 	global window1
 	global window2
@@ -128,6 +129,8 @@ def importModelParams():
 			nchunks = tmp
 		if(coltitle == 'sampleperiod'):
 			sampleperiod = tmp
+		if(coltitle == 'betaThreshold'):
+			betaThreshold = tmp
 		if(coltitle == 'window1'):
 			window1 = tmp
 		if(coltitle == 'window2'):

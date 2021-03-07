@@ -51,8 +51,7 @@ def get_args():
 		'-p', '--plots', metavar='plots', type=str,nargs='+',
 		help='Which plots to show. Default: GlobalEfield TransformersInDanger WhereNotEnoughSpares',
 		default=['GlobalEfield','TransformersInDanger','WhereNotEnoughSpares'],
-		choices=['EfieldvsRateperyear','GlobalEfield','GlobalConductivity','TransformersInDanger','WhereNotEnoughSpares','1989Efields'], required=False)
-
+		choices=['StormRecurrence','GlobalEfield','GlobalConductivity','TransformersInDanger','WhereNotEnoumtsitesghSpares','1989Efields'], required=False) 
 	arg_parser.add_argument(
 		'-r', '--rate-per-year', metavar='rateperyears', type=float, nargs='+',
 		help='Specify rates per year for analysis. Example: 0.1 .01 .001 (once per decade, once per century and once per millenia). Default: .01',
@@ -108,12 +107,13 @@ if __name__ == '__main__':
 		gcmodelprocessed=True
 
 
-	if('EfieldvsRateperyear' in args['plots']):
-		earthmodel.loadPreviousMTfits(mtsites)
-		mtsites[0].plotandFitEratesPerYear()
-
+	if('StormRecurrence' in args['plots']):
+		earthmodel.calcandplotEratesPerYear(mtsites)
+		# earthmodel.loadPreviousMTfits(mtsites)
+		# mtsites[0].plotandFitEratesPerYear()
+		
 	if('1989Efields' in args['plots']):
-		earthmodel.loadAndPlotMTEfields(tfsites,mtsites)
+		earthmodel.calcAndPlotMTEfields(tfsites,mtsites)
 
 	earthmodel.loadApparentCond()
 	# Run earthmodel to first adjust mtsites to a consistent reference ground conductivity and geomagnetic latitude

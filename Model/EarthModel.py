@@ -93,24 +93,35 @@ class EarthModel:
 				mtsite.calcChunkEfields(tfsite,i)
 				print('')
 				mtsite.saveChunkEfields(i)
-			mtsite.calcEratesPerYear()
-			mtsite.saveEratesPerYear()
+			# mtsite.calcEratesPerYear()
+			# mtste.saveEratesPerYear()
 
-	def loadAndPlotMTEfields(self,tfsites,mtsites):
+	def calcandplotEratesPerYear(self,mtsites):
+		for i in range(0,len(mtsites)):
+			mtsite=mtsites[i]
+			mtsite.importSite()
+			mtsite.createChunks()
+			mtsite.loadEfields()
+			mtsite.calcEratesPerYear()
+			mtsite.fitEratesPerYear()
+			mtsite.plotEratesPerYear()
+
+
+
+	def calcAndPlotMTEfields(self,tfsites,mtsites):
 		for i in range(0,len(mtsites)):
 			mtsite=mtsites[i]
 			tfsite=tfsites[i]
 			mtsite.importSite()
 			mtsite.createChunks()
-			# mtsite.loadEfields()
 			chunkindex=1
 			mtsite.cleanChunkBfields(chunkindex)
 			mtsite.calcChunkEfields(tfsite,chunkindex)
-			years=mtsite.ds['time_yr']
-			# np.where(np.array(years)==1989)
-			# firstindex=np.where(np.array(years)==1989)[0][0]
-			# lastindex=np.where(np.array(years)==1989)[0][-1]
-			mtsite.plotEfields(chunkindex,732000-5*60-20+12*60,732000-5*60-20+84*60)
+			#for love, 2019 vaq55,FRD plot
+			# mtsite.plotEfields(chunkindex,732000-5*60-20+12*60,732000-5*60-20+84*60)
+			
+			#for love, 2018 vaq58,FRD plot
+			mtsite.plotEfields(chunkindex,732000-5*60-20+12*60,732000-5*60-20+108*60)
 
 	def loadPreviousMTfits(self,mtsites):
 		for i in range(0,len(mtsites)):
@@ -190,9 +201,6 @@ class EarthModel:
 							if minE > E:
 								minE = E
 
-							# print('latitude'+str(latitude))
-							# print('maglat'+str(maglat))
-							# print('mld'+str(mld))
 							EArr[row][col]=E
 
 							row = row+1	
