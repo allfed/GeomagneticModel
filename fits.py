@@ -5,7 +5,7 @@ from numpy import pi, r_
 import matplotlib.pyplot as plt
 from scipy import optimize
 from scipy.optimize import curve_fit
-
+from scipy.stats import lognorm
 
 def powerlaw(x,slope,exponent):
 	return slope * (x**exponent)
@@ -19,20 +19,86 @@ def powerlawxfromy(y,slope,exponent):
 #see Love, 2018 page 9 (equation 7)
 # upsilon is the expected value of the PDF.
 # epsilonsqd is epsilon squared, the variance of the distribution
-def lognormal(x,upsilon,epsilonsqd):
+def lognormal(x,upsilon,epsilon):
 	# return np.exp(-np.power((np.log(x)-upsilon),2))
 	# return x/(2*x)
-	numerator=np.exp(-np.power((np.log(x)-upsilon),2)/(2*epsilonsqd))
-	denominator=x*np.sqrt(2*np.pi*epsilonsqd)
+	numerator=np.exp(-np.power((np.log(x)-upsilon),2)/(2*epsilon**2))
+	denominator=x*np.sqrt(2*np.pi*epsilon**2)
 	return numerator/denominator
+
+def importedlognormal(x,upsilon,epsilon):
+	s=np.abs(epsilon)
+	scale=np.exp(upsilon)
+	y=np.abs(x)/np.abs(scale)
+	return lognorm.pdf(y, s)/np.abs(scale)
+
+def locimportedlognormal(x,upsilon,epsilon,loc):
+	s=np.abs(epsilon)
+	scale=np.exp(upsilon)
+	y=(np.abs(x-loc))/scale
+	return lognorm.pdf(y, s)/scale
+
+# def fitLognormal(xdata,ydata):
+# 	guessupsilon=-11
+# 	guessepsilonsqd=4.6#50000
+# 	# for guessupsilon in range(-20,-5):
+
+# 	# we help curve_fit out by providing a wide range of reasonable guess inputs
+# 	plt.figure()
+# 	# for guessupsilon in range(-20,-5,3):
+# 	# for guessepsilonsqd in range(1,9,2):
+# 	print('guessepsilonsqd')
+# 	print(guessepsilonsqd)
+# 	print('guessupsilon')
+# 	print(guessupsilon)
+# 	plt.loglog(xdata,lognormal(np.array(xdata),guessupsilon,guessepsilonsqd)*1.1,lw=1,label = "guess for guess upsilon:"+str(guessupsilon)+" guessepsilonsqd"+str(guessepsilonsqd))
+# 	try:
+# 		params=[]
+# 		params, covar = curve_fit(lognormal,xdata,ydata,p0=[guessupsilon,guessepsilonsqd],maxfev=10000)
+# 		upsilon, epsilonsqd = params
+# 		print(params) 
+# 		quit()
+# 		if(covar[0][0]==inf):
+# 			print('fit infinite covar: guessupsilon: '+str(guessupsilon)+'  epsilonsqd: '+str(guessepsilonsqd))
+# 			# continue
+
+# 	except:
+# 		print('fit failed: guessupsilon: '+str(guessupsilon)+'  epsilonsqd: '+str(guessepsilonsqd))
+# 		print('params')
+# 		print(params)
+# 		upsilon=guessupsilon
+# 		epsilonsqd=guessepsilonsqd
+# 		# continue
+# 		fitted=lognormal(np.array(xdata),upsilon,epsilonsqd)
+# 		print(fitted)
+# 		plt.loglog(xdata,fitted,lw=1,label = "fit from guess upsilon:"+str(guessupsilon)+" guessepsilonsqd"+str(guessepsilonsqd))
+
+# 	plt.loglog(xdata,ydata,lw=1,label = "data we're fitting")
+# 	plt.legend()
+# 	print('covar')
+# 	print(covar)
+# 	plt.show()		
+
+# 	# plt.loglog(xdata, lognormal(np.array(xdata),upsilon,epsilonsqd))
+# 	# plt.loglog(xdata, ydata)
+# 	# plt.xlabel('X (log scale)')
+# 	# plt.ylabel('Y (log scale)')
+# 	# plt.show()
+
+# 	return [upsilon,epsilonsqd]
 
 def fitLognormal(xdata,ydata):
 	# plt.figure(45)
 	# plt.subplot(2, 1, 2)
-	guessupsilon=.0005
-	guessepsilonsqd=50000
-	params, _ = curve_fit(lognormal,xdata,ydata)
+	# guessupsilon=.0005
+	# guessepsilonsqd=50000
+	params, covar = curve_fit(lognormal,xdata,ydata,p0=[-5.8,.37],maxfev=10000)
+	print('covar')
+	print(covar)
+	print('params')
+	print(params)
 	upsilon, epsilonsqd = params
+	# plt.figure()
 	# plt.loglog(xdata, lognormal(np.array(xdata),upsilon,epsilonsqd))
 	# plt.loglog(xdata, ydata)
 	# plt.xlabel('X (log scale)')
@@ -40,7 +106,42 @@ def fitLognormal(xdata,ydata):
 	# plt.show()
 
 	return [upsilon,epsilonsqd]
-	
+
+def fitLognormalwithloc(xdata,ydata):
+	# plt.figure(45)
+	# plt.subplot(2, 1, 2)
+	# guessupsilon=.0005
+	# guessepsilonsqd=50000 
+	try:
+		params, covar = curve_fit(locimportedlognormal,xdata,ydata,\
+			#p0=[5.9588582, 4.37993949, 0.00277132933],\
+			p0=[-3.07289437, 0.02616835, 0.04285109],\
+			#p0=[-6.43616259e-04, 4.75736705e-03, 9.89547338e-01],\
+			maxfev=10000)
+			# )
+		upsilon,epsilon,loc=params
+		fitdata=locimportedlognormal(np.array(xdata),upsilon,np.abs(epsilon),loc)
+		# params, covar = curve_fit(locimportedlognormal,xdata,ydata,p0=[-5.8,.37,0.00000001],maxfev=10000)
+		# print('covar')
+		# print(covar)
+		r = np.linalg.norm(ydata-fitdata)
+		print('norm of residuals')
+		print(r)
+	except:
+		print('fitfailed')
+		params=[-5.8,.37,0.0001]
+	# params, covar = curve_fit(lognormal,xdata,ydata,p0=[-5.8,.37],maxfev=10000)
+	print('params')
+	print(params)
+	upsilon, epsilon, loc = params
+	# plt.figure()
+	# plt.loglog(xdata, locimportedlognormal(np.array(xdata),upsilon,epsilon,loc))
+	# plt.loglog(xdata, ydata)
+	# plt.xlabel('X (log scale)')
+	# plt.ylabel('Y (log scale)')
+	# plt.show()
+
+	return [upsilon,epsilon,loc]
 
 def fitPower(xdata,ydata):
 	# print(xdata)

@@ -39,26 +39,24 @@ class EarthModel:
 	def initTFsites(self):
 		tfsites=[]
 		#set up default frequencies for TF sites
-		f=[1.367187E-01,1.093750E-01,8.593753E-02,6.640627E-02,5.078124E-02,3.906250E-02 ,\
-		3.027344E-02,2.343750E-02,1.855469E-02,1.464844E-02,1.171875E-02,9.765625E-03 ,\
-		7.568361E-03,5.859374E-03,4.638671E-03,3.662109E-03,2.929688E-03,2.441406E-03 ,\
-		1.892090E-03,1.464844E-03,1.159668E-03,9.155271E-04,7.324221E-04,6.103516E-04 ,\
-		4.425049E-04,3.204346E-04,2.136230E-04,1.373291E-04,8.392331E-05,5.340577E-05]
-		w = [x*2.0*np.pi for x in f] #rad s^-1 (angular frequency)
-		rows=[0,0,0,0,0,0,\
-		1,1,1,1,1,1,\
-		2,2,2,2,2,2,\
-		3,3,3,3,3,3,\
-		4,4,4,4,4,4]
-		cols=[0,1,2,3,4,5,\
-		0,1,2,3,4,5,\
-		0,1,2,3,4,5,\
-		0,1,2,3,4,5,\
-		0,1,2,3,4,5]
+		# f=[1.367187E-01,1.093750E-01,8.593753E-02,6.640627E-02,5.078124E-02,3.906250E-02 ,\
+		# 3.027344E-02,2.343750E-02,1.855469E-02,1.464844E-02,1.171875E-02,9.765625E-03 ,\
+		# 7.568361E-03,5.859374E-03,4.638671E-03,3.662109E-03,2.929688E-03,2.441406E-03 ,\
+		# 1.892090E-03,1.464844E-03,1.159668E-03,9.155271E-04,7.324221E-04,6.103516E-04 ,\
+		# 4.425049E-04,3.204346E-04,2.136230E-04,1.373291E-04,8.392331E-05,5.340577E-05]
+		# w = [x*2.0*np.pi for x in f] #rad s^-1 (angular frequency)
+		# rows=[0,0,0,0,0,0,\
+		# 1,1,1,1,1,1,\
+		# 2,2,2,2,2,2,\
+		# 3,3,3,3,3,3,\
+		# 4,4,4,4,4,4]
+		# cols=[0,1,2,3,4,5,\
+		# 0,1,2,3,4,5,\
+		# 0,1,2,3,4,5,\
+		# 0,1,2,3,4,5,\
+		# 0,1,2,3,4,5]
 		for i in range(0,len(Params.tfsitenames)):
-			folder=Params.tfsitesdir
-			filename=Params.tfsitenames[i]
-			tfsites=tfsites + [TFsite(folder+filename+'.edi',f,rows,cols)]
+			tfsites=tfsites + [TFsite(i)]
 		return tfsites
 
 
@@ -93,16 +91,58 @@ class EarthModel:
 				mtsite.calcChunkEfields(tfsite,i)
 				print('')
 				mtsite.saveChunkEfields(i)
-			# mtsite.calcEratesPerYear()
-			# mtste.saveEratesPerYear()
+			mtsite.calcEratesPerYear()
+			mtsite.saveEratesPerYear()
 
 	def calcandplotEratesPerYear(self,mtsites,fittype):
 		for i in range(0,len(mtsites)):
 			mtsite=mtsites[i]
 			mtsite.importSite()
 			mtsite.createChunks()
-			mtsite.loadEfields()
-			mtsite.calcEratesPerYear()
+
+			#recalcs
+			# mtsite.loadEfields()
+			# mtsite.calcEratesPerYear()
+			# mtsite.saveEratesPerYear()
+			# continue
+
+			#reload
+			mtsite.loadWindowedRates()
+			
+			# fitx=np.array(mtsite.windowedRates[1])
+
+			# # plt.figure()
+			# # plt.loglog(fitx,mtsite.windowedRates[2])
+			# # plt.show()
+			# # mtsite.loadWindowedRates()
+			# # print(np.array(mtsite.windowedRates[1]))
+			# # plt.figure()
+
+			# # offsets=range(-100,100,100)
+			# # widths=range(1,10,5)
+			# # for offset in offsets:
+			# # 	for width in widths:
+			# # 		fity=fits.importedlognormal(np.array(mtsite.windowedRates[1]),-57+offset,(18.4*width)**2)
+			# # 		plt.loglog(fitx,fity,lw=1,label = "fit imp offset:"+str(offset)+" width"+str(width))
+			# # 		fity=1.1*fits.lognormal(np.array(mtsite.windowedRates[1]),-57+offset,(18.4*width)**2)
+			
+			# params=fits.fitLognormalwithloc(np.array(mtsite.windowedRates[1]),np.array(mtsite.windowedRates[2]))
+
+			# # start=fits.lognormal(np.array(mtsite.windowedRates[1]),-11,4.6)
+			
+			# upsilon=params[0]
+			# epsilon=params[1]
+			# loc=params[2]
+			# fity=fits.locimportedlognormal(np.array(mtsite.windowedRates[1]),upsilon,np.abs(epsilon),loc)
+
+			# # plt.loglog(fitx,start,'-')
+			# plt.loglog(fitx,fity,lw=1,label = "fit upsilon:"+str(upsilon)+" epsilon"+str(epsilon)+'loc'+str(loc))
+			# # plt.loglog(fitx,fity,lw=1,label = "fit offset:"+str(offset)+" width"+str(width))
+
+			# plt.legend()
+			# plt.loglog(fitx,mtsite.windowedRates[2])
+			# plt.show()
+			
 			mtsite.fitEratesPerYear()
 			mtsite.plotEratesPerYear(fittype)
 

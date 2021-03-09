@@ -272,10 +272,9 @@ class MTsite:
 		print('calcEratesPerYear')
 		self.calcStorms()
 		self.windowedRates=[]
-		savearr = []
 		for windex in range(0,len(self.windows)):
 			self.calcWindowEratesPerYear(windex)
-
+		self.windowedRatesTmp=self.windowedRates
 
 	#combine the E rates calculated for all the chunks by windowed average into an array of e fields and a y axis value for rate per year of those e fields. This is a modification of (Love, 2018 page 9) which describes the overall process.
 	def calcWindowEratesPerYear(self,windex):
@@ -341,25 +340,20 @@ class MTsite:
 
 		#add or replace the data for each window that has been created so far
 		if(self.loadWindowedRates()):
-			savearr=self.windowedRates
-			print('self.windowedRates after loaded')
-			print(self.windowedRates)
-			
 			loadeddurations=np.array([])
 			for i in range(0,int(np.floor(len(self.windowedRates))/3)):
 				durationindex = i*3
 				efieldindex = i*3+1
 				ratesindex = i*3+2
 
-				duration = self.windowedRates[durationindex]
-				print('duration')
-				print(duration)
-				loadeddurations=np.append(loadeddurations,duration)
-				print('loadeddurations')
-				print(loadeddurations)
+				print(self.windows)
 
-			print('self.windowedRatesTmp')
-			print(self.windowedRatesTmp)
+				#as long as the saved windows match up with modelparams specified windows, keep old values even if this window value was not just calculated. 
+				if(durationindex<=len(self.windows) and (self.windows[i]*self.sampleperiod == self.windowedRates[durationindex])):
+
+					duration = self.windowedRates[durationindex]
+					loadeddurations=np.append(loadeddurations,duration)
+
 			for i in range(0,int(np.floor(len(self.windowedRatesTmp))/3)):
 				durationindex = i*3
 				efieldindex = i*3+1
@@ -373,25 +367,13 @@ class MTsite:
 					loadeddurationindex=np.where(loadeddurations==duration)[0]
 					
 					if(len(loadeddurationindex)==0):
-						print('nomatch')
-
 						self.windowedRates=np.append(self.windowedRates,[duration,Efields,rates])
 					else:
-						print('matches')
 						self.windowedRates[loadeddurationindex[0]*3] = duration
-						print('Efields')
-						print(Efields)
-						print(type(Efields))
-						print('self.windowedRates[1]')
-						print(self.windowedRates[1])
-						print('typeself.windowedRates')
-						print(type(self.windowedRates[1]))
 						self.windowedRates[loadeddurationindex[0]*3+1]=Efields
 						self.windowedRates[loadeddurationindex[0]*3+2]=rates
 		else:
 			self.windowedRates=self.windowedRatesTmp
-		print('savearr')
-		print(self.windowedRates)
 		np.save(Params.mtRepeatRatesDir+'MTsite'+str(self.siteIndex)+'EfieldRatesPerYear',self.windowedRates)
 
 
@@ -429,11 +411,15 @@ class MTsite:
 				plt.plot(Efields,rates, Efields, fits.powerlaw(Efields,slope,exponent), lw=1,label = "Field averaged over "+str(duration)+" seconds, powerfit")
 			elif(len(self.logfits)>0 and fittype=='lognormal'):
 				upsilon=self.logfits[i][1]
-				epsilonsqd=self.logfits[i][2]
+				epsilon=self.logfits[i][2]
+				loc=self.logfits[i][3]
 				print('lognormal coeffs')
-				print([upsilon,epsilonsqd])
+				print([upsilon,np.abs(epsilon),loc])
+				yfit=fits.locimportedlognormal(np.array(Efields),upsilon,np.abs(epsilon),loc)
 
-				plt.plot(Efields,rates, Efields, fits.lognormal(np.array(Efields),upsilon,epsilonsqd), lw=1,label = "Field averaged over "+str(duration)+" seconds, lognormalfit")				
+				boundedfit=np.array(yfit[np.array(yfit)>10**-4])
+				boundedEfields=np.array(Efields)[np.array(yfit)>10**-4]
+				plt.plot(Efields,rates,boundedEfields,boundedfit,lw=1,label = "Field averaged over "+str(duration)+" seconds, lognormalfit")				
 			else:
 				plt.plot(Efields,rates,lw=1,label = "Field averaged over "+str(duration)+" seconds")
 			
@@ -462,9 +448,10 @@ class MTsite:
 			rates = self.windowedRates[ratesindex]
 
 			[slope,exponent]=fits.fitPower(Efields,rates)
-			[upsilon,epsilonsquared]=fits.fitLognormal(Efields,rates)
+			print('site '+str(self.MTsitefn)+' window: '+str(windowperiod))
+			[upsilon,epsilon,loc]=fits.fitLognormalwithloc(Efields,rates)
 			self.powerfits = self.powerfits + [[windowperiod,slope,exponent]]
-			self.logfits = self.logfits + [[windowperiod,upsilon,epsilonsquared]]
+			self.logfits = self.logfits + [[windowperiod,upsilon,epsilon,loc]]
 
 			# plt.plot(Efields,rates, lw=1,label = "Field averaged over "+str(windowperiod)+" seconds")
 
@@ -504,7 +491,8 @@ class MTsite:
 						stormtoappend=self.chunks[i].storms[0][1]
 						self.chunks[i-1].storms[-1][0]=newindices
 						self.chunks[i-1].storms[-1][1]=np.append(stormstart[1],stormtoappend)
-						for j in range(0,len(self.nwindows)):
+
+						for j in range(0,len(self.windows)):
 							self.chunks[i-1].stormpeaks[j][-1]=np.max([self.chunks[i-1].stormpeaks[j][-1],self.chunks[i].stormpeaks[j][0]])
 						self.chunks[i].storms[0].pop()
 						# print(len(newindices))
@@ -595,7 +583,7 @@ class MTsite:
 		chunk=self.chunks[chunkindex]
 		windowedE = np.array(chunk.stormpeaks[windex])
 		chunkyears = chunk.chunksize*self.sampleperiod/secondsperyear #total recorded years
-
+		# print('calc chunkindex erateperyear'+str(chunkindex))
 		##this was some code to test it works properly
 		# if(chunkindex==0):
 		# 	sortedcountsbyE=(np.array([3E-2,1])*self.cumulativeyears).astype(int)

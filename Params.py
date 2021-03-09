@@ -35,6 +35,7 @@ def importModelParams():
 	global overheatMapsDir
 
 	global tfsitenames
+	global tfformats
 	global mtsitenames
 	global nchunks
 	global sampleperiod
@@ -123,6 +124,8 @@ def importModelParams():
 					tmp = tmp + [t[coltitleindex]]
 		if(coltitle == 'tfsitenames'):
 			tfsitenames = tmp
+		if(coltitle == 'tfformats'):
+			tfformats = tmp
 		if(coltitle == 'mtsitenames'):
 			mtsitenames = tmp
 		if(coltitle == 'nchunks'):
