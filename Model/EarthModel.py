@@ -128,20 +128,47 @@ class EarthModel:
 			mtsite.calcEratesPerYear(False)
 			mtsite.saveEratesPerYear()
 
-	def plotPeakEvsDuration(self,mtsites):
+	def peakEvsDuration(self,mtsites,plot):
 		plt.figure()
-		for i in range(0,len(mtsites)):
-			mtsite=mtsites[i]
+		durationEratios=[]
+		allwindowperiods=[]
+		for k in range(0,len(mtsites)):
+			if(not Params.useMTsite[k]):
+				continue
+			mtsite=mtsites[k]
 			mtsite.importSite()
 			mtsite.createChunks()
 			mtsite.loadWindowedCounts()
 			mtsite.fitEratesPerYear()
-			mtsite.plotPeakEvsDuration()
-		# plt.plot(durations,highestEfields)
+			averageOccurrence=mtsite.calcPeakEvsDuration(plot)
 
-		plt.title('ratio of rateperyear .1 by 1')
+			#add this duration data to the existing windowedCounts
+			for i in range(0,int(np.floor(len(mtsite.windowedCounts))/3)):
+				durationindex = i*3
+				efieldindex = i*3+1
+				ratesindex = i*3+2
+
+				duration=mtsite.windowedCounts[durationindex]
+				matchid=-1
+				for j in range(0,len(allwindowperiods)):
+					wp=allwindowperiods[j]
+					if(wp==duration):
+						matchid=j
+						durationEratios[j].append(averageOccurrence[i])
+				if(matchid==-1):
+					allwindowperiods.append(duration)
+					durationEratios.append([averageOccurrence[i]])
+
+		#average the occurrence with all the other windows
+		averagedRatios=[]
+		for ratios in durationEratios:
+			averagedRatios.append(np.mean(ratios))
+
+
+		# plt.show()
+		# plt.figure()
+		plt.plot(allwindowperiods,averagedRatios,lw=7,label = " all ratios averaged")
 		plt.legend()
-
 		plt.show()
 
 	def calcandplotEratesPerYear(self,mtsites,fittype):
@@ -229,6 +256,7 @@ class EarthModel:
 
 	def loadPreviousMTfits(self,mtsites):
 		for i in range(0,len(mtsites)):
+			mtsites[i].importSite()
 			mtsites[i].loadWindowedCounts()
 			mtsites[i].fitEratesPerYear()
 
@@ -330,7 +358,7 @@ class EarthModel:
 
 		allEatwindow=[]
 		allratesatwindow=[]
-		allwindows=[]
+		allwindowperiods=[]
 		for i in range(0,len(mtsites)):
 			tfsite=tfsites[i]
 			mtsite=mtsites[i]
@@ -346,23 +374,13 @@ class EarthModel:
 				
 				rpy=mtsite.countstoRPY(counts)
 
-				windowbucket=-1
 				apparentcond=tfsite.getApparentcCloseToWindowPeriod(windowperiod)
 				adjustedtosite=self.adjustEfieldsToRefCond(apparentcond,Efields,windowperiod)
 				adjustedtomaglat=np.real(np.array(adjustedtosite)/self.getMagLatDivisor(mtsite.maglat))
-
-				for i in range(0,len(allwindows)):
-					if(windowperiod==allwindows[i]):
-						windowbucket=i
-						allratesatwindow = allratesatwindow + rpy
-						allEatwindow = allEatwindow+adjustedtomaglat
-						break
-				if(windowbucket==-1): 
-					allratesatwindow = allratesatwindow+[rpy]
-					allwindows = allwindows+[windowperiod]
-					allEatwindow = allEatwindow+[adjustedtomaglat]
-
-		self.refwindowperiods=allwindows
+				allwindowperiods=np.append(allwindowperiods,windowperiod)
+				allratesatwindow = np.append(allratesatwindow,rpy*mtsite.occurrenceRatio[i])
+				allEatwindow = np.append(allEatwindow,adjustedtomaglat)
+		self.refwindowperiods=allwindowperiods
 		self.refratesperyear=allratesatwindow
 		self.refEfields=allEatwindow
 
@@ -380,17 +398,21 @@ class EarthModel:
 		lines=['o', 'v', '^', '<', '>', 's', '8', 'p']*100
 		plt.loglog()
 		ax = plt.gca()
-		self.combinedslopes=[]
 		self.combinedexponents=[]
 		for i in range(0,len(self.refwindowperiods)):
 			windowperiod = self.refwindowperiods[i]
 			rates  = self.refratesperyear[i]
 			Efields= self.refEfields[i]
 			[slope,exponent]=fits.fitPower(Efields,rates)
+			[guessMean,guessStd]=fits.getGuesses(Efields,counts,True)
+			[mean,std,loc]=fits.fitLognormalCDF(Efields,countscumsum/np.max(cumsum),guessMean,guessStd,True)
+			probtoRPYratio=np.max(cumsum)/self.cumulativeyears
+
+
 			color = next(ax._get_lines.prop_cycler)['color']
 			plt.plot(Efields,rates, linestyle='', markeredgecolor='none', marker=lines[i], color=color)
-			plt.plot(Efields,fits.powerlaw(Efields,slope,exponent), linestyle='-', color = color, lw=1,label = "Powerfit, field averaged over "+str(windowperiod)+" seconds")
-			self.combinedslopes=self.combinedslopes+[slope]
+			plt.plot(Efields,fits.powerlaw(Efields,exponent)*probtoRPYratio, linestyle='-', color = color, lw=1,label = "Powerfit, field averaged over "+str(windowperiod)+" seconds")
+			plt.plot(Efields,fits.logcdf(Efields,exponent)*probtoRPYratio, linestyle='-', color = color, lw=1,label = "Logfit, field averaged over "+str(windowperiod)+" seconds")
 			self.combinedexponents=self.combinedexponents+[exponent]
 			# plt.plot(Efields,rates, lw=1,label = "Field averaged over "+str(windowperiod)+" seconds")
 

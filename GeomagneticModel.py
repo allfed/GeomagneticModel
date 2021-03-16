@@ -91,6 +91,7 @@ if __name__ == '__main__':
 
 	recurrencecalculated = False
 	gcmodelprocessed = False
+	durationratiosprocessed = False
 
 	if(args['Model']=='TFsite'): 
 		for tfs in tfsites:
@@ -128,18 +129,21 @@ if __name__ == '__main__':
 		# mtsites[0].plotandFitEratesPerYear()
 	if('Estats' in args['plots']):
 		earthmodel.Estats(mtsites)
-
 	if('1989Efields' in args['plots']):
 		earthmodel.plot1989Efields(mtsites)
 	if('EvsDuration' in args['plots']):
-		earthmodel.plotPeakEvsDuration(mtsites)
+		earthmodel.peakEvsDuration(mtsites,True)
+		durationratiosprocessed=True
+
 	earthmodel.loadApparentCond()
 	# Run earthmodel to first adjust mtsites to a consistent reference ground conductivity and geomagnetic latitude
 	if(args['Model']=='EarthModel'): 
 		#if no MT site was processed, load and use data from MTsite0 modeloutput 	for the plotting
 		if(not recurrencecalculated):
 			earthmodel.loadPreviousMTfits(mtsites)
-		
+		if(not durationratiosprocessed):
+			earthmodel.peakEvsDuration(mtsites,False)
+
 		earthmodel.calcReferenceRateperyear(tfsites,mtsites)
 		earthmodel.plotCombinedRates()
 

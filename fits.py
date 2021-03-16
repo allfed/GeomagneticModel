@@ -128,25 +128,6 @@ def logpdf(x,mu,sigma,loc=0):
 
 # 	return [upsilon,epsilonsqd]
 
-def fitLognormal(xdata,ydata,betaThreshold):
-	#fit the CDF to the last data points (1 order of magnitude E field reduction)
-
-
-
-	params, covar = curve_fit(lognormal,xdata,ydata,p0=[-5.8,.37],maxfev=10000)
-	# print('covar')
-	# print(covar)
-	# print('params')
-	# print(params)
-	upsilon, epsilonsqd = params
-	# plt.figure()
-	# plt.loglog(xdata, lognormal(np.array(xdata),upsilon,epsilonsqd))
-	# plt.loglog(xdata, ydata)
-	# plt.xlabel('X (log scale)')
-	# plt.ylabel('Y (log scale)')
-	# plt.show()
-
-	return [upsilon,epsilonsqd]
 
 def fitLognormalCDF(xdata,ydata,guessmu,guesssigma,plot):
 	try:
@@ -374,7 +355,7 @@ def getGuesses(E,counts,plot):
 		plt.show()
 
 	return [mean,std]
-	
+
 def combinecounts(E,allcountsatE):
 	sortedcountsbyE = [x for _,x in sorted(zip(-np.array(E),allcountsatE))]
 	sortedE = np.sort(-np.array(E))

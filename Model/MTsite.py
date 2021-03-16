@@ -51,6 +51,7 @@ class MTsite:
 		self.maxE=0
 		self.polyFitFunNS=[]
 		self.polyFitFunEW=[]
+		self.occurrenceRatio=[]
 
 	def importSite(self):
 		self.ds = nc.Dataset(self.MTsitefn)	#  import the magnetic field record using the netcdf format as a big numpy array
@@ -378,7 +379,7 @@ class MTsite:
 				return True
 		return False		
 
-	def plotPeakEvsDuration(self):
+	def calcPeakEvsDuration(self,plot):
 		durations = []
 		highestEfields=[]
 		onceperyearE=[]
@@ -395,7 +396,6 @@ class MTsite:
 			rates = self.windowedCounts[ratesindex]
 			rpy=self.countstoRPY(rates)
 
-
 			highestEfields=np.append(highestEfields,np.max(Efields))
 			durations=np.append(durations,duration)
 
@@ -403,9 +403,13 @@ class MTsite:
 			onceperfiveyearsE=np.append(onceperfiveyearsE,np.interp(3*10**0,rpy,Efields))
 			oncepersevenyearsE=np.append(oncepersevenyearsE,np.interp(3*10**0,rpy,Efields))
 			onceperdecadeE=np.append(onceperdecadeE,np.interp(10**-1,rpy,Efields))
+		self.occurrenceRatio=onceperdecadeE/np.max(onceperdecadeE)
 
-		plt.plot(durations,np.divide(onceperdecadeE,onceperyearE),lw=1,label = "site "+str(self.sitename)+"  beta "+str(self.betaThreshold))
-
+		if(plot):
+			print('self.occurrenceRatio')
+			print(self.occurrenceRatio)
+			plt.plot(durations,self.occurrenceRatio,lw=1,label = "site "+str(self.sitename)+"  beta "+str(self.betaThreshold))
+		return self.occurrenceRatio
 
 
 	def plotEratesPerYear(self,fittype):
