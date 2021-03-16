@@ -97,24 +97,31 @@ class TFsite:
 					for Zvals in period:
 						if(Zvals.attrib['type']=='complex'):
 							for value in Zvals:
-								if(value.attrib['name']=='Zxx'):
+								attributeofinterest=''
+								for a in value.attrib:
+									if(a=='name'):
+										attributeofinterest='name'
+								if(not attributeofinterest):
+									continue
+
+								if(value.attrib[attributeofinterest]=='Zxx'):
 									ZXX=value.text
 									linevals = np.array(ZXX.split()).astype(np.float)
 									# real and complex components
 									self.ZXX.append(linevals[0]+1j*linevals[1])
-								if(value.attrib['name']=='Zxy'):
+								if(value.attrib[attributeofinterest]=='Zxy'):
 									ZXY=value.text
 									linevals = np.array(ZXY.split()).astype(np.float)
 									# real and complex components
 									self.ZXY.append(linevals[0]+1j*linevals[1])
 
-								if(value.attrib['name']=='Zyx'):
+								if(value.attrib[attributeofinterest]=='Zyx'):
 									ZYX=value.text
 									linevals = np.array(ZYX.split()).astype(np.float)
 									# real and complex components
 									self.ZYX.append(linevals[0]+1j*linevals[1])
 
-								if(value.attrib['name']=='Zyy'):
+								if(value.attrib[attributeofinterest]=='Zyy'):
 									ZYY=value.text
 									linevals = np.array(ZYY.split()).astype(np.float)
 									# real and complex components
@@ -275,6 +282,16 @@ class TFsite:
 		file.close()
 
 		return [ZXXR+1.0j*ZXXI,ZXYR+1.0j*ZXYI,ZYXR+1.0j*ZYXI,ZYYR+1.0j*ZYYI]
+
+	def getClosestFreqIndex(self,f):
+		mindelta=np.inf
+		mini=0;
+		for i in range(0,len(self.f)):
+			delta = abs(self.f[i]-f)
+			if(delta<mindelta):
+				delta=mindelta
+				mini=i
+		return i
 
 	def calcApparentc(self):
 		self.apparentc = []

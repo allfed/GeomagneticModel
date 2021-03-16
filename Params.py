@@ -1,7 +1,6 @@
 
 def importIfNotAlready():
 	global paramsinitialized
-	
 	try:
 		paramsinitialized
 	except NameError: #if the params haven't been initialized yet
@@ -17,6 +16,7 @@ def importModelParams():
 	import numpy as np
 
 	global paramsfilename
+	global useMTsite
 	global transformersfn
 	global mtsitesdir
 	global tfsitesdir
@@ -40,6 +40,7 @@ def importModelParams():
 	global nchunks
 	global sampleperiod
 	global betaThreshold
+	global toKeepThreshold
 	global windows
 	global window1
 	global window2
@@ -122,6 +123,8 @@ def importModelParams():
 					tmp = tmp + ['']
 				else:
 					tmp = tmp + [t[coltitleindex]]
+		if(coltitle == 'useMTsite'):
+			useMTsite=tmp
 		if(coltitle == 'tfsitenames'):
 			tfsitenames = tmp
 		if(coltitle == 'tfformats'):
@@ -134,6 +137,8 @@ def importModelParams():
 			sampleperiod = tmp
 		if(coltitle == 'betaThreshold'):
 			betaThreshold = tmp
+		if(coltitle == 'toKeepThreshold'):
+			toKeepThreshold = tmp			
 		if(coltitle == 'window1'):
 			window1 = tmp
 		if(coltitle == 'window2'):

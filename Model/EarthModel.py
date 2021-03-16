@@ -66,21 +66,54 @@ class EarthModel:
 			loaddirectory=Params.mtRepeatRatesDir
 			allfiles=glob.glob(loaddirectory+'*.np[yz]')
 			for i in range(0,len(allfiles)):
-				mtsites = mtsites + [MTsite('',i)]
+					mtsites = mtsites + [MTsite('',i)]
 		else:
 			for i in range(0,len(Params.mtsitenames)):
 				folder=Params.mtsitesdir
 				filename=Params.mtsitenames[i]
-				mtsites=mtsites + [MTsite(folder+filename+'.netcdf',i)]
-
+				if(Params.useMTsite[i]):
+					mtsites=mtsites + [MTsite(folder+filename+'.netcdf',i)]
+				else:
+					mtsites=mtsites + [[]]
 		return mtsites
 
 	def initGCmodel(self):
 		return GCmodel()
 
 	#the purpose of this function is to process the MT sites while calculating and saving E fields at all durations
+	def calcAndSaveEfields(self,mtsites,tfsites):
+		for i in range(0,len(tfsites)):
+			if(not Params.useMTsite[i]):
+				continue
+			mtsite=mtsites[i]
+			tfsite=tfsites[i]
+			mtsite.importSite()
+			mtsite.createChunks()
+			for j in range(0,mtsite.nchunks):
+				mtsite.cleanChunkBfields(j)
+				print('')
+				mtsite.calcChunkEfields(tfsite,j)
+				print('')
+				print('saving chunk '+str(j))
+				mtsite.saveChunkEfields(j)
+
+	def calcAndSaveRecurrence(self,mtsites,tfsites):
+		for i in range(0,len(tfsites)):
+			if(not Params.useMTsite[i]):
+				continue
+			mtsite=mtsites[i]
+			tfsite=tfsites[i]
+			mtsite.importSite()
+			mtsite.createChunks()
+			mtsite.loadEfields()
+			mtsite.calcEratesPerYear(False)
+			mtsite.saveEratesPerYear()
+
+	#the purpose of this function is to process the MT sites while calculating and saving E fields at all durations
 	def processMTsites(self,mtsites,tfsites):
 		for i in range(0,len(tfsites)):
+			if(not Params.useMTsite[i]):
+				continue
 			mtsite=mtsites[i]
 			tfsite=tfsites[i]
 			mtsite.importSite()
@@ -91,11 +124,31 @@ class EarthModel:
 				mtsite.calcChunkEfields(tfsite,i)
 				print('')
 				mtsite.saveChunkEfields(i)
-			mtsite.calcEratesPerYear()
+
+			mtsite.calcEratesPerYear(False)
 			mtsite.saveEratesPerYear()
 
-	def calcandplotEratesPerYear(self,mtsites,fittype):
+	def plotPeakEvsDuration(self,mtsites):
+		plt.figure()
 		for i in range(0,len(mtsites)):
+			mtsite=mtsites[i]
+			mtsite.importSite()
+			mtsite.createChunks()
+			mtsite.loadWindowedCounts()
+			mtsite.fitEratesPerYear()
+			mtsite.plotPeakEvsDuration()
+		# plt.plot(durations,highestEfields)
+
+		plt.title('ratio of rateperyear .1 by 1')
+		plt.legend()
+
+		plt.show()
+
+	def calcandplotEratesPerYear(self,mtsites,fittype):
+		plt.figure()
+		for i in range(0,len(mtsites)):
+			if( not Params.useMTsite[i]):
+				continue
 			mtsite=mtsites[i]
 			mtsite.importSite()
 			mtsite.createChunks()
@@ -107,65 +160,76 @@ class EarthModel:
 			# continue
 
 			#reload
-			mtsite.loadWindowedRates()
+			mtsite.loadWindowedCounts()
 			
-			# fitx=np.array(mtsite.windowedRates[1])
+			# fitx=np.array(mtsite.windowedCounts[1])
 
 			# # plt.figure()
-			# # plt.loglog(fitx,mtsite.windowedRates[2])
+			# # plt.loglog(fitx,mtsite.windowedCounts[2])
 			# # plt.show()
-			# # mtsite.loadWindowedRates()
-			# # print(np.array(mtsite.windowedRates[1]))
+			# # mtsite.loadWindowedCounts()
+			# # print(np.array(mtsite.windowedCounts[1]))
 			# # plt.figure()
 
 			# # offsets=range(-100,100,100)
 			# # widths=range(1,10,5)
 			# # for offset in offsets:
 			# # 	for width in widths:
-			# # 		fity=fits.importedlognormal(np.array(mtsite.windowedRates[1]),-57+offset,(18.4*width)**2)
+			# # 		fity=fits.importedlognormal(np.array(mtsite.windowedCounts[1]),-57+offset,(18.4*width)**2)
 			# # 		plt.loglog(fitx,fity,lw=1,label = "fit imp offset:"+str(offset)+" width"+str(width))
-			# # 		fity=1.1*fits.lognormal(np.array(mtsite.windowedRates[1]),-57+offset,(18.4*width)**2)
+			# # 		fity=1.1*fits.lognormal(np.array(mtsite.windowedCounts[1]),-57+offset,(18.4*width)**2)
 			
-			# params=fits.fitLognormalwithloc(np.array(mtsite.windowedRates[1]),np.array(mtsite.windowedRates[2]))
+			# params=fits.fitLognormalwithloc(np.array(mtsite.windowedCounts[1]),np.array(mtsite.windowedCounts[2]))
 
-			# # start=fits.lognormal(np.array(mtsite.windowedRates[1]),-11,4.6)
+			# # start=fits.lognormal(np.array(mtsite.windowedCounts[1]),-11,4.6)
 			
 			# upsilon=params[0]
 			# epsilon=params[1]
 			# loc=params[2]
-			# fity=fits.locimportedlognormal(np.array(mtsite.windowedRates[1]),upsilon,np.abs(epsilon),loc)
+			# fity=fits.locimportedlognormal(np.array(mtsite.windowedCounts[1]),upsilon,np.abs(epsilon),loc)
 
 			# # plt.loglog(fitx,start,'-')
 			# plt.loglog(fitx,fity,lw=1,label = "fit upsilon:"+str(upsilon)+" epsilon"+str(epsilon)+'loc'+str(loc))
 			# # plt.loglog(fitx,fity,lw=1,label = "fit offset:"+str(offset)+" width"+str(width))
 
 			# plt.legend()
-			# plt.loglog(fitx,mtsite.windowedRates[2])
+			# plt.loglog(fitx,mtsite.windowedCounts[2])
 			# plt.show()
-			
+			# print('mtsite.windowedCounts')
+			# print(mtsite.windowedCounts)
 			mtsite.fitEratesPerYear()
 			mtsite.plotEratesPerYear(fittype)
 
-
-
-	def calcAndPlotMTEfields(self,tfsites,mtsites):
+		plt.legend()
+		plt.title('Rate geoelectric field is above threshold')
+		plt.xlabel('Geoelectric Field (V/km)')
+		plt.ylabel('Average rate per year distinct contiguous sample average is above E field (counts/year)')
+		plt.show()
+	
+	def Estats(self,mtsites):
 		for i in range(0,len(mtsites)):
+			if( not Params.useMTsite[i]):
+				continue
+			mtsites[i].importSite()
+			mtsites[i].createChunks()
+			mtsites[i].loadEfields()
+			mtsites[i].Estats()
+
+
+	def plot1989Efields(self,mtsites):
+		for i in range(0,len(mtsites)):
+			if( not Params.useMTsite[i]):
+				continue
 			mtsite=mtsites[i]
-			tfsite=tfsites[i]
 			mtsite.importSite()
 			mtsite.createChunks()
-			chunkindex=1
-			mtsite.cleanChunkBfields(chunkindex)
-			mtsite.calcChunkEfields(tfsite,chunkindex)
-			#for love, 2019 vaq55,FRD plot
-			# mtsite.plotEfields(chunkindex,732000-5*60-20+12*60,732000-5*60-20+84*60)
-			
+			mtsite.loadEfields()
 			#for love, 2018 vaq58,FRD plot
-			mtsite.plotEfields(chunkindex,732000-5*60-20+12*60,732000-5*60-20+108*60)
+			mtsite.plotEfields(i,732000-5*60-20+12*60,732000-5*60-20+108*60)
 
 	def loadPreviousMTfits(self,mtsites):
 		for i in range(0,len(mtsites)):
-			mtsites[i].loadWindowedRates()
+			mtsites[i].loadWindowedCounts()
 			mtsites[i].fitEratesPerYear()
 
 	# see https://stackoverflow.com/questions/7948450/conversion-from-geographic-to-geomagnetic-coordinates
@@ -201,7 +265,6 @@ class EarthModel:
 			#save a map of e fields for each duration at this rate per Year
 			for i in range(0,len(self.refwindowperiods)):
 				windowperiod=self.refwindowperiods[i]
-				print(r)
 				print(self.combinedslopes[i])
 				print(self.combinedexponents[i])
 				refField=fits.powerlawxfromy(r,self.combinedslopes[i],self.combinedexponents[i])
@@ -272,14 +335,17 @@ class EarthModel:
 			tfsite=tfsites[i]
 			mtsite=mtsites[i]
 
-			for j in range(0,int(np.floor(len(mtsite.windowedRates))/3)):
+			for j in range(0,int(np.floor(len(mtsite.windowedCounts))/3)):
 				durationindex = j*3
 				efieldindex = j*3+1
 				ratesindex = j*3+2
 
-				windowperiod = mtsite.windowedRates[durationindex]
-				Efields = mtsite.windowedRates[efieldindex]
-				rates = mtsite.windowedRates[ratesindex]
+				windowperiod = mtsite.windowedCounts[durationindex]
+				Efields = mtsite.windowedCounts[efieldindex]
+				counts = mtsite.windowedCounts[ratesindex]
+				
+				rpy=mtsite.countstoRPY(counts)
+
 				windowbucket=-1
 				apparentcond=tfsite.getApparentcCloseToWindowPeriod(windowperiod)
 				adjustedtosite=self.adjustEfieldsToRefCond(apparentcond,Efields,windowperiod)
@@ -288,11 +354,11 @@ class EarthModel:
 				for i in range(0,len(allwindows)):
 					if(windowperiod==allwindows[i]):
 						windowbucket=i
-						allratesatwindow = allratesatwindow + rates
+						allratesatwindow = allratesatwindow + rpy
 						allEatwindow = allEatwindow+adjustedtomaglat
 						break
 				if(windowbucket==-1): 
-					allratesatwindow = allratesatwindow+[rates]
+					allratesatwindow = allratesatwindow+[rpy]
 					allwindows = allwindows+[windowperiod]
 					allEatwindow = allEatwindow+[adjustedtomaglat]
 
@@ -326,10 +392,6 @@ class EarthModel:
 			plt.plot(Efields,fits.powerlaw(Efields,slope,exponent), linestyle='-', color = color, lw=1,label = "Powerfit, field averaged over "+str(windowperiod)+" seconds")
 			self.combinedslopes=self.combinedslopes+[slope]
 			self.combinedexponents=self.combinedexponents+[exponent]
-			print('plottingcombinedlopes')
-			print(self.combinedslopes)
-			print('plottingcombinedexps')
-			print(self.combinedexponents)
 			# plt.plot(Efields,rates, lw=1,label = "Field averaged over "+str(windowperiod)+" seconds")
 
 		plt.legend()
