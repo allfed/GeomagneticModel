@@ -44,7 +44,7 @@ def get_args():
 		'Function', metavar='function', type=str,
 		nargs='?',
 		help='Specify subpart of geomagnetic model to run (a specific function as part of the model specified). If you want the entirety of this aspect of the model to be run, don\'t include any second argument. Default: entirety of model processed.',
-		choices=['calcEfields','calcRecurrence','calcRecurrenceFit'])
+		choices=['calcEfields','calcRecurrence','calcRecurrenceFit','calcCombinedRecurrence','calcGlobalModel','evalGCmodel'])
 
 
 	arg_parser.add_argument(
@@ -57,7 +57,7 @@ def get_args():
 		'-p', '--plots', metavar='plots', type=str,nargs='+',
 		help='Which plots to show. Default: GlobalEfield TransformersInDanger WhereNotEnoughSpares',
 		default=['GlobalEfield','TransformersInDanger','WhereNotEnoughSpares'],
-		choices=['StormRecurrence','GlobalEfield','GlobalConductivity','TransformersInDanger','WhereNotEnoumtsitesghSpares','1989Efields','Estats','ApparentResistivity','EvsDuration'], required=False) 
+		choices=['StormRecurrence','GlobalEfield','GlobalConductivity','TransformersInDanger','WhereNotEnoughSpares','1989Efields','Estats','ApparentResistivity','EvsDuration','AdjustedRates','CombinedRates','CompareGCandTF'], required=False) 
 	arg_parser.add_argument(
 		'-r', '--rate-per-year', metavar='rateperyears', type=float, nargs='+',
 		help='Specify rates per year for analysis. Example: 0.1 .01 .001 (once per decade, once per century and once per millenia). Default: .01',
@@ -93,7 +93,9 @@ if __name__ == '__main__':
 	gcmodelprocessed = False
 	durationratiosprocessed = False
 
+
 	if(args['Model']=='TFsite'): 
+		
 		for tfs in tfsites:
 			#tfs.printApparentc()
 			i=tfs.getClosestFreqIndex(8**-3)
@@ -101,6 +103,7 @@ if __name__ == '__main__':
 			print(np.sqrt(.43814)/np.sqrt(tfs.apparentc[i]))
 			if('ApparentResistivity' in args['plots']):
 				tfs.plotApparentr()
+
 	if(args['Model']=='MTsite'): 
 		if(args['TF_sites'] or args['MT_sites']):
 			if(args['TF_sites'] and args['MT_sites']):
@@ -136,23 +139,72 @@ if __name__ == '__main__':
 		durationratiosprocessed=True
 
 	earthmodel.loadApparentCond()
+	
+
+
+	calccombinedrates=False
+	calcglobalmodel=False
+	evalgcmodel=False
+	calcrecurrence=False
+	calcpeakevsduration=False
+	if(args['Function']==''):#do all the tasks
+		calccombinedrates=True
+		calcglobalmodel=True
+		calcrecurrence=True
+		calcpeakevsduration=True
+	if('calcCombinedRecurrence' in str(args['Function'])):
+		calcrecurrence=True
+		calcpeakevsduration=True
+		calccombinedrates=True
+	if('calcGlobalModel' in str(args['Function'])):
+		calcrecurrence=True
+		calcpeakevsduration=True
+		calcglobalmodel=True
+	if('evalGCmodel' in str(args['Function'])):
+		evalgcmodel=True
+
+
+	allTFandGCcompared=False
 	# Run earthmodel to first adjust mtsites to a consistent reference ground conductivity and geomagnetic latitude
 	if(args['Model']=='EarthModel'): 
+
+		if(evalgcmodel):
+			earthmodel.compareAllTFsites()
+			allTFandGCcompared=True
+
 		#if no MT site was processed, load and use data from MTsite0 modeloutput 	for the plotting
-		if(not recurrencecalculated):
+		if((not recurrencecalculated) and calcrecurrence):
 			earthmodel.loadPreviousMTfits(mtsites)
-		if(not durationratiosprocessed):
+		if((not durationratiosprocessed) and calcpeakevsduration):
 			earthmodel.peakEvsDuration(mtsites,False)
 
-		earthmodel.calcReferenceRateperyear(tfsites,mtsites)
-		earthmodel.plotCombinedRates()
+		plotadjusted=False
+		if('AdjustedRates' in args['plots']):
+			plotadjusted=True
 
-		#apply the reference site back out across the earth by adjusting  for of reference ground conductivity, geomagnetic latitude, and determing the rate per year of each windowperiod across the earth. The output of this function is a series of maps with electric field levels at each duration for a given rate per year of interest.
-		rateperyear=args['rate_per_year']
-		if(type(rateperyear)==type(0.0)):
-			earthmodel.calcGlobalEfields([rateperyear])
+		plotcombined=False
+		if('CombinedRates' in args['plots']):
+			plotcombined=True
+
+		earthmodel.calcReferenceRateperyear(tfsites,mtsites,args['fit'],plotadjusted)
+
+		if(calccombinedrates):
+			earthmodel.calcCombinedRates(plotcombined)
+
+		if(calcglobalmodel):
+			#apply the reference site back out across the earth by adjusting  for of reference ground conductivity, geomagnetic latitude, and determing the rate per year of each windowperiod across the earth. The output of this function is a series of maps with electric field levels at each duration for a given rate per year of interest.
+			rateperyear=args['rate_per_year']
+			if(type(rateperyear)==type(0.0)):
+				earthmodel.calcGlobalEfields([rateperyear])
+			else:
+				earthmodel.calcGlobalEfields(rateperyear)
+
+	if('CompareGCandTF' in args['plots']):
+		if(not allTFandGCcompared):
+			earthmodel.loadGCtoTFcomparison()
 		else:
-			earthmodel.calcGlobalEfields(rateperyear)
+			earthmodel.compareAllTFsites()
+		earthmodel.plotGCtoTFcomparison()
 
 	if(args['Model']=='PowerGrid'): 
 		powergrid=PowerGrid()

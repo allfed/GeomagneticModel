@@ -5,6 +5,7 @@
 import matplotlib.pyplot as plt
 from scipy.interpolate import interp1d
 import xml.etree.ElementTree as ET 
+import spacepy.coordinates as coord
 
 import numpy as np
 import Params
@@ -15,17 +16,28 @@ class TFsite:
 
 	# initialize a site by providing a list of frequencies w to determine the transfer function.
 	# if a path to a TF site EDI document is provided, the init function 
-	def __init__(self, TFsiteindex):
+	def __init__(self):
 		Params.importIfNotAlready()
+
+	def initWithID(self,TFsiteindex):
 		self.siteIndex=TFsiteindex
-		folder=Params.tfsitesdir
 
 		self.name=Params.tfsitenames[TFsiteindex]
 
 		self.tfformat=Params.tfformats[TFsiteindex]
-
+		folder=Params.tfsitesdir
 		self.TFsitefn = folder+self.name+'.'+self.tfformat
-		print(self.TFsitefn)
+		self.importsite()
+
+	def initFromfile(self,TFsitefn):
+		Params.importIfNotAlready()
+		self.tfformat='edi'
+		self.TFsitefn=TFsitefn
+		return self.importsite()
+
+	def importsite(self):
+		success=True
+		print('importing TF site '+self.TFsitefn)
 		self.wInEDI = [] #the EDI file has its own list of frequencies, which we use as approximations to ours
 		self.rows = [] #the EDI file frequencies are listed on specific rows and columns in the data.
 		self.rowlen=0
@@ -41,13 +53,17 @@ class TFsite:
 		self.rhoYX = [] # V m A^-1 = Ohm m(apparent resistivity tensor component YX)
 		self.rhoYY = [] # V m A^-1 = Ohm m(apparent resistivity tensor component YY)
 		self.apparentc=[]
+		self.lat=np.nan#not yet imported
+		self.long=np.nan#not yet imported
+		self.maglat=np.nan#not yet imported
+		self.maglong=np.nan#not yet imported
 		if self.TFsitefn:
 			if(self.tfformat=='xml'):
 				self.importXML()
 				self.wProvided = [x*2.0*np.pi for x in self.f] #rad s^-1 (angular frequency), list of frequencies provided
 			elif(self.tfformat=='edi'):
-
-				self.importFrequencies(self.TFsitefn)
+				success = success and self.importCoords()
+				success=success and self.importFrequencies(self.TFsitefn)
 				self.calcrows()
 				self.calccols()
 				self.T=[1.0/x for x in self.f] # s (period)
@@ -58,7 +74,7 @@ class TFsite:
 				quit()
 			self.calcApparentc()
 			self.calcApparentr()
-
+		return success
 	#calculate an array of all the columns at the TF site
 	def calccols(self):
 		cols=[]
@@ -126,53 +142,101 @@ class TFsite:
 									linevals = np.array(ZYY.split()).astype(np.float)
 									# real and complex components
 									self.ZYY.append(linevals[0]+1j*linevals[1])
+	#for edi files, find latitude and longitude, and convert to magnetic latitude and longitude
+	def importCoords(self):
+		file = open(self.TFsitefn, 'r')
+		count=0
+		latstring=''
+		try:
+			while True: 
+				count += 1
+			  
+				# Get next line from file 
+				line = file.readline()
+				# if line is empty 
+				# end of file is reached 
+				if not line: 
+					break
+				# print(line)
+				# find the frequency line and skip two lines down to get to the data
+				if(line.lstrip().find('LAT=')==0):
+					latstring=line.lstrip()
+					linevals = np.array(latstring[4:].split(':'))
+					numarray=list(linevals.astype(np.float))
+					if(numarray[0]<0):
+						self.lat=numarray[0]-numarray[1]/(60)-(numarray[2])/(60*60)
+					else:
+						self.lat=numarray[0]+numarray[1]/(60)+(numarray[2])/(60*60)
+					continue
+
+				if(line.lstrip().find('LONG=')==0):
+					longstring=line.lstrip()
+					linevals = np.array(longstring[5:].split(':'))
+					numarray=list(linevals.astype(np.float))
+					if(numarray[0]<0):
+						self.long=numarray[0]-numarray[1]/(60)-(numarray[2])/(60*60)
+					else:
+						self.long=numarray[0]+numarray[1]/(60)+(numarray[2])/(60*60)
+
+					continue
+			print('self.long')
+			print('self.lat')
+			print(self.long)
+			print(self.lat)
+		except:
+			print('Error: exception in tfsite')
+			return False
+		return True
 	#imports the frequencies defined for this MT site. This defines rows and columns for the rest of the document.
 	def importFrequencies(self,tfsitefn):
 		file = open(tfsitefn, 'r')
 		count=0
-		while True: 
-			count += 1
-		  
-			# Get next line from file 
-			line = file.readline()
+		try:
+			while True: 
+				count += 1
+			  
+				# Get next line from file 
+				line = file.readline()
 
-			# if line is empty 
-			# end of file is reached 
-			if not line: 
-				break
+				# if line is empty 
+				# end of file is reached 
+				if not line: 
+					break
 
-			# find the frequency line and skip two lines down to get to the data
-			if(line.find('****FREQUENCIES****')>-1):
-				line = file.readline() #skip '>FREQ //[number of frequencies]' line
+				# find the frequency line and skip two lines down to get to the data
+				if(line.find('****FREQUENCIES****')>-1):
+					line = file.readline() #skip '>FREQ //[number of frequencies]' line
 
-				#now we're at the frequencies, so we record all of them until we hit an empty line
-				frequencies=[]
-				collen=0
-				while True:
-					line = file.readline()
-					linevals = np.array(line.split())
-					if(collen==0):
-						self.rowlen=len(linevals)
+					#now we're at the frequencies, so we record all of them until we hit an empty line
+					frequencies=[]
+					collen=0
+					while True:
+						line = file.readline()
+						linevals = np.array(line.split())
+						if(collen==0):
+							self.rowlen=len(linevals)
 
-					# #the last row is shorter than the others in this case
-					# if(linevals.size>0 and linevals.size<rowlen):
-						
-						
-					#if frequencies are correct, return from function
-					if(linevals.size==0):
-						self.collen=collen
-						self.f=frequencies
-						return
-					collen=collen+1
-					freqsrow=list(linevals.astype(np.float))
+						# #the last row is shorter than the others in this case
+						# if(linevals.size>0 and linevals.size<rowlen):
+							
+							
+						#if frequencies are correct, return from function
+						if(linevals.size==0):
+							self.collen=collen
+							self.f=frequencies
+							return True
+						collen=collen+1
+						freqsrow=list(linevals.astype(np.float))
 
-					frequencies = frequencies + freqsrow
-					if not line: 
-						print('Error: Failed to import TFsite frequencies')
-						quit()
+						frequencies = frequencies + freqsrow
+						if not line: 
+							print('Error: Failed to import TFsite frequencies')
+							return False
+		except:
+			print('TFsite frequency parsing error, skipping.')
+			return False
 		print('Error: Failed to find TFsite frequencies')
-		quit()
-		return
+		return False
 
 	#imports Z, the impedance (transfer function) for each frequency w of interest
 	def importAllZ(self, TFsitefn):
@@ -289,9 +353,9 @@ class TFsite:
 		for i in range(0,len(self.f)):
 			delta = abs(self.f[i]-f)
 			if(delta<mindelta):
-				delta=mindelta
+				mindelta=delta
 				mini=i
-		return i
+		return mini
 
 	def calcApparentc(self):
 		self.apparentc = []
@@ -351,6 +415,4 @@ class TFsite:
 			if(dist<mindisti):
 				mindisti=dist
 				mini=i
-		print('mindisti')
-		print(mindisti)
 		return self.apparentc[mini]

@@ -79,7 +79,7 @@ class MTsite:
 				break
 			window = int(windowstring)
 			self.windows=self.windows+[window]
-			self.windowedCounts=self.windowedCounts+[window*self.sampleperiod,[],[]]
+			self.windowedCounts=self.windowedCounts+[window*self.sampleperiod,[],[],[]]
 		self.calcPolyFits()
 
 	#MTsites are usually so large, one must process them in smaller chunks for the fourier transform and convolution with the TF site frequency dependent transfer function to succeed. We also need a TF site for each MT site to determine the transfer function and thus estimate the geoelectric field.
@@ -313,20 +313,24 @@ class MTsite:
 		windowalreadyexists=False
 
 		#add this duration data to the existing windowedCounts, or update if exists already
-		for i in range(0,int(np.floor(len(self.windowedCounts))/3)):
-			durationindex = i*3
-			efieldindex = i*3+1
-			ratesindex = i*3+2
+		for i in range(0,int(np.floor(len(self.windowedCounts))/5)):
+			durationindex = i*5
+			efieldindex = i*5+1
+			countsindex = i*5+2
+			cumsumindex = i*5+3
+			netyearsindex = i*5+4
 
 			duration=self.windowedCounts[durationindex]
 			if(duration==window*self.sampleperiod):
 				self.windowedCounts[efieldindex]=Efinal
-				self.windowedCounts[ratesindex]=countsfinal
+				self.windowedCounts[countsindex]=countsfinal
+				self.windowedCounts[cumsumindex]=cumsumfinal
+				self.windowedCounts[netyearsindex]=self.cumulativeyears
 				windowalreadyexists=True
 				break
 
 		if(not windowalreadyexists):
-			self.windowedCounts=self.windowedCounts+[window*self.sampleperiod,Efinal,countsfinal]
+			self.windowedCounts=self.windowedCounts+[window*self.sampleperiod,Efinal,countsfinal,cumsumfinal,self.cumulativeyears]
 
 	# if E rates for year already exists for this site, add to it. Otherwise, create a new .npy to store Erates per year for this site
 	def saveEratesPerYear(self):
@@ -386,15 +390,18 @@ class MTsite:
 		onceperfiveyearsE=[]
 		oncepersevenyearsE=[]
 		onceperdecadeE=[]
-		for i in range(0,int(np.floor(len(self.windowedCounts))/3)):
+		for i in range(0,int(np.floor(len(self.windowedCounts))/5)):
+			durationindex = i*5
+			efieldindex = i*5+1
+			countsindex = i*5+2
+			cumsumindex = i*5+3
+			netyearsindex = i*5+4
 
-			durationindex = i*3
-			efieldindex = i*3+1
-			ratesindex = i*3+2
 			duration = self.windowedCounts[durationindex]
 			Efields = self.windowedCounts[efieldindex]
-			rates = self.windowedCounts[ratesindex]
-			rpy=self.countstoRPY(rates)
+			counts = self.windowedCounts[countsindex]
+			cumsum = self.windowedCounts[cumsumindex]
+			rpy=cumsum/self.cumulativeyears
 
 			highestEfields=np.append(highestEfields,np.max(Efields))
 			durations=np.append(durations,duration)
@@ -408,27 +415,26 @@ class MTsite:
 		if(plot):
 			print('self.occurrenceRatio')
 			print(self.occurrenceRatio)
-			plt.plot(durations,self.occurrenceRatio,lw=1,label = "site "+str(self.sitename)+"  beta "+str(self.betaThreshold))
+			plt.plot(durations,self.occurrenceRatio,lw=1,label = "site "+str(self.sitename))#+"  beta "+str(self.betaThreshold))
 		return self.occurrenceRatio
 
 
 	def plotEratesPerYear(self,fittype):
 		# plt.figure()
 		plt.loglog()
-		for i in range(0,int(np.floor(len(self.windowedCounts))/3)):
-			# if(i!=0):
-			# 	continue
-			durationindex = i*3
-			efieldindex = i*3+1
-			ratesindex = i*3+2
+		for i in range(0,int(np.floor(len(self.windowedCounts))/5)):
+			durationindex = i*5
+			efieldindex = i*5+1
+			countsindex = i*5+2
+			cumsumindex = i*5+3
+			netyearsindex = i*5+4
+
 			duration = self.windowedCounts[durationindex]
 			Efields = self.windowedCounts[efieldindex]
-			rates = self.windowedCounts[ratesindex]
-			rpy=self.countstoRPY(rates)
+			counts = self.windowedCounts[countsindex]
+			cumsum = self.windowedCounts[cumsumindex]
+			rpy=cumsum/self.cumulativeyears
 			fitplotted=False
-			print('fittype')
-			print(fittype)
-			# [slope,exponent]=fits.fitPower(Efields,rates)
 			#if we've calculated power fits for all the windows
 			plt.plot(Efields,rpy,lw=1,label = "Efields averaged over "+str(duration)+' seconds, '+str(self.sitename))
 			if(len(self.powerfits)>0 and ('power' in fittype or fittype=='all')):
@@ -473,33 +479,35 @@ class MTsite:
 	def fitEratesPerYear(self):
 		self.logfits=[]
 		self.powerfits = []
-		for i in range(0,int(np.floor(len(self.windowedCounts))/3)):
-			durationindex = i*3
-			efieldindex = i*3+1
-			ratesindex = i*3+2
+		for i in range(0,int(np.floor(len(self.windowedCounts))/5)):
+			durationindex = i*5
+			efieldindex = i*5+1
+			countsindex = i*5+2
+			cumsumindex = i*5+3
+			netyearsindex = i*5+4
 
-			windowperiod = self.windowedCounts[durationindex]
+			duration = self.windowedCounts[durationindex]
 			Efields = self.windowedCounts[efieldindex]
-			counts = self.windowedCounts[ratesindex]
-
+			counts = self.windowedCounts[countsindex]
+			cumsum = self.windowedCounts[cumsumindex]
+			rpy=cumsum/self.cumulativeyears
 
 			#get counts
-			[Efields,cumsum,countscombined]=fits.combinecounts(Efields,counts)
 			probtoRPYratio=np.max(cumsum)/self.cumulativeyears
 
 			
 			[exponent]=fits.fitPower(Efields,cumsum/np.max(cumsum))
-			print('site '+str(self.MTsitefn)+' window: '+str(windowperiod))
+			print('site '+str(self.MTsitefn)+' window: '+str(duration))
 			#use PDF to determine mean and standard deviation of underlying normal distribution
-			[guessMean,guessStd]=fits.getGuesses(Efields,countscombined,False)
+			[guessMean,guessStd]=fits.getGuesses(Efields,counts,False)
 
 
 			#fit to the datapoints (CDF has a probability of 1 at the first datapoint)
 			[mean,std,loc]=fits.fitLognormalCDF(Efields,cumsum/np.max(cumsum),guessMean,guessStd,False)
 
 
-			self.powerfits = self.powerfits + [[windowperiod,exponent,probtoRPYratio]]
-			self.logfits = self.logfits + [[windowperiod,mean,std,loc,probtoRPYratio]]
+			self.powerfits = self.powerfits + [[duration,exponent,probtoRPYratio]]
+			self.logfits = self.logfits + [[duration,mean,std,loc,probtoRPYratio]]
 
 			# plt.plot(Efields,rates, lw=1,label = "Field averaged over "+str(windowperiod)+" seconds")
 

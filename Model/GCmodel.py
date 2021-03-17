@@ -5,7 +5,6 @@ from pathlib import Path
 import Params
 import os
 
-w = 2*np.pi*(1.0/120) #s^-1 
 u0 = 1.25664e-6 #m kg s^-2 A^-2 (permeability of free space)
 
 class GCmodel:
@@ -16,6 +15,8 @@ class GCmodel:
 		self.deltas=[]
 		self.depths=[]
 		self.downloaded=globalcondfn.is_file()
+		self.w = 2*np.pi*(1.0/120) #s^-1 
+		self.f = 1/120
 		if not self.downloaded:
 			currentdir=os.getcwd()
 
@@ -43,17 +44,17 @@ class GCmodel:
 		# For each layer n starting at the bottom, calculate impedance. 
 		# The final Z value at n=0 is the impedance at ground level.
 		for n in range(bottom,-1,-1):
-			k = np.sqrt(1j*w*u0*c[n]) #propagation constant
+			k = np.sqrt(1j*self.w*u0*c[n]) #propagation constant
 			
 			if(n==bottom):
-				Z[n]=1j*w*u0/k
+				Z[n]=1j*self.w*u0/k
 			else:
-				foo=k*Z[n+1]/(1j*w*u0)
+				foo=k*Z[n+1]/(1j*self.w*u0)
 				r=(1-foo)/(1+foo) #reflection coefficient
 				Znumerator = 1-r*np.exp(-2*k*self.depths[n])
 				Zdenominator = k*(1+r*np.exp(-2*k*self.depths[n]))
 
-				Z[n] = 1j*w*u0*Znumerator/Zdenominator
+				Z[n] = 1j*self.w*u0*Znumerator/Zdenominator
 		return Z[0]
 
 	# here we loop through the map and determine apparent conductivity at each location, returning a 2d matrix
@@ -85,7 +86,7 @@ class GCmodel:
 					compleximp=getImpedance(c)
 					impedance = float(abs(compleximp))
 
-					cond = u0*w/(impedance*impedance)
+					cond = u0*self.w/(impedance*impedance)
 
 					if maxcond < cond:
 						maxcond = cond

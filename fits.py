@@ -23,8 +23,8 @@ def powerlaw(x,exponent):
 # y=s*(x^e)
 # y/s=x^e
 # (y/s)^(1/e)=x
-# def powerlawxfromy(y,slope,exponent):
-# 	return (y/slope)**(1/exponent)
+def powerlawxfromy(y,slope,exponent):
+	return (y/slope)**(1/exponent)
 
 #see Love, 2018 page 9 (equation 7)
 # upsilon is the expected value of the PDF.
@@ -76,74 +76,22 @@ def cdf(x):
 	return 1-norm.cdf(x)
 def logpdf(x,mu,sigma,loc=0):
 	return lognorm.pdf(x,mu,loc,sigma)
-# def logcdfskewkurt(x,mean, variance, skew, kurtosis):
-# 	return skewnorm.cdf(mean,)
-
-# def fitLognormal(xdata,ydata):
-# 	guessupsilon=-11
-# 	guessepsilonsqd=4.6#50000
-# 	# for guessupsilon in range(-20,-5):
-
-# 	# we help curve_fit out by providing a wide range of reasonable guess inputs
-# 	plt.figure()
-# 	# for guessupsilon in range(-20,-5,3):
-# 	# for guessepsilonsqd in range(1,9,2):
-# 	print('guessepsilonsqd')
-# 	print(guessepsilonsqd)
-# 	print('guessupsilon')
-# 	print(guessupsilon)
-# 	plt.loglog(xdata,lognormal(np.array(xdata),guessupsilon,guessepsilonsqd)*1.1,lw=1,label = "guess for guess upsilon:"+str(guessupsilon)+" guessepsilonsqd"+str(guessepsilonsqd))
-# 	try:
-# 		params=[]
-# 		params, covar = curve_fit(lognormal,xdata,ydata,p0=[guessupsilon,guessepsilonsqd],maxfev=10000)
-# 		upsilon, epsilonsqd = params
-# 		print(params) 
-# 		quit()
-# 		if(covar[0][0]==inf):
-# 			print('fit infinite covar: guessupsilon: '+str(guessupsilon)+'  epsilonsqd: '+str(guessepsilonsqd))
-# 			# continue
-
-# 	except:
-# 		print('fit failed: guessupsilon: '+str(guessupsilon)+'  epsilonsqd: '+str(guessepsilonsqd))
-# 		print('params')
-# 		print(params)
-# 		upsilon=guessupsilon
-# 		epsilonsqd=guessepsilonsqd
-# 		# continue
-# 		fitted=lognormal(np.array(xdata),upsilon,epsilonsqd)
-# 		print(fitted)
-# 		plt.loglog(xdata,fitted,lw=1,label = "fit from guess upsilon:"+str(guessupsilon)+" guessepsilonsqd"+str(guessepsilonsqd))
-
-# 	plt.loglog(xdata,ydata,lw=1,label = "data we're fitting")
-# 	plt.legend()
-# 	print('covar')
-# 	print(covar)
-# 	plt.show()		
-
-# 	# plt.loglog(xdata, lognormal(np.array(xdata),upsilon,epsilonsqd))
-# 	# plt.loglog(xdata, ydata)
-# 	# plt.xlabel('X (log scale)')
-# 	# plt.ylabel('Y (log scale)')
-# 	# plt.show()
-
-# 	return [upsilon,epsilonsqd]
-
 
 def fitLognormalCDF(xdata,ydata,guessmu,guesssigma,plot):
 	try:
 		params, covar = curve_fit(logcdf,xdata,ydata,p0=[guessmu,guesssigma,0],maxfev=10000)
 	except:
-		print('fit failed')
-		quit()
+		print('log fit failed, using guess.')
+		return [guessmu,guesssigma,0]
 	# mean,std=params
 	# loc=0
 	mean,std,loc=params
-	print('mean')
-	print(mean)
-	print('std')
-	print(std)
-	print('loc')
-	print(loc)
+	# print('mean')
+	# print(mean)
+	# print('std')
+	# print(std)
+	# print('loc')
+	# print(loc)
 
 	if(plot):
 		plt.figure()
@@ -155,72 +103,6 @@ def fitLognormalCDF(xdata,ydata,guessmu,guesssigma,plot):
 		plt.legend()
 		plt.show()
 	return [mean,std,loc]
-
-def fitLognormalwithloc(xdata,ydata):
-	# plt.figure(45)
-	# plt.subplot(2, 1, 2)
-	# guessupsilon=.0005
-	# guessepsilonsqd=50000 
-	guesses=[\
-	np.array([-1.8908820193414216e-05, 0.003528574384792193, 0.9972651549201421]),
-	np.array([5.9588582, 4.37993949, 0.00277132933]),\
-	np.array([-1.1966543898728443, 0.04531822610045514, 0.27575209465565304]),\
-	np.array([-1.1966543898728443, 0.4, 0.02]),\
-	np.array([-3.07289437, 0.02616835, 0.04285109]),\
-	np.array([-6.43616259e-04, 4.75736705e-03, 9.89547338e-01]),\
-	]
-
-	for g in guesses:
-		print('guessg')
-		print(g)
-		guessdata=locimportedlognormal(np.array(xdata),g[0],np.abs(g[1]),g[2])
-		# plt.loglog(xdata,guessdata,lw=1,label = "guess ["+str(g[0])+', '+str(g[0])+', '+str(g[0])+']')
-		try:
-			logx=np.log(xdata)
-			logy=np.log(ydata)
-			params, covar = curve_fit(locimportedlognormal,xdata,ydata,\
-				p0=g,\
-				maxfev=10000)
-
-			upsilon,epsilon,loc=params
-			fitdata=locimportedlognormal(np.array(xdata),upsilon,np.abs(epsilon),loc)
-
-			r = np.divide(np.array(ydata),np.array(fitdata))#ratios
-			arezeros=np.array(1-r).astype(bool)
-			for e in arezeros:
-				if(not e):
-					print('error with one of the fits: zero value occured!')
-					continue
-				if(e==np.inf):
-					print('error with one of the fits: infinitely large log residual!')
-					continue
-			avgr=np.mean(np.log(np.abs(r)))
-			print('avgr')
-			print(avgr)
-			plt.loglog(xdata, ydata)
-			plt.loglog(xdata, fitdata)
-			plt.xlabel('X (log scale)')
-			plt.ylabel('Y (log scale)')
-		except:
-			print('fitfailed, trying again')
-			params=[-5.8,.37,0.0001]	
-			r=np.inf
-			continue
-		break
-	plt.legend()
-	# params, covar = curve_fit(locimportedlognormal,xdata,ydata,p0=[-5.8,.37,0.00000001],maxfev=10000)
-	# print('covar')
-	# print(covar)
-	print('final average residuals')
-	print(avgr)
-	# paramsa, covar = curve_fit(lognormal,xdata,ydata,p0=[-5.8,.37],maxfev=10000)
-	# plt.figure()
-	# plt.loglog(xdata, locimportedlognormal(np.array(xdata),upsilon,epsilon,loc))
-	# plt.loglog(xdata, ydata)
-	# plt.xlabel('X (log scale)')
-	# plt.ylabel('Y (log scale)')
-	plt.show()
-	return [upsilon,epsilon,loc]
 
 def fitPower(xdata,ydata):
 	# print(xdata)
@@ -248,7 +130,7 @@ def fitPower(xdata,ydata):
 	#
 
 	logx = np.log10(xdata)
-	x0=logx[0]
+	x0=np.min(logx)
 	logy = np.log10(ydata)
 
 	# define our (line) fitting function
@@ -357,6 +239,9 @@ def getGuesses(E,counts,plot):
 	return [mean,std]
 
 def combinecounts(E,allcountsatE):
+	if(len(allcountsatE)==0):
+		allcountsatE=np.ones(np.len(E))
+
 	sortedcountsbyE = [x for _,x in sorted(zip(-np.array(E),allcountsatE))]
 	sortedE = np.sort(-np.array(E))
 	negE=np.array(sortedE)

@@ -20,6 +20,7 @@ def importModelParams():
 	global transformersfn
 	global mtsitesdir
 	global tfsitesdir
+	global allTFsitesdir
 	global mtRepeatRatesDir
 	global mtRepeatRatePlotsDir
 	global maxchunksize
@@ -81,6 +82,8 @@ def importModelParams():
 			mtsitesdir=paramdata[2][coltitleindex]
 		if(coltitle == 'tfsitesdir'):
 			tfsitesdir=paramdata[2][coltitleindex]
+		if(coltitle == 'allTFsitesdir'):
+			allTFsitesdir=paramdata[2][coltitleindex]
 		if(coltitle == 'mtRepeatRatesDir'):
 			mtRepeatRatesDir = paramdata[2][coltitleindex]
 		if(coltitle == 'mtRepeatRatePlotsDir'):
