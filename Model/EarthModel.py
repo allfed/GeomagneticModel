@@ -1,6 +1,6 @@
 import Params
 import fits
-
+from scipy.interpolate import griddata
 import matplotlib.colors as colors
 import glob
 import Model.TFsite
@@ -21,6 +21,8 @@ import pandas as pd
 import geopandas as gpd
 from shapely.geometry import Point
 import contextily as ctx
+from scipy.stats import pearsonr
+
 class EarthModel:
 
 	# initialize a site by providing a list of frequencies w to determine the transfer function.
@@ -29,6 +31,8 @@ class EarthModel:
 		Params.importIfNotAlready()
 		self.refcumsum=[]
 		self.refEfields=[]
+		self.refmatchedEfields=[]
+		self.combinedmatchedpowerfits=[]
 		self.combinedpowerfits=[]
 		self.combinedlogfits=[]
 		self.refconductivity=Params.refconductivity
@@ -315,8 +319,11 @@ class EarthModel:
 	# find E fields at all locations on conductivity map for each duration
 	# Correct for geomagnetic latitude and apparent conductivity
 	def calcGlobalEfields(self, ratePerYears):
+		print('calcglobalEfields function in progress, quitting')
+		quit()
 		self.windowedEmaps=[]
 		for r in ratePerYears:
+			break
 			windowedEmapsatrate=[]
 			#save a map of e fields for each duration at this rate per Year
 			for i in range(0,len(self.allwindowperiods)):
@@ -325,8 +332,8 @@ class EarthModel:
 				std=self.combinedlogfits[i*5+2]
 				loc=self.combinedlogfits[i*5+3]
 				ratio=self.combinedlogfits[i*5+4]
-				exponent=self.combinedpowerfits[i*5+1]
-				refField=fits.powerlawxfromy(r,exponent)
+				# exponent=self.combinedpowerfits[i*5+1]
+				# refField=fits.powerlawxfromy(r,exponent)
 				print('refField level rest of map is proportional to this field (V/km):'+str(refField))
 				col=0
 				longInterval=int(np.floor(Params.longituderes/0.25))
@@ -380,12 +387,13 @@ class EarthModel:
 
 		np.save(Params.globalEfieldData,self.windowedEmaps)
 
-	#adjusts ratesperyear for all the sites to the reference maglat and conductivity and saves the result as properties of this EarthModel instance
+	#adjusts ratesperyear for all the sites to the reference maglat and conductivity and sets the result to properties of this EarthModel instance
 	def calcReferenceRateperyear(self,tfsites,mtsites,fittype,plot):
 		self.refcumsum=[]
 		self.refEfields=[]
 		allcumsum=[]
 		allE=[]
+		allmatchedE=[]#populated later on, will remain empty for now
 		allYears=[]
 		allCounts=[]
 		if(plot):
@@ -397,6 +405,7 @@ class EarthModel:
 			mtsite=mtsites[i]
 			plt.loglog()
 			allEatwindow=[]
+			allmatchedEatwindow=[]
 			allcumsumatwindow=[]
 			allcountsatwindow=[]
 			allyearsatwindow=[]
@@ -435,13 +444,18 @@ class EarthModel:
 				apparentcond=tfsite.getApparentcCloseToWindowPeriod(duration)
 				adjustedtosite=self.adjustEfieldsToRefCond(apparentcond,adjustedEfields,duration)
 				adjustedtomaglat=np.real(np.array(adjustedtosite)/self.getMagLatDivisor(mtsite.maglat))
+				# finalAdjustment=self.adjustEfieldsToMatch(adjustedtomaglat)
+
+				# quit()
 				allEatwindow.append(np.array(adjustedtomaglat))
+				allmatchedEatwindow.append(1)
 				allcumsumatwindow.append(np.array(cumsum))
 				allcountsatwindow.append(np.array(counts))
 				allyearsatwindow.append(years)
 
 			allcumsum.append(allcumsumatwindow)
 			allE.append(allEatwindow)
+			allmatchedE.append(allmatchedEatwindow)
 			allCounts.append(allcountsatwindow)
 			allYears.append(allyearsatwindow)
 
@@ -494,6 +508,7 @@ class EarthModel:
 
 		self.refcumsum=allcumsum
 		self.refEfields=allE
+		self.refmatchedEfields=allmatchedE
 		self.refCounts=allCounts
 		self.refYears=allYears
 
@@ -504,6 +519,102 @@ class EarthModel:
 		#we want the apparent conductivity at the average frequency of the EMP, which can be approximated by 1/windowperiod
 
 		return np.sqrt(apparentcond)/np.sqrt(self.refconductivity)*np.array(Efields)
+
+	def adjustEfieldsToMatch(self,plot):
+
+		for j in range(0,len(self.allwindowperiods)):
+			exponent=self.combinedpowerfits[j][1]
+			if(plot and (j==0)):
+				plt.figure()
+				plt.loglog()
+			scale=self.combinedpowerfits[j][2]
+			# combinedEfields=np.array([])
+			# combinedrates=np.array([])
+			# combinedcumsum=np.array([])
+			# combinedcounts=np.array([])
+			# combinedyears=0
+
+
+			for i in range(0,len(self.refYears)):
+				if(not Params.useMTsite[i]):
+					continue
+				years=self.refYears[i][j]
+				Efields=self.refEfields[i][j]
+				rates=np.array(self.refcumsum[i][j])/self.refYears[i][j]
+				cumsum=self.refcumsum[i][j]
+				counts=self.refCounts[i][j]
+
+				linfitEfields=np.power((rates[rates>1]/scale),(1/exponent))
+
+				#mean ratio between the average powerfit value and the E fields for this data.
+				adjustment=np.mean(linfitEfields/Efields[rates>1])
+				self.refmatchedEfields[i][j]=adjustment
+				if(plot and (j==0)):
+					plt.plot(Efields*adjustment,rates)
+					plt.plot(Efields,np.array(Efields)**exponent*scale)
+
+			if(plot and (j==0)):
+				plt.show()
+
+
+	def calcMatchedCombinedRates(self,plot):
+		self.combinedexponents=[]
+		#combine the fields into one distribution
+		for j in range(0,len(self.allwindowperiods)):
+			windowperiod = self.allwindowperiods[j]
+			combinedEfields=np.array([])
+			combinedrates=np.array([])
+			combinedcumsum=np.array([])
+			combinedcounts=np.array([])
+			combinedyears=0
+
+			for i in range(0,len(self.refYears)):
+				if(not Params.useMTsite[i]):
+					continue
+				combinedyears=combinedyears+self.refYears[i][j]
+				combinedEfields=np.append(combinedEfields,self.refmatchedEfields[i][j]*self.refEfields[i][j])
+				ratestmp=np.array(self.refcumsum[i][j])/self.refYears[i][j]
+				combinedrates=np.append(combinedrates,ratestmp)
+				combinedcumsum=np.append(combinedcumsum,self.refcumsum[i][j])
+				combinedcounts=np.append(combinedcounts,self.refCounts[i][j])
+			probtoRPYratio=np.max(combinedcumsum)/(combinedyears/len(self.refYears))
+			
+			#sort by descending E field
+			counts = [x for _,x in sorted(zip(-np.array(combinedEfields),combinedcounts))]
+			cumsum = [x for _,x in sorted(zip(-np.array(combinedEfields),combinedcumsum))]
+			rates = [x for _,x in sorted(zip(-np.array(combinedEfields),combinedrates))]
+			E = -np.sort(-np.array(combinedEfields))
+			linearfit=np.polyfit(np.log(E),np.log(rates),1)
+
+			linfun=np.poly1d(linearfit)
+			[exponent]=fits.fitPower(E,cumsum/np.max(cumsum))
+			self.combinedmatchedpowerfits = self.combinedmatchedpowerfits + [[windowperiod,linearfit[0],np.exp(linearfit[1])]]
+			#use PDF to determine mean and standard deviation of underlying normal distribution
+			[guessMean,guessStd]=fits.getGuesses(E,counts,False)
+
+
+			#fit to the datapoints (CDF has a probability of 1 at the first datapoint)
+			[mean,std,loc]=fits.fitLognormalCDF(E,cumsum/np.max(cumsum),guessMean,guessStd,False)
+			self.combinedlogfits = self.combinedlogfits + [[windowperiod,mean,std,loc,probtoRPYratio]]
+			if(plot):
+				if(j!=0):
+					continue
+				plt.figure()
+				plt.loglog()
+
+				# plt.plot(E,fits.powerlaw(E,exponent)*probtoRPYratio, lw=1,label = "Powerfit, field averaged over "+str(windowperiod)+" seconds")
+				plt.plot(E,E**linearfit[0]*np.exp(linearfit[1]), lw=1,label = "Powerfit, field averaged over "+str(windowperiod)+" seconds")
+				# plt.plot(E,fits.logcdf(np.array(E),mean,np.abs(std),loc)*probtoRPYratio, lw=1,label = "Logfit, field averaged over "+str(windowperiod)+" seconds")
+				plt.plot(E,rates,'.', lw=1,label = "Field averaged over "+str(windowperiod)+" seconds")
+
+				plt.legend()
+				plt.title('Rate geoelectric field is above threshold')
+				plt.xlabel('Geoelectric Field (V/km)')
+				plt.ylabel('Average rate per year distinct contiguous sample average is above E field (counts/year)')
+			
+				plt.show()
+
+
 
 	def calcCombinedRates(self,plot):
 		self.combinedexponents=[]
@@ -533,25 +644,27 @@ class EarthModel:
 			rates = [x for _,x in sorted(zip(-np.array(combinedEfields),combinedrates))]
 			E = -np.sort(-np.array(combinedEfields))
 
-
+			linearfit=np.polyfit(np.log(E),np.log(rates),1)
+			# linfun=np.poly1d(linearfit)
+			# fits.findEdeltaToMinimizeRMS(np.exp(combinedEfields),linearfit,cumsum)
 			[exponent]=fits.fitPower(E,cumsum/np.max(cumsum))
-			self.combinedpowerfits = self.combinedpowerfits + [[windowperiod,exponent,probtoRPYratio]]
+			self.combinedpowerfits = self.combinedpowerfits + [[windowperiod,linearfit[0],np.exp(linearfit[1])]]
 			#use PDF to determine mean and standard deviation of underlying normal distribution
-			[guessMean,guessStd]=fits.getGuesses(E,counts,False)
+			# [guessMean,guessStd]=fits.getGuesses(E,counts,False)
 
 
 			#fit to the datapoints (CDF has a probability of 1 at the first datapoint)
-			[mean,std,loc]=fits.fitLognormalCDF(E,cumsum/np.max(cumsum),guessMean,guessStd,False)
-
-			self.combinedlogfits = self.combinedlogfits + [[windowperiod,mean,std,loc,probtoRPYratio]]
+			# [mean,std,loc]=fits.fitLognormalCDF(E,cumsum/np.max(cumsum),guessMean,guessStd,False)
+			# self.combinedlogfits = self.combinedlogfits + [[windowperiod,mean,std,loc,probtoRPYratio]]
 			if(plot):
 				if(j!=0):
 					continue
 				plt.figure()
 				plt.loglog()
 
-				plt.plot(E,fits.powerlaw(E,exponent)*probtoRPYratio, lw=1,label = "Powerfit, field averaged over "+str(windowperiod)+" seconds")
-				plt.plot(E,fits.logcdf(np.array(E),mean,np.abs(std),loc)*probtoRPYratio, lw=1,label = "Logfit, field averaged over "+str(windowperiod)+" seconds")
+				# plt.plot(E,fits.powerlaw(E,exponent)*probtoRPYratio, lw=1,label = "Powerfit, field averaged over "+str(windowperiod)+" seconds")
+				plt.plot(E,E**linearfit[0]*np.exp(linearfit[1]), lw=1,label = "Powerfit, field averaged over "+str(windowperiod)+" seconds")
+				# plt.plot(E,fits.logcdf(np.array(E),mean,np.abs(std),loc)*probtoRPYratio, lw=1,label = "Logfit, field averaged over "+str(windowperiod)+" seconds")
 				plt.plot(E,rates,'.', lw=1,label = "Field averaged over "+str(windowperiod)+" seconds")
 
 				plt.legend()
@@ -604,11 +717,12 @@ class EarthModel:
 		allfiles=glob.glob(loaddirectory+'*.edi')
 		self.loadApparentCond()
 		self.calcGCcoords()
-		print(len(allfiles))
 		self.allTFsiteAppcs=[]
 		self.allGCmodelAppcs=[]
-		self.allmaglats=[]
-		self.allmaglongs=[]
+		self.alllats=[]
+		self.alllongs=[]
+		numsucceed=0
+
 		for i in range(0,len(allfiles)):
 			fn=allfiles[i]
 			if(fn=='.' or fn=='..'):
@@ -620,85 +734,300 @@ class EarthModel:
 			if(not tfsite.initFromfile(fn)):
 				print('error with site '+str(fn)+', skipping')
 				continue
-			magcoords=self.geotomag(tfsite.lat,tfsite.long)
-			tfsite.maglat=magcoords.data[0][1]
-			tfsite.maglong=magcoords.data[0][2]
-			print('tfsite.maglat')
-			print(tfsite.maglat)
-			print('tfsite.maglong')
-			print(tfsite.maglong)
+			print('tfsite')
+			print(tfsite.lat)
+			print('tfsite')
+			print(tfsite.long)
+
+			# magcoords=self.geotomag(tfsite.lat,tfsite.long)
+			# tfsite.maglat=magcoords.data[0][1]
+			# tfsite.maglong=magcoords.data[0][2]
+			# print('tfsite.maglat')
+			# print(tfsite.maglat)
+			# print('tfsite.maglong')
+			# print(tfsite.maglong)
 
 				
 			[tfapparentc,gcapparentc]=self.compareGCmodeltoTFsite(tfsite)#8mHz
 			self.allTFsiteAppcs.append(tfapparentc)
 			self.allGCmodelAppcs.append(gcapparentc)
-			self.allmaglats.append(tfsite.maglat)
-			self.allmaglongs.append(tfsite.maglong)
-		np.save('AllTFSitesCorrelation',[np.array(self.allTFsiteAppcs),np.array(self.allGCmodelAppcs),np.array(self.allmaglats),np.array(self.allmaglongs)])
+			self.alllats.append(tfsite.lat)
+			self.alllongs.append(tfsite.long)
+			numsucceed=numsucceed+1
+			# print('self.alllats')
+			# print('self.alllongs')
+			# print(self.alllats)
+			# print(self.alllongs)
+		np.save('AllTFSitesCorrelation',[np.array(self.allTFsiteAppcs),np.array(self.allGCmodelAppcs),np.array(self.alllats),np.array(self.alllongs)])
+		print('len(allfiles)')
+		print(len(allfiles))
+		print('numfail')
+		print(len(allfiles)-numsucceed)
 
 	def loadGCtoTFcomparison(self):
-		[self.allTFsiteAppcs,self.allGCmodelAppcs,self.allmaglats,self.allmaglongs]=np.load('AllTFSitesCorrelation.npy')
+		[self.allTFsiteAppcs,self.allGCmodelAppcs,self.alllats,self.alllongs]=np.load('AllTFSitesCorrelation.npy')
 
-	def plotGCtoTFcomparison(self):
+	def findAverages(self,longitudes,latitudes,values,avgwin):
+		allaveragedpoints=[]
+		for i in range(0,len(values)):
+			longitude=longitudes[i]
+			latitude=latitudes[i]
+			# print('longitude')
+			# print(longitude)
+			# print('latitude')
+			# print(latitude)
+			pointstoavg=np.array([])
+			for j in range(0,len(values)):
+				if((((longitudes[j]<longitude+avgwin) and (longitudes[j]>longitude-avgwin))) and ((latitudes[j]<latitude+avgwin) and (latitudes[j]>latitude-avgwin))):
+					# print('values[j]')
+					# print(values[j])
+					pointstoavg=np.append(pointstoavg,values[j])
+		
+			allaveragedpoints.append(np.mean(pointstoavg))
+		return np.array(allaveragedpoints)
+
+	def findPredictivePower(self,TFcond,GCcond):
+		ratios=np.array([])
+		for i in range(0,len(TFcond)):
+			tf=TFcond[i]
+			gc=GCcond[i]
+			ratios=np.append(ratios,tf/gc)
 		plt.figure()
 		plt.loglog()
-		plt.scatter(self.allTFsiteAppcs,self.allGCmodelAppcs)
+		plt.scatter(TFcond,ratios)
+		plt.show()
+		print('np.mean(ratio)')
+		print(np.mean(ratios))
+		print('np.mean(ratio)')
+		print(np.median(ratios))
+
+		print('sqrt(np.mean(ratio-**2)')
+		print('np.sqrt(np.sum((ratios-np.mean(ratios))**2)/len(ratios))')
+		print(np.sqrt(np.sum((ratios-np.mean(ratios))**2)/len(ratios)))
+		print('np.sqrt(np.sum((ratios-np.mean(ratios))**2)/len(ratios))')
+		print(np.sqrt(np.sum(ratios**2)/len(ratios)))
+
+		rmsratio=np.sqrt(np.sum(ratios**2)/len(ratios))
+
+		print('np.std(ratio)')
+		print(np.std(ratios))
+		print('2 sigma')
+		print(2*np.std(ratios))
+		print('rms ratio')
+		print(np.std(ratios))
+		print('2 rms ratio')
+		print(2*rmsratio)
+
+	def plotGCtoTFcomparison(self):
+		# plt.figure()
+		# plt.loglog()
+		# plt.scatter(self.allTFsiteAppcs,self.allGCmodelAppcs)
+		# plt.xlabel('EMTF (accurate) conductivities, (Ohm m)^-1')
+		# plt.ylabel('GC model (inaccurate) conductivities (Ohm m)^-1')
+		# plt.show()
+		alllongs=np.array(self.alllongs).astype(np.float)
+		alllats=np.array(self.alllats).astype(np.float)
+		allTFsiteAppcs=np.real(np.array(self.allTFsiteAppcs)).astype(np.float)
+		allGCmodelAppcs=np.real(np.array(self.allGCmodelAppcs)).astype(np.float)
+
+		# target grid to interpolate to
+		xi = yi = np.arange(0,1.01,0.01)
+		xi,yi = np.meshgrid(xi,yi)
+
+		# set mask
+		# mask = (xi > 0.5) & (xi < 0.6) & (yi > 0.5) & (yi < 0.6)
+
+		# interpolate
+		# zi = griddata((x,y),z,(xi,yi),method='linear')
+
+
+		# mask out the field
+		# zi[mask] = np.nan
+
+		# plot
+		fig = plt.figure()
+		ax = fig.add_subplot(111)
+		# plt.contourf(xi,yi,zi,np.arange(0,1.01,0.01))
+		# plt.plot(alllongs,alllats,'k.')
+		# plt.xlabel('xi',fontsize=16)
+		# plt.ylabel('yi',fontsize=16)
+		# plt.show()
+		# plt.savefig('interpolated.png',dpi=100)
+		# plt.close(fig)
+		# quit()
+		df=pd.DataFrame({'longs':np.array(self.alllongs).astype(np.float),'lats':np.array(self.alllats).astype(np.float),'TF':np.real(np.array(self.allTFsiteAppcs).astype(np.float)),'GC':np.real(np.array(self.allGCmodelAppcs).astype(np.float))})
+
+		# print(np.sum(np.isnan(np.array(self.allTFsiteAppcs).astype(np.float))))
+		# print(np.sum(np.isnan(np.array(self.allGCmodelAppcs).astype(np.float))))
+		# corr, _ = pearsonr(np.real(self.allTFsiteAppcs.astype(np.float)),np.real( self
+		# dfTFfiltered = df[np.multiply((df['TF'].T > 10**-6), (df['TF'].T < 10**2))]
+		# dfTFfiltered = df[np.multiply(np.multiply(np.multiply((1/df['TF'].T > 10**0), (1/df['TF'].T < 10**4)),df['GC'].T >3*10**-3),df['GC'].T <2*10**-1)]
+		# dfTFfiltered = df[np.multiply(np.multiply((1/df['TF'].T > 10**0), (1/df['TF'].T < 10**4)),df['GC'].T >3*10**-3)]
+		dfTFfiltered = df[np.multiply((1/df['TF'].T > 10**0), (1/df['TF'].T < 10**4))]
+
+		# plt.figure()
+		# plt.loglog()
+		# plt.scatter(dfTFfiltered['TF'],dfTFfiltered['GC'])
+		# plt.xlabel('EMTF (accurate) conductivities, (Ohm m)^-1')
+		# plt.ylabel('GC model (inaccurate) conductivities (Ohm m)^-1')
+		# plt.show()
+
+		# dfGCfiltered = df[np.multiply((df['GC'].T > 10**-3), (df['GC'].T < 10**1))]
+		dfResLogTF=dfTFfiltered
+		dfResLogGC=dfTFfiltered
+		dfTFfiltered['logTF']=np.log(dfTFfiltered['TF'])#1/dfTFfiltered['TF']#np.log(1/dfTFfiltered['TF'])
+		dfTFfiltered['logGC']=np.log(dfTFfiltered['GC'])#1/dfTFfiltered['TF']#np.log(1/dfTFfiltered['TF'])
+		# maxTF=np.max(dfTFfiltered['logTF'])#1/dfTFfiltered['TF']#np.log(1/dfTFfiltered['TF'])
+		# minTF=np.min(dfTFfiltered['logTF'])#1/dfTFfiltered['TF']#np.log(1/dfTFfiltered['TF'])
+		# maxGC=np.max(dfTFfiltered['logGC'])#1/dfTFfiltered['GC']#np.log(1/dfTFfiltered['GC'])
+		# minGC=np.min(dfTFfiltered['logGC'])#1/dfTFfiltered['TF']#np.log(1/dfTFfiltered['TF'])
+		# dfTFfiltered['logGCadjusted']=(dfTFfiltered['logGC']-minGC)*(maxTF-minTF)/(maxGC-minGC)+minTF#1/dfTFfiltered['TF']#np.log(1/dfTFfiltered['TF'])
+		corr=dfTFfiltered['logTF'].corr(dfTFfiltered['logGC'])
+		print('correlation: %.3f' % corr)
+		# dfTFfiltered['GCadjusted']=np.exp(dfTFfiltered['logGCadjusted'])
+
+		# dfResLogGC['GC']=dfGCfiltered['GC']#np.log(dfGCfiltered['GC'])
+		crs={'init':'epsg:3857'}#4326'}
+		# plt.figure()
+		geometryTF=[Point(xy) for xy in zip(dfTFfiltered['longs'],dfTFfiltered['lats'])]
+		geometryGC=[Point(xy) for xy in zip(dfTFfiltered['longs'],dfTFfiltered['lats'])]
+		geo_df_TF=gpd.GeoDataFrame(dfTFfiltered,crs=crs,geometry=geometryTF)
+		geo_df_GC=gpd.GeoDataFrame(dfTFfiltered,crs=crs,geometry=geometryGC)
+		# print(dfResLog['TF'])
+		# plt.figure()
+		tf=np.array(dfTFfiltered['TF'].as_matrix())
+		longs=np.array(dfTFfiltered['longs'].as_matrix())
+		lats=np.array(dfTFfiltered['lats'].as_matrix())
+		averages=np.exp(self.findAverages(longs,lats,np.log(tf),5))
+		# averages=np.load('averages.npy')
+		# print(averages)
+		# quit()
+		# np.save('averages',averages)
+		dfTFfiltered['TFavgd']=averages
+		dfTFfiltered['TFavgdlog']=np.log(averages)
+
+		plt.figure()
+		# plt.loglog()
+		plt.plot(dfTFfiltered['logGC'])
 		plt.xlabel('EMTF (accurate) conductivities, (Ohm m)^-1')
 		plt.ylabel('GC model (inaccurate) conductivities (Ohm m)^-1')
 		plt.show()
+		
 		plt.figure()
-		df=pd.DataFrame({'longs':(self.allmaglongs).astype(np.float),'lats':self.allmaglats.astype(np.float),'TF':self.allTFsiteAppcs.astype(np.float),'GC':self.allGCmodelAppcs.astype(np.float)})
-		# dfTFfiltered = df[np.multiply((df['TF'].T > 10**-6), (df['TF'].T < 10**2))]
-		dfTFfiltered = df[np.multiply((1/df['TF'].T > 10**0), (1/df['TF'].T < 10**4))]
-		dfGCfiltered = df[np.multiply((df['GC'].T > 10**-3), (df['GC'].T < 10**1))]
-		dfResLogTF=dfTFfiltered
-		dfResLogGC=dfGCfiltered
-		dfResLogTF['TF']=1/dfTFfiltered['TF']#np.log(1/dfTFfiltered['TF'])
-		dfResLogGC['GC']=np.log(dfGCfiltered['GC'])
-		crs={'init':'epsg:3857'}#4326'}
-		# plt.figure()
-		geometryTF=[Point(xy) for xy in zip(dfResLogTF['lats'],dfResLogTF['longs'])]
-		geometryGC=[Point(xy) for xy in zip(dfResLogGC['lats'],dfResLogGC['longs'])]
-		geo_df_TF=gpd.GeoDataFrame(dfResLogTF,crs=crs,geometry=geometryTF)
-		geo_df_GC=gpd.GeoDataFrame(dfResLogGC,crs=crs,geometry=geometryGC)
-		# print(dfResLog['TF'])
-		plt.figure()
-		plt.plot(np.array(dfResLogTF['longs'].as_matrix()))
+		# plt.loglog()
+		plt.plot(dfTFfiltered['TFavgdlog'])
+		plt.xlabel('EMTF (accurate) conductivities, (Ohm m)^-1')
+		plt.ylabel('GC model (inaccurate) conductivities (Ohm m)^-1')
 		plt.show()
+		TFavgd=np.array(dfTFfiltered['TFavgd'].as_matrix())
+		GCarr=np.array(dfTFfiltered['GC'].as_matrix())
+		# GCadjusted=GCarr*np.exp(np.log(np.mean(TFavgd))/np.log(np.mean(GCarr)))
+		[xtf,ytf]=fits.binlognormaldist(TFavgd,[],4)
+
+		[xgc,ygc]=fits.binlognormaldist(GCarr,[],2)
+		
+		plt.figure()
+		plt.xscale("log")
+
+		plt.plot(xtf,ytf,lw=1,label = "tf")
+		plt.plot(xgc,ygc,lw=1,label = "gc")
+		plt.legend()
+		plt.show()
+
+
+		corr=dfTFfiltered['TFavgdlog'].corr(dfTFfiltered['logGC'])
+		print('')
+		corr, _ = pearsonr(np.log(TFavgd),np.log(GCarr))
+		print('spatial average correlation: %.3f' % corr)
+		print('')
+		print('predictive power GC vs TF')
+		self.findPredictivePower(TFavgd,GCarr)#*np.exp(np.log(np.mean(TFavgd))/np.log(np.mean(GCarr))))
+		quit()
+		print('should be 1')
+		print(np.mean(TFavgd/np.mean(TFavgd)))
+		print('should be 1')
+		print(np.mean(GCarr/np.mean(GCarr)))
+		print('std TF')
+		print(np.std(TFavgd/np.mean(TFavgd)))
+		print('std GC')
+		print(np.std(GCarr/np.mean(GCarr)))
+		print('predictive power mean of TF vs TF')
+		# self.findPredictivePower(TFavgd,np.ones(len(TFavgd))*np.mean(TFavgd))
+				# gc=np.array(dfTFfiltered['GC'].as_matrix())
+		# plt.show()
+		# calculate Pearson's correlation`
 		print('from TF')
+		print('from GC')
+
 		fig, ax = plt.subplots(1, 1)
-		minTF=np.min(np.array(dfResLogTF['TF'].as_matrix()))
-		maxTF=np.max(np.array(dfResLogTF['TF'].as_matrix()))
+		minTF=np.min(np.array(dfTFfiltered['TF'].as_matrix()))
+		maxTF=np.max(np.array(dfTFfiltered['TF'].as_matrix()))
+
+		minGC=np.min(np.array(dfTFfiltered['GC'].as_matrix()))
+		maxGC=np.max(np.array(dfTFfiltered['GC'].as_matrix()))
+		minTFavgd=np.min(averages)
+		maxTFavgd=np.max(averages)
+
+		plt.figure()
+		plt.loglog()
+		plt.scatter(dfTFfiltered['TFavgd'],dfTFfiltered['GC'])
+		plt.xlabel('EMTF (accurate) conductivities, (Ohm m)^-1')
+		plt.ylabel('GC model (inaccurate) conductivities (Ohm m)^-1')
+		plt.show()
 
 		# ctx.add_basemap(ax)
 
-		geo_df_TF.plot(column='TF',ax=ax,legend=True,\
-			#cmap='hot',\
-			norm=colors.LogNorm(vmin=minTF, vmax=maxTF))
-		plt.show()
-		
-		print('from gcmodel')
-		fig, ax = plt.subplots(1, 1)
-		geo_df_GC.plot(column='GC',ax=ax,legend=True)
-		plt.show()
+		# geo_df_TF.plot(column='TF',ax=ax,legend=True,\
+		# 	cmap='rainbow',\
+		# norm=colors.LogNorm(vmin=minTF, vmax=maxTF))
 		# plt.show()
 
-		# GCmodelMap = np.zeros((len(self.allmaglongs), len(self.allmaglats)))
-		# comb=pd.DataFrame({'long':self.allmaglongs,'lats':self.allmaglats})
+		fig, ax = plt.subplots(1, 1)
+		geo_df_GC.plot(column='TFavgd',ax=ax,legend=True,
+			cmap='rainbow',\
+		norm=colors.LogNorm(vmin=minTF, vmax=maxTF))
+		plt.show()
+		
+		fig, ax = plt.subplots(1, 1)
+		geo_df_GC.plot(column='GC',ax=ax,legend=True,
+			cmap='rainbow',\
+		norm=colors.LogNorm(vmin=minTF, vmax=maxTF))
+		plt.show()
+
+		# print('from gcmodel')
+		# fig, ax = plt.subplots(1, 1)
+		# geo_df_GC.plot(column='GC',ax=ax,legend=True)
+		# plt.show()
+		# plt.show()
+
+		# GCmodelMap = np.zeros((len(self.alllongs), len(self.alllats)))
+		# comb=pd.DataFrame({'long':self.alllongs,'lats':self.alllats})
 
 		# plt.imshow(np.flipud(GCmodelMap), cmap='hot', interpolation='nearest')
 		# plt.title('Overheat fractions '+str(r)+' per year, max of all durations')
 		# cbar = plt.colorbar()
-		plt.show()
+		# plt.show()
 
 
 	def compareGCmodeltoTFsite(self,tfsite):
-			[latid,longid]=self.getClosestCoordsIds(tfsite.maglat,tfsite.maglong)
+			[latid,longid]=self.getClosestCoordsIds(tfsite.lat,tfsite.long)
 			print(latid)
 			print(longid)
+			print('frequency')
+			print(self.f)
 			freqindex=tfsite.getClosestFreqIndex(self.f)
 			print('freqindex')
 			print(freqindex)
+			print('frequency from site')
+			print(tfsite.f[freqindex])
+			print('ratio')
+			print(tfsite.f[freqindex]/self.f)
+
+			print('len frequencies')
+			print(len(tfsite.f))
+			if(freqindex==0):
+				print('lost the frequency of interest')
+				quit()
 			tfsite.calcApparentc()
 			tfapparentc=tfsite.apparentc[freqindex]
 			print('tfapparentc')

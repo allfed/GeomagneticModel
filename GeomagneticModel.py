@@ -140,64 +140,80 @@ if __name__ == '__main__':
 
 	earthmodel.loadApparentCond()
 	
-
-
 	calccombinedrates=False
 	calcglobalmodel=False
 	evalgcmodel=False
 	calcrecurrence=False
 	calcpeakevsduration=False
-	if(args['Function']==''):#do all the tasks
-		calccombinedrates=True
-		calcglobalmodel=True
-		calcrecurrence=True
-		calcpeakevsduration=True
-	if('calcCombinedRecurrence' in str(args['Function'])):
-		calcrecurrence=True
-		calcpeakevsduration=True
-		calccombinedrates=True
-	if('calcGlobalModel' in str(args['Function'])):
-		calcrecurrence=True
-		calcpeakevsduration=True
-		calcglobalmodel=True
-	if('evalGCmodel' in str(args['Function'])):
-		evalgcmodel=True
+	# Run earthmodel to first adjust mtsites to a consistent reference ground conductivity and geomagnetic latitude
+	if(args['Model']=='EarthModel'): 
+		if(not args['Function']):#do all the tasks
+			calccombinedrates=True
+			calcglobalmodel=True
+			calcrecurrence=True
+			calcpeakevsduration=True
+		if('calcCombinedRecurrence' in str(args['Function'])):
+			calccombinedrates=True
+			calcrecurrence=True
+			calcpeakevsduration=True
+			calccombinedrates=True
+		if('calcGlobalModel' in str(args['Function'])):
+			calccombinedrates=True
+			calcrecurrence=True
+			calcpeakevsduration=True
+			calcglobalmodel=True
+		if('evalGCmodel' in str(args['Function'])):
+			evalgcmodel=True
 
 
 	allTFandGCcompared=False
-	# Run earthmodel to first adjust mtsites to a consistent reference ground conductivity and geomagnetic latitude
-	if(args['Model']=='EarthModel'): 
 
-		if(evalgcmodel):
-			earthmodel.compareAllTFsites()
-			allTFandGCcompared=True
+	if(evalgcmodel):
+		earthmodel.compareAllTFsites()
+		allTFandGCcompared=True
+	#if no MT site was processed, load and use data from MTsite0 modeloutput 	for the plotting
+	print('recurrencecalculated')
+	print(recurrencecalculated)
+	if(not recurrencecalculated):
+		earthmodel.loadPreviousMTfits(mtsites)
+		print(' previousmtfits loaded')
 
-		#if no MT site was processed, load and use data from MTsite0 modeloutput 	for the plotting
-		if((not recurrencecalculated) and calcrecurrence):
-			earthmodel.loadPreviousMTfits(mtsites)
-		if((not durationratiosprocessed) and calcpeakevsduration):
+	peakEvsDurationprocessed=False
+	if((not durationratiosprocessed) and calcpeakevsduration):
+		earthmodel.peakEvsDuration(mtsites,False)
+		peakEvsDurationprocessed=True
+		print('peakEvsDuration calculated')
+
+	plotadjusted=False
+	if('AdjustedRates' in args['plots']):
+		plotadjusted=True
+
+	plotcombined=False
+	if('CombinedRates' in args['plots']):
+		plotcombined=True
+		calccombinedrates=True
+
+	refrateperyearprocessed=[]
+	print('calcCombinedRates to run')
+	if(calccombinedrates):
+		if(not peakEvsDurationprocessed):
 			earthmodel.peakEvsDuration(mtsites,False)
-
-		plotadjusted=False
-		if('AdjustedRates' in args['plots']):
-			plotadjusted=True
-
-		plotcombined=False
-		if('CombinedRates' in args['plots']):
-			plotcombined=True
+			peakEvsDurationprocessed=True
 
 		earthmodel.calcReferenceRateperyear(tfsites,mtsites,args['fit'],plotadjusted)
+		earthmodel.calcCombinedRates(plotcombined)
+		earthmodel.adjustEfieldsToMatch(plotcombined)
+		earthmodel.calcMatchedCombinedRates(plotcombined)
+		print('calcCombinedRates ran')
 
-		if(calccombinedrates):
-			earthmodel.calcCombinedRates(plotcombined)
 
-		if(calcglobalmodel):
-			#apply the reference site back out across the earth by adjusting  for of reference ground conductivity, geomagnetic latitude, and determing the rate per year of each windowperiod across the earth. The output of this function is a series of maps with electric field levels at each duration for a given rate per year of interest.
-			rateperyear=args['rate_per_year']
-			if(type(rateperyear)==type(0.0)):
-				earthmodel.calcGlobalEfields([rateperyear])
-			else:
-				earthmodel.calcGlobalEfields(rateperyear)
+	if(calcglobalmodel):
+		#apply the reference site back out across the earth by adjusting  for of reference ground conductivity, geomagnetic latitude, and determing the rate per year of each windowperiod across the earth. The output of this function is a series of maps with electric field levels at each duration for a given rate per year of interest.
+		rateperyear=args['rate_per_year']
+		if(type(rateperyear)==type(0.0)):
+			earthmodel.calcGlobalEfields([rateperyear])
+		else:
+			earthmodel.calcGlobalEfields(rateperyear)
 
 	if('CompareGCandTF' in args['plots']):
 		if(not allTFandGCcompared):

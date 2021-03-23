@@ -176,6 +176,9 @@ def weighted_std(values, weights):
 	return np.sqrt(variance)
 
 def binnormaldist(dist,counts,sigmas):
+	if(len(counts)==0):
+		counts=np.ones(len(dist))
+
 	comb=pd.DataFrame({'x':dist,'counts':counts})
 	withduplicates=comb.loc[comb.index.repeat(comb.counts)]
 	countswithduplicates=np.array(withduplicates.as_matrix(columns=withduplicates.columns[0:]))[:,0]
@@ -195,6 +198,7 @@ def binnormaldist(dist,counts,sigmas):
 
 	minimum=-sigmas*sdist+mdist
 	maximum=sigmas*sdist+mdist
+
 
 	binvalslow=[]
 	binvalshigh=[]
@@ -216,7 +220,55 @@ def binnormaldist(dist,counts,sigmas):
 	# plt.plot(bins2)
 	# plt.show()
 	countsnormalized=np.array(bins)/np.sum(bins)
+	return [np.sqrt(np.multiply(np.array(binvalslow),np.array(binvalshigh))),countsnormalized]
+
+def binlognormaldist(dist,counts,sigmas):
+	if(len(counts)==0):
+		counts=np.ones(len(dist))
+
+	comb=pd.DataFrame({'x':dist,'counts':counts})
+	withduplicates=comb.loc[comb.index.repeat(comb.counts)]
+	countswithduplicates=np.array(withduplicates.as_matrix(columns=withduplicates.columns[0:]))[:,0]
+	kurt=kurtosis(countswithduplicates)
+	sk=skew(countswithduplicates)
+
+	print('kurtosis')
+	print(kurt)
+	print('skew')
+	print(sk)
+	print('')
+	nbins=50
+	bins=[0]*nbins
+	bins2=[0]*nbins
+	mdist=np.mean(np.log(dist))
+	sdist=np.std(np.log(dist))
+
+	minimum=np.exp(-sigmas*sdist)*np.exp(mdist)
+	maximum=np.exp(sigmas*sdist)*np.exp(mdist)
+	# right now min is m=1/exp(nbins) 
+	# what power would be required to take m to minimum?
+	# m^?=minimum/maximum
+	# log(m^?)=log(minimum/maximum)
+	# ?*log(m)=log(minimum/maximum)
+	# ?=(log(minimum/maximum)/log(m))
+
+	binvalslow=[]
+	binvalshigh=[]
+
+	for i in range(0,nbins):
+		m=1/np.exp(nbins) 
+		low=(np.exp(i)/np.exp(nbins))**(np.log(minimum/maximum)/np.log(m))*maximum
+		high=(np.exp(i+1)/np.exp(nbins))**(np.log(minimum/maximum)/np.log(m))*maximum
+		mask=np.logical_and(dist>low,dist<high)
+		# mask=np.logical_and(white>low,white<up)
+		binvalshigh.append(high)#np.sum(mask)
+		binvalslow.append(low)#np.sum(mask)
+		bins[i]=np.sum(mask)
+
+
+	countsnormalized=np.array(bins)/np.sum(bins)
 	return [np.divide(np.array(binvalslow)+np.array(binvalshigh),2),countsnormalized]
+
 
 def getGuesses(E,counts,plot):
 	normalE=np.log(E)
