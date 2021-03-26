@@ -44,7 +44,7 @@ def get_args():
 		'Function', metavar='function', type=str,
 		nargs='?',
 		help='Specify subpart of geomagnetic model to run (a specific function as part of the model specified). If you want the entirety of this aspect of the model to be run, don\'t include any second argument. Default: entirety of model processed.',
-		choices=['calcEfields','calcRecurrence','calcRecurrenceFit','calcCombinedRecurrence','calcGlobalModel','evalGCmodel'])
+		choices=['calcEfields','calcRecurrence','calcRecurrenceFit','calcCombinedRecurrence','calcGlobalModel','evalGCmodel','calcEvsDuration'])
 
 
 	arg_parser.add_argument(
@@ -139,32 +139,41 @@ if __name__ == '__main__':
 		durationratiosprocessed=True
 
 	earthmodel.loadApparentCond()
-	
+	earthmodel.calcGCcoords()
+
 	calccombinedrates=False
 	calcglobalmodel=False
 	evalgcmodel=False
 	calcrecurrence=False
 	calcpeakevsduration=False
+	calcEvsDuration=True
 	# Run earthmodel to first adjust mtsites to a consistent reference ground conductivity and geomagnetic latitude
 	if(args['Model']=='EarthModel'): 
+		if(not recurrencecalculated):
+			earthmodel.loadPreviousMTfits(mtsites)
+		print(' previousmtfits loaded')
 		if(not args['Function']):#do all the tasks
 			calccombinedrates=True
+			calcEvsDuration=True
 			calcglobalmodel=True
 			calcrecurrence=True
 			calcpeakevsduration=True
+		if('calcEvsDuration' in str(args['Function'])):
+			calcpeakevsduration=True
+			calcEvsDuration=True
 		if('calcCombinedRecurrence' in str(args['Function'])):
+			calcpeakevsduration=True
+			calcEvsDuration=True
 			calccombinedrates=True
 			calcrecurrence=True
-			calcpeakevsduration=True
-			calccombinedrates=True
 		if('calcGlobalModel' in str(args['Function'])):
 			calccombinedrates=True
+			calcEvsDuration=True
 			calcrecurrence=True
 			calcpeakevsduration=True
 			calcglobalmodel=True
 		if('evalGCmodel' in str(args['Function'])):
 			evalgcmodel=True
-
 
 	allTFandGCcompared=False
 
@@ -172,11 +181,6 @@ if __name__ == '__main__':
 		earthmodel.compareAllTFsites()
 		allTFandGCcompared=True
 	#if no MT site was processed, load and use data from MTsite0 modeloutput 	for the plotting
-	print('recurrencecalculated')
-	print(recurrencecalculated)
-	if(not recurrencecalculated):
-		earthmodel.loadPreviousMTfits(mtsites)
-		print(' previousmtfits loaded')
 
 	peakEvsDurationprocessed=False
 	if((not durationratiosprocessed) and calcpeakevsduration):
@@ -185,21 +189,22 @@ if __name__ == '__main__':
 		print('peakEvsDuration calculated')
 
 	plotadjusted=False
-	if('AdjustedRates' in args['plots']):
+	if('EvsDuration' in args['plots']):
+		calcEvsDuration=True
 		plotadjusted=True
 
 	plotcombined=False
 	if('CombinedRates' in args['plots']):
-		plotcombined=True
+		calcEvsDuration=True
 		calccombinedrates=True
+		plotcombined=True
 
-	refrateperyearprocessed=[]
-	print('calcCombinedRates to run')
-	if(calccombinedrates):
+	if(calcEvsDuration):
 		if(not peakEvsDurationprocessed):
-			earthmodel.peakEvsDuration(mtsites,False)
+			earthmodel.peakEvsDuration(mtsites,plotadjusted)
 			peakEvsDurationprocessed=True
 
+	if(calccombinedrates):
 		earthmodel.calcReferenceRateperyear(tfsites,mtsites,args['fit'],plotadjusted)
 		earthmodel.calcCombinedRates(plotcombined)
 		earthmodel.adjustEfieldsToMatch(plotcombined)
@@ -224,6 +229,6 @@ if __name__ == '__main__':
 
 	if(args['Model']=='PowerGrid'): 
 		powergrid=PowerGrid()
-		# powergrid.setWindowedEmaps(earthmodel)
+		powergrid.setWindowedEmaps(earthmodel)
 		powergrid.loadEfieldMaps()
 		powergrid.calcOverheatMap()

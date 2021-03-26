@@ -181,7 +181,7 @@ class MTsite:
 			# print('loading field from chunkindex '+str(i)+', chunk '+str(i+1)+' of '+str(self.nchunks), end='\r')
 			print('loading field from chunkindex '+str(i)+', chunk '+str(i+1)+' of '+str(self.nchunks))
 			print('')
-			chunkE=np.load(Params.mtEfieldsloc+str(self.sitename)+'c'+str(i)+'.npy')
+			chunkE=np.load(Params.mtEfieldsloc+str(self.sitename)+'c'+str(i)+'.npy',allow_pickle=True)
 			print('chunkstart: '+str(i*self.maxchunksize))
 			self.chunks[i].absE=chunkE
 			self.chunks[i].chunksize=len(chunkE)
@@ -203,8 +203,8 @@ class MTsite:
 		maskNS = np.isfinite(samplesNS)
 		maskEW = np.isfinite(samplesEW)
 
-		BfieldNS = np.interp(indices, indices[maskNS], samplesEW[maskNS])
-		BfieldEW = np.interp(indices, indices[maskEW], samplesNS[maskEW])
+		BfieldNS = np.interp(indices, indices[maskNS], samplesEW[maskEW])
+		BfieldEW = np.interp(indices, indices[maskEW], samplesNS[maskNS])
 
 		coeffsNS=np.polyfit(indices*downsampleratio,BfieldNS,2)
 		coeffsEW=np.polyfit(indices*downsampleratio,BfieldEW,2)
@@ -378,7 +378,7 @@ class MTsite:
 
 		for f in allfiles:
 			if(f==Params.mtRepeatRatesDir+'MTsite'+str(self.siteIndex)+'EfieldRatesPerYear.npy'):
-				wr=np.load(Params.mtRepeatRatesDir+'MTsite'+str(self.siteIndex)+'EfieldRatesPerYear.npy')
+				wr=np.load(Params.mtRepeatRatesDir+'MTsite'+str(self.siteIndex)+'EfieldRatesPerYear.npy',allow_pickle=True)
 				self.windowedCounts=wr
 				return True
 		return False		

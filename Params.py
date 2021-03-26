@@ -198,8 +198,14 @@ def importTransformers():
 	from pyexcel_ods import get_data
 
 	global HVTnames
-	global alpha
-	global beta
+	global temprise0
+	global temprise10
+	global temprise20
+	global temprise40
+	global temprise50
+	global temprise100
+	global temprise200
+	global GICperE
 	global pop25to40
 	global pop0to25
 	global pop40plus
@@ -218,10 +224,22 @@ def importTransformers():
 				tmp = tmp + [t[coltitleindex]]
 		if(coltitle == 'name'):
 			HVTnames = tmp
-		if(coltitle == 'alpha'):
-			alpha = tmp
-		if(coltitle == 'beta'):
-			beta = tmp
+		if(coltitle == 'temprise0'):
+			temprise0 = tmp
+		if(coltitle == 'temprise10'):
+			temprise10 = tmp
+		if(coltitle == 'temprise20'):
+			temprise20 = tmp
+		if(coltitle == 'temprise40'):
+			temprise40 = tmp
+		if(coltitle == 'temprise50'):
+			temprise50 = tmp
+		if(coltitle == 'temprise100'):
+			temprise100 = tmp
+		if(coltitle == 'temprise200'):
+			temprise200 = tmp
+		if(coltitle == 'GICperE'):
+			GICperE = tmp
 		if(coltitle == 'pop25to40'):
 			pop25to40 = tmp
 		if(coltitle == 'pop0to25'):

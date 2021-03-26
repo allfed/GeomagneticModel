@@ -26,6 +26,7 @@ def powerlaw(x,exponent):
 def powerlawxfromy(y,slope,exponent):
 	return (y/slope)**(1/exponent)
 
+
 #see Love, 2018 page 9 (equation 7)
 # upsilon is the expected value of the PDF.
 # epsilonsqd is epsilon squared, the variance of the distribution
@@ -36,15 +37,6 @@ def lognormal(x,upsilon,epsilon):
 	denominator=x*np.sqrt(2*np.pi*epsilon**2)
 	return numerator/denominator
 
-# incorporated scaling
-# upsilon is the expected value of the PDF.
-# epsilonsqd is epsilon squared, the variance of the distribution
-def lognormal(x,upsilon,epsilon):
-	# return np.exp(-np.power((np.log(x)-upsilon),2))
-	# return x/(2*x)
-	numerator=np.exp(-np.power((np.log(x)-upsilon),2)/(2*epsilon**2))
-	denominator=x*np.sqrt(2*np.pi*epsilon**2)
-	return numerator/denominator
 
 def loclognormal(x,upsilon,epsilon,loc):
 	# return np.exp(-np.power((np.log(x)-upsilon),2))
@@ -68,7 +60,11 @@ def locimportedlognormal(x,upsilon,epsilon,loc):
 
 def logcdf(x,mu,sigma,loc):
 	scale=np.exp(mu)
-	return 1-lognorm.cdf(x,sigma,loc,scale)
+	return lognorm.sf(x,sigma,loc,scale)
+
+def logcdfxfromy(y,mu,sigma,loc):
+	scale=np.exp(mu)
+	return lognorm.isf(y,sigma,loc,scale)
 
 # def logcdf(x,mu,sigma,loc=0):
 # 	return 1-lognorm.cdf(x,mu,loc,sigma)
@@ -181,7 +177,7 @@ def binnormaldist(dist,counts,sigmas):
 
 	comb=pd.DataFrame({'x':dist,'counts':counts})
 	withduplicates=comb.loc[comb.index.repeat(comb.counts)]
-	countswithduplicates=np.array(withduplicates.as_matrix(columns=withduplicates.columns[0:]))[:,0]
+	countswithduplicates=withduplicates['x'].values
 	kurt=kurtosis(countswithduplicates)
 	sk=skew(countswithduplicates)
 
@@ -196,8 +192,12 @@ def binnormaldist(dist,counts,sigmas):
 	mdist=np.mean(dist)
 	sdist=np.std(dist)
 
-	minimum=-sigmas*sdist+mdist
-	maximum=sigmas*sdist+mdist
+	if(sigmas==-1):
+		minimum=np.min(dist)
+		maximum=np.max(dist)
+	else:
+		minimum=-sigmas*sdist+mdist
+		maximum=sigmas*sdist+mdist
 
 
 	binvalslow=[]
@@ -225,10 +225,9 @@ def binnormaldist(dist,counts,sigmas):
 def binlognormaldist(dist,counts,sigmas):
 	if(len(counts)==0):
 		counts=np.ones(len(dist))
-
 	comb=pd.DataFrame({'x':dist,'counts':counts})
 	withduplicates=comb.loc[comb.index.repeat(comb.counts)]
-	countswithduplicates=np.array(withduplicates.as_matrix(columns=withduplicates.columns[0:]))[:,0]
+	countswithduplicates=withduplicates['x'].values
 	kurt=kurtosis(countswithduplicates)
 	sk=skew(countswithduplicates)
 
@@ -243,8 +242,15 @@ def binlognormaldist(dist,counts,sigmas):
 	mdist=np.mean(np.log(dist))
 	sdist=np.std(np.log(dist))
 
-	minimum=np.exp(-sigmas*sdist)*np.exp(mdist)
-	maximum=np.exp(sigmas*sdist)*np.exp(mdist)
+	if(sigmas==-1):
+		minimum=np.min(dist)
+		maximum=np.max(dist)
+	else:
+		minimum=np.exp(-sigmas*sdist)*np.exp(mdist)
+		maximum=np.exp(sigmas*sdist)*np.exp(mdist)
+
+
+
 	# right now min is m=1/exp(nbins) 
 	# what power would be required to take m to minimum?
 	# m^?=minimum/maximum
@@ -300,8 +306,8 @@ def combinecounts(E,allcountsatE):
 	
 	combined=pd.DataFrame({'counts':sortedcountsbyE,'negE':negE}).groupby(by=["negE"]).sum()
 	cumsumcombined=combined.cumsum()
-	cumsumfinal=np.transpose(np.array(cumsumcombined.as_matrix(columns=cumsumcombined.columns[:])))[0]
-	countsfinal=np.transpose(np.array(combined.as_matrix(columns=combined.columns[:])))[0]
+	countsfinal=combined['counts'].values
+	cumsumfinal=cumsumcombined['counts'].values
 	Efinal=-np.array(cumsumcombined.index)
 	return [Efinal,cumsumfinal,countsfinal]
 
@@ -323,6 +329,6 @@ def getEfieldCounts(peaks):
 
 
 	combined=pd.DataFrame({'negE':negE,'counts':np.ones(len(negE))}).groupby(by=["negE"]).sum()
-	countsfinal=np.transpose(np.array(combined.as_matrix(columns=combined.columns[:])))[0]
+	countsfinal=combined['counts'].values
 	Efinal=-np.array(combined.index)
 	return [Efinal,countsfinal]
