@@ -37,7 +37,7 @@ class TFsite:
 
 	def importsite(self):
 		success=True
-		print('importing TF site '+self.TFsitefn)
+		# print('importing TF site '+self.TFsitefn)
 		self.wInEDI = [] #the EDI file has its own list of frequencies, which we use as approximations to ours
 		self.rows = [] #the EDI file frequencies are listed on specific rows and columns in the data.
 		self.rowlen=0

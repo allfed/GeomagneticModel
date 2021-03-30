@@ -390,6 +390,7 @@ class MTsite:
 		onceperfiveyearsE=[]
 		oncepersevenyearsE=[]
 		onceperdecadeE=[]
+		print('calcPeakEvsDuration')
 		for i in range(0,int(np.floor(len(self.windowedCounts))/5)):
 			durationindex = i*5
 			efieldindex = i*5+1
@@ -549,7 +550,6 @@ class MTsite:
 				if(self.chunks[i].storms[0][0][0]==0):
 					#combine this storm with the one at the end of the previous group if the last element of the previous group is also part of a storm
 					if(self.chunks[i-1].storms[-1][0][-1]==(self.chunks[i-1].chunksize-self.hourWindow)):
-						print('matches.')
 						print('chunk'+str(i))
 						stormextraminutes=len(self.chunks[i].storms[0][0])
 						stormstart=self.chunks[i-1].storms[-1]		

@@ -25,6 +25,7 @@ import geoplot as gplt
 from shapely.geometry import Point
 import contextily as ctx
 from scipy.stats import pearsonr
+import matplotlib.ticker as mticker
 
 class EarthModel:
 
@@ -193,14 +194,16 @@ class EarthModel:
 		for ratios in durationEratios:
 			self.averagedRatios.append(np.mean(ratios))
 
+		np.save(Params.durationRatiosDir,self.averagedRatios)
+
 		if(plot):
 			# plt.show()
 			# plt.figure()
-			plt.plot(self.allwindowperiods,self.averagedRatios,lw=7,label = " all ratios averaged")
+			plt.plot(self.allwindowperiods,self.averagedRatios,lw=7,label = "Mean Ratio")
 			plt.legend()
-			plt.title('Once per decade ratio of durations')
-			plt.xlabel('Duration (s)')
-			plt.ylabel('Ratio of peak field to field at 60s')
+			plt.title('Peak Geoelectric Pulse Ratios')
+			plt.xlabel('Pulse Duration (s)')
+			plt.ylabel('Ratio of Peak Field to 60 Second Peak Field')
 
 			plt.show()
 
@@ -224,12 +227,11 @@ class EarthModel:
 			
 			# fitx=np.array(mtsite.windowedCounts[1])
 
-			# # plt.figure()
+			# plt.f/=igure()
 			# # plt.loglog(fitx,mtsite.windowedCounts[2])
 			# # plt.show()
 			# # mtsite.loadWindowedCounts()
 			# # print(np.array(mtsite.windowedCounts[1]))
-			# # plt.figure()
 
 			# # offsets=range(-100,100,100)
 			# # widths=range(1,10,5)
@@ -304,6 +306,26 @@ class EarthModel:
 		#return the magnetic coords in the same units as the geographic:
 		return cvals.convert('MAG','sph')
 
+	def formatticklabels(self,minval,maxval,pp):
+		print('formatting')
+		colourbar = pp.get_figure().get_axes()[1]
+		ticks_loc = colourbar.get_xticks().tolist()
+		ticks_loc.insert(0,minval)
+		ticks_loc.append(maxval)
+		colourbar.xaxis.set_major_locator(mticker.FixedLocator(ticks_loc))
+		
+		labels=[]
+		for i in range(0,len(ticks_loc)):
+			x=ticks_loc[i]
+			exponent = int(np.log10(x))
+			coeff = x/10**exponent
+			if(i==0 or i==len(ticks_loc)):
+				labels.append(r"${:2.1f} \times 10^{{ {:2d} }}$".format(coeff,exponent))					
+			else:
+				labels.append(r"${:2.1f} \times 10^{{ {:2d} }}$".format(coeff,exponent))
+		colourbar.set_xticklabels(labels,rotation=33)
+
+
 	# magic formula to get the divisor for the field to go from estimate at 72 to at any magnetic latitude 
 	def getMagLatDivisor(self,ml):
 		divisor = (0.211 \
@@ -319,7 +341,7 @@ class EarthModel:
 		+ 1.61E-18*(ml**10))/1.66675
 		return divisor
 
-	# find E fields at all locations on conductivity map for each duration
+	# find E -fields at all locations on conductivity map for each duration
 	# Correct for geomagnetic latitude and apparent conductivity
 	def calcGlobalEfields(self, ratePerYears):
 		self.windowedEmaps=[]
@@ -348,8 +370,8 @@ class EarthModel:
 			EArr = np.zeros((len(self.GClongitudes), len(self.GClatitudes)))
 			minE=10000
 			maxE=-1
-			maxc=np.max(self.apparentCondMap[:,:])
-			minc=np.min(self.apparentCondMap[:,:])
+			maxc=np.max(self.apparentCondMap)
+			minc=np.min(self.apparentCondMap)
 
 			allcs=[]
 			landcs=[]
@@ -363,95 +385,83 @@ class EarthModel:
 				for longkey in range(0,len(self.GClongitudes)):
 					longitude = self.GClongitudes[longkey]
 					c=self.apparentCondMap[latkey,longkey]
-					allcs.append(c)
 					magcoords = self.geotomag(latitude, longitude)
 					maglat=magcoords.data[0][1]
 					maglong=magcoords.data[0][2]
 					mld = self.getMagLatDivisor(maglat)
 
-
+					if(maglat>-70 and maglat <80):
+		
 					# if(c>=5*10**-1 or c<10**-4): #ocean, or messed up data
 					# 	E=np.nan
 					# else:
-					E =refField*np.sqrt(self.refconductivity)/np.sqrt(abs(c))*mld
+						allcs.append(c)
+						E =refField*np.sqrt(self.refconductivity)/np.sqrt(abs(c))*mld
 
-					if(np.sqrt(self.refconductivity)/np.sqrt(abs(c))==0):
-						print('c')
-						print(c)
-						quit()
-					if(mld==0):
-						print('mld')
-						print(mld)
-						quit()
-					if(refField==0):
-						print('reffield')
-						quit()
-					if(E==0):
-						print('E')
-						quit()
-					landcs.append(c)
+						if(np.sqrt(self.refconductivity)/np.sqrt(abs(c))==0):
+							print('c')
+							print(c)
+							quit()
+						if(mld==0):
+							print('mld')
+							print(mld)
+							quit()
+						if(refField==0):
+							print('reffield')
+							quit()
+						if(E==0):
+							print('E')
+							quit()
+						landcs.append(c)
 
-					if(maxE < E):
-						maxE = E
+						if(maxE < E):
+							maxE = E
 
-					if(minE > E):
-						minE = E
+						if(minE > E):
+							minE = E
 
-					EArr[latkey][longkey]=E
-					latlist.append(latitude)
-					longlist.append(longitude)
-					Elist.append(E)
-					Cadjust.append(1/np.sqrt(abs(c)))
-					mlds.append(mld)
-		
+						EArr[latkey][longkey]=E
+						latlist.append(latitude)
+						longlist.append(longitude)
+						Elist.append(E)
+						Cadjust.append(1/np.sqrt(abs(c)))
+						mlds.append(mld)
+			
 
 			print('minE')
 			print(minE)
 			print('maxE')
 			print(maxE)
-			plt.figure()
-			plt.xscale("log")
-			# plt.plot(cs)
-			[xland,yland]=fits.binlognormaldist(landcs,[],1)
-			[xall,yall]=fits.binlognormaldist(allcs,[],3)
-			plt.plot(xland,yland)
-			plt.plot(xall,yall)
-			plt.show()
+			# plt.figure()
+			# plt.xscale("log")
+			# [xland,yland]=fits.binlognormaldist(landcs,[],1)
+			# [xall,yall]=fits.binlognormaldist(allcs,[],3)
+			# plt.plot(xland,yland)
+			# plt.plot(xall,yall)
+			# plt.show()
 
 			world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
-			df=pd.DataFrame({'longs':np.array(longlist),'lats':np.array(latlist),'E':np.array(Elist),'Cadjust':np.array(Cadjust),'mld':np.array(mlds)})
+			df=pd.DataFrame({'longs':np.array(longlist),'lats':np.array(latlist),'E':np.array(Elist),'Cadjust':np.array(Cadjust),'mld':np.array(mlds),'allcs':np.array(allcs)})
 			crs={'init':'epsg:3857'}
 			geometry=[Point(xy) for xy in zip(df['longs'],df['lats'])]
 			geo_df=gpd.GeoDataFrame(df,crs=crs,geometry=geometry)
 			# ax=gplt.kdeplot(geo_df,column='E',cmap='Reds',shade=True)
-
+			print('wierd')
+			###########E Field Plot ####################
+			print('abouttoplto')
+			plt.close()
 			ax=geo_df.plot(column='E',legend=True,
-			cmap='rainbow',\
+			cmap='viridis',\
+			legend_kwds={'label': 'Field Level (V/km)','orientation': "horizontal"},\
 			norm=colors.LogNorm(vmin=minE, vmax=maxE))
-			plt.title('E field')			
-			gplt.polyplot(world,ax=ax,zorder=1)
+			pp=gplt.polyplot(world,ax=ax,zorder=1)
+			self.formatticklabels(minE,maxE,pp)
+			# plt.rcParams['text.usetex'] = True
+			plt.title('Magnitude of Peak '+str(windowperiod) +' Second Geoelectric Field\n1 in '+str(1/r)+' Year Storm')			
+			print('not s7')
+			plt.savefig(Params.globalEfieldPlots+'Results'+str(r)+'perYearWindow'+str(windowperiod)+'s.png')
 			plt.show()
 
-
-
-			ax=geo_df.plot(column='Cadjust',legend=True,cmap='rainbow',\
-			norm=colors.LogNorm(vmin=1/np.sqrt(maxc), vmax=1/np.sqrt(minc)))
-
-			gplt.polyplot(world,ax=ax,zorder=1)
-
-			plt.title('Conductivity adjustment')
-			# gplt.kdeplot(geo_df,column='E',)
-			plt.show()
-
-
-			ax=geo_df.plot(column='mld',legend=True,cmap='rainbow',\
-			norm=colors.LogNorm(vmin=np.min(df['mld'].values), vmax=np.max(df['mld'].values)))
-
-			gplt.polyplot(world,ax=ax,zorder=1)
-
-			plt.title('Conductivity adjustment')
-			# gplt.kdeplot(geo_df,column='E',)
-			plt.show()
 
 			# Create colorbar as a legend
 			# sm = plt.cm.ScalarMappable(cmap=’BuGn’, norm=plt.Normalize(vmin=minE, vmax=maxE))# empty array for the data range
@@ -459,14 +469,11 @@ class EarthModel:
 			# cbar = fig.colorbar(sm)
 			# plt.figure()
 			# plt.imshow(np.flipud(np.log(EArr[12:,:])), cmap='hot', interpolation='nearest')
-			# plt.title('E field levels, '+str(r)+' per year, '+str(windowperiod)+'s')
+			# plt.title('E field levels, '+str(r)+' per year, '+str(
 			# cbar = plt.colorbar()
 			# current_cmap = matplotlib.cm.get_cmap()
 			# current_cmap.set_bad(color='blue')
 			# cbar.set_label('E field (V/km)')
-			plt.savefig(Params.globalEfieldPlots+'Results'+str(r)+'perYearWindow'+str(windowperiod)+'s.png')
-			if(i==0):
-				plt.show()
 			for j in range(0,len(self.allwindowperiods)):
 				windowperiod = self.allwindowperiods[j]
 			
@@ -475,6 +482,57 @@ class EarthModel:
 			self.windowedEmaps = self.windowedEmaps + [r,windowedEmapsatrate]
 		np.save(Params.globalEfieldData,self.windowedEmaps)
 
+		###########Conductivity Plot ####################
+
+		ax=geo_df.plot(column='allcs',legend=True,legend_kwds={'label': 'Apparent Conductivity (Ohm m)^-1','orientation': "horizontal"}, cmap='viridis',norm=colors.LogNorm(vmin=minc, vmax=maxc))
+		pp=gplt.polyplot(world,ax=ax,zorder=1)
+		self.formatticklabels(minc,maxc,pp)
+		plt.title('Global Conductivity at 1/120 Hz')
+
+
+		plt.savefig(Params.figuresDir+'Conductivity.png')
+
+		# gplt.kdeplot(geo_df,column='E',)
+		plt.show()
+
+		
+		###########Conductivity Adjust Plot ####################
+
+		mincadj=1/np.sqrt(maxc)
+		maxcadj=1/np.sqrt(minc)
+		ax=geo_df.plot(column='Cadjust',legend=True,legend_kwds={'label': 'Coefficient on Reference Field Level','orientation': "horizontal"}, cmap='viridis',norm=colors.LogNorm(vmin=mincadj, vmax=maxcadj))
+		
+		pp=gplt.polyplot(world,ax=ax,zorder=1)
+		self.formatticklabels(mincadj,maxcadj,pp)
+
+		plt.title('Geoelectric Field Multiplier\nGlobal Conductivity')
+		plt.savefig(Params.figuresDir+'ConductivityMultiplier.png')
+
+		# gplt.kdeplot(geo_df,column='E',)
+		plt.show()
+
+		
+
+		###########Maglat Adjust Plot ####################
+		mldmin=np.min(df['mld'].values)
+		mldmax=np.max(df['mld'].values)
+		ax=geo_df.plot(column='mld',legend=True,legend_kwds={'label': 'Coefficient on Reference Field Level','orientation': "horizontal"}, cmap='viridis',norm=colors.LogNorm(vmin=mldmin, vmax=mldmax))
+
+		pp=gplt.polyplot(world,ax=ax,zorder=1)
+
+		colourbar = pp.get_figure().get_axes()[1]
+		ticks_loc = colourbar.get_xticks().tolist()
+		ticks_loc.insert(0,np.min(df['mld'].values))
+		ticks_loc.append(np.max(df['mld'].values))
+		colourbar.xaxis.set_major_locator(mticker.FixedLocator(ticks_loc))
+		self.formatticklabels(mincadj,maxcadj,pp)
+
+		plt.title('Geoelectric Field Multiplier\n Magnetic Latitude')
+		plt.savefig(Params.figuresDir+'MagneticLatitudeMultiplier.png')
+
+
+		print('s10')
+		plt.show()
 	#adjusts ratesperyear for all the sites to the reference maglat and conductivity and sets the result to properties of this EarthModel instance
 	def calcReferenceRateperyear(self,tfsites,mtsites,fittype,plot):
 		self.refcumsum=[]
@@ -592,6 +650,7 @@ class EarthModel:
 			plt.xlabel('Geoelectric Field (V/km)')
 			plt.ylabel('Average rate per year distinct contiguous sample average is above E field (counts/year)')
 
+			print('s11')
 			plt.show()
 
 		self.refcumsum=allcumsum
@@ -649,7 +708,10 @@ class EarthModel:
 				plt.plot(Efields,np.array(Efields)**exponent*scale)
 
 		if(plot and (j==0)):
+			print('s12')
 			plt.show()
+	def loadCombinedFits(self):
+		self.combinedlogfits=np.load(Params.combinedFitParamsLoc,allow_pickle=True)
 
 
 	def calcMatchedCombinedRates(self,plot):
@@ -675,7 +737,15 @@ class EarthModel:
 			combinedcumsum=np.append(combinedcumsum,self.refcumsum[i][j])
 			combinedcounts=np.append(combinedcounts,self.refCounts[i][j])
 
-		[Efinal,cumsumfinal,countsfinal]=fits.combinecounts(combinedEfields,combinedcounts)
+		[EfinalAll,cumsumfinalAll,countsfinalAll]=fits.combinecounts(combinedEfields,combinedcounts)
+		mask=EfinalAll>EfinalAll[0]/10
+		Efinal=EfinalAll[mask]
+		cumsumfinal=cumsumfinalAll[mask]
+		countsfinal=countsfinalAll[mask]
+		# Efinal=EfinalAll
+		# cumsumfinal=cumsumfinalAll
+		# countsfinal=countsfinalAll
+
 
 		print('combinedyears')
 		print(combinedyears)
@@ -693,12 +763,13 @@ class EarthModel:
 
 
 		self.combinedlogfits = self.combinedlogfits + [[windowperiod,mean,std,loc,probtoRPYratio]]
-
+		np.save(Params.combinedFitParamsLoc,self.combinedlogfits,allow_pickle=True)
 		if(plot):
-			# plt.figure()
+			plt.figure()
 			# plt.loglog()
 			# plt.plot(rates,fits.logcdfxfromy(rates/,mean,std,loc))
 			# plt.plot(cumsumfinal/max(cumsumfinal),fits.logcdfxfromy(cumsumfinal/max(cumsumfinal),mean,std,loc))
+			print('s13')
 			# plt.show()
 
 			plt.figure()
@@ -715,6 +786,7 @@ class EarthModel:
 			plt.xlabel('Geoelectric Field (V/km)')
 			plt.ylabel('Average rate per year distinct contiguous sample average is above E field (counts/year)')
 		
+			print('s14')
 			plt.show()
 
 
@@ -762,10 +834,12 @@ class EarthModel:
 				plt.title('Rate geoelectric field is above threshold')
 				plt.xlabel('Geoelectric Field (V/km)')
 				plt.ylabel('Average rate per year distinct contiguous sample average is above E field (counts/year)')
-			
+				
+				print('s15')
 				plt.show()
 
 	def calcGCcoords(self):
+		print('calculating GC coords')
 		self.GClatitudes=[]
 		self.GClongitudes=[]
 		longInterval=int(np.floor(Params.longituderes/0.25))
@@ -776,13 +850,12 @@ class EarthModel:
 			lenlat=len(latitudes)
 			lenlong=len(longitudes)
 			for longkey in range(0,lenlong-1,longInterval):
-				for latkey in range(0,lenlat-1,latInterval):
-					latitude = f['LATGRID'][longkey,latkey]
-					longitude=f['LONGRID'][longkey,latkey]
-					if(longkey==0):
-						self.GClatitudes.append(latitude)
-					if(latkey==0):
-						self.GClongitudes.append(longitude)
+				longitude=f['LONGRID'][longkey,0]
+				self.GClongitudes.append(longitude)
+
+			for latkey in range(0,lenlat-1,latInterval):
+				latitude = f['LATGRID'][0,latkey]
+				self.GClatitudes.append(latitude)
 
 	def getClosestCoordsIds(self,latitude,longitude):
 		mindelta=np.inf
@@ -884,6 +957,7 @@ class EarthModel:
 		plt.figure()
 		plt.loglog()
 		plt.scatter(TFcond,ratios)
+		print('s16')
 		plt.show()
 		print('np.mean(ratio)')
 		print(np.mean(ratios))
@@ -908,11 +982,12 @@ class EarthModel:
 		print(2*rmsratio)
 
 	def plotGCtoTFcomparison(self):
-		# plt.figure()
+		plt.figure()
 		# plt.loglog()
 		# plt.scatter(self.allTFsiteAppcs,self.allGCmodelAppcs)
 		# plt.xlabel('EMTF (accurate) conductivities, (Ohm m)^-1')
 		# plt.ylabel('GC model (inaccurate) conductivities (Ohm m)^-1')
+		print('s17')
 		# plt.show()
 		alllongs=np.array(self.alllongs).astype(np.float)
 		alllats=np.array(self.alllats).astype(np.float)
@@ -934,12 +1009,13 @@ class EarthModel:
 		# zi[mask] = np.nan
 
 		# plot
-		fig = plt.figure()
+		plt.figure()
 		ax = fig.add_subplot(111)
 		# plt.contourf(xi,yi,zi,np.arange(0,1.01,0.01))
 		# plt.plot(alllongs,alllats,'k.')
 		# plt.xlabel('xi',fontsize=16)
 		# plt.ylabel('yi',fontsize=16)
+		print('s18')
 		# plt.show()
 		# plt.savefig('interpolated.png',dpi=100)
 		# plt.close(fig)
@@ -954,11 +1030,12 @@ class EarthModel:
 		# dfTFfiltered = df[np.multiply(np.multiply((1/df['TF'].T > 10**0), (1/df['TF'].T < 10**4)),df['GC'].T >3*10**-3)]
 		dfTFfiltered = df[np.multiply((1/df['TF'].T > 10**0), (1/df['TF'].T < 10**4))]
 
-		# plt.figure()
+		plt.figure()
 		# plt.loglog()
 		# plt.scatter(dfTFfiltered['TF'],dfTFfiltered['GC'])
 		# plt.xlabel('EMTF (accurate) conductivities, (Ohm m)^-1')
 		# plt.ylabel('GC model (inaccurate) conductivities (Ohm m)^-1')
+		print('s19')
 		# plt.show()
 
 		# dfGCfiltered = df[np.multiply((df['GC'].T > 10**-3), (df['GC'].T < 10**1))]
@@ -977,13 +1054,13 @@ class EarthModel:
 
 		# dfResLogGC['GC']=dfGCfiltered['GC']#np.log(dfGCfiltered['GC'])
 		crs={'init':'epsg:3857'}#4326'}
-		# plt.figure()
+		plt.figure()
 		geometryTF=[Point(xy) for xy in zip(dfTFfiltered['longs'],dfTFfiltered['lats'])]
 		geometryGC=[Point(xy) for xy in zip(dfTFfiltered['longs'],dfTFfiltered['lats'])]
 		geo_df_TF=gpd.GeoDataFrame(dfTFfiltered,crs=crs,geometry=geometryTF)
 		geo_df_GC=gpd.GeoDataFrame(dfTFfiltered,crs=crs,geometry=geometryGC)
 		# print(dfResLog['TF'])
-		# plt.figure()
+		plt.figure()
 		tf=np.array(dfTFfiltered['TF'].values)
 		longs=np.array(dfTFfiltered['longs'].values)
 		lats=np.array(dfTFfiltered['lats'].values)
@@ -1000,6 +1077,7 @@ class EarthModel:
 		plt.plot(dfTFfiltered['logGC'])
 		plt.xlabel('EMTF (accurate) conductivities, (Ohm m)^-1')
 		plt.ylabel('GC model (inaccurate) conductivities (Ohm m)^-1')
+		print('s20')
 		plt.show()
 		
 		plt.figure()
@@ -1007,6 +1085,7 @@ class EarthModel:
 		plt.plot(dfTFfiltered['TFavgdlog'])
 		plt.xlabel('EMTF (accurate) conductivities, (Ohm m)^-1')
 		plt.ylabel('GC model (inaccurate) conductivities (Ohm m)^-1')
+		print('s21')
 		plt.show()
 		TFavgd=np.array(dfTFfiltered['TFavgd'].values)
 		GCarr=np.array(dfTFfiltered['GC'].values)
@@ -1021,6 +1100,7 @@ class EarthModel:
 		plt.plot(xtf,ytf,lw=1,label = "tf")
 		plt.plot(xgc,ygc,lw=1,label = "gc")
 		plt.legend()
+		print('s22')
 		plt.show()
 
 
@@ -1033,6 +1113,7 @@ class EarthModel:
 		self.findPredictivePower(TFavgd,GCarr)#*np.exp(np.log(np.mean(TFavgd))/np.log(np.mean(GCarr))))
 		# self.findPredictivePower(TFavgd,np.ones(len(TFavgd))*np.mean(TFavgd))
 				# gc=np.array(dfTFfiltered['GC'].values)
+		print('s23')
 		# plt.show()
 		# calculate Pearson's correlation`
 		print('from TF')
@@ -1052,31 +1133,37 @@ class EarthModel:
 		plt.scatter(dfTFfiltered['TFavgd'],dfTFfiltered['GC'])
 		plt.xlabel('EMTF (accurate) conductivities, (Ohm m)^-1')
 		plt.ylabel('GC model (inaccurate) conductivities (Ohm m)^-1')
+		print('s24')
 		plt.show()
 
 		# ctx.add_basemap(ax)
 
 		# geo_df_TF.plot(column='TF',ax=ax,legend=True,\
-		# 	cmap='rainbow',\
+		# 	cmap='viridis',\
 		# norm=colors.LogNorm(vmin=minTF, vmax=maxTF))
+		print('s25')
 		# plt.show()
 
 		fig, ax = plt.subplots(1, 1)
 		geo_df_GC.plot(column='TFavgd',ax=ax,legend=True,
-			cmap='rainbow',\
+			cmap='viridis',\
 		norm=colors.LogNorm(vmin=minTF, vmax=maxTF))
+		print('s26')
 		plt.show()
 		
 		fig, ax = plt.subplots(1, 1)
 		geo_df_GC.plot(column='GC',ax=ax,legend=True,
-			cmap='rainbow',\
+			cmap='viridis',\
 		norm=colors.LogNorm(vmin=minTF, vmax=maxTF))
+		print('s27')
 		plt.show()
 
 		# print('from gcmodel')
 		# fig, ax = plt.subplots(1, 1)
 		# geo_df_GC.plot(column='GC',ax=ax,legend=True)
+		print('s28')
 		# plt.show()
+		print('s29')
 		# plt.show()
 
 		# GCmodelMap = np.zeros((len(self.alllongs), len(self.alllats)))
@@ -1085,6 +1172,7 @@ class EarthModel:
 		# plt.imshow(np.flipud(GCmodelMap), cmap='hot', interpolation='nearest')
 		# plt.title('Overheat fractions '+str(r)+' per year, max of all durations')
 		# cbar = plt.colorbar()
+		print('s30')
 		# plt.show()
 
 
@@ -1115,3 +1203,6 @@ class EarthModel:
 			print('gcapparentc')
 			print(gcapparentc)
 			return [tfapparentc,gcapparentc]
+
+	def loadDurationRatios(self):
+		self.averagedRatios=np.load(Params.durationRatiosDir,allow_pickle=True)

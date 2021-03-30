@@ -79,15 +79,32 @@ def get_args():
 
 if __name__ == '__main__':
 	args = get_args()
+	print('done importing')
 	print('Detected arguments: '+str(args))
 	
 	#this processing is run every time, regardless of input args
 	earthmodel=EarthModel()
 	powergrid=PowerGrid()
 
+	rateperyears=args['rate_per_year']
+	if(type(rateperyears)==type(0.0)):
+		rateperyears=[rateperyears]
+
+	print('initializing models')
 	tfsites=earthmodel.initTFsites()
 	mtsites=earthmodel.initMTsites()
 	gcmodel=earthmodel.initGCmodel()
+	earthmodel.calcGCcoords()
+	if(args['Model']=='PowerGrid'): 
+		earthmodel.loadCombinedFits()
+		earthmodel.loadDurationRatios()
+		print('powergrid.pop_est')
+		print(powergrid.calcPopulationAffected())
+		powergrid.setWindowedEmaps(earthmodel)
+		powergrid.loadEfieldMaps()
+		powergrid.plotOverheatByDuration()
+		powergrid.calcOverheatMap()
+		quit()
 
 	recurrencecalculated = False
 	gcmodelprocessed = False
@@ -99,10 +116,14 @@ if __name__ == '__main__':
 		for tfs in tfsites:
 			#tfs.printApparentc()
 			i=tfs.getClosestFreqIndex(8**-3)
-			print(tfs.name+' ratio to VAQ55')
-			print(np.sqrt(.43814)/np.sqrt(tfs.apparentc[i]))
+			print(tfs.name+' apparent conductivity')
+			print(tfs.apparentc[i])
 			if('ApparentResistivity' in args['plots']):
 				tfs.plotApparentr()
+			# print(tfs.name+' ratio to VAQ55')
+			# print(np.sqrt(.43814)/np.sqrt(tfs.apparentc[i]))
+			# if('ApparentResistivity' in args['plots']):
+			# 	tfs.plotApparentr()
 
 	if(args['Model']=='MTsite'): 
 		if(args['TF_sites'] or args['MT_sites']):
@@ -214,11 +235,7 @@ if __name__ == '__main__':
 
 	if(calcglobalmodel):
 		#apply the reference site back out across the earth by adjusting  for of reference ground conductivity, geomagnetic latitude, and determing the rate per year of each windowperiod across the earth. The output of this function is a series of maps with electric field levels at each duration for a given rate per year of interest.
-		rateperyear=args['rate_per_year']
-		if(type(rateperyear)==type(0.0)):
-			earthmodel.calcGlobalEfields([rateperyear])
-		else:
-			earthmodel.calcGlobalEfields(rateperyear)
+		earthmodel.calcGlobalEfields(rateperyears)
 
 	if('CompareGCandTF' in args['plots']):
 		if(not allTFandGCcompared):
@@ -228,7 +245,6 @@ if __name__ == '__main__':
 		earthmodel.plotGCtoTFcomparison()
 
 	if(args['Model']=='PowerGrid'): 
-		powergrid=PowerGrid()
 		powergrid.setWindowedEmaps(earthmodel)
 		powergrid.loadEfieldMaps()
 		powergrid.calcOverheatMap()

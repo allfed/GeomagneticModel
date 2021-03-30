@@ -23,6 +23,7 @@ def importModelParams():
 	global allTFsitesdir
 	global mtRepeatRatesDir
 	global mtRepeatRatePlotsDir
+	global durationRatiosDir
 	global maxchunksize
 	global apparentcondloc
 	global globalcondloc
@@ -34,6 +35,11 @@ def importModelParams():
 	global globalEfieldData
 	global mtEfieldsloc
 	global overheatMapsDir
+	global overheatDataDir
+	global figuresDir
+	global combinedFitParamsLoc
+	global popDensity15min
+	global landArea15min
 
 	global tfsitenames
 	global tfformats
@@ -110,6 +116,18 @@ def importModelParams():
 			overheatMapsDir = paramdata[2][coltitleindex]
 		if(coltitle == 'mtEfieldsloc'):
 			mtEfieldsloc = paramdata[2][coltitleindex]
+		if(coltitle == 'durationRatiosDir'):
+			durationRatiosDir = paramdata[2][coltitleindex]
+		if(coltitle == 'figuresDir'):
+			figuresDir = paramdata[2][coltitleindex]
+		if(coltitle == 'landArea15min'):
+			landArea15min = paramdata[2][coltitleindex]
+		if(coltitle == 'overheatDataDir'):
+			overheatDataDir = paramdata[2][coltitleindex]
+		if(coltitle == 'popDensity15min'):
+			popDensity15min = paramdata[2][coltitleindex]
+		if(coltitle == 'combinedFitParamsLoc'):
+			combinedFitParamsLoc = paramdata[2][coltitleindex]
 	
 	paramdata = data['Params for each TF and MT site']
 
