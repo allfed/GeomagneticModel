@@ -22,6 +22,9 @@ from Model.PowerGrid import PowerGrid
 
 import Model.EarthModel
 from Model.EarthModel import EarthModel
+ 
+import Model.ValidateModel
+from Model.ValidateModel import ValidateModel
 
 def get_args():
 	arg_parser = argparse.ArgumentParser(
@@ -38,13 +41,13 @@ def get_args():
 		'Model', metavar='model', type=str,
 		nargs='?',
 		help='Specify part of geomagnetic model to run. If you do not require any of the model to be rerun, do not include this argument. WARNING: without a model argument included, ModelParams.ods is not updated in the model! Default: no model used.',
-		choices=['TFsite','MTsite','GCmodel','PowerGrid','EarthModel'])
+		choices=['TFsite','MTsite','GCmodel','PowerGrid','EarthModel','ValidateModel'])
 
 	arg_parser.add_argument(
 		'Function', metavar='function', type=str,
 		nargs='?',
 		help='Specify subpart of geomagnetic model to run (a specific function as part of the model specified). If you want the entirety of this aspect of the model to be run, don\'t include any second argument. Default: entirety of model processed.',
-		choices=['calcEfields','calcRecurrence','calcRecurrenceFit','calcCombinedRecurrence','calcGlobalModel','evalGCmodel','calcEvsDuration'])
+		choices=['calcEfields','calcRecurrence','calcRecurrenceFit','calcCombinedRecurrence','calcGlobalModel','evalGCmodel','calcEvsDuration','calcTimeBetweenStorms'])
 
 
 	arg_parser.add_argument(
@@ -98,12 +101,15 @@ if __name__ == '__main__':
 	if(args['Model']=='PowerGrid'): 
 		earthmodel.loadCombinedFits()
 		earthmodel.loadDurationRatios()
-		print('powergrid.pop_est')
-		print(powergrid.calcPopulationAffected())
 		powergrid.setWindowedEmaps(earthmodel)
 		powergrid.loadEfieldMaps()
-		powergrid.plotOverheatByDuration()
+		# powergrid.plotOverheatByDuration()
+		powergrid.calcTemperatureMap()
 		powergrid.calcOverheatMap()
+		print('powergrid.pop_est')
+		powergrid.calcPopulationAffected()
+		print('powergrid.eleestimate')
+		powergrid.calcElectricityAffected()
 		quit()
 
 	recurrencecalculated = False
@@ -116,11 +122,10 @@ if __name__ == '__main__':
 		for tfs in tfsites:
 			#tfs.printApparentc()
 			i=tfs.getClosestFreqIndex(8**-3)
-			print(tfs.name+' apparent conductivity')
-			print(tfs.apparentc[i])
+			# print(tfs.name+' apparent conductivity')
+			# print(tfs.apparentc[i])
 			if('ApparentResistivity' in args['plots']):
 				tfs.plotApparentr()
-			# print(tfs.name+' ratio to VAQ55')
 			# print(np.sqrt(.43814)/np.sqrt(tfs.apparentc[i]))
 			# if('ApparentResistivity' in args['plots']):
 			# 	tfs.plotApparentr()
@@ -140,6 +145,9 @@ if __name__ == '__main__':
 		if(args['Function']=='calcRecurrence'):
 			earthmodel.calcAndSaveRecurrence(mtsites,tfsites) 
 			recurrencecalculated = True
+		if(args['Function']=='calcTimeBetweenStorms'):
+			earthmodel.loadStorms(mtsites)
+			earthmodel.calcTimeBetweenStorms(mtsites)
 		elif(not args['Function']):
 			earthmodel.processMTsites(mtsites,tfsites)
 			recurrencecalculated = True
@@ -160,7 +168,6 @@ if __name__ == '__main__':
 		durationratiosprocessed=True
 
 	earthmodel.loadApparentCond()
-	earthmodel.calcGCcoords()
 
 	calccombinedrates=False
 	calcglobalmodel=False
@@ -169,7 +176,7 @@ if __name__ == '__main__':
 	calcpeakevsduration=False
 	calcEvsDuration=True
 	# Run earthmodel to first adjust mtsites to a consistent reference ground conductivity and geomagnetic latitude
-	if(args['Model']=='EarthModel'): 
+	if(args['Model']=='EarthModel'):
 		if(not recurrencecalculated):
 			earthmodel.loadPreviousMTfits(mtsites)
 		print(' previousmtfits loaded')
@@ -195,6 +202,11 @@ if __name__ == '__main__':
 			calcglobalmodel=True
 		if('evalGCmodel' in str(args['Function'])):
 			evalgcmodel=True
+
+	validatemodel=False
+	if(args['Model']=='ValidateModel'):
+		if(not args['Function']):#calc global model, then validate
+			validatemodel=True
 
 	allTFandGCcompared=False
 
@@ -236,6 +248,10 @@ if __name__ == '__main__':
 	if(calcglobalmodel):
 		#apply the reference site back out across the earth by adjusting  for of reference ground conductivity, geomagnetic latitude, and determing the rate per year of each windowperiod across the earth. The output of this function is a series of maps with electric field levels at each duration for a given rate per year of interest.
 		earthmodel.calcGlobalEfields(rateperyears)
+
+	if(validatemodel):
+		validation=ValidateModel()
+		validation.compareFields(earthmodel)
 
 	if('CompareGCandTF' in args['plots']):
 		if(not allTFandGCcompared):

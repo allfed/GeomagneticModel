@@ -86,6 +86,8 @@ class EarthModel:
 			for i in range(0,len(allfiles)):
 				mtsites = mtsites + [MTsite('',i)]
 		else:
+			print('mtsitenames')
+			print(Params.mtsitenames)
 			for i in range(0,len(Params.mtsitenames)):
 				folder=Params.mtsitesdir
 				filename=Params.mtsitenames[i]
@@ -341,6 +343,35 @@ class EarthModel:
 		+ 1.61E-18*(ml**10))/1.66675
 		return divisor
 
+	def adjustForThresholdShift(self,ml,r):
+		if(ml<0):
+			return ml
+		if(ml>72):
+			return ml
+		repeatrate=1/r
+		if(repeatrate<100):
+			return ml
+
+		#72 must return 72, 0 must return 0
+		if(repeatrate==100): #once per hundred, value at 45 is calculated as if it's 55
+			newlat=45
+		#once per thousand, value at 55 becomes 35
+		elif(repeatrate==1000):
+			newlat=35
+		#once per ten thousand, value at 55 becomes 30
+		elif(repeatrate==10000):
+			newlat=30
+		else:
+			print('Error: Only < 100 year, 1000 year, and 10,000 year magnetic latitude shifts have been estimated')
+			quit()
+
+		if(ml>newlat):
+			return (72-55)/(72-newlat)*ml+(55-(72-55)/(72-newlat)*newlat)
+		if(ml<=newlat):
+			return (55)/(newlat)*ml
+
+
+
 	# find E -fields at all locations on conductivity map for each duration
 	# Correct for geomagnetic latitude and apparent conductivity
 	def calcGlobalEfields(self, ratePerYears):
@@ -380,6 +411,14 @@ class EarthModel:
 			Elist=[]
 			Cadjust=[]
 			mlds=[]
+			plt.figure()
+			adjs=[]
+			xs=[]
+			# for i in range(-10,80):
+			# 	adjs.append(self.adjustForThresholdShift(i,r))
+			# 	xs.append(i)
+			# plt.plot(xs,adjs)
+			# plt.show()
 			for latkey in range(0,len(self.GClatitudes)):
 				latitude = self.GClatitudes[latkey]
 				for longkey in range(0,len(self.GClongitudes)):
@@ -388,7 +427,8 @@ class EarthModel:
 					magcoords = self.geotomag(latitude, longitude)
 					maglat=magcoords.data[0][1]
 					maglong=magcoords.data[0][2]
-					mld = self.getMagLatDivisor(maglat)
+
+					mld = self.getMagLatDivisor(self.adjustForThresholdShift(maglat,r))
 
 					if(maglat>-70 and maglat <80):
 		
@@ -398,20 +438,6 @@ class EarthModel:
 						allcs.append(c)
 						E =refField*np.sqrt(self.refconductivity)/np.sqrt(abs(c))*mld
 
-						if(np.sqrt(self.refconductivity)/np.sqrt(abs(c))==0):
-							print('c')
-							print(c)
-							quit()
-						if(mld==0):
-							print('mld')
-							print(mld)
-							quit()
-						if(refField==0):
-							print('reffield')
-							quit()
-						if(E==0):
-							print('E')
-							quit()
 						landcs.append(c)
 
 						if(maxE < E):
@@ -446,9 +472,24 @@ class EarthModel:
 			geometry=[Point(xy) for xy in zip(df['longs'],df['lats'])]
 			geo_df=gpd.GeoDataFrame(df,crs=crs,geometry=geometry)
 			# ax=gplt.kdeplot(geo_df,column='E',cmap='Reds',shade=True)
-			print('wierd')
+
+			###########Maglat Adjust Plot ####################
+			mldmin=np.min(df['mld'].values)
+			mldmax=np.max(df['mld'].values)
+			ax=geo_df.plot(column='mld',legend=True,legend_kwds={'label': 'Coefficient on Reference Field Level','orientation': "horizontal"}, cmap='viridis',norm=colors.LogNorm(vmin=mldmin, vmax=mldmax))
+
+			pp=gplt.polyplot(world,ax=ax,zorder=1)
+			self.formatticklabels(mldmin,mldmax,pp)
+
+			plt.title('Geoelectric Field Multiplier\n Magnetic Latitude\n1 in '+str(1/r)+' Year Storm')
+			plt.savefig(Params.figuresDir+'MagneticLatitudeMultiplier'+str(r)+'peryear.png')
+
+
+			print('s10')
+			plt.show()
+
+
 			###########E Field Plot ####################
-			print('abouttoplto')
 			plt.close()
 			ax=geo_df.plot(column='E',legend=True,
 			cmap='viridis',\
@@ -512,27 +553,6 @@ class EarthModel:
 		plt.show()
 
 		
-
-		###########Maglat Adjust Plot ####################
-		mldmin=np.min(df['mld'].values)
-		mldmax=np.max(df['mld'].values)
-		ax=geo_df.plot(column='mld',legend=True,legend_kwds={'label': 'Coefficient on Reference Field Level','orientation': "horizontal"}, cmap='viridis',norm=colors.LogNorm(vmin=mldmin, vmax=mldmax))
-
-		pp=gplt.polyplot(world,ax=ax,zorder=1)
-
-		colourbar = pp.get_figure().get_axes()[1]
-		ticks_loc = colourbar.get_xticks().tolist()
-		ticks_loc.insert(0,np.min(df['mld'].values))
-		ticks_loc.append(np.max(df['mld'].values))
-		colourbar.xaxis.set_major_locator(mticker.FixedLocator(ticks_loc))
-		self.formatticklabels(mincadj,maxcadj,pp)
-
-		plt.title('Geoelectric Field Multiplier\n Magnetic Latitude')
-		plt.savefig(Params.figuresDir+'MagneticLatitudeMultiplier.png')
-
-
-		print('s10')
-		plt.show()
 	#adjusts ratesperyear for all the sites to the reference maglat and conductivity and sets the result to properties of this EarthModel instance
 	def calcReferenceRateperyear(self,tfsites,mtsites,fittype,plot):
 		self.refcumsum=[]
@@ -1206,3 +1226,23 @@ class EarthModel:
 
 	def loadDurationRatios(self):
 		self.averagedRatios=np.load(Params.durationRatiosDir,allow_pickle=True)
+
+	def loadStorms(self,mtsites):
+
+		for i in range(0,len(mtsites)):
+			if(not Params.useMTsite[i]):
+				continue
+
+			mtsite=mtsites[i]
+			# mtsite.importSite()
+			# mtsite.createChunks()
+			mtsite.loadStorms()
+
+	def calcTimeBetweenStorms(self,mtsites):
+		for i in range(0,len(mtsites)):
+			if(not Params.useMTsite[i]):
+				continue
+
+			mtsite=mtsites[i]
+			mtsite.calcTimeBetweenStorms()
+

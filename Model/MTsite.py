@@ -22,7 +22,6 @@ from statsmodels.tsa.ar_model import AutoReg, ar_select_order
 import statsmodels.api as sm
 import pandas as pd
 from scipy.ndimage.filters import uniform_filter1d
-
 import fits
 import Params
 
@@ -52,6 +51,7 @@ class MTsite:
 		self.polyFitFunNS=[]
 		self.polyFitFunEW=[]
 		self.occurrenceRatio=[]
+		self.allstorms=[]
 
 	def importSite(self):
 		self.ds = nc.Dataset(self.MTsitefn)	#  import the magnetic field record using the netcdf format as a big numpy array
@@ -645,6 +645,9 @@ class MTsite:
 
 		print('number storms per year: '+str(nstormstotal/self.cumulativeyears))
 		print('average storms duration (hours): '+str(meanduration))
+		self.allstorms=allstorms
+		np.save(Params.mtStormsDir+'MTsite'+str(self.siteIndex)+'Storms',allstorms)
+		print('saved storms')
 
 	#calculates the peak value of storms given the windows and E fields
 	#returns an array structured as:
@@ -848,3 +851,96 @@ class MTsite:
 		plt.plot(bins)
 		plt.show()
 		quit()
+
+	def loadStorms(self):
+		self.allstorms=np.load(Params.mtStormsDir+'MTsite'+str(self.siteIndex)+'Storms.npy',allow_pickle=True)
+
+	def calcTimeBetweenStorms(self):
+		# for i in range(0,self.chunks):
+		i=0
+		# stormindices=self.chunks[i].storms[0][0]
+
+		differences=np.diff(self.allstorms)
+		differences0=np.diff(self.allstorms[0])
+		
+		# differences>0
+
+		# for i in range(0,len(stormindices)):
+		# if(differences[i]>0):
+
+		ranges = []
+		
+		# for x in xrange(1,10):
+			# pass
+
+		# for key, group in groupby(np.array(self.allstorms)>0):
+			# print(key)
+			# group = map(itemgetter(1), group)
+			# if len(group) > 1:
+				# ranges.append(xrange(group[0], group[-1]))
+			# else:
+				# ranges.append(group[0])
+
+		# for group in groupby(stormindices, lambda x: x[0]):
+		# 	isstorm,field = next(group)
+		# 	# print('nWindows')
+		# 	# print(nwindows)
+		# 	elems = len(list(group)) + 1
+		# 	stormE=[np.array([])]*nwindows
+		# df=pd.DataFrame({'indices':np.array(self.allstorms[0]),'vals':np.array(self.allstorms[1]),'hourwin':np.array(self.allstorms[2])})
+		tmp=(np.append(differences0,0)==1)
+		mask=tmp
+		print(mask)
+		print(np.sum(mask))
+		# for i in range(1,len(tmp)):
+		# 	if(tmp[i]!=tmp[i-1]):
+		# 		mask[i]=True
+
+
+		storms=[]
+		# stormpeaks=[np.array([])]*nwindows
+		# print('chunkindex')
+		# print(chunkindex)
+		stormstarts=[]
+		stormends=[]
+		stormdurations=[]
+		peaks=[]
+		data = zip(mask,self.allstorms[0])
+		Eindex=0
+		for key, group in groupby(data, lambda x: x[0]):
+			isstorm,stormstart = next(group)
+			elems = len(list(group)) + 1
+			if(isstorm):
+				stormE=self.allstorms[1][Eindex:Eindex+elems]
+				stormindices=self.allstorms[0][Eindex:Eindex+elems]
+				# print('stormstart')
+				# print(stormstart)
+				# print('len(stormE)')
+				# print(len(stormE))
+				peaks.append(np.max(np.array(stormE)))
+
+				stormstarts.append(stormindices[0])
+				stormends.append(stormindices[-1])
+				stormdurations.append(stormindices[-1]-stormindices[0])
+			Eindex+=elems
+
+		timesbetween=np.array(stormstarts[1:])-np.array(stormends[0:-1])
+		print('hoursbetween')
+		hoursbetween=timesbetween/(60*60)
+		print(hoursbetween)
+		[x,y]=fits.binlognormaldist(timesbetween,[],3)
+		[xd,yd]=fits.binlognormaldist(np.array(stormdurations)/(60*60),[],3)
+		plt.figure()
+		
+		plt.xscale("log")
+
+		plt.plot(x,y)
+		plt.show()
+
+		plt.figure()
+		plt.xscale("log")
+		plt.plot(xd,yd)
+		plt.show()
+		
+
+		# 

@@ -22,6 +22,7 @@ def importModelParams():
 	global tfsitesdir
 	global allTFsitesdir
 	global mtRepeatRatesDir
+	global mtStormsDir
 	global mtRepeatRatePlotsDir
 	global durationRatiosDir
 	global maxchunksize
@@ -36,10 +37,14 @@ def importModelParams():
 	global mtEfieldsloc
 	global overheatMapsDir
 	global overheatDataDir
+	global popCELEdir
+	global tempDataDir
 	global figuresDir
 	global combinedFitParamsLoc
 	global popDensity15min
 	global landArea15min
+	global eleByNation
+	global popByNation
 
 	global tfsitenames
 	global tfformats
@@ -94,6 +99,8 @@ def importModelParams():
 			mtRepeatRatesDir = paramdata[2][coltitleindex]
 		if(coltitle == 'mtRepeatRatePlotsDir'):
 			mtRepeatRatePlotsDir = paramdata[2][coltitleindex]
+		if(coltitle == 'mtStormsDir'):
+			mtStormsDir = paramdata[2][coltitleindex]
 		if(coltitle == 'maxchunksize'):
 			maxchunksize = paramdata[2][coltitleindex]
 		if(coltitle == 'globalcondloc'):
@@ -114,6 +121,10 @@ def importModelParams():
 			globalEfieldPlots = paramdata[2][coltitleindex]
 		if(coltitle == 'overheatMapsDir'):
 			overheatMapsDir = paramdata[2][coltitleindex]
+		if(coltitle == 'overheatDataDir'):
+			overheatDataDir = paramdata[2][coltitleindex]
+		if(coltitle == 'popCELEdir'):
+			popCELEdir = paramdata[2][coltitleindex]
 		if(coltitle == 'mtEfieldsloc'):
 			mtEfieldsloc = paramdata[2][coltitleindex]
 		if(coltitle == 'durationRatiosDir'):
@@ -122,8 +133,12 @@ def importModelParams():
 			figuresDir = paramdata[2][coltitleindex]
 		if(coltitle == 'landArea15min'):
 			landArea15min = paramdata[2][coltitleindex]
-		if(coltitle == 'overheatDataDir'):
-			overheatDataDir = paramdata[2][coltitleindex]
+		if(coltitle == 'eleByNation'):
+			eleByNation = paramdata[2][coltitleindex]
+		if(coltitle == 'popByNation'):
+			popByNation = paramdata[2][coltitleindex]
+		if(coltitle == 'tempDataDir'):
+			tempDataDir = paramdata[2][coltitleindex]
 		if(coltitle == 'popDensity15min'):
 			popDensity15min = paramdata[2][coltitleindex]
 		if(coltitle == 'combinedFitParamsLoc'):
@@ -228,7 +243,10 @@ def importTransformers():
 	global pop0to25
 	global pop40plus
 	global tau
-
+	global voltagePhasePercent
+	global voltageClass
+	global voltage
+	global phase
 	data = get_data(transformersfn)
 	thermaldata = data['Thermal']
 	column = []
@@ -264,5 +282,13 @@ def importTransformers():
 			pop0to25 = tmp
 		if(coltitle == 'pop40plus'):
 			pop40plus = tmp
+		if(coltitle == 'voltagePhasePercent'):
+			voltagePhasePercent= tmp			
+		if(coltitle == 'voltageClass'):
+			voltageClass = tmp
+		if(coltitle == 'voltage'):
+			voltage = tmp
+		if(coltitle == 'phase'):
+			phase = tmp
 		if(coltitle == 'tau'):
 			tau = tmp

@@ -1,0 +1,692 @@
+Report generated on: 04-05-2021 09:46:16,,
+API,,2018
+,World,
+INTL.2-12-WORL-BKWH.A,    Generation (billion kWh),25398.00885187
+INTL.2-2-WORL-BKWH.A,    Consumption (billion kWh),23398.401108242
+,Afghanistan,
+INTL.2-12-AFG-BKWH.A,    Generation (billion kWh),1.115
+INTL.2-2-AFG-BKWH.A,    Consumption (billion kWh),6.02295
+,Albania,
+INTL.2-12-ALB-BKWH.A,    Generation (billion kWh),8.46748
+INTL.2-2-ALB-BKWH.A,    Consumption (billion kWh),4.84948
+,Algeria,
+INTL.2-12-DZA-BKWH.A,    Generation (billion kWh),72.05703
+INTL.2-2-DZA-BKWH.A,    Consumption (billion kWh),62.06203
+,American Samoa,
+INTL.2-12-ASM-BKWH.A,    Generation (billion kWh),0.163
+INTL.2-2-ASM-BKWH.A,    Consumption (billion kWh),0.15159
+,Angola,
+INTL.2-12-AGO-BKWH.A,    Generation (billion kWh),11.6856
+INTL.2-2-AGO-BKWH.A,    Consumption (billion kWh),10.3636
+,Antarctica,
+INTL.2-12-ATA-BKWH.A,    Generation (billion kWh),0
+INTL.2-2-ATA-BKWH.A,    Consumption (billion kWh),0
+,Antigua and Barbuda,
+INTL.2-12-ATG-BKWH.A,    Generation (billion kWh),0.338073
+INTL.2-2-ATG-BKWH.A,    Consumption (billion kWh),0.31440789
+,Argentina,
+INTL.2-12-ARG-BKWH.A,    Generation (billion kWh),139.14409
+INTL.2-2-ARG-BKWH.A,    Consumption (billion kWh),125.03009
+,Armenia,
+INTL.2-12-ARM-BKWH.A,    Generation (billion kWh),7.38726
+INTL.2-2-ARM-BKWH.A,    Consumption (billion kWh),5.35326
+,Aruba,
+INTL.2-12-ABW-BKWH.A,    Generation (billion kWh),0.966712
+INTL.2-2-ABW-BKWH.A,    Consumption (billion kWh),0.89904216
+,Australia,
+INTL.2-12-AUS-BKWH.A,    Generation (billion kWh),247.69404
+INTL.2-2-AUS-BKWH.A,    Consumption (billion kWh),234.27804
+,Austria,
+INTL.2-12-AUT-BKWH.A,    Generation (billion kWh),60.30886
+INTL.2-2-AUT-BKWH.A,    Consumption (billion kWh),65.796826
+,Azerbaijan,
+INTL.2-12-AZE-BKWH.A,    Generation (billion kWh),23.81938
+INTL.2-2-AZE-BKWH.A,    Consumption (billion kWh),20.28578
+,Bahrain,
+INTL.2-12-BHR-BKWH.A,    Generation (billion kWh),27.78249
+INTL.2-2-BHR-BKWH.A,    Consumption (billion kWh),27.44749
+,Bangladesh,
+INTL.2-12-BGD-BKWH.A,    Generation (billion kWh),73.971217
+INTL.2-2-BGD-BKWH.A,    Consumption (billion kWh),70.594217
+,Barbados,
+INTL.2-12-BRB-BKWH.A,    Generation (billion kWh),1.010296
+INTL.2-2-BRB-BKWH.A,    Consumption (billion kWh),0.990296
+,Belarus,
+INTL.2-12-BLR-BKWH.A,    Generation (billion kWh),36.69196
+INTL.2-2-BLR-BKWH.A,    Consumption (billion kWh),32.86596
+,Belgium,
+INTL.2-12-BEL-BKWH.A,    Generation (billion kWh),69.90266
+INTL.2-2-BEL-BKWH.A,    Consumption (billion kWh),83.43246
+,Belize,
+INTL.2-12-BLZ-BKWH.A,    Generation (billion kWh),0.402585
+INTL.2-2-BLZ-BKWH.A,    Consumption (billion kWh),0.567585
+,Benin,
+INTL.2-12-BEN-BKWH.A,    Generation (billion kWh),0.19038
+INTL.2-2-BEN-BKWH.A,    Consumption (billion kWh),1.188064
+,Bermuda,
+INTL.2-12-BMU-BKWH.A,    Generation (billion kWh),0.602
+INTL.2-2-BMU-BKWH.A,    Consumption (billion kWh),0.55986
+,Bhutan,
+INTL.2-12-BTN-BKWH.A,    Generation (billion kWh),6.890702
+INTL.2-2-BTN-BKWH.A,    Consumption (billion kWh),2.385702
+,Bolivia,
+INTL.2-12-BOL-BKWH.A,    Generation (billion kWh),9.44272
+INTL.2-2-BOL-BKWH.A,    Consumption (billion kWh),8.34772
+,Bosnia and Herzegovina,
+INTL.2-12-BIH-BKWH.A,    Generation (billion kWh),18.20828
+INTL.2-2-BIH-BKWH.A,    Consumption (billion kWh),12.25328
+,Botswana,
+INTL.2-12-BWA-BKWH.A,    Generation (billion kWh),2.96976
+INTL.2-2-BWA-BKWH.A,    Consumption (billion kWh),3.30076
+,Brazil,
+INTL.2-12-BRA-BKWH.A,    Generation (billion kWh),591.60996
+INTL.2-2-BRA-BKWH.A,    Consumption (billion kWh),528.61596
+,British Virgin Islands,
+INTL.2-12-VGB-BKWH.A,    Generation (billion kWh),0.101558
+INTL.2-2-VGB-BKWH.A,    Consumption (billion kWh),0.09444894
+,Brunei,
+INTL.2-12-BRN-BKWH.A,    Generation (billion kWh),4.03648
+INTL.2-2-BRN-BKWH.A,    Consumption (billion kWh),3.55548
+,Bulgaria,
+INTL.2-12-BGR-BKWH.A,    Generation (billion kWh),44.28263
+INTL.2-2-BGR-BKWH.A,    Consumption (billion kWh),33.373746
+,Burkina Faso,
+INTL.2-12-BFA-BKWH.A,    Generation (billion kWh),1.1823
+INTL.2-2-BFA-BKWH.A,    Consumption (billion kWh),1.759539
+,Burma,
+INTL.2-12-MMR-BKWH.A,    Generation (billion kWh),23.81193
+INTL.2-2-MMR-BKWH.A,    Consumption (billion kWh),18.02393
+,Burundi,
+INTL.2-12-BDI-BKWH.A,    Generation (billion kWh),0.256788
+INTL.2-2-BDI-BKWH.A,    Consumption (billion kWh),0.33881284
+,Cabo Verde,
+INTL.2-12-CPV-BKWH.A,    Generation (billion kWh),0.489
+INTL.2-2-CPV-BKWH.A,    Consumption (billion kWh),0.45477
+,Cambodia,
+INTL.2-12-KHM-BKWH.A,    Generation (billion kWh),7.92457
+INTL.2-2-KHM-BKWH.A,    Consumption (billion kWh),8.40157
+,Cameroon,
+INTL.2-12-CMR-BKWH.A,    Generation (billion kWh),8.36313
+INTL.2-2-CMR-BKWH.A,    Consumption (billion kWh),6.74313
+,Canada,
+INTL.2-12-CAN-BKWH.A,    Generation (billion kWh),637.12176
+INTL.2-2-CAN-BKWH.A,    Consumption (billion kWh),558.81576
+,Cayman Islands,
+INTL.2-12-CYM-BKWH.A,    Generation (billion kWh),0.658165
+INTL.2-2-CYM-BKWH.A,    Consumption (billion kWh),0.629165
+,Central African Republic,
+INTL.2-12-CAF-BKWH.A,    Generation (billion kWh),0.151
+INTL.2-2-CAF-BKWH.A,    Consumption (billion kWh),0.14043
+,Chad,
+INTL.2-12-TCD-BKWH.A,    Generation (billion kWh),0.229
+INTL.2-2-TCD-BKWH.A,    Consumption (billion kWh),0.21297
+,Chile,
+INTL.2-12-CHL-BKWH.A,    Generation (billion kWh),79.09072
+INTL.2-2-CHL-BKWH.A,    Consumption (billion kWh),75.578284
+,China,
+INTL.2-12-CHN-BKWH.A,    Generation (billion kWh),6801.85912
+INTL.2-2-CHN-BKWH.A,    Consumption (billion kWh),6453.170757
+,Colombia,
+INTL.2-12-COL-BKWH.A,    Generation (billion kWh),78.2522
+INTL.2-2-COL-BKWH.A,    Consumption (billion kWh),70.2032
+,Comoros,
+INTL.2-12-COM-BKWH.A,    Generation (billion kWh),0.1004
+INTL.2-2-COM-BKWH.A,    Consumption (billion kWh),0.093372
+,Congo-Brazzaville,
+INTL.2-12-COG-BKWH.A,    Generation (billion kWh),3.36047
+INTL.2-2-COG-BKWH.A,    Consumption (billion kWh),2.01847
+,Congo-Kinshasa,
+INTL.2-12-COD-BKWH.A,    Generation (billion kWh),10.4762
+INTL.2-2-COD-BKWH.A,    Consumption (billion kWh),8.5942
+,Cook Islands,
+INTL.2-12-COK-BKWH.A,    Generation (billion kWh),0.041729
+INTL.2-2-COK-BKWH.A,    Consumption (billion kWh),0.03880797
+,Costa Rica,
+INTL.2-12-CRI-BKWH.A,    Generation (billion kWh),11.40703
+INTL.2-2-CRI-BKWH.A,    Consumption (billion kWh),10.064571
+,Croatia,
+INTL.2-12-HRV-BKWH.A,    Generation (billion kWh),13.208772
+INTL.2-2-HRV-BKWH.A,    Consumption (billion kWh),16.771772
+,Cuba,
+INTL.2-12-CUB-BKWH.A,    Generation (billion kWh),19.63126
+INTL.2-2-CUB-BKWH.A,    Consumption (billion kWh),16.34126
+,Cyprus,
+INTL.2-12-CYP-BKWH.A,    Generation (billion kWh),4.78502
+INTL.2-2-CYP-BKWH.A,    Consumption (billion kWh),4.626833
+,Czech Republic,
+INTL.2-12-CZE-BKWH.A,    Generation (billion kWh),82.0512
+INTL.2-2-CZE-BKWH.A,    Consumption (billion kWh),63.873817
+,Côte d’Ivoire,
+INTL.2-12-CIV-BKWH.A,    Generation (billion kWh),9.61422
+INTL.2-2-CIV-BKWH.A,    Consumption (billion kWh),6.68622
+,Denmark,
+INTL.2-12-DNK-BKWH.A,    Generation (billion kWh),29.84258
+INTL.2-2-DNK-BKWH.A,    Consumption (billion kWh),32.864551
+,Djibouti,
+INTL.2-12-DJI-BKWH.A,    Generation (billion kWh),0.041
+INTL.2-2-DJI-BKWH.A,    Consumption (billion kWh),0.03813
+,Dominica,
+INTL.2-12-DMA-BKWH.A,    Generation (billion kWh),0.064178
+INTL.2-2-DMA-BKWH.A,    Consumption (billion kWh),0.05968554
+,Dominican Republic,
+INTL.2-12-DOM-BKWH.A,    Generation (billion kWh),18.61596
+INTL.2-2-DOM-BKWH.A,    Consumption (billion kWh),16.06696
+,Ecuador,
+INTL.2-12-ECU-BKWH.A,    Generation (billion kWh),28.54474
+INTL.2-2-ECU-BKWH.A,    Consumption (billion kWh),24.604748
+,Egypt,
+INTL.2-12-EGY-BKWH.A,    Generation (billion kWh),184.515844
+INTL.2-2-EGY-BKWH.A,    Consumption (billion kWh),150.579148
+,El Salvador,
+INTL.2-12-SLV-BKWH.A,    Generation (billion kWh),4.771831
+INTL.2-2-SLV-BKWH.A,    Consumption (billion kWh),5.702831
+,Equatorial Guinea,
+INTL.2-12-GNQ-BKWH.A,    Generation (billion kWh),1.42144
+INTL.2-2-GNQ-BKWH.A,    Consumption (billion kWh),1.32144
+,Eritrea,
+INTL.2-12-ERI-BKWH.A,    Generation (billion kWh),0.46894
+INTL.2-2-ERI-BKWH.A,    Consumption (billion kWh),0.40794
+,Estonia,
+INTL.2-12-EST-BKWH.A,    Generation (billion kWh),11.74356
+INTL.2-2-EST-BKWH.A,    Consumption (billion kWh),9.10256
+,Eswatini,
+INTL.2-12-SWZ-BKWH.A,    Generation (billion kWh),0.712208
+INTL.2-2-SWZ-BKWH.A,    Consumption (billion kWh),1.68235344
+,Ethiopia,
+INTL.2-12-ETH-BKWH.A,    Generation (billion kWh),13.475418
+INTL.2-2-ETH-BKWH.A,    Consumption (billion kWh),8.986418
+,Falkland Islands,
+INTL.2-12-FLK-BKWH.A,    Generation (billion kWh),0.0197
+INTL.2-2-FLK-BKWH.A,    Consumption (billion kWh),0.018321
+,Faroe Islands,
+INTL.2-12-FRO-BKWH.A,    Generation (billion kWh),0.3398
+INTL.2-2-FRO-BKWH.A,    Consumption (billion kWh),0.316014
+,Fiji,
+INTL.2-12-FJI-BKWH.A,    Generation (billion kWh),1.071916
+INTL.2-2-FJI-BKWH.A,    Consumption (billion kWh),0.99688188
+,Finland,
+INTL.2-12-FIN-BKWH.A,    Generation (billion kWh),68.06832
+INTL.2-2-FIN-BKWH.A,    Consumption (billion kWh),84.98032
+,Former Czechoslovakia,
+INTL.2-12-CSK-BKWH.A,    Generation (billion kWh),--
+INTL.2-2-CSK-BKWH.A,    Consumption (billion kWh),--
+,Former Serbia and Montenegro,
+INTL.2-12-SCG-BKWH.A,    Generation (billion kWh),--
+INTL.2-2-SCG-BKWH.A,    Consumption (billion kWh),--
+,Former U.S.S.R.,
+INTL.2-12-SUN-BKWH.A,    Generation (billion kWh),--
+INTL.2-2-SUN-BKWH.A,    Consumption (billion kWh),--
+,Former Yugoslavia,
+INTL.2-12-YUG-BKWH.A,    Generation (billion kWh),--
+INTL.2-2-YUG-BKWH.A,    Consumption (billion kWh),--
+,France,
+INTL.2-12-FRA-BKWH.A,    Generation (billion kWh),551.2099
+INTL.2-2-FRA-BKWH.A,    Consumption (billion kWh),449.633845
+,French Guiana,
+INTL.2-12-GUF-BKWH.A,    Generation (billion kWh),1.099651
+INTL.2-2-GUF-BKWH.A,    Consumption (billion kWh),1.02267543
+,French Polynesia,
+INTL.2-12-PYF-BKWH.A,    Generation (billion kWh),0.584543
+INTL.2-2-PYF-BKWH.A,    Consumption (billion kWh),0.54362499
+,Gabon,
+INTL.2-12-GAB-BKWH.A,    Generation (billion kWh),2.16929
+INTL.2-2-GAB-BKWH.A,    Consumption (billion kWh),2.23029
+,"Gambia, The",
+INTL.2-12-GMB-BKWH.A,    Generation (billion kWh),0.3131
+INTL.2-2-GMB-BKWH.A,    Consumption (billion kWh),0.291183
+,Georgia,
+INTL.2-12-GEO-BKWH.A,    Generation (billion kWh),11.9221
+INTL.2-2-GEO-BKWH.A,    Consumption (billion kWh),11.9561
+,Germany,
+INTL.2-12-DEU-BKWH.A,    Generation (billion kWh),608.5729
+INTL.2-2-DEU-BKWH.A,    Consumption (billion kWh),533.1769
+,"Germany, East",
+INTL.2-12-DDR-BKWH.A,    Generation (billion kWh),--
+INTL.2-2-DDR-BKWH.A,    Consumption (billion kWh),--
+,"Germany, West",
+INTL.2-12-DEUW-BKWH.A,    Generation (billion kWh),--
+INTL.2-2-DEUW-BKWH.A,    Consumption (billion kWh),--
+,Ghana,
+INTL.2-12-GHA-BKWH.A,    Generation (billion kWh),11.846367
+INTL.2-2-GHA-BKWH.A,    Consumption (billion kWh),8.842367
+,Gibraltar,
+INTL.2-12-GIB-BKWH.A,    Generation (billion kWh),0.2021
+INTL.2-2-GIB-BKWH.A,    Consumption (billion kWh),0.195573
+,Greece,
+INTL.2-12-GRC-BKWH.A,    Generation (billion kWh),50.32128
+INTL.2-2-GRC-BKWH.A,    Consumption (billion kWh),51.35728
+,Greenland,
+INTL.2-12-GRL-BKWH.A,    Generation (billion kWh),0.51252
+INTL.2-2-GRL-BKWH.A,    Consumption (billion kWh),0.49552
+,Grenada,
+INTL.2-12-GRD-BKWH.A,    Generation (billion kWh),0.217495
+INTL.2-2-GRD-BKWH.A,    Consumption (billion kWh),0.198495
+,Guadeloupe,
+INTL.2-12-GLP-BKWH.A,    Generation (billion kWh),1.659745
+INTL.2-2-GLP-BKWH.A,    Consumption (billion kWh),1.54356285
+,Guam,
+INTL.2-12-GUM-BKWH.A,    Generation (billion kWh),1.723962
+INTL.2-2-GUM-BKWH.A,    Consumption (billion kWh),1.638962
+,Guatemala,
+INTL.2-12-GTM-BKWH.A,    Generation (billion kWh),13.70199
+INTL.2-2-GTM-BKWH.A,    Consumption (billion kWh),10.569888
+,Guinea,
+INTL.2-12-GIN-BKWH.A,    Generation (billion kWh),2.132024
+INTL.2-2-GIN-BKWH.A,    Consumption (billion kWh),1.98278232
+,Guinea-Bissau,
+INTL.2-12-GNB-BKWH.A,    Generation (billion kWh),0.042
+INTL.2-2-GNB-BKWH.A,    Consumption (billion kWh),0.03906
+,Guyana,
+INTL.2-12-GUY-BKWH.A,    Generation (billion kWh),1.085925
+INTL.2-2-GUY-BKWH.A,    Consumption (billion kWh),0.850925
+,Haiti,
+INTL.2-12-HTI-BKWH.A,    Generation (billion kWh),0.99315
+INTL.2-2-HTI-BKWH.A,    Consumption (billion kWh),0.359442
+,Hawaiian Trade Zone,
+INTL.2-12-HITZ-BKWH.A,    Generation (billion kWh),--
+INTL.2-2-HITZ-BKWH.A,    Consumption (billion kWh),--
+,Honduras,
+INTL.2-12-HND-BKWH.A,    Generation (billion kWh),9.3057
+INTL.2-2-HND-BKWH.A,    Consumption (billion kWh),6.6957
+,Hong Kong,
+INTL.2-12-HKG-BKWH.A,    Generation (billion kWh),34.365
+INTL.2-2-HKG-BKWH.A,    Consumption (billion kWh),44.73
+,Hungary,
+INTL.2-12-HUN-BKWH.A,    Generation (billion kWh),30.35152
+INTL.2-2-HUN-BKWH.A,    Consumption (billion kWh),41.34252
+,Iceland,
+INTL.2-12-ISL-BKWH.A,    Generation (billion kWh),19.43188
+INTL.2-2-ISL-BKWH.A,    Consumption (billion kWh),18.877706
+,India,
+INTL.2-12-IND-BKWH.A,    Generation (billion kWh),1550.943
+INTL.2-2-IND-BKWH.A,    Consumption (billion kWh),1277.167
+,Indonesia,
+INTL.2-12-IDN-BKWH.A,    Generation (billion kWh),269.39538
+INTL.2-2-IDN-BKWH.A,    Consumption (billion kWh),248.943472
+,Iran,
+INTL.2-12-IRN-BKWH.A,    Generation (billion kWh),291.285026
+INTL.2-2-IRN-BKWH.A,    Consumption (billion kWh),254.724026
+,Iraq,
+INTL.2-12-IRQ-BKWH.A,    Generation (billion kWh),77.64996
+INTL.2-2-IRQ-BKWH.A,    Consumption (billion kWh),43.97096
+,Ireland,
+INTL.2-12-IRL-BKWH.A,    Generation (billion kWh),29.40594
+INTL.2-2-IRL-BKWH.A,    Consumption (billion kWh),27.143377
+,Israel,
+INTL.2-12-ISR-BKWH.A,    Generation (billion kWh),64.768202
+INTL.2-2-ISR-BKWH.A,    Consumption (billion kWh),56.391288
+,Italy,
+INTL.2-12-ITA-BKWH.A,    Generation (billion kWh),275.71181
+INTL.2-2-ITA-BKWH.A,    Consumption (billion kWh),301.623855
+,Jamaica,
+INTL.2-12-JAM-BKWH.A,    Generation (billion kWh),4.16864
+INTL.2-2-JAM-BKWH.A,    Consumption (billion kWh),3.02464
+,Japan,
+INTL.2-12-JPN-BKWH.A,    Generation (billion kWh),984.79062
+INTL.2-2-JPN-BKWH.A,    Consumption (billion kWh),939.791665
+,Jordan,
+INTL.2-12-JOR-BKWH.A,    Generation (billion kWh),19.38413
+INTL.2-2-JOR-BKWH.A,    Consumption (billion kWh),17.38413
+,Kazakhstan,
+INTL.2-12-KAZ-BKWH.A,    Generation (billion kWh),101.71827
+INTL.2-2-KAZ-BKWH.A,    Consumption (billion kWh),91.66827
+,Kenya,
+INTL.2-12-KEN-BKWH.A,    Generation (billion kWh),11.104554
+INTL.2-2-KEN-BKWH.A,    Consumption (billion kWh),8.721554
+,Kiribati,
+INTL.2-12-KIR-BKWH.A,    Generation (billion kWh),0.029837
+INTL.2-2-KIR-BKWH.A,    Consumption (billion kWh),0.02774841
+,Kuwait,
+INTL.2-12-KWT-BKWH.A,    Generation (billion kWh),69.6628
+INTL.2-2-KWT-BKWH.A,    Consumption (billion kWh),59.2778
+,Kyrgyzstan,
+INTL.2-12-KGZ-BKWH.A,    Generation (billion kWh),15.3094
+INTL.2-2-KGZ-BKWH.A,    Consumption (billion kWh),11.7404
+,Laos,
+INTL.2-12-LAO-BKWH.A,    Generation (billion kWh),33.46458
+INTL.2-2-LAO-BKWH.A,    Consumption (billion kWh),4.05858
+,Latvia,
+INTL.2-12-LVA-BKWH.A,    Generation (billion kWh),6.51544
+INTL.2-2-LVA-BKWH.A,    Consumption (billion kWh),6.976196
+,Lebanon,
+INTL.2-12-LBN-BKWH.A,    Generation (billion kWh),19.98368
+INTL.2-2-LBN-BKWH.A,    Consumption (billion kWh),17.70768
+,Lesotho,
+INTL.2-12-LSO-BKWH.A,    Generation (billion kWh),0.539674
+INTL.2-2-LSO-BKWH.A,    Consumption (billion kWh),0.90189682
+,Liberia,
+INTL.2-12-LBR-BKWH.A,    Generation (billion kWh),0.374
+INTL.2-2-LBR-BKWH.A,    Consumption (billion kWh),0.34782
+,Libya,
+INTL.2-12-LBY-BKWH.A,    Generation (billion kWh),32.12122
+INTL.2-2-LBY-BKWH.A,    Consumption (billion kWh),25.69322
+,Lithuania,
+INTL.2-12-LTU-BKWH.A,    Generation (billion kWh),2.51428
+INTL.2-2-LTU-BKWH.A,    Consumption (billion kWh),11.21278
+,Luxembourg,
+INTL.2-12-LUX-BKWH.A,    Generation (billion kWh),0.4683
+INTL.2-2-LUX-BKWH.A,    Consumption (billion kWh),6.474
+,Macau,
+INTL.2-12-MAC-BKWH.A,    Generation (billion kWh),0.617
+INTL.2-2-MAC-BKWH.A,    Consumption (billion kWh),5.378
+,Madagascar,
+INTL.2-12-MDG-BKWH.A,    Generation (billion kWh),2.27588
+INTL.2-2-MDG-BKWH.A,    Consumption (billion kWh),2.1165684
+,Malawi,
+INTL.2-12-MWI-BKWH.A,    Generation (billion kWh),1.629323
+INTL.2-2-MWI-BKWH.A,    Consumption (billion kWh),1.51527039
+,Malaysia,
+INTL.2-12-MYS-BKWH.A,    Generation (billion kWh),159.946
+INTL.2-2-MYS-BKWH.A,    Consumption (billion kWh),147.209
+,Maldives,
+INTL.2-12-MDV-BKWH.A,    Generation (billion kWh),0.6075
+INTL.2-2-MDV-BKWH.A,    Consumption (billion kWh),0.564975
+,Mali,
+INTL.2-12-MLI-BKWH.A,    Generation (billion kWh),3.53027
+INTL.2-2-MLI-BKWH.A,    Consumption (billion kWh),3.04027
+,Malta,
+INTL.2-12-MLT-BKWH.A,    Generation (billion kWh),1.8568
+INTL.2-2-MLT-BKWH.A,    Consumption (billion kWh),2.334003
+,Martinique,
+INTL.2-12-MTQ-BKWH.A,    Generation (billion kWh),1.541049
+INTL.2-2-MTQ-BKWH.A,    Consumption (billion kWh),1.43317557
+,Mauritania,
+INTL.2-12-MRT-BKWH.A,    Generation (billion kWh),0.9483
+INTL.2-2-MRT-BKWH.A,    Consumption (billion kWh),0.881919
+,Mauritius,
+INTL.2-12-MUS-BKWH.A,    Generation (billion kWh),2.98177
+INTL.2-2-MUS-BKWH.A,    Consumption (billion kWh),2.79977
+,Mexico,
+INTL.2-12-MEX-BKWH.A,    Generation (billion kWh),317.93038
+INTL.2-2-MEX-BKWH.A,    Consumption (billion kWh),270.738628
+,Micronesia,
+none,    Generation (billion kWh),
+none,    Consumption (billion kWh),
+,Moldova,
+INTL.2-12-MDA-BKWH.A,    Generation (billion kWh),5.0847
+INTL.2-2-MDA-BKWH.A,    Consumption (billion kWh),5.4507
+,Mongolia,
+INTL.2-12-MNG-BKWH.A,    Generation (billion kWh),6.16859
+INTL.2-2-MNG-BKWH.A,    Consumption (billion kWh),6.93259
+,Montenegro,
+INTL.2-12-MNE-BKWH.A,    Generation (billion kWh),3.69657
+INTL.2-2-MNE-BKWH.A,    Consumption (billion kWh),2.99757
+,Montserrat,
+INTL.2-12-MSR-BKWH.A,    Generation (billion kWh),0.016
+INTL.2-2-MSR-BKWH.A,    Consumption (billion kWh),0.01488
+,Morocco,
+INTL.2-12-MAR-BKWH.A,    Generation (billion kWh),32.462443
+INTL.2-2-MAR-BKWH.A,    Consumption (billion kWh),29.678071
+,Mozambique,
+INTL.2-12-MOZ-BKWH.A,    Generation (billion kWh),16.417087
+INTL.2-2-MOZ-BKWH.A,    Consumption (billion kWh),13.390087
+,Namibia,
+INTL.2-12-NAM-BKWH.A,    Generation (billion kWh),1.1833
+INTL.2-2-NAM-BKWH.A,    Consumption (billion kWh),4.1843
+,Nauru,
+INTL.2-12-NRU-BKWH.A,    Generation (billion kWh),0.035
+INTL.2-2-NRU-BKWH.A,    Consumption (billion kWh),0.03255
+,Nepal,
+INTL.2-12-NPL-BKWH.A,    Generation (billion kWh),4.940629
+INTL.2-2-NPL-BKWH.A,    Consumption (billion kWh),6.561629
+,Netherlands,
+INTL.2-12-NLD-BKWH.A,    Generation (billion kWh),108.89634
+INTL.2-2-NLD-BKWH.A,    Consumption (billion kWh),111.532518
+,Netherlands Antilles,
+INTL.2-12-NLDA-BKWH.A,    Generation (billion kWh),0.87454
+INTL.2-2-NLDA-BKWH.A,    Consumption (billion kWh),0.73154
+,New Caledonia,
+INTL.2-12-NCL-BKWH.A,    Generation (billion kWh),2.947238
+INTL.2-2-NCL-BKWH.A,    Consumption (billion kWh),2.74093134
+,New Zealand,
+INTL.2-12-NZL-BKWH.A,    Generation (billion kWh),43.2045
+INTL.2-2-NZL-BKWH.A,    Consumption (billion kWh),40.243657
+,Nicaragua,
+INTL.2-12-NIC-BKWH.A,    Generation (billion kWh),4.51512
+INTL.2-2-NIC-BKWH.A,    Consumption (billion kWh),3.73812
+,Niger,
+INTL.2-12-NER-BKWH.A,    Generation (billion kWh),0.57108
+INTL.2-2-NER-BKWH.A,    Consumption (billion kWh),1.58608
+,Nigeria,
+INTL.2-12-NGA-BKWH.A,    Generation (billion kWh),34.45342
+INTL.2-2-NGA-BKWH.A,    Consumption (billion kWh),29.01142
+,Niue,
+INTL.2-12-NIU-BKWH.A,    Generation (billion kWh),0.003
+INTL.2-2-NIU-BKWH.A,    Consumption (billion kWh),0.00279
+,North Korea,
+INTL.2-12-PRK-BKWH.A,    Generation (billion kWh),15.14714
+INTL.2-2-PRK-BKWH.A,    Consumption (billion kWh),12.70814
+,North Macedonia,
+INTL.2-12-MKD-BKWH.A,    Generation (billion kWh),5.36954
+INTL.2-2-MKD-BKWH.A,    Consumption (billion kWh),6.294727
+,Northern Mariana Islands,
+none,    Generation (billion kWh),
+none,    Consumption (billion kWh),
+,Norway,
+INTL.2-12-NOR-BKWH.A,    Generation (billion kWh),144.77636
+INTL.2-2-NOR-BKWH.A,    Consumption (billion kWh),125.62198
+,Oman,
+INTL.2-12-OMN-BKWH.A,    Generation (billion kWh),35.41098
+INTL.2-2-OMN-BKWH.A,    Consumption (billion kWh),31.76598
+,Pakistan,
+INTL.2-12-PAK-BKWH.A,    Generation (billion kWh),143.985757
+INTL.2-2-PAK-BKWH.A,    Consumption (billion kWh),120.563757
+,Palestinian Territories,
+INTL.2-12-PSE-BKWH.A,    Generation (billion kWh),0.339616
+INTL.2-2-PSE-BKWH.A,    Consumption (billion kWh),5.495616
+,Panama,
+INTL.2-12-PAN-BKWH.A,    Generation (billion kWh),10.9941
+INTL.2-2-PAN-BKWH.A,    Consumption (billion kWh),9.2581
+,Papua New Guinea,
+INTL.2-12-PNG-BKWH.A,    Generation (billion kWh),4.061693
+INTL.2-2-PNG-BKWH.A,    Consumption (billion kWh),3.77737449
+,Paraguay,
+INTL.2-12-PRY-BKWH.A,    Generation (billion kWh),59.322175
+INTL.2-2-PRY-BKWH.A,    Consumption (billion kWh),13.096665
+,Peru,
+INTL.2-12-PER-BKWH.A,    Generation (billion kWh),53.35406
+INTL.2-2-PER-BKWH.A,    Consumption (billion kWh),47.40906
+,Philippines,
+INTL.2-12-PHL-BKWH.A,    Generation (billion kWh),94.5136
+INTL.2-2-PHL-BKWH.A,    Consumption (billion kWh),85.5066
+,Poland,
+INTL.2-12-POL-BKWH.A,    Generation (billion kWh),160.11548
+INTL.2-2-POL-BKWH.A,    Consumption (billion kWh),156.91648
+,Portugal,
+INTL.2-12-PRT-BKWH.A,    Generation (billion kWh),56.12866
+INTL.2-2-PRT-BKWH.A,    Consumption (billion kWh),48.41166
+,Puerto Rico,
+INTL.2-12-PRI-BKWH.A,    Generation (billion kWh),17.965629
+INTL.2-2-PRI-BKWH.A,    Consumption (billion kWh),15.465629
+,Qatar,
+INTL.2-12-QAT-BKWH.A,    Generation (billion kWh),45.161428
+INTL.2-2-QAT-BKWH.A,    Consumption (billion kWh),43.375428
+,Reunion,
+INTL.2-12-REU-BKWH.A,    Generation (billion kWh),3.0771
+INTL.2-2-REU-BKWH.A,    Consumption (billion kWh),2.861703
+,Romania,
+INTL.2-12-ROU-BKWH.A,    Generation (billion kWh),61.5881
+INTL.2-2-ROU-BKWH.A,    Consumption (billion kWh),51.987626
+,Russia,
+INTL.2-12-RUS-BKWH.A,    Generation (billion kWh),1044.92822
+INTL.2-2-RUS-BKWH.A,    Consumption (billion kWh),929.24522
+,Rwanda,
+INTL.2-12-RWA-BKWH.A,    Generation (billion kWh),0.72501
+INTL.2-2-RWA-BKWH.A,    Consumption (billion kWh),0.7642593
+,Saint Helena,
+INTL.2-12-SHN-BKWH.A,    Generation (billion kWh),0.008
+INTL.2-2-SHN-BKWH.A,    Consumption (billion kWh),0.00744
+,Saint Kitts and Nevis,
+INTL.2-12-KNA-BKWH.A,    Generation (billion kWh),0.1976
+INTL.2-2-KNA-BKWH.A,    Consumption (billion kWh),0.183768
+,Saint Lucia,
+INTL.2-12-LCA-BKWH.A,    Generation (billion kWh),0.378162
+INTL.2-2-LCA-BKWH.A,    Consumption (billion kWh),0.35169066
+,Saint Pierre and Miquelon,
+INTL.2-12-SPM-BKWH.A,    Generation (billion kWh),0.048
+INTL.2-2-SPM-BKWH.A,    Consumption (billion kWh),0.04464
+,Saint Vincent/Grenadines,
+INTL.2-12-VCT-BKWH.A,    Generation (billion kWh),0.143
+INTL.2-2-VCT-BKWH.A,    Consumption (billion kWh),0.13299
+,Samoa,
+INTL.2-12-WSM-BKWH.A,    Generation (billion kWh),0.132944
+INTL.2-2-WSM-BKWH.A,    Consumption (billion kWh),0.12363792
+,Sao Tome and Principe,
+INTL.2-12-STP-BKWH.A,    Generation (billion kWh),0.087
+INTL.2-2-STP-BKWH.A,    Consumption (billion kWh),0.08091
+,Saudi Arabia,
+INTL.2-12-SAU-BKWH.A,    Generation (billion kWh),355.47792
+INTL.2-2-SAU-BKWH.A,    Consumption (billion kWh),322.37292
+,Senegal,
+INTL.2-12-SEN-BKWH.A,    Generation (billion kWh),4.51382
+INTL.2-2-SEN-BKWH.A,    Consumption (billion kWh),3.841971
+,Serbia,
+INTL.2-12-SRB-BKWH.A,    Generation (billion kWh),34.70883
+INTL.2-2-SRB-BKWH.A,    Consumption (billion kWh),30.292477
+,Seychelles,
+INTL.2-12-SYC-BKWH.A,    Generation (billion kWh),0.433
+INTL.2-2-SYC-BKWH.A,    Consumption (billion kWh),0.40269
+,Sierra Leone,
+INTL.2-12-SLE-BKWH.A,    Generation (billion kWh),0.259942
+INTL.2-2-SLE-BKWH.A,    Consumption (billion kWh),0.24174606
+,Singapore,
+INTL.2-12-SGP-BKWH.A,    Generation (billion kWh),50.05544
+INTL.2-2-SGP-BKWH.A,    Consumption (billion kWh),49.48602
+,Slovakia,
+INTL.2-12-SVK-BKWH.A,    Generation (billion kWh),25.059
+INTL.2-2-SVK-BKWH.A,    Consumption (billion kWh),27.506
+,Slovenia,
+INTL.2-12-SVN-BKWH.A,    Generation (billion kWh),15.42286
+INTL.2-2-SVN-BKWH.A,    Consumption (billion kWh),14.041166
+,Solomon Islands,
+INTL.2-12-SLB-BKWH.A,    Generation (billion kWh),0.105651
+INTL.2-2-SLB-BKWH.A,    Consumption (billion kWh),0.09825543
+,Somalia,
+INTL.2-12-SOM-BKWH.A,    Generation (billion kWh),0.3472
+INTL.2-2-SOM-BKWH.A,    Consumption (billion kWh),0.322896
+,South Africa,
+INTL.2-12-ZAF-BKWH.A,    Generation (billion kWh),235.39762
+INTL.2-2-ZAF-BKWH.A,    Consumption (billion kWh),206.52262
+,South Korea,
+INTL.2-12-KOR-BKWH.A,    Generation (billion kWh),552.79876
+INTL.2-2-KOR-BKWH.A,    Consumption (billion kWh),534.615672
+,South Sudan,
+INTL.2-12-SSD-BKWH.A,    Generation (billion kWh),0.5482
+INTL.2-2-SSD-BKWH.A,    Consumption (billion kWh),0.5292
+,Spain,
+INTL.2-12-ESP-BKWH.A,    Generation (billion kWh),259.74092
+INTL.2-2-ESP-BKWH.A,    Consumption (billion kWh),245.42592
+,Sri Lanka,
+INTL.2-12-LKA-BKWH.A,    Generation (billion kWh),14.84471
+INTL.2-2-LKA-BKWH.A,    Consumption (billion kWh),13.43771
+,Sudan,
+INTL.2-12-SDN-BKWH.A,    Generation (billion kWh),15.900605
+INTL.2-2-SDN-BKWH.A,    Consumption (billion kWh),11.462605
+,Suriname,
+INTL.2-12-SUR-BKWH.A,    Generation (billion kWh),1.889111
+INTL.2-2-SUR-BKWH.A,    Consumption (billion kWh),1.663111
+,Sweden,
+INTL.2-12-SWE-BKWH.A,    Generation (billion kWh),158.09666
+INTL.2-2-SWE-BKWH.A,    Consumption (billion kWh),130.33666
+,Switzerland,
+INTL.2-12-CHE-BKWH.A,    Generation (billion kWh),63.7183
+INTL.2-2-CHE-BKWH.A,    Consumption (billion kWh),57.903801
+,Syria,
+INTL.2-12-SYR-BKWH.A,    Generation (billion kWh),17.1881
+INTL.2-2-SYR-BKWH.A,    Consumption (billion kWh),14.2631
+,Taiwan,
+INTL.2-12-TWN-BKWH.A,    Generation (billion kWh),256.463564
+INTL.2-2-TWN-BKWH.A,    Consumption (billion kWh),247.263564
+,Tajikistan,
+INTL.2-12-TJK-BKWH.A,    Generation (billion kWh),19.47718
+INTL.2-2-TJK-BKWH.A,    Consumption (billion kWh),14.21318
+,Tanzania,
+INTL.2-12-TZA-BKWH.A,    Generation (billion kWh),6.9175
+INTL.2-2-TZA-BKWH.A,    Consumption (billion kWh),5.8125
+,Thailand,
+INTL.2-12-THA-BKWH.A,    Generation (billion kWh),173.08785
+INTL.2-2-THA-BKWH.A,    Consumption (billion kWh),185.85215
+,The Bahamas,
+INTL.2-12-BHS-BKWH.A,    Generation (billion kWh),1.903493
+INTL.2-2-BHS-BKWH.A,    Consumption (billion kWh),1.77024849
+,Timor-Leste,
+INTL.2-12-TLS-BKWH.A,    Generation (billion kWh),0
+INTL.2-2-TLS-BKWH.A,    Consumption (billion kWh),0
+,Togo,
+INTL.2-12-TGO-BKWH.A,    Generation (billion kWh),0.37168
+INTL.2-2-TGO-BKWH.A,    Consumption (billion kWh),1.25068
+,Tonga,
+INTL.2-12-TON-BKWH.A,    Generation (billion kWh),0.055
+INTL.2-2-TON-BKWH.A,    Consumption (billion kWh),0.05115
+,Trinidad and Tobago,
+INTL.2-12-TTO-BKWH.A,    Generation (billion kWh),8.6718
+INTL.2-2-TTO-BKWH.A,    Consumption (billion kWh),8.2458
+,Tunisia,
+INTL.2-12-TUN-BKWH.A,    Generation (billion kWh),19.52373
+INTL.2-2-TUN-BKWH.A,    Consumption (billion kWh),15.83773
+,Turkey,
+INTL.2-12-TUR-BKWH.A,    Generation (billion kWh),290.3864
+INTL.2-2-TUR-BKWH.A,    Consumption (billion kWh),258.116296
+,Turkmenistan,
+INTL.2-12-TKM-BKWH.A,    Generation (billion kWh),21.185
+INTL.2-2-TKM-BKWH.A,    Consumption (billion kWh),15.09
+,Turks and Caicos Islands,
+INTL.2-12-TCA-BKWH.A,    Generation (billion kWh),0.2
+INTL.2-2-TCA-BKWH.A,    Consumption (billion kWh),0.186
+,Tuvalu,
+none,    Generation (billion kWh),
+none,    Consumption (billion kWh),
+,U.S. Pacific Islands,
+INTL.2-12-USIQ-BKWH.A,    Generation (billion kWh),0.519
+INTL.2-2-USIQ-BKWH.A,    Consumption (billion kWh),0.48267
+,U.S. Territories,
+none,    Generation (billion kWh),
+none,    Consumption (billion kWh),
+,U.S. Virgin Islands,
+INTL.2-12-VIR-BKWH.A,    Generation (billion kWh),0.60324
+INTL.2-2-VIR-BKWH.A,    Consumption (billion kWh),0.55324
+,Uganda,
+INTL.2-12-UGA-BKWH.A,    Generation (billion kWh),4.4531
+INTL.2-2-UGA-BKWH.A,    Consumption (billion kWh),3.5341
+,Ukraine,
+INTL.2-12-UKR-BKWH.A,    Generation (billion kWh),150.26482
+INTL.2-2-UKR-BKWH.A,    Consumption (billion kWh),127.20282
+,United Arab Emirates,
+INTL.2-12-ARE-BKWH.A,    Generation (billion kWh),127.92048
+INTL.2-2-ARE-BKWH.A,    Consumption (billion kWh),119.45548
+,United Kingdom,
+INTL.2-12-GBR-BKWH.A,    Generation (billion kWh),314.75586
+INTL.2-2-GBR-BKWH.A,    Consumption (billion kWh),307.263422
+,United States,
+INTL.2-12-USA-BKWH.A,    Generation (billion kWh),4207.81661887
+INTL.2-2-USA-BKWH.A,    Consumption (billion kWh),4032.838344432
+,Uruguay,
+INTL.2-12-URY-BKWH.A,    Generation (billion kWh),14.53516
+INTL.2-2-URY-BKWH.A,    Consumption (billion kWh),11.812141
+,Uzbekistan,
+INTL.2-12-UZB-BKWH.A,    Generation (billion kWh),59.423917
+INTL.2-2-UZB-BKWH.A,    Consumption (billion kWh),49.203917
+,Vanuatu,
+INTL.2-12-VUT-BKWH.A,    Generation (billion kWh),0.070096
+INTL.2-2-VUT-BKWH.A,    Consumption (billion kWh),0.06518928
+,Venezuela,
+INTL.2-12-VEN-BKWH.A,    Generation (billion kWh),96.6649
+INTL.2-2-VEN-BKWH.A,    Consumption (billion kWh),64.6599
+,Vietnam,
+INTL.2-12-VNM-BKWH.A,    Generation (billion kWh),230.72861
+INTL.2-2-VNM-BKWH.A,    Consumption (billion kWh),216.99361
+,Wake Island,
+INTL.2-12-WAK-BKWH.A,    Generation (billion kWh),0
+INTL.2-2-WAK-BKWH.A,    Consumption (billion kWh),0
+,Western Sahara,
+INTL.2-12-ESH-BKWH.A,    Generation (billion kWh),0
+INTL.2-2-ESH-BKWH.A,    Consumption (billion kWh),0
+,Yemen,
+INTL.2-12-YEM-BKWH.A,    Generation (billion kWh),3.41994
+INTL.2-2-YEM-BKWH.A,    Consumption (billion kWh),2.65294
+,Zambia,
+INTL.2-12-ZMB-BKWH.A,    Generation (billion kWh),15.981004
+INTL.2-2-ZMB-BKWH.A,    Consumption (billion kWh),13.097004
+,Zimbabwe,
+INTL.2-12-ZWE-BKWH.A,    Generation (billion kWh),9.13302
+INTL.2-2-ZWE-BKWH.A,    Consumption (billion kWh),7.40102
