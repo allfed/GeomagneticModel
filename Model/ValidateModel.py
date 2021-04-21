@@ -1,5 +1,6 @@
 import fits
 import matplotlib.pyplot as plt
+from scipy.stats import pearsonr
 import Params
 import numpy as np
 class ValidateModel:
@@ -47,6 +48,7 @@ class ValidateModel:
 		[-77.178,38.559,1.7559,1.2243],
 		[-78.483,38.866,2.6546,2.5558],
 		[-77.694,38.664,1.5381,1.2317],
+
 		[-79.574,38.363,0.6823,0.5561],
 		[-78.772,38.272,0.6584,0.6212],
 		[-78.069,38.115,4.5551,3.3792],
@@ -106,21 +108,69 @@ class ValidateModel:
 					ourEpredicteds.append(ourEpredicted)
 					theirEpredicteds.append(theirEpredicted)
 				plt.figure()
-				[xo,yo]=fits.binlognormaldist(ourEpredicteds,[],3)
+				[xo,yo]=fits.binlognormaldist(ourEpredicteds,[],3,)
 				[xt,yt]=fits.binlognormaldist(theirEpredicteds,[],3)
 				plt.xscale("log")
 				# plt.loglog()
-				plt.plot(xo,yo)
-				plt.plot(xt,yt)
+				plt.title("Northeast US 100 year E field levels")
+				plt.xlabel("Geoelectric Field (V/km)")
+				plt.ylabel("PDF probability Site at Field Level")
+				plt.plot(xo,yo, lw=1,label = " Our Predictions")
+				plt.plot(xt,yt, lw=1,label = "Love,2017 Predictions")
+				plt.legend()
 				plt.show()
 
 				plt.figure()
 				[x,y]=fits.binlognormaldist(ratios,[],3)
 				plt.xscale("log")
-				# plt.loglog()
 				plt.plot(x,y)
 				plt.show()
 				plt.figure()
 				plt.loglog()
 				plt.scatter(ourEpredicteds,theirEpredicteds)
+				plt.title("Validation Against Love 100 year E fields")
+				plt.xlabel("Geoelectric Field Global Model (V/km)")
+				plt.ylabel("Geoelectric Field Love et. al. (V/km)")
+				corr, _ = pearsonr(np.log(ourEpredicteds),np.log(theirEpredicteds))
+				print(corr)
+
 				plt.show()
+
+	def calcGIC(self,E):
+		# ntransformers=len(self.HVTnames)
+		plt.title('Assumed GIC at E field of '+str(E)+'V/km')
+		gic=np.array([9,9,34,37])*E
+		fractions=[0.38502080443828,0.436061026352289,0.162829403606103,0.016088765603329]
+
+		counts=np.floor(np.array(fractions)*100).astype(int)
+		print('counts')
+		print(counts)
+
+		allcounts=np.array([gic[0]]*counts[0])
+		allcounts=np.append(allcounts,[gic[1]]*counts[1])
+		allcounts=np.append(allcounts,[gic[2]]*counts[2])
+		allcounts=np.append(allcounts,[gic[3]]*counts[3])
+		print('allcounts')
+		print(allcounts)
+
+		# plt.figure()
+		# plt.plot(gic,fractions)
+		plt.xlabel('Transformer Number')
+		plt.ylabel('GIC (A)')
+		# plt.figure()
+		plt.bar(range(0,len(allcounts)),allcounts)
+		plt.show()
+
+				
+		es=[]
+		meangics=[]
+		for tene in range(0,40):
+			e=tene/10
+			gic=np.array([9,9,34,37])*e
+			meangic=np.sum(np.multiply(gic,np.array(fractions)))
+			meangics.append(meangic)
+			es.append(e)
+		plt.plot(es,meangics)
+		plt.xlabel("electric field (V/km)")
+		plt.ylabel("Mean GIC over all transformers")
+		plt.show()

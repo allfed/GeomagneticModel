@@ -21,6 +21,12 @@ def importModelParams():
 	global mtsitesdir
 	global tfsitesdir
 	global allTFsitesdir
+	global networkSaveDir
+	global planetNetworkDir
+	global regionEfieldsDir
+	global countryNetworkDir
+	global networkConfigDir
+	global downloadedTransnetDataDir
 	global mtRepeatRatesDir
 	global mtStormsDir
 	global mtRepeatRatePlotsDir
@@ -45,6 +51,8 @@ def importModelParams():
 	global landArea15min
 	global eleByNation
 	global popByNation
+	global linesDataLoc
+	global voltageDataLoc
 
 	global tfsitenames
 	global tfformats
@@ -95,6 +103,22 @@ def importModelParams():
 			tfsitesdir=paramdata[2][coltitleindex]
 		if(coltitle == 'allTFsitesdir'):
 			allTFsitesdir=paramdata[2][coltitleindex]
+		if(coltitle == 'networkSaveDir'):
+			networkSaveDir=paramdata[2][coltitleindex]
+		if(coltitle == 'planetNetworkDir'):
+			planetNetworkDir=paramdata[2][coltitleindex]
+		if(coltitle == 'regionEfieldsDir'):
+			regionEfieldsDir=paramdata[2][coltitleindex]
+		if(coltitle == 'countryNetworkDir'):
+			countryNetworkDir=paramdata[2][coltitleindex]
+		if(coltitle == 'downloadedTransnetDataDir'):
+			downloadedTransnetDataDir=paramdata[2][coltitleindex]
+		if(coltitle == 'networkConfigDir'):
+			networkConfigDir=paramdata[2][coltitleindex]
+		if(coltitle == 'linesDataLoc'):
+			linesDataLoc=paramdata[2][coltitleindex]
+		if(coltitle == 'voltageDataLoc'):
+			voltageDataLoc=paramdata[2][coltitleindex]
 		if(coltitle == 'mtRepeatRatesDir'):
 			mtRepeatRatesDir = paramdata[2][coltitleindex]
 		if(coltitle == 'mtRepeatRatePlotsDir'):

@@ -1,3 +1,4 @@
+from Plotter import Plotter
 import Params
 import fits
 from scipy.interpolate import griddata
@@ -26,6 +27,8 @@ from shapely.geometry import Point
 import contextily as ctx
 from scipy.stats import pearsonr
 import matplotlib.ticker as mticker
+from numpy import savetxt
+import os
 
 class EarthModel:
 
@@ -211,6 +214,7 @@ class EarthModel:
 
 	def calcandplotEratesPerYear(self,mtsites,fittype):
 		plt.figure()
+		plots=np.array([])
 		for i in range(0,len(mtsites)):
 			if( not Params.useMTsite[i]):
 				continue
@@ -262,12 +266,13 @@ class EarthModel:
 			# print('mtsite.windowedCounts')
 			# print(mtsite.windowedCounts)
 			mtsite.fitEratesPerYear()
-			mtsite.plotEratesPerYear(fittype)
-
-		plt.legend()
-		plt.title('Rate geoelectric field is above threshold')
+			plots=np.append(plots,mtsite.plotEratesPerYear('lognormal'))
+		print(plots)
+		plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+		plt.title('Rate 1 minute geoelectric field is above threshold')
 		plt.xlabel('Geoelectric Field (V/km)')
-		plt.ylabel('Average rate per year distinct contiguous sample average is above E field (counts/year)')
+		plt.ylabel('Rate Distinct Storms above E field (storms/year)')
+
 		plt.show()
 	
 	def Estats(self,mtsites):
@@ -308,24 +313,6 @@ class EarthModel:
 		#return the magnetic coords in the same units as the geographic:
 		return cvals.convert('MAG','sph')
 
-	def formatticklabels(self,minval,maxval,pp):
-		print('formatting')
-		colourbar = pp.get_figure().get_axes()[1]
-		ticks_loc = colourbar.get_xticks().tolist()
-		ticks_loc.insert(0,minval)
-		ticks_loc.append(maxval)
-		colourbar.xaxis.set_major_locator(mticker.FixedLocator(ticks_loc))
-		
-		labels=[]
-		for i in range(0,len(ticks_loc)):
-			x=ticks_loc[i]
-			exponent = int(np.log10(x))
-			coeff = x/10**exponent
-			if(i==0 or i==len(ticks_loc)):
-				labels.append(r"${:2.1f} \times 10^{{ {:2d} }}$".format(coeff,exponent))					
-			else:
-				labels.append(r"${:2.1f} \times 10^{{ {:2d} }}$".format(coeff,exponent))
-		colourbar.set_xticklabels(labels,rotation=33)
 
 
 	# magic formula to get the divisor for the field to go from estimate at 72 to at any magnetic latitude 
@@ -343,6 +330,11 @@ class EarthModel:
 		+ 1.61E-18*(ml**10))/1.66675
 		return divisor
 
+	#https://onlinelibrary.wiley.com/doi/pdf/10.1111/risa.13229
+	# see link above for estimates of DST return rates
+	# Magnetohydrodynamic (MHD) Modeling for the Further Understanding of Geoelectric Field Enhancements and Auroral Behavior During Geomagnetic Disturbance Events
+	#paper above gives reduction in slope of .004 degrees per nT, starting at 46.5 degrees at 586.5 nT (high uncertainty bounds)
+	# see paper above for equation
 	def adjustForThresholdShift(self,ml,r):
 		if(ml<0):
 			return ml
@@ -353,14 +345,17 @@ class EarthModel:
 			return ml
 
 		#72 must return 72, 0 must return 0
-		if(repeatrate==100): #once per hundred, value at 45 is calculated as if it's 55
-			newlat=45
-		#once per thousand, value at 55 becomes 35
+		if(repeatrate==100): #once per hundred years
+			newlat=46.5
+		#once per thousand years
 		elif(repeatrate==1000):
-			newlat=35
-		#once per ten thousand, value at 55 becomes 30
+			#41.6 estimated geomagnetic latitude for threshold
+			newlat=46.5-(1800-586.5)*.004
+		#once per ten thousand years
 		elif(repeatrate==10000):
-			newlat=30
+			#38.8 estimated geomagnetic latitude for threshold
+			newlat=46.5-(2500-586.5)*.004
+
 		else:
 			print('Error: Only < 100 year, 1000 year, and 10,000 year magnetic latitude shifts have been estimated')
 			quit()
@@ -370,6 +365,102 @@ class EarthModel:
 		if(ml<=newlat):
 			return (55)/(newlat)*ml
 
+
+
+	#for each conductivity grid point in the boundary, calculate E field for 60 second duration, and save associated E field data in format used by GEOMAGICA network calculations for each rate per year
+	def calcRegionEfields(self,ratePerYears,network,plot):
+		regionName=network.region
+		minlat=network.minlat
+		minlong=network.minlong
+		maxlat=network.maxlat
+		maxlong=network.maxlong
+
+		dataPathsDict={}
+		for r in ratePerYears:
+			Es=[]
+			longs=[]
+			lats=[]
+			i=0
+			windowperiod=60
+			mean=self.combinedlogfits[i][1]
+			std=self.combinedlogfits[i][2]
+			loc=self.combinedlogfits[i][3]
+			ratio=self.combinedlogfits[i][4]
+
+			print(mean)
+			print(std)
+			print(loc)
+			print(ratio)
+			refFieldLog=fits.logcdfxfromy(r/ratio,mean,std,loc)
+			print('refFieldLog')
+			print(refFieldLog)
+			refField=refFieldLog
+			print('refField level rest of map is proportional to this field (V/km), logfit:'+str(refFieldLog))
+			minE=10000
+			maxE=-10000
+			print(np.multiply(np.array(self.GClatitudes)>minlat,np.array(self.GClatitudes)<maxlat))
+			allLatkeys=np.arange(0,len(self.GClatitudes))
+			allLongkeys=np.arange(0,len(self.GClongitudes))
+
+			masklat=np.array(np.multiply(np.array(self.GClatitudes)>minlat,np.array(self.GClatitudes)<maxlat))
+			masklong=np.multiply(np.array(self.GClongitudes)>minlong,np.array(self.GClongitudes)<maxlong)
+
+			#if country doesn't inlude first latitude row
+			if(not masklat[0]):
+				#add a buffer of one row to E field array
+				masklat[np.where(masklat)[0][0]-1]=True
+			#if country doesn't inlude first longitude row
+			if(not masklong[0]):
+				#add a buffer of one row to E field array
+				masklong[np.where(masklong)[0][0]-1]=True
+
+			#if country doesn't inlude last latitude row
+			if(not masklat[-1]):
+				#add a buffer of one row to E field array
+				masklat[np.where(masklat)[0][-1]+1]=True
+
+			#if country doesn't inlude last longitude row
+			if(not masklong[-1]):
+				#add a buffer of one row to E field array
+				masklong[np.where(masklong)[0][-1]+1]=True
+
+			masklat[-1]=True
+
+			latkeys=allLatkeys[masklat]
+			longkeys=allLongkeys[masklong]
+			print(allLongkeys[np.multiply(np.array(self.GClongitudes)>minlong,np.array(self.GClongitudes)<maxlong)])
+			print(latkeys)
+			print(longkeys)
+			saveArray=[]
+			#assumes E field is at the absolute value given, but is horizontal only.
+			for latkey in latkeys:
+				latitude = self.GClatitudes[latkey]
+				for longkey in longkeys:
+					longitude = self.GClongitudes[longkey]
+					c=self.apparentCondMap[latkey,longkey]
+					magcoords = self.geotomag(latitude, longitude)
+					maglat=magcoords.data[0][1]
+					maglong=magcoords.data[0][2]
+
+					mld = self.getMagLatDivisor(self.adjustForThresholdShift(maglat,r))
+
+					E =refField*np.sqrt(self.refconductivity)/np.sqrt(abs(c))*mld
+					saveArray.append(np.array([latitude,longitude,0,0,0,E]))
+					Es.append(E)
+					lats.append(latitude)
+					longs.append(longitude)
+			if(plot):
+
+				df=pd.DataFrame({'longs':np.array(longs),'lats':np.array(lats),'E':np.array(Es)})
+				polygon=network.boundaryPolygon
+				Plotter.plotRegionEfields(df,polygon)
+			if(not os.path.isdir(Params.regionEfieldsDir+regionName)):
+				os.mkdir(Params.regionEfieldsDir+regionName)
+			filename=Params.regionEfieldsDir+regionName+'/EfieldHor'+str(r)+'PerYear60Second.txt'
+			savetxt(filename,np.array(saveArray),delimiter='\t', fmt='%s')
+			dataPathsDict[r]=filename
+			print(dataPathsDict)
+		return dataPathsDict
 
 
 	# find E -fields at all locations on conductivity map for each duration
@@ -391,6 +482,12 @@ class EarthModel:
 			slope=self.combinedpowerfits[i][2]
 
 			# exponent=self.combinedpowerfits[i*5+1]
+			print(mean)
+			print(std)
+			print(loc)
+			print(ratio)
+			print(exponent)
+			print(slope)
 			refFieldLog=fits.logcdfxfromy(r/ratio,mean,std,loc)
 			print('refFieldLog')
 			print(refFieldLog)
@@ -479,7 +576,7 @@ class EarthModel:
 			ax=geo_df.plot(column='mld',legend=True,legend_kwds={'label': 'Coefficient on Reference Field Level','orientation': "horizontal"}, cmap='viridis',norm=colors.LogNorm(vmin=mldmin, vmax=mldmax))
 
 			pp=gplt.polyplot(world,ax=ax,zorder=1)
-			self.formatticklabels(mldmin,mldmax,pp)
+			Plotter.formatticklabels(mldmin,mldmax,pp)
 
 			plt.title('Geoelectric Field Multiplier\n Magnetic Latitude\n1 in '+str(1/r)+' Year Storm')
 			plt.savefig(Params.figuresDir+'MagneticLatitudeMultiplier'+str(r)+'peryear.png')
@@ -491,12 +588,9 @@ class EarthModel:
 
 			###########E Field Plot ####################
 			plt.close()
-			ax=geo_df.plot(column='E',legend=True,
-			cmap='viridis',\
-			legend_kwds={'label': 'Field Level (V/km)','orientation': "horizontal"},\
-			norm=colors.LogNorm(vmin=minE, vmax=maxE))
+			ax=geo_df.plot(column='E',legend=True,cmap='viridis',legend_kwds={'label': 'Field Level (V/km)','orientation': "horizontal"},norm=colors.LogNorm(vmin=minE, vmax=maxE))
 			pp=gplt.polyplot(world,ax=ax,zorder=1)
-			self.formatticklabels(minE,maxE,pp)
+			Plotter.formatticklabels(minE,maxE,pp)
 			# plt.rcParams['text.usetex'] = True
 			plt.title('Magnitude of Peak '+str(windowperiod) +' Second Geoelectric Field\n1 in '+str(1/r)+' Year Storm')			
 			print('not s7')
@@ -527,7 +621,7 @@ class EarthModel:
 
 		ax=geo_df.plot(column='allcs',legend=True,legend_kwds={'label': 'Apparent Conductivity (Ohm m)^-1','orientation': "horizontal"}, cmap='viridis',norm=colors.LogNorm(vmin=minc, vmax=maxc))
 		pp=gplt.polyplot(world,ax=ax,zorder=1)
-		self.formatticklabels(minc,maxc,pp)
+		Plotter.formatticklabels(minc,maxc,pp)
 		plt.title('Global Conductivity at 1/120 Hz')
 
 
@@ -544,7 +638,7 @@ class EarthModel:
 		ax=geo_df.plot(column='Cadjust',legend=True,legend_kwds={'label': 'Coefficient on Reference Field Level','orientation': "horizontal"}, cmap='viridis',norm=colors.LogNorm(vmin=mincadj, vmax=maxcadj))
 		
 		pp=gplt.polyplot(world,ax=ax,zorder=1)
-		self.formatticklabels(mincadj,maxcadj,pp)
+		Plotter.formatticklabels(mincadj,maxcadj,pp)
 
 		plt.title('Geoelectric Field Multiplier\nGlobal Conductivity')
 		plt.savefig(Params.figuresDir+'ConductivityMultiplier.png')
@@ -618,6 +712,8 @@ class EarthModel:
 				allcumsumatwindow.append(np.array(cumsum))
 				allcountsatwindow.append(np.array(counts))
 				allyearsatwindow.append(years)
+				print('mtsite.sitenamewowu')
+				print(mtsite.sitename)
 
 			allcumsum.append(allcumsumatwindow)
 			allE.append(allEatwindow)
@@ -668,16 +764,18 @@ class EarthModel:
 			plt.legend()
 			plt.title('Rate geoelectric field is above threshold')
 			plt.xlabel('Geoelectric Field (V/km)')
-			plt.ylabel('Average rate per year distinct contiguous sample average is above E field (counts/year)')
+			plt.ylabel('Rate Distinct Storms above E field (storms/year)')
 
 			print('s11')
 			plt.show()
 
+		print('self.refYears0')
 		self.refcumsum=allcumsum
 		self.refEfields=allE
 		self.refmatchedEfields=allmatchedE
 		self.refCounts=allCounts
 		self.refYears=allYears
+		print(len(self.refYears))
 
 	#adjust mtsite fits to reference conductivity.
 	#this assumes they all have
@@ -705,8 +803,10 @@ class EarthModel:
 
 
 		for i in range(0,len(self.refYears)):
-			if(not Params.useMTsite[i]):
-				continue
+			# if(not Params.useMTsite[i]):
+			# 	continue
+			print('self.refYears')
+			print(len(self.refYears))
 			years=self.refYears[i][j]
 			Efields=self.refEfields[i][j]
 			rates=np.array(self.refcumsum[i][j])/self.refYears[i][j]
@@ -796,15 +896,20 @@ class EarthModel:
 			plt.loglog()
 			plt.plot(Efinal,fits.powerlaw(Efinal,exponent)*probtoRPYratio, lw=1,label = "Powerfit, field averaged over "+str(windowperiod)+" seconds")
 			# plt.plot(Efinal,E**linearfit[0]*np.exp(linearfit[1]), lw=1,label = "Powerfit, field averaged over "+str(windowperiod)+" seconds")
+			print('np.array(Efinal),mean,np.abs(std),loc')
+			print(mean)
+			print(np.abs(std))
+			print(loc)
+
 			plt.plot(Efinal,fits.logcdf(np.array(Efinal),mean,np.abs(std),loc)*probtoRPYratio, lw=1,label = "Logfit, field averaged over "+str(windowperiod)+" seconds")
 
 			plt.plot(Efinal,rates,'.', lw=1,label = "Field averaged over "+str(windowperiod)+" seconds")
-			plt.plot(fits.logcdfxfromy(rates/probtoRPYratio,mean,std,loc),rates,'.', lw=1,label = "xfromy")
+			# plt.plot(fits.logcdfxfromy(rates/probtoRPYratio,mean,std,loc),rates,'.', lw=1,label = "xfromy")
 
 			plt.legend()
 			plt.title('Rate geoelectric field is above threshold')
 			plt.xlabel('Geoelectric Field (V/km)')
-			plt.ylabel('Average rate per year distinct contiguous sample average is above E field (counts/year)')
+			plt.ylabel('Rate distinct storms above E field (storms/year)')
 		
 			print('s14')
 			plt.show()
@@ -851,9 +956,9 @@ class EarthModel:
 				plt.plot(E,rates,'.', lw=1,label = "Field averaged over "+str(windowperiod)+" seconds")
 
 				plt.legend()
-				plt.title('Rate geoelectric field is above threshold')
+				plt.title('Rate 1 minute geoelectric field is above threshold\nAdjusted for magnetic latitude and apparent conductivity')
 				plt.xlabel('Geoelectric Field (V/km)')
-				plt.ylabel('Average rate per year distinct contiguous sample average is above E field (counts/year)')
+				plt.ylabel('Rate Distinct Storms above E field (storms/year)')
 				
 				print('s15')
 				plt.show()
@@ -1002,7 +1107,7 @@ class EarthModel:
 		print(2*rmsratio)
 
 	def plotGCtoTFcomparison(self):
-		plt.figure()
+		# plt.figure()
 		# plt.loglog()
 		# plt.scatter(self.allTFsiteAppcs,self.allGCmodelAppcs)
 		# plt.xlabel('EMTF (accurate) conductivities, (Ohm m)^-1')
@@ -1029,8 +1134,8 @@ class EarthModel:
 		# zi[mask] = np.nan
 
 		# plot
-		plt.figure()
-		ax = fig.add_subplot(111)
+		# fig=plt.figure()
+		# ax = fig.add_subplot(111)
 		# plt.contourf(xi,yi,zi,np.arange(0,1.01,0.01))
 		# plt.plot(alllongs,alllats,'k.')
 		# plt.xlabel('xi',fontsize=16)
@@ -1050,7 +1155,7 @@ class EarthModel:
 		# dfTFfiltered = df[np.multiply(np.multiply((1/df['TF'].T > 10**0), (1/df['TF'].T < 10**4)),df['GC'].T >3*10**-3)]
 		dfTFfiltered = df[np.multiply((1/df['TF'].T > 10**0), (1/df['TF'].T < 10**4))]
 
-		plt.figure()
+		# plt.figure()
 		# plt.loglog()
 		# plt.scatter(dfTFfiltered['TF'],dfTFfiltered['GC'])
 		# plt.xlabel('EMTF (accurate) conductivities, (Ohm m)^-1')
@@ -1074,13 +1179,13 @@ class EarthModel:
 
 		# dfResLogGC['GC']=dfGCfiltered['GC']#np.log(dfGCfiltered['GC'])
 		crs={'init':'epsg:3857'}#4326'}
-		plt.figure()
+		# plt.figure()
 		geometryTF=[Point(xy) for xy in zip(dfTFfiltered['longs'],dfTFfiltered['lats'])]
 		geometryGC=[Point(xy) for xy in zip(dfTFfiltered['longs'],dfTFfiltered['lats'])]
 		geo_df_TF=gpd.GeoDataFrame(dfTFfiltered,crs=crs,geometry=geometryTF)
 		geo_df_GC=gpd.GeoDataFrame(dfTFfiltered,crs=crs,geometry=geometryGC)
 		# print(dfResLog['TF'])
-		plt.figure()
+		# plt.figure()
 		tf=np.array(dfTFfiltered['TF'].values)
 		longs=np.array(dfTFfiltered['longs'].values)
 		lats=np.array(dfTFfiltered['lats'].values)
@@ -1112,13 +1217,16 @@ class EarthModel:
 		# GCadjusted=GCarr*np.exp(np.log(np.mean(TFavgd))/np.log(np.mean(GCarr)))
 		[xtf,ytf]=fits.binlognormaldist(TFavgd,[],4)
 
-		[xgc,ygc]=fits.binlognormaldist(GCarr,[],2)
+		[xgc,ygc]=fits.binlognormaldist(GCarr,[],7)
 		
 		plt.figure()
 		plt.xscale("log")
 
-		plt.plot(xtf,ytf,lw=1,label = "tf")
-		plt.plot(xgc,ygc,lw=1,label = "gc")
+		plt.plot(xtf,ytf,lw=1,label = "SPUD EMTF Stations")
+		plt.plot(xgc,ygc,lw=1,label = "Global Conductivity Model")
+		plt.title('Apparent Conductivity At EMTF Station Locations, 1/120 Hz')
+		plt.xlabel('Conductivity (Ohms-m)^-1')
+		plt.ylabel('PDF probability')
 		plt.legend()
 		print('s22')
 		plt.show()
@@ -1246,3 +1354,60 @@ class EarthModel:
 			mtsite=mtsites[i]
 			mtsite.calcTimeBetweenStorms()
 
+	def plotSites(self,tfsites,mtsites):
+		n = len(tfsites)
+		colornames = plt.cm.coolwarm(np.linspace(0.1,0.9,n))
+		mycolors = [ListedColormap(colornames[i]) for i in range(0,len(tfsites))]
+		f, ax = plt.subplots()
+
+		world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
+
+		mtsitelats=[]
+		mtsitelongs=[]
+		tfsitelats=[]
+		tfsitelongs=[]
+		index=0
+		for i in range(0,len(tfsites)):
+			if(not Params.useMTsite[i]):
+				continue
+			mtsite=mtsites[i]
+			mtsite.importSite()
+			tfsite=tfsites[i]
+			print('TF site:'+ tfsite.name+' MTsite: '+mtsite.sitename)
+			# print('mtsite.lat')
+			# print(mtsite.lat)
+			# print('mtsite.long')
+			# print(mtsite.long)
+			# print('tfsite.lat')
+			# print(tfsite.lat)
+			# print('tfsite.long')
+			# print(tfsite.long)
+			mtsitelats.append(mtsite.lat)
+			tfsitelats.append(tfsite.lat)
+			mtsitelongs.append(mtsite.long)
+			tfsitelongs.append(tfsite.long)
+
+			geometry=[Point(xy) for xy in zip([tfsite.long,mtsite.long],[tfsite.lat,mtsite.lat])]
+			point=gpd.GeoDataFrame({'sitetype':'TF','sitename': tfsite.name,'geometry':geometry})
+			crs={'init':'epsg:3857'}
+			geo_df=gpd.GeoDataFrame(point,crs=crs,geometry=geometry)
+			ax=geo_df.plot(cmap=mycolors[index],ax=ax,legend=True, label=str('TFsite '+tfsite.name+', MTsite '+mtsite.sitename))
+			index=index+1
+
+		pp=gplt.polyplot(world,ax=ax,zorder=1)
+
+		plt.title('MTsites and TF sites')
+
+		ax.legend()
+		leg=ax.get_legend()
+		print(len(leg.legendHandles))
+		index=0
+		for i in range(0,len(tfsites)):
+			if(not Params.useMTsite[i]):
+				continue
+			
+
+			leg.legendHandles[index].set_color(colornames[index])
+			index=index+1
+
+		plt.show()

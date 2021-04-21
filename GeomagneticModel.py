@@ -26,6 +26,12 @@ from Model.EarthModel import EarthModel
 import Model.ValidateModel
 from Model.ValidateModel import ValidateModel
 
+import Model.Network
+from Model.Network import Network
+
+# import Model.GIC_Model
+# from Model.GIC_Model import GIC_Model
+
 def get_args():
 	arg_parser = argparse.ArgumentParser(
 		description='''GeomagneticModel - assess dangers of geomagnetic storms''',
@@ -47,7 +53,7 @@ def get_args():
 		'Function', metavar='function', type=str,
 		nargs='?',
 		help='Specify subpart of geomagnetic model to run (a specific function as part of the model specified). If you want the entirety of this aspect of the model to be run, don\'t include any second argument. Default: entirety of model processed.',
-		choices=['calcEfields','calcRecurrence','calcRecurrenceFit','calcCombinedRecurrence','calcGlobalModel','evalGCmodel','calcEvsDuration','calcTimeBetweenStorms'])
+		choices=['calcEfields','calcRecurrence','calcRecurrenceFit','calcCombinedRecurrence','calcGlobalModel','evalGCmodel','calcEvsDuration','calcTimeBetweenStorms','WorldNetwork','Region'])
 
 
 	arg_parser.add_argument(
@@ -60,11 +66,21 @@ def get_args():
 		'-p', '--plots', metavar='plots', type=str,nargs='+',
 		help='Which plots to show. Default: GlobalEfield TransformersInDanger WhereNotEnoughSpares',
 		default=['GlobalEfield','TransformersInDanger','WhereNotEnoughSpares'],
-		choices=['StormRecurrence','GlobalEfield','GlobalConductivity','TransformersInDanger','WhereNotEnoughSpares','1989Efields','Estats','ApparentResistivity','EvsDuration','AdjustedRates','CombinedRates','CompareGCandTF'], required=False) 
+		choices=['StormRecurrence','GlobalEfield','GlobalConductivity','TransformersInDanger','WhereNotEnoughSpares','1989Efields','Estats','ApparentResistivity','EvsDuration','AdjustedRates','CombinedRates','CompareGCandTF','MapOfSites'], required=False) 
 	arg_parser.add_argument(
 		'-r', '--rate-per-year', metavar='rateperyears', type=float, nargs='+',
 		help='Specify rates per year for analysis. Example: 0.1 .01 .001 (once per decade, once per century and once per millenia). Default: .01',
 		default=.01,
+		required=False)
+
+	arg_parser.add_argument(
+		'-con', '--continent', metavar='continent', type=str, nargs='?',
+		help='Continent for network analysis.',
+		required=False)
+
+	arg_parser.add_argument(
+		'-cou', '--country', metavar='country', type=str, nargs='?',
+		help='Continent for network analysis. Optional ',
 		required=False)
 
 	arg_parser.add_argument(
@@ -98,14 +114,64 @@ if __name__ == '__main__':
 	mtsites=earthmodel.initMTsites()
 	gcmodel=earthmodel.initGCmodel()
 	earthmodel.calcGCcoords()
+
+	if('MapOfSites' in args['plots']):
+		earthmodel.plotSites(tfsites,mtsites)
+		quit()
 	if(args['Model']=='PowerGrid'): 
+		if(args['Function']=='WorldNetwork'):
+			# powergrid.createNetwork()
+			# powergrid.createRegionNetwork('europe','')
+
+			powergrid.createRegionNetwork('europe','')
+			powergrid.createRegionNetwork('south-america','')
+			powergrid.createRegionNetwork('africa','')
+			powergrid.createRegionNetwork('north-america','')
+			powergrid.createRegionNetwork('australia-oceania','')
+			powergrid.createRegionNetwork('central-america','')
+			powergrid.createRegionNetwork('russia','')
+			powergrid.createRegionNetwork('asia','')
+			# powergrid.plotNetwork()
+			# powergrid.calcGICs()
+			quit()
+		if(args['Function']=='Region'):
+			continent=args['continent']
+			continents=['europe','south-america','africa','north-america','australia-oceania','central-america','russia','asia']
+			if(len(continent)==0 or not (continent in continents)):
+				print('Error: Continent required to process region. Options are:')
+				print(continents)
+				quit()
+			country=args['country']
+			# powergrid.createNetwork()
+			powergrid.createRegionNetwork(continent,country)
+			earthmodel.loadCombinedFits()
+			earthmodel.loadDurationRatios()
+			earthmodel.loadApparentCond()
+			network=powergrid.networks[0]
+			#the network contains information on the boundary of the region and the name.
+			network.EfieldFiles=earthmodel.calcRegionEfields(rateperyears,network,plot=True)#the first and only network, as we're only calculating one region
+			# earthmodel.plotRegionEfields()
+			network.calcGICs()
+			#load E fields for the 
+
+			# powergrid.createRegionNetwork('europe','estonia')
+			# powergrid.createRegionNetwork('south-america','')
+			# powergrid.createRegionNetwork('africa','')
+			# powergrid.createRegionNetwork('north-america','')
+			# powergrid.createRegionNetwork('australia-oceania','')
+			# powergrid.createRegionNetwork('central-america','')
+			# powergrid.createRegionNetwork('russia','')
+			# powergrid.createRegionNetwork('asia','')
+			# powergrid.plotNetwork()
+			# powergrid.calcGICs()
+			quit()
 		earthmodel.loadCombinedFits()
 		earthmodel.loadDurationRatios()
 		powergrid.setWindowedEmaps(earthmodel)
 		powergrid.loadEfieldMaps()
 		# powergrid.plotOverheatByDuration()
-		powergrid.calcTemperatureMap()
-		powergrid.calcOverheatMap()
+		# powergrid.calcTemperatureMap()
+		# powergrid.calcOverheatMap()
 		print('powergrid.pop_est')
 		powergrid.calcPopulationAffected()
 		print('powergrid.eleestimate')
@@ -153,6 +219,9 @@ if __name__ == '__main__':
 			recurrencecalculated = True
 	if(args['Model']=='GCmodel'): 
 		gcmodelprocessed=True
+		gcmodel.importGCmodel()
+		gcmodel.getImpedanceMap()
+		quit()
 
 
 	if('StormRecurrence' in args['plots']):
@@ -207,7 +276,12 @@ if __name__ == '__main__':
 	if(args['Model']=='ValidateModel'):
 		if(not args['Function']):#calc global model, then validate
 			validatemodel=True
-
+	if(validatemodel):
+		validation=ValidateModel()
+		validation.calcGIC(1)
+		validation.calcGIC(5)
+		validation.compareFields(earthmodel)
+		quit()
 	allTFandGCcompared=False
 
 	if(evalgcmodel):
@@ -251,6 +325,8 @@ if __name__ == '__main__':
 
 	if(validatemodel):
 		validation=ValidateModel()
+		validation.calcGIC(1)
+		validation.calcGIC(5)
 		validation.compareFields(earthmodel)
 
 	if('CompareGCandTF' in args['plots']):

@@ -23,6 +23,7 @@ import statsmodels.api as sm
 import pandas as pd
 from scipy.ndimage.filters import uniform_filter1d
 import fits
+from matplotlib.font_manager import FontProperties
 import Params
 
 u0 = 1.25664e-6 #m kg s^-2 A^-2 (permeability of free space, roughly same value inside the earth)
@@ -56,6 +57,8 @@ class MTsite:
 	def importSite(self):
 		self.ds = nc.Dataset(self.MTsitefn)	#  import the magnetic field record using the netcdf format as a big numpy array
 		self.maglat=self.ds['mlat'][-1]
+		self.lat=self.ds['glat'][-1].data
+		self.long=self.ds['glon'][-1].data
 		
 		self.N=len(self.ds['dbn_geo'])#size of this particular MTsite magnetic field  (B field) record (in this case north, but north and south are always the same length)
 		self.toKeepThreshold= Params.toKeepThreshold[self.siteIndex]
@@ -423,7 +426,10 @@ class MTsite:
 	def plotEratesPerYear(self,fittype):
 		# plt.figure()
 		plt.loglog()
+		plots=np.array([])
 		for i in range(0,int(np.floor(len(self.windowedCounts))/5)):
+			if(i!=0):
+				break
 			durationindex = i*5
 			efieldindex = i*5+1
 			countsindex = i*5+2
@@ -437,7 +443,7 @@ class MTsite:
 			rpy=cumsum/self.cumulativeyears
 			fitplotted=False
 			#if we've calculated power fits for all the windows
-			plt.plot(Efields,rpy,lw=1,label = "Efields averaged over "+str(duration)+' seconds, '+str(self.sitename))
+			# plt.plot(Efields,rpy,lw=1,label = "Efields averaged over "+str(duration)+' seconds, '+str(self.sitename))
 			if(len(self.powerfits)>0 and ('power' in fittype or fittype=='all')):
 				fitplotted=True
 				exponent=self.powerfits[i][1]
@@ -445,7 +451,7 @@ class MTsite:
 				print('power coeffs')
 				print([exponent,ratio])
 
-				plt.plot(Efields, fits.powerlaw(Efields,exponent)*ratio, lw=1,label = "Field averaged over "+str(duration)+" seconds, powerfit")
+				# plt.plot(Efields, fits.powerlaw(Efields,exponent)*ratio, lw=1,label = "Field averaged over "+str(duration)+" seconds, powerfit")
 
 			if(len(self.logfits)>0 and ('lognormal' in fittype or fittype == 'all')):
 				fitplotted=True
@@ -461,22 +467,20 @@ class MTsite:
 
 				boundedfit=np.array(yfit[np.array(yfit)>10**-4])
 				boundedEfields=np.array(Efields)[np.array(yfit)>10**-4]
-				plt.plot(boundedEfields,boundedfit,lw=1,label = "Field averaged over "+str(duration)+" seconds, lognormalfit")				
-			if(not fitplotted):
-				plt.plot(Efields,rpy,lw=1,label = "Field averaged over "+str(duration)+" seconds")
-			
+				plt.plot(boundedEfields,boundedfit,color='grey')
+				p=plt.scatter(Efields,rpy,lw=1,label = "Efields averaged over "+str(duration)+' seconds, '+str(self.sitename))
+				plots=np.append(plots,p)
+				# plt.plot(boundedEfields,boundedfit,lw=1,label = "Field lognormalfit")				
+			# if(not fitplotted):
+				# plt.scatter(Efields,rpy,lw=1,label = "Field with lognormal fit")
+				# plt.plot(Efields,rpy,lw=1,label = "Field averaged over "+str(duration)+" seconds")
 		# print('Efields'-)
 		# print(Efields)
 		# print('rates')
 		# print(rates)
 
-		plt.legend()
-		plt.title('Rate geoelectric field is above threshold')
-		plt.xlabel('Geoelectric Field (V/km)')
-		plt.ylabel('Average rate per year distinct contiguous sample average is above E field (counts/year)')
-	
-		plt.show()
-		quit()
+		return plots	
+		# plt.show()
 	def fitEratesPerYear(self):
 		self.logfits=[]
 		self.powerfits = []
@@ -821,8 +825,8 @@ class MTsite:
 		# res = sel.model.fit()
 		# print(res.summary())
 
-		model = sm.tsa.ARMA(normData, (15, 5)).fit(trend='nc', disp=0)
-		quit()
+		# model = sm.tsa.ARMA(normData, (15, 5)).fit(trend='nc', disp=0)
+		return
 		# print('model.params')
 		# print(model.params)
 		# plt.figure()
@@ -926,10 +930,10 @@ class MTsite:
 
 		timesbetween=np.array(stormstarts[1:])-np.array(stormends[0:-1])
 		print('hoursbetween')
-		hoursbetween=timesbetween/(60*60)
+		hoursbetween=timesbetween/(60)
 		print(hoursbetween)
-		[x,y]=fits.binlognormaldist(timesbetween,[],3)
-		[xd,yd]=fits.binlognormaldist(np.array(stormdurations)/(60*60),[],3)
+		[x,y]=fits.binlognormaldist(hoursbetween,[],3)
+		# [xd,yd]=fits.binlognormaldist(np.array(stormdurations)/(60*60),[],3)
 		plt.figure()
 		
 		plt.xscale("log")
@@ -937,10 +941,10 @@ class MTsite:
 		plt.plot(x,y)
 		plt.show()
 
-		plt.figure()
-		plt.xscale("log")
-		plt.plot(xd,yd)
-		plt.show()
+		# plt.figure()
+		# plt.xscale("log")
+		# plt.plot(xd,yd)
+		# plt.show()
 		
 
 		# 

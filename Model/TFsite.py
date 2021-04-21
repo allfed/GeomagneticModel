@@ -100,12 +100,20 @@ class TFsite:
 			' at w (rad/s):'+str(self.wInEDI[i]))
 	
 	def importXML(self):
+		print('importing XML')
 		file=ET.parse(self.TFsitefn)
 		root = file.getroot()
 		self.T=[]
 		self.f=[]
 		for child in root:
-			
+			if(child.tag=='Site'):
+				for grandchild in child:
+					if(grandchild.tag=='Location'):
+						for locdata in grandchild:
+							if(locdata.tag=="Latitude"):
+								self.lat=float(locdata.text)
+							if(locdata.tag=="Longitude"):
+								self.long=float(locdata.text)
 			if(child.tag=='Data'):
 				for period in child:
 					self.T.append(np.float(period.attrib['value']))
@@ -147,6 +155,8 @@ class TFsite:
 		file = open(self.TFsitefn, 'r')
 		count=0
 		latstring=''
+		print(self.TFsitefn)
+		print('FINDING LAT TF')
 		try:
 			while True: 
 				count += 1

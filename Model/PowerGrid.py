@@ -1,3 +1,6 @@
+from Plotter import Plotter
+import os
+import glob
 import numpy as np
 #calculate thermal rise from duration and GIC level
 import Params
@@ -9,6 +12,7 @@ import matplotlib.colors as colors
 import geopandas as gpd
 from geopandas.tools import sjoin
 import geoplot as gplt
+import shapely.geometry
 from shapely.geometry import Point
 import fits
 from mpl_toolkits.axes_grid1 import make_axes_locatable
@@ -17,6 +21,8 @@ import matplotlib.ticker as mticker
 import rasterio
 import rasterio.features
 import rasterio.warp
+from Model.Network import Network
+from matplotlib.colors import ListedColormap    
 class PowerGrid:
 
 	def __init__(self):
@@ -43,6 +49,7 @@ class PowerGrid:
 		self.temperatures=np.zeros(len(Params.tau))
 		self.latitudes=[]
 		self.longitudes=[]
+		self.networks=[]
 
 	def setWindowedEmaps(self,earthmodel):
 		self.windowedEmaps=earthmodel.windowedEmaps
@@ -60,8 +67,8 @@ class PowerGrid:
 	#also show the mean temperature of the transformers for each duration
 	def calcTemperatureMap(self):
 		#whether to plot each duration
-		plotintermediates=False
-		plotAllrates=False
+		plotintermediates=True
+		plotAllrates=True
 		print('calculating temperatures')
 		#for each rate per year calculated in earth model
 		allmaxtemps=np.array([])
@@ -500,8 +507,10 @@ class PowerGrid:
 			temprise100=self.temprise100[i]
 			temprise200=self.temprise200[i]
 			GICperE=self.GICperE[i]
+			gic=GICperE*E
+
 			maxextrapolation=100000
-			Etransformer=np.array([0,10,20,40,50,100,200,maxextrapolation])/GICperE
+			gics=np.array([0,10,20,40,50,100,200,maxextrapolation])
 			#linearly extrapolate last two datapoints for higher values
 			longtermlimit=np.array([temprise0,temprise10,temprise20,temprise40,temprise50,temprise100,temprise200,temprise200+(temprise200-temprise100)*((maxextrapolation-200)/100)])
 			# plt.figure()
@@ -509,7 +518,11 @@ class PowerGrid:
 			# plt.show()
 
 			topoiltemp=90 #C
-			temp=np.interp(E,Etransformer,longtermlimit)*(1-np.exp(-duration/self.tau[i]))+topoiltemp
+			#the calculation of GIC co
+			#we multiply the long term limit and the time constant by 2/3, because we assume the HVT are thermally "in the middle" between design 1 and design 2.
+			#We multiply the tau value by 3/4 because design 1 is typically 8 minutes, and design 2 is typically 4 minutes, so we choose some average value.
+			#This assumption could be improved by actually importing design 2 and performing a more data driven averaging scheme, and even further improved by including a distribution or running a monte carlo with a spread in the range between design 1 and design 2.
+			temp=np.interp(gic,gics,longtermlimit*(2/3))*(1-np.exp(-duration/((3/4)*self.tau[i])))+topoiltemp
 			temperatures[i]=temp
 		return temperatures
 
@@ -523,8 +536,7 @@ class PowerGrid:
 				fraction = fraction + self.pop25to40[i]
 			if(temp>180):
 				fraction = fraction + self.pop0to25[i]
-		#we divide the results by 2, because we assume half of HVT are design 1, which will never overheat
-		return fraction/2
+		return fraction
 
 
 	# For estimating loss of electricity we use the net consumption by country, and estimate the fraction of people in that country that would lose electricity.
@@ -573,6 +585,7 @@ class PowerGrid:
 
 			eleLostArr=[]
 			fractionEleLostArr=[]
+			elePerCapita=[]
 			eleCountry=[]
 			countrycode=[]
 			geometries=[]
@@ -581,7 +594,7 @@ class PowerGrid:
 			netpop=0
 			for key, values in grouped:
 				code=values['iso_a3'].values[0]
-				eleByCountry['countrycode'].str.match(code)
+				# eleByCountry['countrycode'].str.match(code)
 				countryele=[]
 				for i in range(0,len(eleByCountry['countrycode'])):
 					if(eleByCountry['countrycode'].values[i]==code):
@@ -602,10 +615,18 @@ class PowerGrid:
 				eleLost=eleconsumption*(popCELE/countrypop)
 				countrycode.append(code)
 				eleCountry.append(eleconsumption)
+				elePerCapita.append(eleconsumption/countrypop)
 				eleLostArr.append(eleLost)
 				fractionEleLostArr.append(eleLost/eleconsumption)
 				geometries.append(values['countrygeometry'].values[0])
-			worldElectricity=gpd.GeoDataFrame({'iso_a3':np.array(countrycode),'geometry':np.array(geometries),'fraction':np.array(fractionEleLostArr)})
+
+			worldElectricity=gpd.GeoDataFrame({'iso_a3':np.array(countrycode),'geometry':np.array(geometries),'fraction':np.array(fractionEleLostArr),'total':np.array(eleCountry),'totalLost':np.array(eleLostArr),'elePerCapita':np.array(elePerCapita)},crs=crs)
+
+			#set area of each country
+			worldElectricity['area']=worldElectricity['geometry'].to_crs({'init': 'epsg:3395'}).map(lambda p: p.area / 10**6) 
+
+			#electricity per km^2
+			worldElectricity['eleDensity']=np.log(worldElectricity['total']/worldElectricity['area'])
 
 			fig, ax = plt.subplots(1, 1)
 			worldElectricity.plot(column='fraction', ax=ax, legend=True,vmin=0,vmax=1)
@@ -621,6 +642,97 @@ class PowerGrid:
 			print(totalEleLoss)
 			print('fraction overall')
 			print(totalEleLoss/totalEle)
+
+
+
+
+
+			# fig, ax = plt.subplots(1, 1)
+			# worldElectricity.plot(column='eleDensity', ax=ax, legend=True,vmin=np.min(worldElectricity['eleDensity']),vmax=np.max(worldElectricity['eleDensity']))
+			
+			# plt.title('average Electricity Consumption By Country per unit kilometer')
+			# plt.show()
+
+			# fig, ax = plt.subplots(1, 1)
+			# worldElectricity.plot(column='totalLost', ax=ax, legend=True,vmin=0,vmax=1)
+			
+			# plt.title('Predicted total Electricity lost By Country \n One in '+str(1/r)+' Year Storm')
+			# plt.title('Total Electricity Consumption  By Country')
+			# plt.show()
+
+			pdata=rasterio.open(Params.popDensity15min)
+			ldata=rasterio.open(Params.landArea15min)
+			pArr=pdata.read(1)
+			lArr=ldata.read(1)
+			pArrZeroed = np.where(pArr<0, 0, pArr)
+			lArrZeroed = np.where(lArr<0, 0, lArr)
+			totPop=np.multiply(pArrZeroed,lArrZeroed)
+			longs=[]
+			lats=[]
+			highResEle=[]
+			for latindex in range(0,len(totPop)):
+				for longindex in range(0,len(totPop[0])):
+					lats.append(90-latindex*.25)
+					longs.append(longindex*.25-180)
+					highResEle.append(totPop[latindex,longindex])
+					#figure out if point is inside country
+					# grouped = pointInPolys.groupby('index_right')
+
+					# for key, values in grouped:
+					# 	code=values['iso_a3'].values[0]
+					# 	countryele=[]
+					# 	for i in range(0,len(worldElectricity['iso_a3'])):
+					# 		if(worldElectricity['iso_a3'].values[i]==code):
+					# 			highResEle.append(worldElectricity['elePerCapita'].values[i]*totPop[latindex,longindex])
+
+					# 			break
+					# 	if(len(countryele)==0):
+					# 		continue
+			elemin=np.min(highResEle)+.1
+			elemax=np.max(highResEle)
+			df=pd.DataFrame({'longs':np.array(longs),'lats':np.array(lats),'highResEle':np.array(highResEle)})
+
+			crs={'init':'epsg:3857'}
+			geometry=[Point(xy) for xy in zip(df['longs'],df['lats'])]
+			latdiff=.25
+			longdiff=.25
+			geo_df=Plotter.calcGrid(df,latdiff,longdiff)
+			# geo_df=gpd.GeoDataFrame(df,crs=crs,geometry=geometry)
+
+
+
+			#loop through the 30 minute gridded population density data, and multiply the population in the country by the average electricity per person. Assuming everyone in a country uses about the same electricity, each data point gives the total electricity in that 30 minute square section.
+			ax=geo_df.plot(column='highResEle',legend=True,legend_kwds={'label': 'Coefficient on Reference Field Level','orientation': "horizontal"}, cmap='viridis',norm=colors.LogNorm(vmin=elemin, vmax=elemax))
+
+
+			pp=gplt.polyplot(world,ax=ax,zorder=1)
+			print(df)
+			self.formatticklabels(elemin,elemax,pp)
+
+			plt.title('Geoelectric Field Multiplier\n Magnetic Latitude\n1 in '+str(1/r)+' Year Storm')
+
+			print('s10')
+			plt.show()
+	def formatticklabels(self,minval,maxval,pp):
+		print('formatting')
+		colourbar = pp.get_figure().get_axes()[1]
+		ticks_loc = colourbar.get_xticks().tolist()
+		ticks_loc.insert(0,minval)
+		ticks_loc.append(maxval)
+		colourbar.xaxis.set_major_locator(mticker.FixedLocator(ticks_loc))
+		
+		labels=[]
+		for i in range(0,len(ticks_loc)):
+			x=ticks_loc[i]
+			exponent = int(np.log10(x))
+			coeff = x/10**exponent
+			if(i==0 or i==len(ticks_loc)):
+				labels.append(r"${:2.1f} \times 10^{{ {:2d} }}$".format(coeff,exponent))					
+			else:
+				labels.append(r"${:2.1f} \times 10^{{ {:2d} }}$".format(coeff,exponent))
+		colourbar.set_xticklabels(labels,rotation=33)
+
+
 
 
 	#high resolution population estimates (15 minute)
@@ -650,7 +762,7 @@ class PowerGrid:
 				isCELE=df['isCELEs'].values[j]
 				latitude=df['lats'].values[j]
 				longitude=df['longs'].values[j]
-				if(isCELE):
+				if(not isCELE):
 					indexlat,indexlong=pdata.index(longitude,latitude)
 
 					population=0
@@ -668,10 +780,15 @@ class PowerGrid:
 			#Catastrophic Electricity Loss assumed if spares<overheated transformers	
 			regionsCELE= np.where(np.array(populationaffected)>0, 1, 0) #population affected is always the full population in the region where spares<overheated transformers. Nonzero=>population in grid cell.
 			df=pd.DataFrame({'longs':df['longs'].values,'lats':df['lats'].values,'pop':np.array(populationaffected),'regionsCELE':np.array(regionsCELE)})
-			
 			crs={'init':'epsg:3857'}
-			geometry=[Point(xy) for xy in zip(df['longs'],df['lats'])]
-			geo_df=gpd.GeoDataFrame(df,crs=crs,geometry=geometry)
+			# nlatcells=(xmax-xmin)/latdiff
+			# nlongcells=(ymax-ymin)/longdiff
+
+			#turn the point values into a grid cell with the proper width and height
+			latdiff=Params.latituderes#
+			longdiff=Params.longituderes#
+			geo_df=self.calcGrid(df,latdiff,longdiff)
+
 			ax=geo_df.plot(column='regionsCELE')
 			world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
 			pp=gplt.polyplot(world,ax=ax,zorder=1)
@@ -689,3 +806,117 @@ class PowerGrid:
 			print(totalPopCELE/np.sum(totPop))
 			allPopData.append([r,df])
 		np.save(Params.popCELEdir,allPopData)
+
+	def createNetwork(self):
+		#add together the high voltage power grid of ... THE ENTIRE EARTH
+		loaddirectory=Params.planetNetworkDir
+		print(loaddirectory)
+		allfiles=glob.glob(loaddirectory+'*')
+		print(allfiles)
+		networks=[]
+		alllines=[]
+		allvoltages=[]
+		for i in range(0,len(allfiles)):
+			fn=allfiles[i]
+			if(fn=='.' or fn=='..'):
+				continue
+			network=Network()
+			print('Processing '+fn)
+			# if(i==1):
+				# continue
+			#leave country blank, to indicate the whole continent
+			[voltages,lines]=network.importNetwork(fn.split('/')[-1],'')
+			allvoltages=np.append(allvoltages,np.array(voltages))
+			alllines=np.append(alllines,np.array(lines))
+			networks.append(network)
+		self.networks=networks
+		np.save(Params.voltageDataLoc+'voltageData',allvoltages,allow_pickle=True)
+		np.save(Params.linesDataLoc+'linesData',alllines,allow_pickle=True)
+
+	def createRegionNetwork(self,continent,country):
+		#add together the high voltage power grid of ... THE ENTIRE EARTH
+		loaddirectory=Params.countryNetworkDir+continent+'/'+country
+		print(loaddirectory)
+		alllines=[]
+		allvoltages=[]
+
+		network=Network()
+		print('Processing '+loaddirectory)
+
+		[voltages,lines]=network.importNetwork(continent,country)
+		allvoltages=np.append(allvoltages,np.array(voltages))
+		alllines=np.append(alllines,np.array(lines))
+		if(not os.path.isdir(Params.voltageDataLoc+network.region)):
+			os.mkdir(Params.voltageDataLoc+network.region)
+		np.save(Params.voltageDataLoc+network.region+'/voltageData',allvoltages,allow_pickle=True)
+		print('allvoltages saved')
+		np.save(Params.linesDataLoc+'/'+network.region+'/linesData',alllines,allow_pickle=True)
+		print('linedata saved')
+		self.networks=[network]
+
+	def plotNetwork(self):
+		if(len(self.networks)>1 or len(self.networks)==0):
+			#load up the high voltage lines and put together for plotting
+			allvoltages=np.load(Params.voltageDataLoc+'voltageData.npy',allow_pickle=True)
+			allines=np.load(Params.linesDataLoc+'linesData.npy',allow_pickle=True)
+		else:
+			region=self.networks[0].region
+			allvoltages=np.load(Params.voltageDataLoc+region+'/voltageData.npy',allow_pickle=True)
+			allines=np.load(Params.linesDataLoc+region+'/linesData.npy',allow_pickle=True)
+
+		indices=range(0,len(allines))
+		f, ax = plt.subplots()
+		maxi=100000
+		rawLinesbyVoltageindices = [x for _,x in sorted(zip(allvoltages,indices))]
+		rawLinesbyVoltage=[]
+		for i in rawLinesbyVoltageindices:
+			rawLinesbyVoltage.append(allines[i])
+		sortedVoltages=sorted(allvoltages)
+		alluniquevoltages=list(set(sortedVoltages))
+		prevVoltage=-1
+		linesByVoltage=[]
+		uniqueIndex=0
+		for i in range(0,len(rawLinesbyVoltage)):
+			if(sortedVoltages[i]==prevVoltage):
+				if(len(rawLinesbyVoltage[i])<2):
+					linesByVoltage[uniqueIndex-1]=np.array(list(linesByVoltage[uniqueIndex-1])+rawLinesbyVoltage[i])
+				else:
+					linesByVoltage[uniqueIndex-1]=np.append(linesByVoltage[uniqueIndex-1],rawLinesbyVoltage[i])
+				continue
+			if(len(rawLinesbyVoltage[i])<2):
+				linesByVoltage.append(np.array([]))
+				linesByVoltage[uniqueIndex-1]=rawLinesbyVoltage[i]
+			else:
+				linesByVoltage.append(np.array(rawLinesbyVoltage[i]))
+
+			uniqueIndex=uniqueIndex+1
+			prevVoltage=sortedVoltages[i]
+		assert(len(linesByVoltage)==len(alluniquevoltages))
+
+		n = len(alluniquevoltages)
+		colornames = plt.cm.coolwarm(np.linspace(0.1,0.9,n))
+		mycolors = [ ListedColormap(colornames[i]) for i in range(0,len(alluniquevoltages))]   
+		for i in range(0,len(alluniquevoltages)):
+
+			v=alluniquevoltages[i]
+			if(len(linesByVoltage[i])<2):
+				maxi=i
+				continue
+
+			network=gpd.GeoDataFrame({'voltage': np.array(v),'geometry':np.array(linesByVoltage[i])})
+			gdf=gpd.GeoDataFrame(geometry=linesByVoltage[i])
+
+			gdf.plot(cmap=mycolors[i],ax=ax,legend=True, label=str(alluniquevoltages[i])+' kV network')
+		ax.legend()
+		leg=ax.get_legend()
+		for i in range(0,len(alluniquevoltages)):
+			if(i==maxi):
+				break
+			leg.legendHandles[i].set_color(colornames[len(colornames)-i-1])
+
+		plt.show()
+
+	def calcGICs(networks):
+		gicsEachNetwork=[]
+		for n in networks:
+			gicsEachNetwork.append(n.calcGICs())
