@@ -199,7 +199,7 @@ class EarthModel:
 		for ratios in durationEratios:
 			self.averagedRatios.append(np.mean(ratios))
 
-		np.save(Params.durationRatiosDir,self.averagedRatios)
+		np.save(Params.durationRatiosDir,[np.array(self.allwindowperiods),np.array(self.averagedRatios)])
 
 		if(plot):
 			# plt.show()
@@ -369,6 +369,7 @@ class EarthModel:
 
 	#for each conductivity grid point in the boundary, calculate E field for 60 second duration, and save associated E field data in format used by GEOMAGICA network calculations for each rate per year
 	def calcRegionEfields(self,ratePerYears,network,plot):
+		plot=False
 		regionName=network.region
 		minlat=network.minlat
 		minlong=network.minlong
@@ -387,10 +388,10 @@ class EarthModel:
 			loc=self.combinedlogfits[i][3]
 			ratio=self.combinedlogfits[i][4]
 
-			print(mean)
-			print(std)
-			print(loc)
-			print(ratio)
+			# print(mean)
+			# print(std)
+			# print(loc)
+			# print(ratio)
 			refFieldLog=fits.logcdfxfromy(r/ratio,mean,std,loc)
 			print('refFieldLog')
 			print(refFieldLog)
@@ -398,7 +399,7 @@ class EarthModel:
 			print('refField level rest of map is proportional to this field (V/km), logfit:'+str(refFieldLog))
 			minE=10000
 			maxE=-10000
-			print(np.multiply(np.array(self.GClatitudes)>minlat,np.array(self.GClatitudes)<maxlat))
+			# print(np.multiply(np.array(self.GClatitudes)>minlat,np.array(self.GClatitudes)<maxlat))
 			allLatkeys=np.arange(0,len(self.GClatitudes))
 			allLongkeys=np.arange(0,len(self.GClongitudes))
 
@@ -429,8 +430,8 @@ class EarthModel:
 			latkeys=allLatkeys[masklat]
 			longkeys=allLongkeys[masklong]
 			print(allLongkeys[np.multiply(np.array(self.GClongitudes)>minlong,np.array(self.GClongitudes)<maxlong)])
-			print(latkeys)
-			print(longkeys)
+			# print(latkeys)
+			# print(longkeys)
 			saveArray=[]
 			#assumes E field is at the absolute value given, but is horizontal only.
 			for latkey in latkeys:
@@ -453,13 +454,13 @@ class EarthModel:
 
 				df=pd.DataFrame({'longs':np.array(longs),'lats':np.array(lats),'E':np.array(Es)})
 				polygon=network.boundaryPolygon
-				Plotter.plotRegionEfields(df,polygon)
+				Plotter.plotRegionEfields(df,polygon,network)
 			if(not os.path.isdir(Params.regionEfieldsDir+regionName)):
 				os.mkdir(Params.regionEfieldsDir+regionName)
 			filename=Params.regionEfieldsDir+regionName+'/EfieldHor'+str(r)+'PerYear60Second.txt'
 			savetxt(filename,np.array(saveArray),delimiter='\t', fmt='%s')
 			dataPathsDict[r]=filename
-			print(dataPathsDict)
+			# print(dataPathsDict)
 		return dataPathsDict
 
 
@@ -1333,7 +1334,7 @@ class EarthModel:
 			return [tfapparentc,gcapparentc]
 
 	def loadDurationRatios(self):
-		self.averagedRatios=np.load(Params.durationRatiosDir,allow_pickle=True)
+		[self.averagedRatios,self.allwindowperiods]=np.load(Params.durationRatiosDir,allow_pickle=True)
 
 	def loadStorms(self,mtsites):
 

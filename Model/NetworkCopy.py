@@ -44,11 +44,11 @@ class Network:
 		# https://www.nerc.com/pa/Stand/Project201303GeomagneticDisturbanceMitigation/ApplicableNetwork.pdf
 
 
-		self.windingkV=[230,345,500,735]
-		self.windingConductance=1/np.array([.692,.356,.195,.159])#Ohms
+		windingkV=[230,345,500,735]
+		windingConductance=1/np.array([.692,.356,.195,.159])#Ohms
 		self.transformertogroundR={}
-		self.transformertogroundR[275]=1/np.interp(275,self.windingkV,self.windingConductance)
-		self.transformertogroundR[400]=1/np.interp(400,self.windingkV,self.windingConductance)
+		self.transformertogroundR[275]=1/np.interp(275,windingkV,windingConductance)
+		self.transformertogroundR[400]=1/np.interp(400,windingkV,windingConductance)
 
 		linekV=[110,230,345,500,735]#kV
 		lineConductance=1/np.array([.037*3,.072,.037,.013,.011])#Ohms/km. Later divided by 3 in GIC_Model
@@ -127,8 +127,7 @@ class Network:
 		# self.analyzeNetwork()
 		fig=plt.figure()
 		ax = fig.add_subplot(111)
-		Plotter.plotNetwork(self.voltages,self.lines,ax)
-
+		# Plotter.plotNetwork(self.voltages,self.lines,ax)
 		return [self.voltages,self.lines]
 
 	def loadPolygon(self):
@@ -187,6 +186,7 @@ class Network:
 			# if(windtype.split('.')[-1]!="primary"):
 			# 	continue
 
+			print('here')
 			#we only care about primary windings, because we've already specified the winding by its voltage in the windname property
 			if(voltage<self.lowestAllowedVoltage):
 				continue
@@ -210,6 +210,8 @@ class Network:
 			#every substation has one ground node
 			#node 5 is resistance directly to ground from this node
 			#node 6 is resistance directly to transformer from this node (I think, not really sure about this one)
+
+			## HERE WE CHECK IF SUBSTATION HAS APPEARED, IF SO USE MAX VOLTAGE
 			if(not (subname in nodesDict.keys())):
 				index = index + 1
 				# data format for ground node:
@@ -217,10 +219,12 @@ class Network:
 				# index node name  code   country lat long  gnd resistance  0
 				nodes.append(np.array([index,subname + '_E',index, self.region, lat, long, self.groundingR,'0']))
 
-				nodesDict[subname]=[index,lat,long,'substation','',0]#ground has voltage 0
+				nodesDict[subname]=[index,lat,long,'substation','',voltage]#last index is voltage of maximum transformer winding voltage at substation
 				subindex=index
+			elif(nodesDict[subname][5]<voltage):
+				nodesDict[subname][5]=voltage
 
-			# data format for transformer node:
+			# data format for transformer (winding) node:
 			# __0__ ____1____ ___2___ ___3___ _4_ __5__ _______6______ _7_
 			# index node name  code   country lat long  gnd resistance Inf
 			index = index + 1
@@ -489,12 +493,10 @@ class Network:
 			destdir=self.continent
 			urlsegment=self.continent
 			continentspecifier='continent='+self.continent
-			tags='-t -g'
 		else:
 			destdir=self.continent+'/'+self.country
 			urlsegment=self.continent+'/'+self.country
 			continentspecifier=''
-			tags='-t'
 
 
 		conftxt='''
@@ -522,7 +524,7 @@ vlevels='%s'
 # -v verbose logging
 # -l load estimation (does only work for Germany, Austria and Switzerland)
 # -e evaluation of point-to-point connections (only makes sense for Germany, since coverage of OSM data is sufficient high)
-trans_args='%s'
+trans_args='-t'
 		''' % (self.dbname,\
 			firstcomment,Params.downloadedTransnetDataDir+self.region+'/',\
 			secondcomment,Params.downloadedTransnetDataDir+self.region+'/',\
@@ -530,8 +532,7 @@ trans_args='%s'
 			fourthcomment,urlsegment,\
 			destdir,\
 			continentspecifier,\
-			voltagestring[1:],
-			tags)
+			voltagestring[1:])
 
 		file = open(Params.networkConfigDir+self.region+'.conf','w')
 		file.write(conftxt)
@@ -567,19 +568,14 @@ trans_args='%s'
 		# The GEOMAGICA formatted data is run by our own version of GEOMAGICA, called GIC_Model.py.
 		gicModel=GIC_Model()
 		connsAndNodesPath=self.processedNetworkDir+self.region
-
-		loadDataFromFiles=False
-
 		for r in self.EfieldFiles.keys():
 			efilePath=self.EfieldFiles[r]
 			networkFileDir=self.processedNetworkDir+self.region
-			if(loadDataFromFiles):
-				savedata=np.load('gics'+str(r)+'perYear.npy',allow_pickle=True)
-				[gics,lineLengths]=savedata
-			else:
-				[gics,lineLengths]=gicModel.runModel(efilePath,networkFileDir)
-				savedata=[gics,lineLengths]
-				np.save('gics'+str(r)+'perYear',savedata,allow_pickle=True)
+			# [gics,lineLengths]=gicModel.runModel(efilePath,networkFileDir)
+			# savedata=[gics,lineLengths]
+			# np.save('gics'+str(r)+'perYear',savedata,allow_pickle=True)
+			savedata=np.load('gics'+str(r)+'perYear.npy',allow_pickle=True)
+			[gics,lineLengths]=savedata
 			print('number of lines')
 			print(len(lineLengths))
 			print('median line length')
@@ -601,9 +597,6 @@ trans_args='%s'
 			# for i in range(0,self.sortednodes):
 			# 	self.sortednodes[i]
 			nodesarr=list(self.sortednodes.values())
-			print(len(nodesarr))
-			print(len(gics))
-			# quit()
 			for i in range(0,len(nodesarr)):
 				node=nodesarr[i]
 
@@ -615,7 +608,7 @@ trans_args='%s'
 				# point=Point([float(node[1]),float(node[2])])
 				# points.append(point)
 
-				voltage=node[5]
+				voltage=node[-1]
 				# print('voltage')
 				# print(voltage)
 				# print(gics[index])
@@ -641,7 +634,7 @@ trans_args='%s'
 			df.dropna(subset = ["GIC"], inplace=True)
 			print('number of substations')
 			print(len(df))
-			Plotter.plotGICsBubble(df,self)
+			# Plotter.plotGICsBubble(df,self)
 		# print(sortednodes)
 		
 

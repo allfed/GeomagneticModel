@@ -200,8 +200,8 @@ class GIC_Model:
             geolat[i] = float(data[4])
             # Geographic longitude of node:
             geolon[i] = float(data[5])
-            # Earthing resistance of each node: #multiplied by 3 to give per phase values
-            res_earth[i] = float(data[6])*3
+            # Earthing resistance of each node:
+            res_earth[i] = float(data[6])
             # Transformer resistances (see notes):
             res_trans[i] = float(data[7])
             
@@ -225,9 +225,8 @@ class GIC_Model:
             # Connection ends at site:
             nodeto[i] = int(s2i[conns[2]])
             # Line resistance between connecting sites:
-            # (Divide by 3 for full transformer representation as paper values are given per phase) #What?? Per phase would be leaving unchanged...
-            # res_line[i] = float(conns[5])/3.
-            res_line[i] = float(conns[5])
+            # (Divide by 3 for full transformer representation as paper values are given per phase)
+            res_line[i] = float(conns[5])/3.
             # Voltage level of line:
             voltage_lines[i] = float(conns[6])
             
@@ -449,7 +448,6 @@ class GIC_Model:
                         Nlinecurr[m,n] = 0.
 
         Elinecurr = np.zeros((nnodes, nnodes), dtype=npf)
-
         for m in range(nnodes):
             for n in range(nnodes):
                 if resis[m,n] > 0.:
@@ -485,13 +483,12 @@ class GIC_Model:
             Iline_E[l] = (Ve_trans[nodefrom[l]]-Ve_trans[nodeto[l]]) / res_line[l]
             
         #****************************************************************
-        #this gives us the currents from the lines, but the currents through the nodes will give a closer approximation
         transresults = [Iline_N, Iline_E]   # GIC PER TRANSFORMER
         #****************************************************************
         gic=[]
         for i in range(nnodes):
             # print("{}  \t{:.2f}    \t{:.2f}".format(sitename[i], results[0][i], results[1][i]))
-            gic.append(np.abs(results[0][i]+results[1][i]))
+            gic.append(np.sqrt(results[0][i]**2+results[1][i]**2))
             # gic.append(np.sqrt(transresults[0][i]**2+transresults[1][i]**2))
         return [np.array(gic),line_dists]
 

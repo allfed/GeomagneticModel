@@ -123,15 +123,15 @@ if __name__ == '__main__':
 			# powergrid.createNetwork()
 			# powergrid.createRegionNetwork('europe','')
 
-			powergrid.createRegionNetwork('europe','')
-			powergrid.createRegionNetwork('south-america','')
+			# powergrid.createRegionNetwork('europe','')
+			# powergrid.createRegionNetwork('south-america','')
 			powergrid.createRegionNetwork('africa','')
-			powergrid.createRegionNetwork('north-america','')
-			powergrid.createRegionNetwork('australia-oceania','')
-			powergrid.createRegionNetwork('central-america','')
-			powergrid.createRegionNetwork('russia','')
-			powergrid.createRegionNetwork('asia','')
-			# powergrid.plotNetwork()
+			# powergrid.createRegionNetwork('north-america','')
+			# powergrid.createRegionNetwork('australia-oceania','')
+			# powergrid.createRegionNetwork('central-america','')
+			# powergrid.createRegionNetwork('russia','')
+			# powergrid.createRegionNetwork('asia','')
+			powergrid.plotNetwork()
 			# powergrid.calcGICs()
 			quit()
 		if(args['Function']=='Region'):
@@ -144,6 +144,7 @@ if __name__ == '__main__':
 			country=args['country']
 			# powergrid.createNetwork()
 			powergrid.createRegionNetwork(continent,country)
+			print('2')
 			earthmodel.loadCombinedFits()
 			earthmodel.loadDurationRatios()
 			earthmodel.loadApparentCond()
@@ -151,7 +152,11 @@ if __name__ == '__main__':
 			#the network contains information on the boundary of the region and the name.
 			network.EfieldFiles=earthmodel.calcRegionEfields(rateperyears,network,plot=True)#the first and only network, as we're only calculating one region
 			# earthmodel.plotRegionEfields()
+			print('3')
 			network.calcGICs()
+			# powergrid.setWindowedEmaps(earthmodel)
+			print('4')
+			powergrid.calcTransformerFailures(network,earthmodel.allwindowperiods,earthmodel.averagedRatios,rateperyears)
 			#load E fields for the 
 
 			# powergrid.createRegionNetwork('europe','estonia')

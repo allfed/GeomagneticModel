@@ -262,6 +262,7 @@ def importTransformers():
 	global temprise50
 	global temprise100
 	global temprise200
+	global fractionTypeAtVoltage
 	global GICperE
 	global pop25to40
 	global pop0to25
@@ -300,6 +301,8 @@ def importTransformers():
 			temprise200 = tmp
 		if(coltitle == 'GICperE'):
 			GICperE = tmp
+		if(coltitle == 'fractionTypeAtVoltage'):
+			fractionTypeAtVoltage = tmp
 		if(coltitle == 'pop25to40'):
 			pop25to40 = tmp
 		if(coltitle == 'pop0to25'):

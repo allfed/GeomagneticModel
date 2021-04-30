@@ -854,7 +854,6 @@ class MTsite:
 		# plt.plot(normal,'.')
 		plt.plot(bins)
 		plt.show()
-		quit()
 
 	def loadStorms(self):
 		self.allstorms=np.load(Params.mtStormsDir+'MTsite'+str(self.siteIndex)+'Storms.npy',allow_pickle=True)

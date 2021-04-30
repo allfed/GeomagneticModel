@@ -115,7 +115,7 @@ class PowerGrid:
 				
 						if(maglat>-70 and maglat <80):
 							E=Emap[latkey,longkey]
-							temps=self.calcTemps(self.averagedRatios[j]*E,duration)
+							temps=self.calcTempsFromE(self.averagedRatios[j]*E,duration)
 							alltemps.append(np.array(temps))
 							alltempsTie1.append(temps[0])
 							latitudes.append(latitude)
@@ -492,39 +492,120 @@ class PowerGrid:
 		#we divide the results by 2, because we assume half of HVT are design 1, which will never overheat
 		return fraction/2
 
+	# #calculate temperatures of all the transformer types from GIC given the duration and the GIC field level.
+	# def calcProbabilityDamageFromGIC(self,gic,duration,voltage):
+	# 	ntransformers=len(self.HVTnames)
+	# 	# if(voltage==float(0)):
+	# 	# 	# voltageClass=[230,345,500,735]
+	# 	# 	# return 0
+	# 	# if(voltage==float(275)):
+	# 	# 	voltageClass='230'
+	# 	# if(voltage==float(400)):
+	# 	# 	voltageClass='345'
+	# 	# print('voltageClass')
+	# 	# print(voltageClass)
+	# 	probabilityDamaged=0
+	# 	numberTransformerTypesInVoltageClass=0
+	# 	fraction=0
+	# 	for i in range(0,ntransformers):
+	# 		# numberTransformerTypesInVoltageClass=numberTransformerTypesInVoltageClass+1
+	# 		print('i')
+	# 		print(i)
+	# 		print('gic')
+	# 		print(gic)
+	# 		print('duration')
+	# 		print(duration)
 
-	# calculate fraction of population that exceeds its temperature limit for every HVT type
-	#category can be single ('single'), three phase ('three'), or leave empty to calculate sum of both, giving total overheat fraction ('')
-	def calcTemps(self,E,duration):
+
+	# 		temp=self.calcTemp(i,gic,duration)
+	# 		print('temp')
+	# 		print(temp)
+
+	# 		if(temp>140):
+	# 			fraction=fraction+Params.pop40plus[i]*.39
+	# 		if(temp>160):
+	# 			fraction=fraction+Params.pop25to40[i]*.25
+	# 		if(temp>180):
+	# 			fraction=fraction+Params.pop0to25[i]*.36
+
+	# 	return fraction
+	def calcProbabilityDamageFromGIC(self,gic,duration,voltage):
+		ntransformers=len(self.HVTnames)
+		if(voltage<290):
+			voltageClass='230'
+		elif(voltage<float(420)):
+			voltageClass='345'
+		elif(voltage<float(620)):
+			voltageClass='500'
+		else:
+			voltageClass='735'
+
+		print('voltageClass')
+		print(voltageClass)
+		probabilityDamaged=0
+		numberTransformerTypesInVoltageClass=0
+		fraction=0
+		for i in range(0,ntransformers):
+			if(float(self.voltageClass[i])==float(voltageClass)):
+				numberTransformerTypesInVoltageClass=numberTransformerTypesInVoltageClass+1
+				print('i')
+				print(i)
+				print('gic')
+				print(gic)
+				print('duration')
+				print(duration)
+
+
+				temp=self.calcTemp(i,gic,duration)
+				print('temp')
+				print(temp)
+
+				if(temp>140):
+					fraction=fraction+Params.fractionTypeAtVoltage[i]*.39
+				if(temp>160):
+					fraction=fraction+Params.fractionTypeAtVoltage[i]*.25
+				if(temp>180):
+					fraction=fraction+Params.fractionTypeAtVoltage[i]*.36
+
+		return fraction
+
+	#calculate GIC given an E field value for a given duration
+	#uses very simplistic assumptions about GIC levels induced from E fields
+	def calcTempsFromE(self,E,duration):
 		ntransformers=len(self.HVTnames)
 		temperatures=[0]*ntransformers
 		for i in range(0,ntransformers):
-			temprise0=self.temprise0[i]
-			temprise10=self.temprise10[i]
-			temprise20=self.temprise20[i]
-			temprise40=self.temprise40[i]
-			temprise50=self.temprise50[i]
-			temprise100=self.temprise100[i]
-			temprise200=self.temprise200[i]
-			GICperE=self.GICperE[i]
-			gic=GICperE*E
+			gic=self.GICperE[i]*E
+			temperatures[i]=self.calcTemp(i,gic,duration)
 
-			maxextrapolation=100000
-			gics=np.array([0,10,20,40,50,100,200,maxextrapolation])
-			#linearly extrapolate last two datapoints for higher values
-			longtermlimit=np.array([temprise0,temprise10,temprise20,temprise40,temprise50,temprise100,temprise200,temprise200+(temprise200-temprise100)*((maxextrapolation-200)/100)])
-			# plt.figure()
-			# plt.plot(Etransformer,longtermlimit)
-			# plt.show()
-
-			topoiltemp=90 #C
-			#the calculation of GIC co
-			#we multiply the long term limit and the time constant by 2/3, because we assume the HVT are thermally "in the middle" between design 1 and design 2.
-			#We multiply the tau value by 3/4 because design 1 is typically 8 minutes, and design 2 is typically 4 minutes, so we choose some average value.
-			#This assumption could be improved by actually importing design 2 and performing a more data driven averaging scheme, and even further improved by including a distribution or running a monte carlo with a spread in the range between design 1 and design 2.
-			temp=np.interp(gic,gics,longtermlimit*(2/3))*(1-np.exp(-duration/((3/4)*self.tau[i])))+topoiltemp
-			temperatures[i]=temp
 		return temperatures
+
+	#calculate the temperature of a given transformer index using duration and GIC level
+	def calcTemp(self,index,gic,duration):
+		temprise0=self.temprise0[index]
+		temprise10=self.temprise10[index]
+		temprise20=self.temprise20[index]
+		temprise40=self.temprise40[index]
+		temprise50=self.temprise50[index]
+		temprise100=self.temprise100[index]
+		temprise200=self.temprise200[index]
+		GICperE=self.GICperE[index]
+
+		maxextrapolation=100000
+		gics=np.array([0,10,20,40,50,100,200,maxextrapolation])
+		#linearly extrapolate last two datapoints for higher values
+		longtermlimit=np.array([temprise0,temprise10,temprise20,temprise40,temprise50,temprise100,temprise200,temprise200+(temprise200-temprise100)*((maxextrapolation-200)/100)])
+		# plt.figure()
+		# plt.plot(Etransformer,longtermlimit)
+		# plt.show()
+
+		topoiltemp=90 #C
+		#the calculation of GIC co
+		#we multiply the long term limit and the time constant by 2/3, because we assume the HVT are thermally "in the middle" between design 1 and design 2.
+		#We multiply the tau value by 3/4 because design 1 is typically 8 minutes, and design 2 is typically 4 minutes, so we choose some average value.
+		#This assumption could be improved by actually importing design 2 and performing a more data driven averaging scheme, and even further improved by including a distribution or running a monte carlo with a spread in the range between design 1 and design 2.
+		temp=np.interp(gic,gics,longtermlimit*(2/3))*(1-np.exp(-duration/((3/4)*self.tau[index])))+topoiltemp
+		return temp
 
 	def calcFractionOver(temperatures):
 		ntransformers=len(self.HVTnames)
@@ -916,7 +997,78 @@ class PowerGrid:
 
 		plt.show()
 
+	def calcTransformerFailures(self,network,durationratios,durations,rateperyears):
+		print('5')
+		nodesarr=list(network.sortednodes.values())
+		for r in rateperyears:
+			savedata=np.load('gics'+str(r)+'perYear.npy',allow_pickle=True)
+			[gics,lineLengths]=savedata
+			print(gics)
+			transformerDamageProbs=[]
+			nnodes=0
+			for i in range(0,len(gics)):
+				gic=gics[i]
+				# if(gic>10):
+				# 	print('didit')
+				# 	quit()
+				# if(i==800):
+				# 	quit()
+				# continue
+				print('i')	
+				print(i)	
+				print('len(nodesarr)')	
+				print(len(nodesarr))	
+				print('len(gic)')	
+				print(len(gics))	
+				print(nodesarr[i])
+
+				nodetype=nodesarr[i][3] #node category
+				voltage=nodesarr[i][5] #max voltage at station, or voltage of winding
+				maxprobabilityDamaged=0
+				if(nodetype=='substation'):
+					nnodes=nnodes+1
+					for k in range(0,len(durationratios)):
+						durationratio=durationratios[k]
+						duration=durations[k]
+
+						#adjust to make average gic of given duration longer, and also increase GIC to reflect amount going to transformer rather than node.
+						adjustedGIC=gic*durationratio/1.3
+						
+
+						print('duration')
+						print(duration)
+						print('durationratio')
+						print(durationratio)
+						print('gic')
+						print(gic)
+						# if(adjustedGIC>10):
+						# 	print('wow')
+						# 	quit()
+							# quit()
+						prob=self.calcProbabilityDamageFromGIC(adjustedGIC,duration,float(voltage))
+						if(prob>maxprobabilityDamaged):
+							maxprobabilityDamaged=prob
+					transformerDamageProbs.append(maxprobabilityDamaged)
+
+			print('total nodes')
+			print(nnodes)
+			print('np.sum(maxprobabilityDamaged)')
+			print(np.sum(transformerDamageProbs))
+			print('fractiontotaldamaged')
+			print(np.sum(transformerDamageProbs)/nnodes)
+			print('r')
+			print(r)
+			plt.plot(sorted(transformerDamageProbs))
+			plt.show()
+
+
 	def calcGICs(networks):
 		gicsEachNetwork=[]
+
+
 		for n in networks:
 			gicsEachNetwork.append(n.calcGICs())
+			#by duration, calc temperature, and take maximum probability transformer will overheat at any given duration 
+
+
+
