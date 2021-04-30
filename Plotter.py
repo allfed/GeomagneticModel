@@ -14,67 +14,6 @@ class Plotter:
 	def __init__(self):
 		pass
 
-	#calculates the appropriate geometries for each cell in a geopandas grid for plotting purposes
-	@staticmethod
-	def calcGrid(df):
-		latdiff=Params.latituderes#
-		longdiff=Params.longituderes#
-		xmin=np.min(df['lats'])
-		ymin=np.min(df['longs'])
-		xmax=np.max(df['lats'])
-		ymax=np.max(df['longs'])
-		cells=[]
-		for index,row in df.iterrows():
-			if(row['lats']==xmin or row['lats']==xmax or row['longs']==ymin or row['longs']==ymax):
-				cells.append(shapely.geometry.box(0,0,0,0))
-				continue
-
-			cell=shapely.geometry.box(row['longs']-longdiff/2, row['lats']+latdiff/2,row['longs']+longdiff/2 ,row['lats']-latdiff/2)
-			cells.append(cell)
-		crs={'init':'epsg:3857'}
-
-		geo_df=gpd.GeoDataFrame(df,crs=crs,geometry=cells)
-		return geo_df
-
-	@staticmethod
-	def plotRegionEfields(df,polygon,network):
-		minE=np.min(df['E'])
-		maxE=np.max(df['E'])
-
-		crs={'init':'epsg:3857'}
-		geometry=[Point(xy) for xy in zip(df['longs'],df['lats'])]
-		# geo_df=gpd.GeoDataFrame(df,crs=crs,geometry=geometry)
-		geo_df=Plotter.calcGrid(df)
-		ax=geo_df.plot(column='E',legend=True,cmap='viridis',legend_kwds={'label': 'Field Level (V/km)','orientation': "horizontal"})
-		# polyGeo_df=gpd.GeoDataFrame({'geometry':polygon})
-		# pp=gplt.polyplot(polyGeo_df,ax=ax,zorder=1)
-		world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
-
-		gb_shape=world[(world.name == "United Kingdom")]
-		pp=gplt.polyplot(gb_shape,ax=ax,zorder=1)
-		# Plotter.plotNetwork(network.voltages,network.lines,ax)
-		plt.show()
-
-	@staticmethod
-	def formatticklabels(minval,maxval,pp):
-		print('formatting')
-		colourbar = pp.get_figure().get_axes()[1]
-		ticks_loc = colourbar.get_xticks().tolist()
-		ticks_loc.insert(0,minval)
-		ticks_loc.append(maxval)
-		colourbar.xaxis.set_major_locator(mticker.FixedLocator(ticks_loc))
-		
-		labels=[]
-		for i in range(0,len(ticks_loc)):
-			x=ticks_loc[i]
-			exponent = int(np.log10(x))
-			coeff = x/10**exponent
-			if(i==0 or i==len(ticks_loc)):
-				labels.append(r"${:2.1f} \times 10^{{ {:2d} }}$".format(coeff,exponent))					
-			else:
-				labels.append(r"${:2.1f} \times 10^{{ {:2d} }}$".format(coeff,exponent))
-		colourbar.set_xticklabels(labels,rotation=33)
-
 	def plotGICsBubble(df,network):
 		world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
 		gb_shape=world[(world.name == "United Kingdom")]
