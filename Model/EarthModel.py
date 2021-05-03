@@ -103,6 +103,10 @@ class EarthModel:
 	def initGCmodel(self):
 		return GCmodel()
 
+	def loadgeotomagDict(self):
+		self.geotomagDict=np.load(Params.geotomagDict+'geotomagDict.npy',allow_pickle=True)
+
+
 	#the purpose of this function is to process the MT sites while calculating and saving E fields at all durations
 	def calcAndSaveEfields(self,mtsites,tfsites):
 		for i in range(0,len(tfsites)):
@@ -313,6 +317,30 @@ class EarthModel:
 		#return the magnetic coords in the same units as the geographic:
 		return cvals.convert('MAG','sph')
 
+	def generateGeomagneticArray(self):
+		print('creating geomagnetic latitude dictionary')
+		self.GClatitudes=[]
+		self.GClongitudes=[]
+		self.maglatDict={}
+		longInterval=int(np.floor(Params.longituderes/0.25))
+		latInterval=int(np.floor(Params.latituderes/0.25))
+		with h5py.File(Params.globalcondloc, 'r') as f:
+			latitudes = f.get('LATGRID')[0]
+			longitudes = f.get('LONGRID')[:,0]
+			lenlat=len(latitudes)
+			lenlong=len(longitudes)
+			for longkey in range(0,lenlong-1,longInterval):
+				longitude=f['LONGRID'][longkey,0]
+				print(longitude)
+
+				for latkey in range(0,lenlat-1,latInterval):
+					latitude = f['LATGRID'][0,latkey]
+					magcoords=self.geotomag(latitude,longitude)
+					maglat=magcoords.data[0][1]
+					maglong=magcoords.data[0][2]
+					self.maglatDict[(latitude,longitude)]=(maglat,maglong)
+		np.save(Params.geotomagDict+'geotomagDict',self.maglatDict,allow_pickle=True)
+
 
 
 	# magic formula to get the divisor for the field to go from estimate at 72 to at any magnetic latitude 
@@ -369,7 +397,7 @@ class EarthModel:
 
 	#for each conductivity grid point in the boundary, calculate E field for 60 second duration, and save associated E field data in format used by GEOMAGICA network calculations for each rate per year
 	def calcRegionEfields(self,ratePerYears,network,plot):
-		plot=False
+		plot=True
 		regionName=network.region
 		minlat=network.minlat
 		minlong=network.minlong
@@ -439,10 +467,17 @@ class EarthModel:
 				for longkey in longkeys:
 					longitude = self.GClongitudes[longkey]
 					c=self.apparentCondMap[latkey,longkey]
-					magcoords = self.geotomag(latitude, longitude)
-					maglat=magcoords.data[0][1]
-					maglong=magcoords.data[0][2]
 
+					# magcoords = self.geotomag(latitude, longitude)
+					# maglat=magcoords.data[0][1]
+					# maglong=magcoords.data[0][2]
+					# print(latitude)
+					# print(longitude)
+					# print(self.geotomagDict)
+					# print(self.geotomagDict[84.625, -179.875])
+					maglat,maglong = self.geotomagDict.item()[(latitude,longitude)]
+					# print(maglat)
+					# print(maglong)
 					mld = self.getMagLatDivisor(self.adjustForThresholdShift(maglat,r))
 
 					E =refField*np.sqrt(self.refconductivity)/np.sqrt(abs(c))*mld
@@ -454,7 +489,7 @@ class EarthModel:
 
 				df=pd.DataFrame({'longs':np.array(longs),'lats':np.array(lats),'E':np.array(Es)})
 				polygon=network.boundaryPolygon
-				Plotter.plotRegionEfields(df,polygon,network)
+				Plotter.plotRegionEfields(df,r,network)
 			if(not os.path.isdir(Params.regionEfieldsDir+regionName)):
 				os.mkdir(Params.regionEfieldsDir+regionName)
 			filename=Params.regionEfieldsDir+regionName+'/EfieldHor'+str(r)+'PerYear60Second.txt'
@@ -462,7 +497,6 @@ class EarthModel:
 			dataPathsDict[r]=filename
 			# print(dataPathsDict)
 		return dataPathsDict
-
 
 	# find E -fields at all locations on conductivity map for each duration
 	# Correct for geomagnetic latitude and apparent conductivity

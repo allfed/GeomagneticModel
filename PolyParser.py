@@ -11,6 +11,7 @@ class PolyParser:
     def poly_to_polygon(file_name):
         with open(file_name) as f:
             content = f.readlines()
+        
         return PolyParser.parse_poly(content)
 
     @staticmethod

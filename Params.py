@@ -26,7 +26,8 @@ def importModelParams():
 	global regionEfieldsDir
 	global countryNetworkDir
 	global networkConfigDir
-	global downloadedTransnetDataDir
+	global planetTransnetDataDir
+	global countryTransnetDataDir
 	global mtRepeatRatesDir
 	global mtStormsDir
 	global mtRepeatRatePlotsDir
@@ -51,8 +52,9 @@ def importModelParams():
 	global landArea15min
 	global eleByNation
 	global popByNation
-	global linesDataLoc
-	global voltageDataLoc
+	global networkAnalysisDir
+	global geotomagDict
+	global configTransnetDataDir
 
 	global tfsitenames
 	global tfformats
@@ -111,14 +113,16 @@ def importModelParams():
 			regionEfieldsDir=paramdata[2][coltitleindex]
 		if(coltitle == 'countryNetworkDir'):
 			countryNetworkDir=paramdata[2][coltitleindex]
-		if(coltitle == 'downloadedTransnetDataDir'):
-			downloadedTransnetDataDir=paramdata[2][coltitleindex]
+		if(coltitle == 'planetTransnetDataDir'):
+			planetTransnetDataDir=paramdata[2][coltitleindex]
+		if(coltitle == 'countryTransnetDataDir'):
+			countryTransnetDataDir=paramdata[2][coltitleindex]
+		if(coltitle == 'configTransnetDataDir'):
+			configTransnetDataDir=paramdata[2][coltitleindex]
 		if(coltitle == 'networkConfigDir'):
 			networkConfigDir=paramdata[2][coltitleindex]
-		if(coltitle == 'linesDataLoc'):
-			linesDataLoc=paramdata[2][coltitleindex]
-		if(coltitle == 'voltageDataLoc'):
-			voltageDataLoc=paramdata[2][coltitleindex]
+		if(coltitle == 'networkAnalysisDir'):
+			networkAnalysisDir=paramdata[2][coltitleindex]
 		if(coltitle == 'mtRepeatRatesDir'):
 			mtRepeatRatesDir = paramdata[2][coltitleindex]
 		if(coltitle == 'mtRepeatRatePlotsDir'):
@@ -147,6 +151,8 @@ def importModelParams():
 			overheatMapsDir = paramdata[2][coltitleindex]
 		if(coltitle == 'overheatDataDir'):
 			overheatDataDir = paramdata[2][coltitleindex]
+		if(coltitle == 'geotomagDict'):
+			geotomagDict = paramdata[2][coltitleindex]
 		if(coltitle == 'popCELEdir'):
 			popCELEdir = paramdata[2][coltitleindex]
 		if(coltitle == 'mtEfieldsloc'):

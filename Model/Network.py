@@ -74,15 +74,14 @@ class Network:
 
 
 	def importNetwork(self,continent,country):
-		if(len(country)==0):
+		if(not country):
 			self.region=continent
 			self.regionDataDir=Params.planetNetworkDir+continent+'/'
-			self.downloadedDataDir=Params.downloadedTransnetDataDir+continent+'/'
+			self.downloadedDataDir=Params.planetTransnetDataDir+continent+'/'
 		else:
 			self.region=country
 			self.regionDataDir=Params.countryNetworkDir+continent+'/'+country+'/'
-			self.downloadedDataDir=Params.downloadedTransnetDataDir+continent+'/'+country+'/'
-		self.loadPolygon()
+			self.downloadedDataDir=Params.countryTransnetDataDir+continent+'/'+country+'/'
 		self.continent=continent
 		# self.regionDataDir='europe/luxembourg/'
 
@@ -90,6 +89,7 @@ class Network:
 
 		# self.country='luxembourg'
 		self.country=country
+		self.loadPolygon()
 		self.continent=continent
 		self.dbname=self.region.replace('-','_')
 		self.connections=[]
@@ -113,12 +113,13 @@ class Network:
 				self.gens.append(rnd)
 
 		nodesDict=self.importNodes()
-		self.sortednodes={v[0]:v for k, v in sorted(self.nodesDict.items(), key=lambda item: item[1][0])}
-		# self.sortednodes=[sortednodesDict.values()]
+
+		#sort nodesdict by index
+		self.sortednodes=[v for k, v in sorted(self.nodesDict.items(), key=lambda item: item[1]['index'])]
 
 		self.importConnections(nodesDict)
 		self.saveTextFiles()
-		self.generateConfigFile()
+		# self.generateConfigFile()
 		print('')
 		print('')
 		print('')
@@ -127,12 +128,14 @@ class Network:
 		# self.analyzeNetwork()
 		fig=plt.figure()
 		ax = fig.add_subplot(111)
-		Plotter.plotNetwork(self.voltages,self.lines,ax)
-
+		Plotter.plotNetwork(self.voltages,self.lines,ax,self.region)
 		return [self.voltages,self.lines]
 
 	def loadPolygon(self):
 		pfile=self.downloadedDataDir+'pfile.poly'
+		if(not self.country):
+			self.boundaryPolygon = PolyParser.poly_to_polygon(pfile)
+
 		self.boundaryPolygon = PolyParser.poly_to_polygon(pfile)
 
 	def cleanUpXML(self):
@@ -211,25 +214,30 @@ class Network:
 			#node 5 is resistance directly to ground from this node
 			#node 6 is resistance directly to transformer from this node (I think, not really sure about this one)
 			if(not (subname in nodesDict.keys())):
-				index = index + 1
 				# data format for ground node:
 				# __0__ ____1____ ___2___ ___3___ _4_ __5__ _______6______ _7_
 				# index node name  code   country lat long  gnd resistance  0
-				nodes.append(np.array([index,subname + '_E',index, self.region, lat, long, self.groundingR,'0']))
+				savenode=np.array([index,subname + '_E',index, self.region, lat, long, self.groundingR,'0'])
 
-				nodesDict[subname]=[index,lat,long,'substation','',0]#ground has voltage 0
-				subindex=index
+				nodesDict[subname] = {'savenode':savenode,'index':index,'lat':lat,'long':long,'nodeType':'substation','voltageClass':0}#ground has voltage 0
+				index = index + 1
 
+			if(windname in nodesDict.keys()):
+				continue
 			# data format for transformer node:
 			# __0__ ____1____ ___2___ ___3___ _4_ __5__ _______6______ _7_
 			# index node name  code   country lat long  gnd resistance Inf
-			index = index + 1
-			nodes.append(np.array([index,windname,index, self.region, lat, long, 'Inf','Inf']))
+
+			savenode = np.array([index,windname,index, self.region, lat, long, 'Inf','Inf'])
+
 			
 			# as it stands, there can only be one winding per voltage network for the substation. This may need to be adjusted if there were more complicated representations of networks.
 			#
 			# assert(not (windname in nodesDict.keys()))
-			nodesDict[windname]=[index,lat,long,'winding',subname,voltage]
+
+			nodesDict[windname] = {'savenode':savenode,'index':index,'lat':lat,'long':long,'nodeType':'winding','substationName':subname,'voltageClass':voltage}#ground has voltage 0
+
+			index = index + 1
 
 		#add power station nodes
 		# for g in self.gens:
@@ -246,7 +254,6 @@ class Network:
 		# 	nodes.append(np.array([index,genname,index,self.region,genlat,genlong,'Inf','Inf']))
 
 		# 	nodesDict[genname]=[index,genlat,genlong,'generatingUnit',genname,voltage]
-		self.nodes=nodes
 		self.nodesDict=nodesDict
 		return nodesDict
 
@@ -276,10 +283,10 @@ class Network:
 			winding2='TW_'+c.name.split('_CN_')[2]
 
 			if(winding1 in nodesDict.keys()):
-				assert(nodesDict[winding1][3]=='winding')
+				assert(nodesDict[winding1]['nodeType']=='winding')
 				#get the index for each winding
-				index1=nodesDict[winding1][0]
-				subname1=nodesDict[winding1][4]
+				index1=nodesDict[winding1]['index']
+				subname1=nodesDict[winding1]['substationName']
 				key1=winding1
 			else:
 				continue
@@ -296,10 +303,10 @@ class Network:
 				# 	print('Error: ACLineSegment'+str(c.name)+' does not connect to node!!!')
 
 			if(winding2 in nodesDict.keys()):
-				assert(nodesDict[winding2][3]=='winding')
+				assert(nodesDict[winding2]['nodeType']=='winding')
 				#get the index for each winding
-				index2=nodesDict[winding2][0]
-				subname2=nodesDict[winding2][4]
+				index2=nodesDict[winding2]['index']
+				subname2=nodesDict[winding2]['substationName']
 				key2=winding2
 			else:
 				continue
@@ -333,54 +340,54 @@ class Network:
 			# print(c.length)
 
 			r=resistancePerKilometer*(c.length/1000) #Ohms (net resistance of the power line, length converted to kilometers)
-			print('r')
-			print(r)
+			# print('r')
+			# print(r)
 
-			index = index + 1
 
 
 			# data format for connection to other transformer node:
 			# __0__ ____1____ ___2___ _3_ _4_ _____5____ ____6____
 			# index nodefrom  nodeto   0   0  resistance  voltage
 			outputConnections.append([index,index1,index2,'0','0',str(r),str(v)])
+			index = index + 1
 
 			if(not (index1 in isConnectedToGround.keys())):
-				assert(nodesDict[subname1][3]=='substation')
-				sub1index=nodesDict[subname1][0]
+				assert(nodesDict[subname1]['nodeType']=='substation')
+				sub1index=nodesDict[subname1]['index']
 
-				index=index+1
 
 
 				# data format for connection transformer winding node to ground node:
 				# __0__ ____1____ ___2___ _3_ _4_ ________5_______ _6_
 				# index nodefrom  nodeto   0   0  wind resistance   0
 				outputConnections.append([index,index1,sub1index,'0','0',windR,'0'])
+				index=index+1
 
 			#if we haven't connected winding2 to the substation ground yet
 			if(not (index2 in isConnectedToGround.keys())):
-				sub2index=nodesDict[subname2][0]
+				sub2index=nodesDict[subname2]['index']
 
-				index=index+1
 
 				# data format for connection transformer winding node to ground node:
 				# __0__ ____1____ ___2___ _3_ _4_ ________5_______ _6_
 				# index nodefrom  nodeto   0   0  wind resistance   0
 				outputConnections.append([index,index2,sub2index,'0','0',windR,'0'])
+				index=index+1
 
 			#now we've connected the nodes connected to this power line to substation ground 
 			isConnectedToGround[index1]=True
 			isConnectedToGround[index2]=True
 
 			#for plotting
-			lat1=nodesDict[key1][1]
-			long1=nodesDict[key1][2]
-			lat2=nodesDict[key2][1]
-			long2=nodesDict[key2][2]
+			lat1=nodesDict[key1]['lat']
+			long1=nodesDict[key1]['long']
+			lat2=nodesDict[key2]['lat']
+			long2=nodesDict[key2]['long']
 			p1=Point(float(long1),float(lat1))
 			p2=Point(float(long2),float(lat2))
 			line=LineString([[p1.x, p1.y], [p2.x, p2.y]])
-			print('[[p1.x, p1.y], [p2.x, p2.y]]')
-			print([[p1.x, p1.y], [p2.x, p2.y]])
+			# print('[[p1.x, p1.y], [p2.x, p2.y]]')
+			# print([[p1.x, p1.y], [p2.x, p2.y]])
 			vindex=np.where(np.array(voltages)==v)[0]
 			if(len(vindex)==0):
 				voltages.append(v)
@@ -397,65 +404,69 @@ class Network:
 		self.voltages=voltages
 		self.nodesDict=nodesDict
 
-	def analyzeNetwork(self):
-		print('OOOO')
-		lines=[]
-		points=[]
+	# def analyzeNetwork(self):
+	# 	print('OOOO')
+	# 	lines=[]
+	# 	points=[]
 
-		newnodes={}
-		newconnections=[]
-		# sortednodes={v[0]:v for k, v in sorted(self.nodesDict.items(), key=lambda item: item[1][0])}
-		# print(sortednodes)
-		for nk in self.nodesDict.keys():
-			node=self.nodesDict[nk]
-			point=Point([float(node[1]),float(node[2])])
-			points.append(point)
+	# 	newnodes={}
+	# 	newconnections=[]
+	# 	# sortednodes={v[0]:v for k, v in sorted(self.nodesDict.items(), key=lambda item: item[1][0])}
+	# 	# print(sortednodes)
+	# 	for nk in self.nodesDict.keys():
+	# 		node=self.nodesDict[nk]
+	# 		point=Point([float(node[1]),float(node[2])])
+	# 		points.append(point)
 
-			# print(node)
-			if(float(node[2])<51.1 and float(node[2])>50.2 and float(node[1])<-3 and float(node[1])>-5):
-				newnodes[nk]=node
-				# print(node)
-				for c in self.connections:
-					if(c[1]==node[0] or c[2]==node[0]):
-						add=True
+	# 		# print(node)
+	# 		if(float(node[2])<51.1 and float(node[2])>50.2 and float(node[1])<-3 and float(node[1])>-5):
+	# 			newnodes[nk]=node
+	# 			# print(node)
+	# 			for c in self.connections:
+	# 				if(c[1]==node[0] or c[2]==node[0]):
+	# 					add=True
 
-						# print(c)
-						for nc in newconnections:
-							if(nc[0]==c[0]):
-								add=False
-								break
-						if(add):
-							newconnections.append(c)
-							# print(c[1])
-							# print('c[2]')
-							# print(c[2])
-							# print('sortednodes[c[1]]')
-							# print(sortednodes[c[1]])
-							# print('sortednodes[c[2]]')
-							# print(sortednodes[c[2]])
+	# 					# print(c)
+	# 					for nc in newconnections:
+	# 						if(nc[0]==c[0]):
+	# 							add=False
+	# 							break
+	# 					if(add):
+	# 						newconnections.append(c)
+	# 						# print(c[1])
+	# 						# print('c[2]')
+	# 						# print(c[2])
+	# 						# print('sortednodes[c[1]]')
+	# 						# print(sortednodes[c[1]])
+	# 						# print('sortednodes[c[2]]')
+	# 						# print(sortednodes[c[2]])
 
-							p1=Point(float(sortednodes[c[1]][2]),float(sortednodes[c[1]][1]))
-							p2=Point(float(sortednodes[c[2]][2]),float(sortednodes[c[2]][1]))
-							line=LineString([[p1.x, p1.y], [p2.x, p2.y]])
-							lines.append(line)
-		# quit()
-		print('newnodes')
-		# print(newnodes)
-		print('newconnections')
-		# print(newconnections)
-		print('OOOO')
+	# 						p1=Point(float(sortednodes[c[1]][2]),float(sortednodes[c[1]][1]))
+	# 						p2=Point(float(sortednodes[c[2]][2]),float(sortednodes[c[2]][1]))
+	# 						line=LineString([[p1.x, p1.y], [p2.x, p2.y]])
+	# 						lines.append(line)
+	# 	# quit()
+	# 	print('newnodes')
+	# 	# print(newnodes)
+	# 	print('newconnections')
+	# 	# print(newconnections)
+	# 	print('OOOO')
 
-		network=gpd.GeoDataFrame({'geometry':np.array(lines)})
-		gdf=gpd.GeoDataFrame(geometry=lines)
+	# 	network=gpd.GeoDataFrame({'geometry':np.array(lines)})
+	# 	gdf=gpd.GeoDataFrame(geometry=lines)
 
-		gdf.plot()
-		plt.show()
+	# 	gdf.plot()
+	# 	plt.show()
 			# quit()
 
 	def saveTextFiles(self):
 		#save the text files which will be processed
+		savenodes=[x['savenode'] for x in self.sortednodes]
 
-		savetxt(self.processedNetworkDir+self.region+'Nodes.txt',np.array(self.nodes),delimiter='\t', fmt='%s')
+		print(np.array(savenodes))
+		print(self.processedNetworkDir+self.region+'Nodes.txt')
+		# quit()
+		savetxt(self.processedNetworkDir+self.region+'Nodes.txt',np.array(savenodes),delimiter='\t', fmt='%s')
 		savetxt(self.processedNetworkDir+self.region+'Connections.txt',np.array(self.connections),delimiter='\t', fmt='%s')
 
 		 
@@ -485,7 +496,7 @@ class Network:
 			fourthcomment=''
 
 
-		if(len(self.country)==0):
+		if(not self.country):
 			destdir=self.continent
 			urlsegment=self.continent
 			continentspecifier='continent='+self.continent
@@ -524,8 +535,8 @@ vlevels='%s'
 # -e evaluation of point-to-point connections (only makes sense for Germany, since coverage of OSM data is sufficient high)
 trans_args='%s'
 		''' % (self.dbname,\
-			firstcomment,Params.downloadedTransnetDataDir+self.region+'/',\
-			secondcomment,Params.downloadedTransnetDataDir+self.region+'/',\
+			firstcomment,Params.configTransnetDataDir+destdir+'/',\
+			secondcomment,Params.configTransnetDataDir+destdir+'/',\
 			thirdcomment,urlsegment,\
 			fourthcomment,urlsegment,\
 			destdir,\
@@ -565,8 +576,8 @@ trans_args='%s'
 
 	def calcGICs(self):
 		# The GEOMAGICA formatted data is run by our own version of GEOMAGICA, called GIC_Model.py.
+		print('calcGICs')
 		gicModel=GIC_Model()
-		connsAndNodesPath=self.processedNetworkDir+self.region
 
 		loadDataFromFiles=False
 
@@ -574,12 +585,15 @@ trans_args='%s'
 			efilePath=self.EfieldFiles[r]
 			networkFileDir=self.processedNetworkDir+self.region
 			if(loadDataFromFiles):
-				savedata=np.load('gics'+str(r)+'perYear.npy',allow_pickle=True)
+				savedata=np.save(Params.networkAnalysisDir+self.region+'/gics'+str(r)+'perYear.npy',allow_pickle=True)
 				[gics,lineLengths]=savedata
 			else:
 				[gics,lineLengths]=gicModel.runModel(efilePath,networkFileDir)
 				savedata=[gics,lineLengths]
-				np.save('gics'+str(r)+'perYear',savedata,allow_pickle=True)
+				print('saved')
+				print('len(gics)')
+				# print(len(gics))
+				np.save(Params.networkAnalysisDir+self.region+'/gics'+str(r)+'perYear',savedata,allow_pickle=True)
 			print('number of lines')
 			print(len(lineLengths))
 			print('median line length')
@@ -600,28 +614,25 @@ trans_args='%s'
 			countedgics=[]
 			# for i in range(0,self.sortednodes):
 			# 	self.sortednodes[i]
-			nodesarr=list(self.sortednodes.values())
-			print(len(nodesarr))
-			print(len(gics))
-			# quit()
-			for i in range(0,len(nodesarr)):
-				node=nodesarr[i]
+			# nodesarr=list(self.sortednodes.values())
+			for i in range(0,len(self.sortednodes)):
+				node=self.sortednodes[i]
 
-				if(node[3]!='substation'):
+				if(node['nodeType']!='substation'):
 					continue
 				# print('node')
 				# print(node)
-				index=node[0]-1
 				# point=Point([float(node[1]),float(node[2])])
 				# points.append(point)
 
-				voltage=node[5]
+				voltage=node['voltageClass']
 				# print('voltage')
 				# print(voltage)
 				# print(gics[index])
 				voltages.append(voltage)
-				lats.append(float(node[1]))
-				longs.append(float(node[2]))
+				lats.append(float(node['lat']))
+				longs.append(float(node['long']))
+				index=node['index']
 				nodeGIC=gics[index]
 				transformerGIC=nodeGIC/1.3
 				
@@ -641,7 +652,7 @@ trans_args='%s'
 			df.dropna(subset = ["GIC"], inplace=True)
 			print('number of substations')
 			print(len(df))
-			Plotter.plotGICsBubble(df,self)
+			Plotter.plotGICsBubble(df,self,r)
 		# print(sortednodes)
 		
 

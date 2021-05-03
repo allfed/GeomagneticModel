@@ -161,7 +161,7 @@ class GIC_Model:
         # connectionspath =   "network/HortonGrid_Connections.txt"
         networkpath =       connsAndNodesPath+'Nodes.txt'#"network/nodes.txt"
         connectionspath =   connsAndNodesPath+'Connections.txt'#"network/connections.txt"
-        
+        print(networkpath)
         # Read station and transformer data:
         network = open(networkpath, 'r')
         netdata = network.readlines()
@@ -204,7 +204,7 @@ class GIC_Model:
             res_earth[i] = float(data[6])*3
             # Transformer resistances (see notes):
             res_trans[i] = float(data[7])
-            
+
         # READ CONNECTION DATA:
         # ---------------------
         connectionsfile = open(connectionspath, 'r')
@@ -283,6 +283,13 @@ class GIC_Model:
         connections = np.zeros((nnodes,nnodes), dtype=npf)
         for i in range(0,nconnects):
             x, y = int(nodefrom[i]), int(nodeto[i])
+            # print('connection index')
+            # print(i)
+            # print('node from')
+            # print(x)
+            # print('node to')
+            # print(y)
+
             if (resis[x,y] > 0. and res_line[i] > 0.):
                 # If res already added to this line, add another line in parallel:
                 resis[x,y] = 1./(1./resis[x,y] + 1./res_line[i])

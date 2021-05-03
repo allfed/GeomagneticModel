@@ -540,25 +540,25 @@ class PowerGrid:
 		else:
 			voltageClass='735'
 
-		print('voltageClass')
-		print(voltageClass)
+		# print('voltageClass')
+		# print(voltageClass)
 		probabilityDamaged=0
 		numberTransformerTypesInVoltageClass=0
 		fraction=0
 		for i in range(0,ntransformers):
 			if(float(self.voltageClass[i])==float(voltageClass)):
 				numberTransformerTypesInVoltageClass=numberTransformerTypesInVoltageClass+1
-				print('i')
-				print(i)
-				print('gic')
-				print(gic)
-				print('duration')
-				print(duration)
+				# print('i')
+				# print(i)
+				# print('gic')
+				# print(gic)
+				# print('duration')
+				# print(duration)
 
 
 				temp=self.calcTemp(i,gic,duration)
-				print('temp')
-				print(temp)
+				# print('temp')
+				# print(temp)
 
 				if(temp>140):
 					fraction=fraction+Params.fractionTypeAtVoltage[i]*.39
@@ -787,7 +787,7 @@ class PowerGrid:
 
 
 			pp=gplt.polyplot(world,ax=ax,zorder=1)
-			print(df)
+			# print(df)
 			self.formatticklabels(elemin,elemax,pp)
 
 			plt.title('Geoelectric Field Multiplier\n Magnetic Latitude\n1 in '+str(1/r)+' Year Storm')
@@ -868,7 +868,7 @@ class PowerGrid:
 			#turn the point values into a grid cell with the proper width and height
 			latdiff=Params.latituderes#
 			longdiff=Params.longituderes#
-			geo_df=self.calcGrid(df,latdiff,longdiff)
+			geo_df=Plotter.calcGrid(df,latdiff,longdiff)
 
 			ax=geo_df.plot(column='regionsCELE')
 			world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
@@ -911,12 +911,12 @@ class PowerGrid:
 			alllines=np.append(alllines,np.array(lines))
 			networks.append(network)
 		self.networks=networks
-		np.save(Params.voltageDataLoc+'voltageData',allvoltages,allow_pickle=True)
-		np.save(Params.linesDataLoc+'linesData',alllines,allow_pickle=True)
+		np.save(Params.networkAnalysisDir+'voltageData',allvoltages,allow_pickle=True)
+		np.save(Params.networkAnalysisDir+'linesData',alllines,allow_pickle=True)
 
 	def createRegionNetwork(self,continent,country):
 		#add together the high voltage power grid of ... THE ENTIRE EARTH
-		loaddirectory=Params.countryNetworkDir+continent+'/'+country
+		loaddirectory=Params.countryNetworkDir+continent+'/'+str(country)
 		print(loaddirectory)
 		alllines=[]
 		allvoltages=[]
@@ -927,23 +927,23 @@ class PowerGrid:
 		[voltages,lines]=network.importNetwork(continent,country)
 		allvoltages=np.append(allvoltages,np.array(voltages))
 		alllines=np.append(alllines,np.array(lines))
-		if(not os.path.isdir(Params.voltageDataLoc+network.region)):
-			os.mkdir(Params.voltageDataLoc+network.region)
-		np.save(Params.voltageDataLoc+network.region+'/voltageData',allvoltages,allow_pickle=True)
+		if(not os.path.isdir(Params.networkAnalysisDir+network.region)):
+			os.mkdir(Params.networkAnalysisDir+network.region)
+		np.save(Params.networkAnalysisDir+network.region+'/voltageData',allvoltages,allow_pickle=True)
 		print('allvoltages saved')
-		np.save(Params.linesDataLoc+'/'+network.region+'/linesData',alllines,allow_pickle=True)
+		np.save(Params.networkAnalysisDir+'/'+network.region+'/linesData',alllines,allow_pickle=True)
 		print('linedata saved')
 		self.networks=[network]
 
 	def plotNetwork(self):
 		if(len(self.networks)>1 or len(self.networks)==0):
 			#load up the high voltage lines and put together for plotting
-			allvoltages=np.load(Params.voltageDataLoc+'voltageData.npy',allow_pickle=True)
-			allines=np.load(Params.linesDataLoc+'linesData.npy',allow_pickle=True)
+			allvoltages=np.load(Params.networkAnalysisDir+'voltageData.npy',allow_pickle=True)
+			allines=np.load(Params.networkAnalysisDir+'linesData.npy',allow_pickle=True)
 		else:
 			region=self.networks[0].region
-			allvoltages=np.load(Params.voltageDataLoc+region+'/voltageData.npy',allow_pickle=True)
-			allines=np.load(Params.linesDataLoc+region+'/linesData.npy',allow_pickle=True)
+			allvoltages=np.load(Params.networkAnalysisDir+region+'/voltageData.npy',allow_pickle=True)
+			allines=np.load(Params.networkAnalysisDir+region+'/linesData.npy',allow_pickle=True)
 
 		indices=range(0,len(allines))
 		f, ax = plt.subplots()
@@ -999,11 +999,16 @@ class PowerGrid:
 
 	def calcTransformerFailures(self,network,durationratios,durations,rateperyears):
 		print('5')
-		nodesarr=list(network.sortednodes.values())
+		nodesarr=network.sortednodes
+		print(nodesarr[0])
+		print(nodesarr[1])
+		print(nodesarr[-1])
 		for r in rateperyears:
-			savedata=np.load('gics'+str(r)+'perYear.npy',allow_pickle=True)
+			savedata=np.load(Params.networkAnalysisDir+network.region+'/gics'+str(r)+'perYear.npy',allow_pickle=True)
+
+			# savedata=np.load('gics'+str(r)+'perYear.npy',allow_pickle=True)
 			[gics,lineLengths]=savedata
-			print(gics)
+			# print(gics)
 			transformerDamageProbs=[]
 			nnodes=0
 			for i in range(0,len(gics)):
@@ -1021,9 +1026,8 @@ class PowerGrid:
 				print('len(gic)')	
 				print(len(gics))	
 				print(nodesarr[i])
-
-				nodetype=nodesarr[i][3] #node category
-				voltage=nodesarr[i][5] #max voltage at station, or voltage of winding
+				nodetype=nodesarr[i]['nodeType'] #node category
+				voltage=nodesarr[i]['voltageClass'] #max voltage at station, or voltage of winding
 				maxprobabilityDamaged=0
 				if(nodetype=='substation'):
 					nnodes=nnodes+1
@@ -1035,12 +1039,12 @@ class PowerGrid:
 						adjustedGIC=gic*durationratio/1.3
 						
 
-						print('duration')
-						print(duration)
-						print('durationratio')
-						print(durationratio)
-						print('gic')
-						print(gic)
+						# print('duration')
+						# print(duration)
+						# print('durationratio')
+						# print(durationratio)
+						# print('gic')
+						# print(gic)
 						# if(adjustedGIC>10):
 						# 	print('wow')
 						# 	quit()

@@ -53,7 +53,7 @@ def get_args():
 		'Function', metavar='function', type=str,
 		nargs='?',
 		help='Specify subpart of geomagnetic model to run (a specific function as part of the model specified). If you want the entirety of this aspect of the model to be run, don\'t include any second argument. Default: entirety of model processed.',
-		choices=['calcEfields','calcRecurrence','calcRecurrenceFit','calcCombinedRecurrence','calcGlobalModel','evalGCmodel','calcEvsDuration','calcTimeBetweenStorms','WorldNetwork','Region'])
+		choices=['calcEfields','calcRecurrence','calcRecurrenceFit','calcCombinedRecurrence','calcGlobalModel','evalGCmodel','calcEvsDuration','calcTimeBetweenStorms','WorldNetwork','Region','CalculateMagDict'])
 
 
 	arg_parser.add_argument(
@@ -110,10 +110,15 @@ if __name__ == '__main__':
 		rateperyears=[rateperyears]
 
 	print('initializing models')
-	tfsites=earthmodel.initTFsites()
+	# tfsites=earthmodel.initTFsites()
 	mtsites=earthmodel.initMTsites()
 	gcmodel=earthmodel.initGCmodel()
 	earthmodel.calcGCcoords()
+
+	if(args['Model']=='EarthModel' and args['Function']=='CalculateMagDict'):
+		earthmodel.generateGeomagneticArray()
+		# magdictgenerated=True
+	earthmodel.loadgeotomagDict()
 
 	if('MapOfSites' in args['plots']):
 		earthmodel.plotSites(tfsites,mtsites)
@@ -142,7 +147,7 @@ if __name__ == '__main__':
 				print(continents)
 				quit()
 			country=args['country']
-			# powergrid.createNetwork()
+			print('creating region network:'+continent +' '+str(country) )			
 			powergrid.createRegionNetwork(continent,country)
 			print('2')
 			earthmodel.loadCombinedFits()
