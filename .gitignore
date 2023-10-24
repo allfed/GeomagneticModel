@@ -52,3 +52,6 @@ var/
 
 # Mypy cache
 .mypy_cache/
+
+#Big data sets
+Data/BigData/
