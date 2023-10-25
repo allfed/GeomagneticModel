@@ -88,7 +88,7 @@ conda activate geomagmodel
 	```
 	|-- GeomagneticModelWrapperDirectory
 	| |-- GeomagneticModel (this is the folder this README is in)
-	| | |- ...
+	| | |-- ...
 	| |-- transnet
 	| | |-- data
 	| | | |-- europe
