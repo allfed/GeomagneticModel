@@ -87,18 +87,18 @@ conda activate geomagmodel
 	- For the Estonia example you want this kind of directory structure:
 	```
 	|-- GeomagneticModelWrapperDirectory
-	|	|-- GeomagneticModel (this is the folder this README is in)
-	|	|	|- ...
-	|	|-- transnet
-	|	|	|-- data
-	|	|	|	|-- europe
-	|	|	|	|	|-- estonia
-	|	|	|	|	|	|-- pfile.poly
-	|	|-- transnet-models
-	|	|	|-- europe
-	|	|	|	|-- estonia
-	|	|	|	|	|-- cim.xml
-	| 	| 	|	|	|-- ...
+	| |-- GeomagneticModel (this is the folder this README is in)
+	| | |- ...
+	| |-- transnet
+	| |	|-- data
+	| |	| |-- europe
+	| |	| |	|-- estonia
+	| |	| |	| |-- pfile.poly
+	| |-- transnet-models
+	| |	|-- europe
+	| |	| |-- estonia
+	| |	| |	|-- cim.xml
+	| | | |	|-- ...
 	```
 
 ### Launch
