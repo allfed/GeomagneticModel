@@ -1,0 +1,3001 @@
+Unable to locate module for: TransformerWinding (587b5942-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (587b77d8-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (587be088-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (587c4190-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (587c5e82-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (587cb710-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (587d34ce-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (587dad28-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (587e1678-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (587e7cc6-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (587ee2c4-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (587efe08-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (587f7874-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (587ffa74-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58808e08-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58810e0a-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (5881771e-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (5881da92-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (5881f590-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58823e9c-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (588259d6-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (5882a062-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (5882e766-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (5883b826-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58841b90-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58847252-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (5884d1fc-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58852f08-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58858b88-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (5885a5f0-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58863182-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58869438-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (5886e9b0-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (5887440a-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (5887f972-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (588861be-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (5888bfc4-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (588948e0-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (5889a92a-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (5889f60a-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (588a10fe-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (588a613a-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (588b1710-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (588b8452-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (588bdad8-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (588c2920-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (588c8168-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (588cd1c2-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (588d26ae-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (588d8d42-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (588dec2e-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (588e437c-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (588e9994-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (588ee6a6-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (588f4452-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (588f9c40-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (588fe588-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (589065d0-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (5890bcba-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (5890d74a-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58912eb6-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (589183ac-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (5891dca8-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (589243aa-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (5892b0ec-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58930f60-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (589362c6-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (5893cbb2-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (5894655e-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (5894c0da-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58951a12-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (5895741c-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58962e98-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58968c30-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (5896a68e-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58970494-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (5897b33a-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (589809d4-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58985efc-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (5898ae16-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58992ec2-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (589976c0-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58999272-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (5899de80-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (589a6e18-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (589abd00-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (589b07e2-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (589b9482-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (589be45a-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (589c0016-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (589c4364-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (589c8efa-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (589d4f66-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (589dd530-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (589e1aae-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (589e6ab8-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (589e85de-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (589f1990-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (589fc49e-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58a015fc-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58a099e6-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58a0e98c-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58a141de-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58a19e86-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58a21302-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58a28ce2-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58a30852-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58a38570-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58a42cb4-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58a44780-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58a4d2c2-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58a4f28e-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58a5851e-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58a5a030-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58a60b42-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58a663e4-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58a6b54c-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58a70678-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58a74eb2-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58a7d54e-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58a831ba-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58a896dc-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58a97750-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58a9923a-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58aa34b0-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58aa8348-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58ab4986-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58abe6d4-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58abefb2-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58ac3f26-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58ac8f44-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58acd4d6-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58ad1c2a-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58ad6a9a-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58adcf76-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58ae2c78-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58af2c40-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58afdfbe-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b076f4-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b09558-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b0a6a6-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b0cce4-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b0de14-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b0ef44-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b10074-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b11190-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b12c84-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b13e0e-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b14ff2-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b16154-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b17964-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b18aee-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b19c46-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b1ad94-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b1beb0-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b1cff4-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b1e1ba-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b1f4a2-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b205dc-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b21734-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b22864-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b2399e-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b24b0a-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b25c4e-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b271a2-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b2830e-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b29664-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b2a7c6-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b2b93c-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b2d458-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b2e5ba-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b300c2-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b311f2-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b325a2-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b3372c-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b3525c-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b363fa-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b3799e-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b38b14-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b3a662-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b3b7c4-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b3ca84-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b3dbdc-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b3ed52-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b3feb4-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b41020-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b42178-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b432ee-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b44e50-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b461c4-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b4a206-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b4b3ea-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b4c5b0-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b4d74e-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b4f2f6-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b5064c-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b51808-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b5297e-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b53b1c-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b54c92-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b55e3a-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b57014-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b58220-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b59b02-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b5acf0-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b5be98-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b5d040-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b5e1f2-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b5f390-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b60560-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b616fe-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b6289c-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b63c4c-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b64e12-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b65fec-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b671bc-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b6838c-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b69ade-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b6ad08-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b6bee2-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b6d1f2-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b6e3c2-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b6f560-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b70712-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b718ba-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b72a76-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b73c28-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b74dc6-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b75fa0-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b772b0-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b78476-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b7963c-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b7adc0-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b7bfc2-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b7d1a6-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b7e38a-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b7f578-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b80900-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b81b02-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b82cfa-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b83ef2-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b850cc-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b862ba-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b874c6-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b886be-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b898ac-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b8affe-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b8c214-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b8d3ee-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b8e5d2-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b8f7d4-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b90986-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b91b88-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b92d62-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b940b8-24e0-11e9-9720-02ba7def0216)
+Unable to locate module for: TransformerWinding (58b95238-24e0-11e9-9720-02ba7def0216)
+Referenced 'SubGeographicalRegion' [] object missing.
+Missing 'TransformerWinding' object with uuid: 587b5942-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [587b5942-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 587b77d8-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [587b77d8-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 587be088-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [587be088-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 587c4190-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [587c4190-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 587c5e82-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [587c5e82-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 587cb710-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [587cb710-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 587d34ce-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [587d34ce-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 587dad28-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [587dad28-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 587e1678-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [587e1678-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 587e7cc6-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [587e7cc6-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 587ee2c4-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [587ee2c4-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 587efe08-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [587efe08-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 587f7874-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [587f7874-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 587ffa74-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [587ffa74-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58808e08-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58808e08-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58810e0a-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58810e0a-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 5881771e-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [5881771e-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 5881da92-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [5881da92-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 5881f590-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [5881f590-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58823e9c-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58823e9c-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 588259d6-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [588259d6-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 5882a062-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [5882a062-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 5882e766-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [5882e766-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 5883b826-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [5883b826-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58841b90-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58841b90-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58847252-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58847252-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 5884d1fc-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [5884d1fc-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58852f08-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58852f08-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58858b88-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58858b88-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 5885a5f0-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [5885a5f0-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58863182-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58863182-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58869438-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58869438-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 5886e9b0-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [5886e9b0-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 5887440a-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [5887440a-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 5887f972-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [5887f972-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 588861be-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [588861be-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 5888bfc4-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [5888bfc4-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 588948e0-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [588948e0-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 5889a92a-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [5889a92a-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 5889f60a-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [5889f60a-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 588a10fe-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [588a10fe-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 588a613a-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [588a613a-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 588b1710-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [588b1710-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 588b8452-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [588b8452-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 588bdad8-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [588bdad8-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 588c2920-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [588c2920-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 588c8168-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [588c8168-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 588cd1c2-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [588cd1c2-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 588d26ae-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [588d26ae-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 588d8d42-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [588d8d42-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 588dec2e-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [588dec2e-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 588e437c-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [588e437c-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 588e9994-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [588e9994-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 588ee6a6-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [588ee6a6-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 588f4452-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [588f4452-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 588f9c40-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [588f9c40-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 588fe588-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [588fe588-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 589065d0-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [589065d0-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 5890bcba-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [5890bcba-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 5890d74a-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [5890d74a-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58912eb6-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58912eb6-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 589183ac-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [589183ac-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 5891dca8-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [5891dca8-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 589243aa-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [589243aa-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 5892b0ec-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [5892b0ec-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58930f60-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58930f60-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 589362c6-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [589362c6-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 5893cbb2-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [5893cbb2-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 5894655e-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [5894655e-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 5894c0da-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [5894c0da-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58951a12-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58951a12-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 5895741c-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [5895741c-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58962e98-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58962e98-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58968c30-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58968c30-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 5896a68e-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [5896a68e-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58970494-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58970494-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 5897b33a-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [5897b33a-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 589809d4-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [589809d4-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58985efc-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58985efc-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 5898ae16-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [5898ae16-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58992ec2-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58992ec2-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 589976c0-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [589976c0-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58999272-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58999272-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 5899de80-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [5899de80-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 589a6e18-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [589a6e18-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 589abd00-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [589abd00-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 589b07e2-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [589b07e2-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 589b9482-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [589b9482-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 589be45a-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [589be45a-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 589c0016-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [589c0016-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 589c4364-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [589c4364-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 589c8efa-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [589c8efa-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 589d4f66-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [589d4f66-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 589dd530-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [589dd530-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 589e1aae-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [589e1aae-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 589e6ab8-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [589e6ab8-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 589e85de-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [589e85de-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 589f1990-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [589f1990-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 589fc49e-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [589fc49e-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58a015fc-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58a015fc-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58a099e6-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58a099e6-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58a0e98c-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58a0e98c-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58a141de-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58a141de-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58a19e86-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58a19e86-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58a21302-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58a21302-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58a28ce2-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58a28ce2-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58a30852-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58a30852-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58a38570-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58a38570-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58a42cb4-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58a42cb4-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58a44780-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58a44780-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58a4d2c2-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58a4d2c2-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58a4f28e-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58a4f28e-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58a5851e-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58a5851e-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58a5a030-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58a5a030-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58a60b42-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58a60b42-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58a663e4-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58a663e4-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58a6b54c-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58a6b54c-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58a70678-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58a70678-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58a74eb2-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58a74eb2-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58a7d54e-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58a7d54e-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58a831ba-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58a831ba-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58a896dc-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58a896dc-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58a97750-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58a97750-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58a9923a-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58a9923a-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58aa34b0-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58aa34b0-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58aa8348-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58aa8348-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58ab4986-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58ab4986-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58abe6d4-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58abe6d4-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58abefb2-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58abefb2-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58ac3f26-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58ac3f26-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58ac8f44-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58ac8f44-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58acd4d6-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58acd4d6-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58ad1c2a-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58ad1c2a-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58ad6a9a-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58ad6a9a-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58adcf76-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58adcf76-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58ae2c78-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58ae2c78-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58af2c40-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58af2c40-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58afdfbe-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58afdfbe-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b076f4-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b076f4-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b09558-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b09558-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b0a6a6-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b0a6a6-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b0cce4-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b0cce4-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b0de14-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b0de14-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b0ef44-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b0ef44-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b10074-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b10074-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b11190-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b11190-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b12c84-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b12c84-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b13e0e-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b13e0e-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b14ff2-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b14ff2-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b16154-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b16154-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b17964-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b17964-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b18aee-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b18aee-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b19c46-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b19c46-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b1ad94-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b1ad94-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b1beb0-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b1beb0-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b1cff4-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b1cff4-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b1e1ba-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b1e1ba-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b1f4a2-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b1f4a2-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b205dc-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b205dc-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b21734-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b21734-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b22864-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b22864-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b2399e-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b2399e-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b24b0a-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b24b0a-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b25c4e-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b25c4e-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b271a2-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b271a2-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b2830e-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b2830e-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b29664-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b29664-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b2a7c6-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b2a7c6-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b2b93c-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b2b93c-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b2d458-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b2d458-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b2e5ba-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b2e5ba-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b300c2-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b300c2-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b311f2-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b311f2-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b325a2-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b325a2-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b3372c-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b3372c-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b3525c-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b3525c-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b363fa-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b363fa-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b3799e-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b3799e-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b38b14-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b38b14-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b3a662-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b3a662-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b3b7c4-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b3b7c4-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b3ca84-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b3ca84-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b3dbdc-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b3dbdc-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b3ed52-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b3ed52-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b3feb4-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b3feb4-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b41020-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b41020-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b42178-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b42178-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b432ee-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b432ee-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b44e50-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b44e50-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b461c4-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b461c4-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b4a206-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b4a206-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b4b3ea-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b4b3ea-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b4c5b0-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b4c5b0-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b4d74e-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b4d74e-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b4f2f6-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b4f2f6-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b5064c-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b5064c-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b51808-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b51808-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b5297e-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b5297e-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b53b1c-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b53b1c-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b54c92-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b54c92-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b55e3a-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b55e3a-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b57014-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b57014-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b58220-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b58220-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b59b02-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b59b02-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b5acf0-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b5acf0-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b5be98-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b5be98-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b5d040-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b5d040-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b5e1f2-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b5e1f2-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b5f390-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b5f390-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b60560-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b60560-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b616fe-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b616fe-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b6289c-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b6289c-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b63c4c-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b63c4c-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b64e12-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b64e12-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b65fec-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b65fec-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b671bc-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b671bc-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b6838c-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b6838c-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b69ade-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b69ade-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b6ad08-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b6ad08-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b6bee2-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b6bee2-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b6d1f2-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b6d1f2-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b6e3c2-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b6e3c2-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b6f560-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b6f560-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b70712-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b70712-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b718ba-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b718ba-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b72a76-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b72a76-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b73c28-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b73c28-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b74dc6-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b74dc6-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b75fa0-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b75fa0-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b772b0-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b772b0-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b78476-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b78476-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b7963c-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b7963c-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b7adc0-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b7adc0-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b7bfc2-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b7bfc2-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b7d1a6-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b7d1a6-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b7e38a-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b7e38a-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b7f578-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b7f578-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b80900-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b80900-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b81b02-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b81b02-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b82cfa-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b82cfa-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b83ef2-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b83ef2-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b850cc-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b850cc-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b862ba-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b862ba-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b874c6-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b874c6-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b886be-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b886be-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b898ac-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b898ac-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b8affe-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b8affe-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b8c214-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b8c214-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b8d3ee-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b8d3ee-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b8e5d2-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b8e5d2-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b8f7d4-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b8f7d4-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b90986-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b90986-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b91b88-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b91b88-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b92d62-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b92d62-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b940b8-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b940b8-24e0-11e9-9720-02ba7def0216] object missing.
+Missing 'TransformerWinding' object with uuid: 58b95238-24e0-11e9-9720-02ba7def0216
+Referenced 'Terminal' [58b95238-24e0-11e9-9720-02ba7def0216] object missing.
+'ACLineSegment' has not attribute 'phases' : 155 times
+'EnergyConsumer' has not attribute 'phases' : 128 times
+/home/luka/Projects/GeomagWrapperDir/GeomagneticModel/Plotter.py:112: FutureWarning: The input object of type 'LineString' is an array-like implementing one of the corresponding protocols (`__array__`, `__array_interface__` or `__array_struct__`); but not a sequence (or 0-D). In the future, this object will be coerced as if it was first converted using `np.array(obj)`. To retain the old behaviour, you have to either modify the type 'LineString', or assign to an empty array created with `np.empty(correct_shape, dtype=object)`.
+  {"voltage": np.array(v), "geometry": np.array(lines[i])}
+/home/luka/Projects/GeomagWrapperDir/GeomagneticModel/Plotter.py:112: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify 'dtype=object' when creating the ndarray.
+  {"voltage": np.array(v), "geometry": np.array(lines[i])}
+/home/luka/Projects/GeomagWrapperDir/GeomagneticModel/Plotter.py:112: FutureWarning: The input object of type 'LineString' is an array-like implementing one of the corresponding protocols (`__array__`, `__array_interface__` or `__array_struct__`); but not a sequence (or 0-D). In the future, this object will be coerced as if it was first converted using `np.array(obj)`. To retain the old behaviour, you have to either modify the type 'LineString', or assign to an empty array created with `np.empty(correct_shape, dtype=object)`.
+  {"voltage": np.array(v), "geometry": np.array(lines[i])}
+/home/luka/Projects/GeomagWrapperDir/GeomagneticModel/Plotter.py:112: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify 'dtype=object' when creating the ndarray.
+  {"voltage": np.array(v), "geometry": np.array(lines[i])}
+/home/luka/Projects/GeomagWrapperDir/GeomagneticModel/Model/PowerGrid.py:1140: FutureWarning: The input object of type 'LineString' is an array-like implementing one of the corresponding protocols (`__array__`, `__array_interface__` or `__array_struct__`); but not a sequence (or 0-D). In the future, this object will be coerced as if it was first converted using `np.array(obj)`. To retain the old behaviour, you have to either modify the type 'LineString', or assign to an empty array created with `np.empty(correct_shape, dtype=object)`.
+  alllines = np.append(alllines, np.array(lines))
+/home/luka/Projects/GeomagWrapperDir/GeomagneticModel/Model/PowerGrid.py:1140: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify 'dtype=object' when creating the ndarray.
+  alllines = np.append(alllines, np.array(lines))
+/home/luka/.conda/envs/geomagmodel/lib/python3.9/site-packages/pyproj/crs/crs.py:68: FutureWarning: '+init=<authority>:<code>' syntax is deprecated. '<authority>:<code>' is the preferred initialization method. When making the change, be mindful of axis order changes: https://pyproj4.github.io/pyproj/stable/gotchas.html#axis-order-changes-in-proj-6
+  return _prepare_from_string(" ".join(pjargs))
+/home/luka/Projects/GeomagWrapperDir/GeomagneticModel/Model/GIC_Model.py:511: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
+To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
+  netconN, resid, rank, s = np.linalg.lstsq(systemmat, np.transpose(Nsourcevec))
+/home/luka/Projects/GeomagWrapperDir/GeomagneticModel/Model/GIC_Model.py:512: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
+To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
+  netconE, resid, rank, s = np.linalg.lstsq(systemmat, np.transpose(Esourcevec))
+/home/luka/.conda/envs/geomagmodel/lib/python3.9/site-packages/numpy/core/_asarray.py:171: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify 'dtype=object' when creating the ndarray.
+  return array(a, dtype, copy=False, order=order, subok=True)
+/home/luka/.conda/envs/geomagmodel/lib/python3.9/site-packages/pyproj/crs/crs.py:68: FutureWarning: '+init=<authority>:<code>' syntax is deprecated. '<authority>:<code>' is the preferred initialization method. When making the change, be mindful of axis order changes: https://pyproj4.github.io/pyproj/stable/gotchas.html#axis-order-changes-in-proj-6
+  return _prepare_from_string(" ".join(pjargs))
+done importing
+Detected arguments: {'Model': 'PowerGrid', 'Function': 'Region', 'fit': 'all', 'plots': ['GlobalEfield', 'TransformersInDanger', 'WhereNotEnoughSpares'], 'rate_per_year': 0.01, 'continent': 'europe', 'country': 'estonia', 'TF_sites': None, 'MT_sites': None}
+initializing models
+mtsitenames
+['FRN', 'TSU', 'BEL', 'AAA', 'FMC', 'KNY', 'ASP', 'FRD', 'HBK']
+calculating GC coords
+creating region network:europe estonia
+../transnet-models/europe/estonia
+Processing ../transnet-models/europe/estonia
+cleaning up the xml doc
+cleanupxml done
+[['0' 'SS_35379726_E' '0' ... '25.3213224924' '1' '0']
+ ['1' 'TW_35379726_110000' '1' ... '25.3213224924' 'Inf' 'Inf']
+ ['2' 'SS_204914596_E' '2' ... '25.0411723608' '1' '0']
+ ...
+ ['263' 'TW_35450930_330000' '263' ... '24.6703453579' 'Inf' 'Inf']
+ ['264' 'TW_35343343_330000' '264' ... '25.5299886727' 'Inf' 'Inf']
+ ['265' 'TW_34685113_330000' '265' ... '26.17738886' 'Inf' 'Inf']]
+Data/BigData/Networks/estoniaNodes.txt
+
+
+
+
+
+wow
+v
+110
+136
+v
+330
+14
+allvoltages saved
+linedata saved
+2
+refFieldLog
+89.52637031522153
+refField level rest of map is proportional to this field (V/km), logfit:89.52637031522153
+[203 204 205 206 207 208]
+3
+calcGICs
+efilePath
+Data/SmallData/RegionEfields/estonia/EfieldHor0.01PerYear60Second.txt
+connsAndNodesPath
+Data/BigData/Networks/estonia
+Data/BigData/Networks/estoniaNodes.txt
+saved
+len(gics)
+number of lines
+150
+median line length
+19.563961
+max line length
+208.15067
+r
+0.01
+number of substations
+128
+< GeoAxes: <cartopy.crs.AlbersEqualArea object at 0x7fee17b31e50> >
+0.010303106460702583
+32.65650678853971
+0.010303106460702583
+32.65650678853971
+4
+5
+{'savenode': array(['0', 'SS_35379726_E', '0', 'estonia', '59.355762107',
+       '25.3213224924', '1', '0'], dtype='<U21'), 'index': 0, 'lat': '59.355762107', 'long': '25.3213224924', 'nodeType': 'substation', 'voltageClass': 0}
+{'savenode': array(['1', 'TW_35379726_110000', '1', 'estonia', '59.355762107',
+       '25.3213224924', 'Inf', 'Inf'], dtype='<U21'), 'index': 1, 'lat': '59.355762107', 'long': '25.3213224924', 'nodeType': 'winding', 'substationName': 'SS_35379726', 'voltageClass': 110.0}
+{'savenode': array(['265', 'TW_34685113_330000', '265', 'estonia', '57.8476619498',
+       '26.17738886', 'Inf', 'Inf'], dtype='<U21'), 'index': 265, 'lat': '57.8476619498', 'long': '26.17738886', 'nodeType': 'winding', 'substationName': 'SS_34685113', 'voltageClass': 330.0}
+i
+0
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['0', 'SS_35379726_E', '0', 'estonia', '59.355762107',
+       '25.3213224924', '1', '0'], dtype='<U21'), 'index': 0, 'lat': '59.355762107', 'long': '25.3213224924', 'nodeType': 'substation', 'voltageClass': 0}
+i
+1
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['1', 'TW_35379726_110000', '1', 'estonia', '59.355762107',
+       '25.3213224924', 'Inf', 'Inf'], dtype='<U21'), 'index': 1, 'lat': '59.355762107', 'long': '25.3213224924', 'nodeType': 'winding', 'substationName': 'SS_35379726', 'voltageClass': 110.0}
+i
+2
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['2', 'SS_204914596_E', '2', 'estonia', '59.3607746722',
+       '25.0411723608', '1', '0'], dtype='<U21'), 'index': 2, 'lat': '59.3607746722', 'long': '25.0411723608', 'nodeType': 'substation', 'voltageClass': 0}
+i
+3
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['3', 'TW_204914596_110000', '3', 'estonia', '59.3607746722',
+       '25.0411723608', 'Inf', 'Inf'], dtype='<U21'), 'index': 3, 'lat': '59.3607746722', 'long': '25.0411723608', 'nodeType': 'winding', 'substationName': 'SS_204914596', 'voltageClass': 110.0}
+i
+4
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['4', 'SS_35384064_E', '4', 'estonia', '59.2563602112',
+       '25.97454368', '1', '0'], dtype='<U21'), 'index': 4, 'lat': '59.2563602112', 'long': '25.97454368', 'nodeType': 'substation', 'voltageClass': 0}
+i
+5
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['5', 'TW_35384064_110000', '5', 'estonia', '59.2563602112',
+       '25.97454368', 'Inf', 'Inf'], dtype='<U21'), 'index': 5, 'lat': '59.2563602112', 'long': '25.97454368', 'nodeType': 'winding', 'substationName': 'SS_35384064', 'voltageClass': 110.0}
+i
+6
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['6', 'SS_264287766_E', '6', 'estonia', '59.3838538494',
+       '27.2421869229', '1', '0'], dtype='<U21'), 'index': 6, 'lat': '59.3838538494', 'long': '27.2421869229', 'nodeType': 'substation', 'voltageClass': 0}
+i
+7
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['7', 'TW_264287766_110000', '7', 'estonia', '59.3838538494',
+       '27.2421869229', 'Inf', 'Inf'], dtype='<U21'), 'index': 7, 'lat': '59.3838538494', 'long': '27.2421869229', 'nodeType': 'winding', 'substationName': 'SS_264287766', 'voltageClass': 110.0}
+i
+8
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['8', 'SS_34920675_E', '8', 'estonia', '59.3689387329',
+       '27.0660716707', '1', '0'], dtype='<U21'), 'index': 8, 'lat': '59.3689387329', 'long': '27.0660716707', 'nodeType': 'substation', 'voltageClass': 0}
+i
+9
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['9', 'TW_34920675_110000', '9', 'estonia', '59.3689387329',
+       '27.0660716707', 'Inf', 'Inf'], dtype='<U21'), 'index': 9, 'lat': '59.3689387329', 'long': '27.0660716707', 'nodeType': 'winding', 'substationName': 'SS_34920675', 'voltageClass': 110.0}
+i
+10
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['10', 'SS_34682059_E', '10', 'estonia', '59.3571835095',
+       '28.1195381005', '1', '0'], dtype='<U21'), 'index': 10, 'lat': '59.3571835095', 'long': '28.1195381005', 'nodeType': 'substation', 'voltageClass': 0}
+i
+11
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['11', 'TW_34682059_110000', '11', 'estonia', '59.3571835095',
+       '28.1195381005', 'Inf', 'Inf'], dtype='<U21'), 'index': 11, 'lat': '59.3571835095', 'long': '28.1195381005', 'nodeType': 'winding', 'substationName': 'SS_34682059', 'voltageClass': 110.0}
+i
+12
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['12', 'SS_139400061_E', '12', 'estonia', '59.2714853359',
+       '27.9115023946', '1', '0'], dtype='<U21'), 'index': 12, 'lat': '59.2714853359', 'long': '27.9115023946', 'nodeType': 'substation', 'voltageClass': 0}
+i
+13
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['13', 'TW_139400061_110000', '13', 'estonia', '59.2714853359',
+       '27.9115023946', 'Inf', 'Inf'], dtype='<U21'), 'index': 13, 'lat': '59.2714853359', 'long': '27.9115023946', 'nodeType': 'winding', 'substationName': 'SS_139400061', 'voltageClass': 110.0}
+i
+14
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['14', 'SS_35367480_E', '14', 'estonia', '59.3091707051',
+       '27.753396821', '1', '0'], dtype='<U21'), 'index': 14, 'lat': '59.3091707051', 'long': '27.753396821', 'nodeType': 'substation', 'voltageClass': 0}
+i
+15
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['15', 'TW_35367480_110000', '15', 'estonia', '59.3091707051',
+       '27.753396821', 'Inf', 'Inf'], dtype='<U21'), 'index': 15, 'lat': '59.3091707051', 'long': '27.753396821', 'nodeType': 'winding', 'substationName': 'SS_35367480', 'voltageClass': 110.0}
+i
+16
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['16', 'SS_35594697_E', '16', 'estonia', '59.3374102033',
+       '27.4223079286', '1', '0'], dtype='<U21'), 'index': 16, 'lat': '59.3374102033', 'long': '27.4223079286', 'nodeType': 'substation', 'voltageClass': 0}
+i
+17
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['17', 'TW_35594697_110000', '17', 'estonia', '59.3374102033',
+       '27.4223079286', 'Inf', 'Inf'], dtype='<U21'), 'index': 17, 'lat': '59.3374102033', 'long': '27.4223079286', 'nodeType': 'winding', 'substationName': 'SS_35594697', 'voltageClass': 110.0}
+i
+18
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['18', 'SS_205980356_E', '18', 'estonia', '59.3148557164',
+       '27.4589112222', '1', '0'], dtype='<U21'), 'index': 18, 'lat': '59.3148557164', 'long': '27.4589112222', 'nodeType': 'substation', 'voltageClass': 0}
+i
+19
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['19', 'TW_205980356_110000', '19', 'estonia', '59.3148557164',
+       '27.4589112222', 'Inf', 'Inf'], dtype='<U21'), 'index': 19, 'lat': '59.3148557164', 'long': '27.4589112222', 'nodeType': 'winding', 'substationName': 'SS_205980356', 'voltageClass': 110.0}
+i
+20
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['20', 'SS_35450914_E', '20', 'estonia', '58.5965615353',
+       '24.4957039757', '1', '0'], dtype='<U21'), 'index': 20, 'lat': '58.5965615353', 'long': '24.4957039757', 'nodeType': 'substation', 'voltageClass': 0}
+i
+21
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['21', 'TW_35450914_110000', '21', 'estonia', '58.5965615353',
+       '24.4957039757', 'Inf', 'Inf'], dtype='<U21'), 'index': 21, 'lat': '58.5965615353', 'long': '24.4957039757', 'nodeType': 'winding', 'substationName': 'SS_35450914', 'voltageClass': 110.0}
+i
+22
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['22', 'SS_35450930_E', '22', 'estonia', '58.4288949203',
+       '24.6703453579', '1', '0'], dtype='<U21'), 'index': 22, 'lat': '58.4288949203', 'long': '24.6703453579', 'nodeType': 'substation', 'voltageClass': 0}
+i
+23
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['23', 'TW_35450930_110000', '23', 'estonia', '58.4288949203',
+       '24.6703453579', 'Inf', 'Inf'], dtype='<U21'), 'index': 23, 'lat': '58.4288949203', 'long': '24.6703453579', 'nodeType': 'winding', 'substationName': 'SS_35450930', 'voltageClass': 110.0}
+i
+24
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['24', 'SS_35450940_E', '24', 'estonia', '58.658657436',
+       '25.0256082271', '1', '0'], dtype='<U21'), 'index': 24, 'lat': '58.658657436', 'long': '25.0256082271', 'nodeType': 'substation', 'voltageClass': 0}
+i
+25
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['25', 'TW_35450940_110000', '25', 'estonia', '58.658657436',
+       '25.0256082271', 'Inf', 'Inf'], dtype='<U21'), 'index': 25, 'lat': '58.658657436', 'long': '25.0256082271', 'nodeType': 'winding', 'substationName': 'SS_35450940', 'voltageClass': 110.0}
+i
+26
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['26', 'SS_35445361_E', '26', 'estonia', '58.1574387274',
+       '24.9838286048', '1', '0'], dtype='<U21'), 'index': 26, 'lat': '58.1574387274', 'long': '24.9838286048', 'nodeType': 'substation', 'voltageClass': 0}
+i
+27
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['27', 'TW_35445361_110000', '27', 'estonia', '58.1574387274',
+       '24.9838286048', 'Inf', 'Inf'], dtype='<U21'), 'index': 27, 'lat': '58.1574387274', 'long': '24.9838286048', 'nodeType': 'winding', 'substationName': 'SS_35445361', 'voltageClass': 110.0}
+i
+28
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['28', 'SS_263043288_E', '28', 'estonia', '58.3750506496',
+       '25.5665275873', '1', '0'], dtype='<U21'), 'index': 28, 'lat': '58.3750506496', 'long': '25.5665275873', 'nodeType': 'substation', 'voltageClass': 0}
+i
+29
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['29', 'TW_263043288_110000', '29', 'estonia', '58.3750506496',
+       '25.5665275873', 'Inf', 'Inf'], dtype='<U21'), 'index': 29, 'lat': '58.3750506496', 'long': '25.5665275873', 'nodeType': 'winding', 'substationName': 'SS_263043288', 'voltageClass': 110.0}
+i
+30
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['30', 'SS_35450920_E', '30', 'estonia', '58.5452762119',
+       '23.9969745248', '1', '0'], dtype='<U21'), 'index': 30, 'lat': '58.5452762119', 'long': '23.9969745248', 'nodeType': 'substation', 'voltageClass': 0}
+i
+31
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['31', 'TW_35450920_110000', '31', 'estonia', '58.5452762119',
+       '23.9969745248', 'Inf', 'Inf'], dtype='<U21'), 'index': 31, 'lat': '58.5452762119', 'long': '23.9969745248', 'nodeType': 'winding', 'substationName': 'SS_35450920', 'voltageClass': 110.0}
+i
+32
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['32', 'SS_35450919_E', '32', 'estonia', '58.4080394964',
+       '24.311333856', '1', '0'], dtype='<U21'), 'index': 32, 'lat': '58.4080394964', 'long': '24.311333856', 'nodeType': 'substation', 'voltageClass': 0}
+i
+33
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['33', 'TW_35450919_110000', '33', 'estonia', '58.4080394964',
+       '24.311333856', 'Inf', 'Inf'], dtype='<U21'), 'index': 33, 'lat': '58.4080394964', 'long': '24.311333856', 'nodeType': 'winding', 'substationName': 'SS_35450919', 'voltageClass': 110.0}
+i
+34
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['34', 'SS_35394600_E', '34', 'estonia', '58.0674302899',
+       '26.4991837885', '1', '0'], dtype='<U21'), 'index': 34, 'lat': '58.0674302899', 'long': '26.4991837885', 'nodeType': 'substation', 'voltageClass': 0}
+i
+35
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['35', 'TW_35394600_110000', '35', 'estonia', '58.0674302899',
+       '26.4991837885', 'Inf', 'Inf'], dtype='<U21'), 'index': 35, 'lat': '58.0674302899', 'long': '26.4991837885', 'nodeType': 'winding', 'substationName': 'SS_35394600', 'voltageClass': 110.0}
+i
+36
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['36', 'SS_35420119_E', '36', 'estonia', '58.2381401338',
+       '26.4154483772', '1', '0'], dtype='<U21'), 'index': 36, 'lat': '58.2381401338', 'long': '26.4154483772', 'nodeType': 'substation', 'voltageClass': 0}
+i
+37
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['37', 'TW_35420119_110000', '37', 'estonia', '58.2381401338',
+       '26.4154483772', 'Inf', 'Inf'], dtype='<U21'), 'index': 37, 'lat': '58.2381401338', 'long': '26.4154483772', 'nodeType': 'winding', 'substationName': 'SS_35420119', 'voltageClass': 110.0}
+i
+38
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['38', 'SS_35367472_E', '38', 'estonia', '59.2025165471',
+       '27.4009127034', '1', '0'], dtype='<U21'), 'index': 38, 'lat': '59.2025165471', 'long': '27.4009127034', 'nodeType': 'substation', 'voltageClass': 0}
+i
+39
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['39', 'TW_35367472_110000', '39', 'estonia', '59.2025165471',
+       '27.4009127034', 'Inf', 'Inf'], dtype='<U21'), 'index': 39, 'lat': '59.2025165471', 'long': '27.4009127034', 'nodeType': 'winding', 'substationName': 'SS_35367472', 'voltageClass': 110.0}
+i
+40
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['40', 'SS_35594689_E', '40', 'estonia', '59.2503619382',
+       '27.3407516683', '1', '0'], dtype='<U21'), 'index': 40, 'lat': '59.2503619382', 'long': '27.3407516683', 'nodeType': 'substation', 'voltageClass': 0}
+i
+41
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['41', 'TW_35594689_110000', '41', 'estonia', '59.2503619382',
+       '27.3407516683', 'Inf', 'Inf'], dtype='<U21'), 'index': 41, 'lat': '59.2503619382', 'long': '27.3407516683', 'nodeType': 'winding', 'substationName': 'SS_35594689', 'voltageClass': 110.0}
+i
+42
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['42', 'SS_34903294_E', '42', 'estonia', '59.2214241713',
+       '27.5971152828', '1', '0'], dtype='<U21'), 'index': 42, 'lat': '59.2214241713', 'long': '27.5971152828', 'nodeType': 'substation', 'voltageClass': 0}
+i
+43
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['43', 'TW_34903294_110000', '43', 'estonia', '59.2214241713',
+       '27.5971152828', 'Inf', 'Inf'], dtype='<U21'), 'index': 43, 'lat': '59.2214241713', 'long': '27.5971152828', 'nodeType': 'winding', 'substationName': 'SS_34903294', 'voltageClass': 110.0}
+i
+44
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['44', 'SS_263282454_E', '44', 'estonia', '59.2924655563',
+       '27.2585343026', '1', '0'], dtype='<U21'), 'index': 44, 'lat': '59.2924655563', 'long': '27.2585343026', 'nodeType': 'substation', 'voltageClass': 0}
+i
+45
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['45', 'TW_263282454_110000', '45', 'estonia', '59.2924655563',
+       '27.2585343026', 'Inf', 'Inf'], dtype='<U21'), 'index': 45, 'lat': '59.2924655563', 'long': '27.2585343026', 'nodeType': 'winding', 'substationName': 'SS_263282454', 'voltageClass': 110.0}
+i
+46
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['46', 'SS_35367491_E', '46', 'estonia', '59.3412668548',
+       '27.0623650837', '1', '0'], dtype='<U21'), 'index': 46, 'lat': '59.3412668548', 'long': '27.0623650837', 'nodeType': 'substation', 'voltageClass': 0}
+i
+47
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['47', 'TW_35367491_110000', '47', 'estonia', '59.3412668548',
+       '27.0623650837', 'Inf', 'Inf'], dtype='<U21'), 'index': 47, 'lat': '59.3412668548', 'long': '27.0623650837', 'nodeType': 'winding', 'substationName': 'SS_35367491', 'voltageClass': 110.0}
+i
+48
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['48', 'SS_290177759_E', '48', 'estonia', '59.2284025451',
+       '27.4720788921', '1', '0'], dtype='<U21'), 'index': 48, 'lat': '59.2284025451', 'long': '27.4720788921', 'nodeType': 'substation', 'voltageClass': 0}
+i
+49
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['49', 'TW_290177759_110000', '49', 'estonia', '59.2284025451',
+       '27.4720788921', 'Inf', 'Inf'], dtype='<U21'), 'index': 49, 'lat': '59.2284025451', 'long': '27.4720788921', 'nodeType': 'winding', 'substationName': 'SS_290177759', 'voltageClass': 110.0}
+i
+50
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['50', 'SS_35451776_E', '50', 'estonia', '58.8495390963',
+       '26.9153354377', '1', '0'], dtype='<U21'), 'index': 50, 'lat': '58.8495390963', 'long': '26.9153354377', 'nodeType': 'substation', 'voltageClass': 0}
+i
+51
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['51', 'TW_35451776_110000', '51', 'estonia', '58.8495390963',
+       '26.9153354377', 'Inf', 'Inf'], dtype='<U21'), 'index': 51, 'lat': '58.8495390963', 'long': '26.9153354377', 'nodeType': 'winding', 'substationName': 'SS_35451776', 'voltageClass': 110.0}
+i
+52
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['52', 'SS_35451774_E', '52', 'estonia', '58.7463253189',
+       '26.4185803494', '1', '0'], dtype='<U21'), 'index': 52, 'lat': '58.7463253189', 'long': '26.4185803494', 'nodeType': 'substation', 'voltageClass': 0}
+i
+53
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['53', 'TW_35451774_110000', '53', 'estonia', '58.7463253189',
+       '26.4185803494', 'Inf', 'Inf'], dtype='<U21'), 'index': 53, 'lat': '58.7463253189', 'long': '26.4185803494', 'nodeType': 'winding', 'substationName': 'SS_35451774', 'voltageClass': 110.0}
+i
+54
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['54', 'SS_263282453_E', '54', 'estonia', '58.8198984978',
+       '26.5985602698', '1', '0'], dtype='<U21'), 'index': 54, 'lat': '58.8198984978', 'long': '26.5985602698', 'nodeType': 'substation', 'voltageClass': 0}
+i
+55
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['55', 'TW_263282453_110000', '55', 'estonia', '58.8198984978',
+       '26.5985602698', 'Inf', 'Inf'], dtype='<U21'), 'index': 55, 'lat': '58.8198984978', 'long': '26.5985602698', 'nodeType': 'winding', 'substationName': 'SS_263282453', 'voltageClass': 110.0}
+i
+56
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['56', 'SS_35022089_E', '56', 'estonia', '58.2721366606',
+       '22.4903432985', '1', '0'], dtype='<U21'), 'index': 56, 'lat': '58.2721366606', 'long': '22.4903432985', 'nodeType': 'substation', 'voltageClass': 0}
+i
+57
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['57', 'TW_35022089_110000', '57', 'estonia', '58.2721366606',
+       '22.4903432985', 'Inf', 'Inf'], dtype='<U21'), 'index': 57, 'lat': '58.2721366606', 'long': '22.4903432985', 'nodeType': 'winding', 'substationName': 'SS_35022089', 'voltageClass': 110.0}
+i
+58
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['58', 'SS_35022082_E', '58', 'estonia', '58.5545785093',
+       '23.0780433794', '1', '0'], dtype='<U21'), 'index': 58, 'lat': '58.5545785093', 'long': '23.0780433794', 'nodeType': 'substation', 'voltageClass': 0}
+i
+59
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['59', 'TW_35022082_110000', '59', 'estonia', '58.5545785093',
+       '23.0780433794', 'Inf', 'Inf'], dtype='<U21'), 'index': 59, 'lat': '58.5545785093', 'long': '23.0780433794', 'nodeType': 'winding', 'substationName': 'SS_35022082', 'voltageClass': 110.0}
+i
+60
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['60', 'SS_35022087_E', '60', 'estonia', '58.4079825049',
+       '22.7542535801', '1', '0'], dtype='<U21'), 'index': 60, 'lat': '58.4079825049', 'long': '22.7542535801', 'nodeType': 'substation', 'voltageClass': 0}
+i
+61
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['61', 'TW_35022087_110000', '61', 'estonia', '58.4079825049',
+       '22.7542535801', 'Inf', 'Inf'], dtype='<U21'), 'index': 61, 'lat': '58.4079825049', 'long': '22.7542535801', 'nodeType': 'winding', 'substationName': 'SS_35022087', 'voltageClass': 110.0}
+i
+62
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['62', 'SS_35022100_E', '62', 'estonia', '58.5664108906',
+       '22.6904869571', '1', '0'], dtype='<U21'), 'index': 62, 'lat': '58.5664108906', 'long': '22.6904869571', 'nodeType': 'substation', 'voltageClass': 0}
+i
+63
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['63', 'TW_35022100_110000', '63', 'estonia', '58.5664108906',
+       '22.6904869571', 'Inf', 'Inf'], dtype='<U21'), 'index': 63, 'lat': '58.5664108906', 'long': '22.6904869571', 'nodeType': 'winding', 'substationName': 'SS_35022100', 'voltageClass': 110.0}
+i
+64
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['64', 'SS_35367481_E', '64', 'estonia', '59.394187652',
+       '27.7190756931', '1', '0'], dtype='<U21'), 'index': 64, 'lat': '59.394187652', 'long': '27.7190756931', 'nodeType': 'substation', 'voltageClass': 0}
+i
+65
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['65', 'TW_35367481_110000', '65', 'estonia', '59.394187652',
+       '27.7190756931', 'Inf', 'Inf'], dtype='<U21'), 'index': 65, 'lat': '59.394187652', 'long': '27.7190756931', 'nodeType': 'winding', 'substationName': 'SS_35367481', 'voltageClass': 110.0}
+i
+66
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['66', 'SS_35451772_E', '66', 'estonia', '58.5309989944',
+       '25.5002474251', '1', '0'], dtype='<U21'), 'index': 66, 'lat': '58.5309989944', 'long': '25.5002474251', 'nodeType': 'substation', 'voltageClass': 0}
+i
+67
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['67', 'TW_35451772_110000', '67', 'estonia', '58.5309989944',
+       '25.5002474251', 'Inf', 'Inf'], dtype='<U21'), 'index': 67, 'lat': '58.5309989944', 'long': '25.5002474251', 'nodeType': 'winding', 'substationName': 'SS_35451772', 'voltageClass': 110.0}
+i
+68
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['68', 'SS_35451763_E', '68', 'estonia', '58.8190054975',
+       '25.4301715596', '1', '0'], dtype='<U21'), 'index': 68, 'lat': '58.8190054975', 'long': '25.4301715596', 'nodeType': 'substation', 'voltageClass': 0}
+i
+69
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['69', 'TW_35451763_110000', '69', 'estonia', '58.8190054975',
+       '25.4301715596', 'Inf', 'Inf'], dtype='<U21'), 'index': 69, 'lat': '58.8190054975', 'long': '25.4301715596', 'nodeType': 'winding', 'substationName': 'SS_35451763', 'voltageClass': 110.0}
+i
+70
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['70', 'SS_35343343_E', '70', 'estonia', '58.8771109761',
+       '25.5299886727', '1', '0'], dtype='<U21'), 'index': 70, 'lat': '58.8771109761', 'long': '25.5299886727', 'nodeType': 'substation', 'voltageClass': 0}
+i
+71
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['71', 'TW_35343343_110000', '71', 'estonia', '58.8771109761',
+       '25.5299886727', 'Inf', 'Inf'], dtype='<U21'), 'index': 71, 'lat': '58.8771109761', 'long': '25.5299886727', 'nodeType': 'winding', 'substationName': 'SS_35343343', 'voltageClass': 110.0}
+i
+72
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['72', 'SS_35594719_E', '72', 'estonia', '59.2970421088',
+       '27.1445260329', '1', '0'], dtype='<U21'), 'index': 72, 'lat': '59.2970421088', 'long': '27.1445260329', 'nodeType': 'substation', 'voltageClass': 0}
+i
+73
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['73', 'TW_35594719_110000', '73', 'estonia', '59.2970421088',
+       '27.1445260329', 'Inf', 'Inf'], dtype='<U21'), 'index': 73, 'lat': '59.2970421088', 'long': '27.1445260329', 'nodeType': 'winding', 'substationName': 'SS_35594719', 'voltageClass': 110.0}
+i
+74
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['74', 'SS_34920713_E', '74', 'estonia', '59.1269428407',
+       '26.2367230637', '1', '0'], dtype='<U21'), 'index': 74, 'lat': '59.1269428407', 'long': '26.2367230637', 'nodeType': 'substation', 'voltageClass': 0}
+i
+75
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['75', 'TW_34920713_110000', '75', 'estonia', '59.1269428407',
+       '26.2367230637', 'Inf', 'Inf'], dtype='<U21'), 'index': 75, 'lat': '59.1269428407', 'long': '26.2367230637', 'nodeType': 'winding', 'substationName': 'SS_34920713', 'voltageClass': 110.0}
+i
+76
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['76', 'SS_34920699_E', '76', 'estonia', '59.3519935716',
+       '26.3300561259', '1', '0'], dtype='<U21'), 'index': 76, 'lat': '59.3519935716', 'long': '26.3300561259', 'nodeType': 'substation', 'voltageClass': 0}
+i
+77
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['77', 'TW_34920699_110000', '77', 'estonia', '59.3519935716',
+       '26.3300561259', 'Inf', 'Inf'], dtype='<U21'), 'index': 77, 'lat': '59.3519935716', 'long': '26.3300561259', 'nodeType': 'winding', 'substationName': 'SS_34920699', 'voltageClass': 110.0}
+i
+78
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['78', 'SS_35445333_E', '78', 'estonia', '57.9813412112',
+       '26.771887837', '1', '0'], dtype='<U21'), 'index': 78, 'lat': '57.9813412112', 'long': '26.771887837', 'nodeType': 'substation', 'voltageClass': 0}
+i
+79
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['79', 'TW_35445333_110000', '79', 'estonia', '57.9813412112',
+       '26.771887837', 'Inf', 'Inf'], dtype='<U21'), 'index': 79, 'lat': '57.9813412112', 'long': '26.771887837', 'nodeType': 'winding', 'substationName': 'SS_35445333', 'voltageClass': 110.0}
+i
+80
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['80', 'SS_35445334_E', '80', 'estonia', '57.8567534654',
+       '27.026081136', '1', '0'], dtype='<U21'), 'index': 80, 'lat': '57.8567534654', 'long': '27.026081136', 'nodeType': 'substation', 'voltageClass': 0}
+i
+81
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['81', 'TW_35445334_110000', '81', 'estonia', '57.8567534654',
+       '27.026081136', 'Inf', 'Inf'], dtype='<U21'), 'index': 81, 'lat': '57.8567534654', 'long': '27.026081136', 'nodeType': 'winding', 'substationName': 'SS_35445334', 'voltageClass': 110.0}
+i
+82
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['82', 'SS_35420117_E', '82', 'estonia', '58.1539606553',
+       '26.6968349214', '1', '0'], dtype='<U21'), 'index': 82, 'lat': '58.1539606553', 'long': '26.6968349214', 'nodeType': 'substation', 'voltageClass': 0}
+i
+83
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['83', 'TW_35420117_110000', '83', 'estonia', '58.1539606553',
+       '26.6968349214', 'Inf', 'Inf'], dtype='<U21'), 'index': 83, 'lat': '58.1539606553', 'long': '26.6968349214', 'nodeType': 'winding', 'substationName': 'SS_35420117', 'voltageClass': 110.0}
+i
+84
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['84', 'SS_262457166_E', '84', 'estonia', '58.1349314779',
+       '26.244782311', '1', '0'], dtype='<U21'), 'index': 84, 'lat': '58.1349314779', 'long': '26.244782311', 'nodeType': 'substation', 'voltageClass': 0}
+i
+85
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['85', 'TW_262457166_110000', '85', 'estonia', '58.1349314779',
+       '26.244782311', 'Inf', 'Inf'], dtype='<U21'), 'index': 85, 'lat': '58.1349314779', 'long': '26.244782311', 'nodeType': 'winding', 'substationName': 'SS_262457166', 'voltageClass': 110.0}
+i
+86
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['86', 'SS_34682089_E', '86', 'estonia', '58.3794496581',
+       '26.6909671811', '1', '0'], dtype='<U21'), 'index': 86, 'lat': '58.3794496581', 'long': '26.6909671811', 'nodeType': 'substation', 'voltageClass': 0}
+i
+87
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['87', 'TW_34682089_110000', '87', 'estonia', '58.3794496581',
+       '26.6909671811', 'Inf', 'Inf'], dtype='<U21'), 'index': 87, 'lat': '58.3794496581', 'long': '26.6909671811', 'nodeType': 'winding', 'substationName': 'SS_34682089', 'voltageClass': 110.0}
+i
+88
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['88', 'SS_35445340_E', '88', 'estonia', '57.8288808998',
+       '27.0207250211', '1', '0'], dtype='<U21'), 'index': 88, 'lat': '57.8288808998', 'long': '27.0207250211', 'nodeType': 'substation', 'voltageClass': 0}
+i
+89
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['89', 'TW_35445340_110000', '89', 'estonia', '57.8288808998',
+       '27.0207250211', 'Inf', 'Inf'], dtype='<U21'), 'index': 89, 'lat': '57.8288808998', 'long': '27.0207250211', 'nodeType': 'winding', 'substationName': 'SS_35445340', 'voltageClass': 110.0}
+i
+90
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['90', 'SS_35594687_E', '90', 'estonia', '58.03692961',
+       '27.2949114739', '1', '0'], dtype='<U21'), 'index': 90, 'lat': '58.03692961', 'long': '27.2949114739', 'nodeType': 'substation', 'voltageClass': 0}
+i
+91
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['91', 'TW_35594687_110000', '91', 'estonia', '58.03692961',
+       '27.2949114739', 'Inf', 'Inf'], dtype='<U21'), 'index': 91, 'lat': '58.03692961', 'long': '27.2949114739', 'nodeType': 'winding', 'substationName': 'SS_35594687', 'voltageClass': 110.0}
+i
+92
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['92', 'SS_35445343_E', '92', 'estonia', '58.0700494467',
+       '27.0763717132', '1', '0'], dtype='<U21'), 'index': 92, 'lat': '58.0700494467', 'long': '27.0763717132', 'nodeType': 'substation', 'voltageClass': 0}
+i
+93
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['93', 'TW_35445343_110000', '93', 'estonia', '58.0700494467',
+       '27.0763717132', 'Inf', 'Inf'], dtype='<U21'), 'index': 93, 'lat': '58.0700494467', 'long': '27.0763717132', 'nodeType': 'winding', 'substationName': 'SS_35445343', 'voltageClass': 110.0}
+i
+94
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['94', 'SS_182242759_E', '94', 'estonia', '57.7360613957',
+       '26.9416161502', '1', '0'], dtype='<U21'), 'index': 94, 'lat': '57.7360613957', 'long': '26.9416161502', 'nodeType': 'substation', 'voltageClass': 0}
+i
+95
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['95', 'TW_182242759_110000', '95', 'estonia', '57.7360613957',
+       '26.9416161502', 'Inf', 'Inf'], dtype='<U21'), 'index': 95, 'lat': '57.7360613957', 'long': '26.9416161502', 'nodeType': 'winding', 'substationName': 'SS_182242759', 'voltageClass': 110.0}
+i
+96
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['96', 'SS_34685113_E', '96', 'estonia', '57.8476619498',
+       '26.17738886', '1', '0'], dtype='<U21'), 'index': 96, 'lat': '57.8476619498', 'long': '26.17738886', 'nodeType': 'substation', 'voltageClass': 0}
+i
+97
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['97', 'TW_34685113_110000', '97', 'estonia', '57.8476619498',
+       '26.17738886', 'Inf', 'Inf'], dtype='<U21'), 'index': 97, 'lat': '57.8476619498', 'long': '26.17738886', 'nodeType': 'winding', 'substationName': 'SS_34685113', 'voltageClass': 110.0}
+i
+98
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['98', 'SS_35445335_E', '98', 'estonia', '57.623256292',
+       '26.5991107105', '1', '0'], dtype='<U21'), 'index': 98, 'lat': '57.623256292', 'long': '26.5991107105', 'nodeType': 'substation', 'voltageClass': 0}
+i
+99
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['99', 'TW_35445335_110000', '99', 'estonia', '57.623256292',
+       '26.5991107105', 'Inf', 'Inf'], dtype='<U21'), 'index': 99, 'lat': '57.623256292', 'long': '26.5991107105', 'nodeType': 'winding', 'substationName': 'SS_35445335', 'voltageClass': 110.0}
+i
+100
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['100', 'SS_182774903_E', '100', 'estonia', '57.8389446239',
+       '26.4863795079', '1', '0'], dtype='<U21'), 'index': 100, 'lat': '57.8389446239', 'long': '26.4863795079', 'nodeType': 'substation', 'voltageClass': 0}
+i
+101
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['101', 'TW_182774903_110000', '101', 'estonia', '57.8389446239',
+       '26.4863795079', 'Inf', 'Inf'], dtype='<U21'), 'index': 101, 'lat': '57.8389446239', 'long': '26.4863795079', 'nodeType': 'winding', 'substationName': 'SS_182774903', 'voltageClass': 110.0}
+i
+102
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['102', 'SS_263235177_E', '102', 'estonia', '57.8466196248',
+       '26.8252000264', '1', '0'], dtype='<U21'), 'index': 102, 'lat': '57.8466196248', 'long': '26.8252000264', 'nodeType': 'substation', 'voltageClass': 0}
+i
+103
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['103', 'TW_263235177_110000', '103', 'estonia', '57.8466196248',
+       '26.8252000264', 'Inf', 'Inf'], dtype='<U21'), 'index': 103, 'lat': '57.8466196248', 'long': '26.8252000264', 'nodeType': 'winding', 'substationName': 'SS_263235177', 'voltageClass': 110.0}
+i
+104
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['104', 'SS_35445346_E', '104', 'estonia', '58.306419628',
+       '26.8782270549', '1', '0'], dtype='<U21'), 'index': 104, 'lat': '58.306419628', 'long': '26.8782270549', 'nodeType': 'substation', 'voltageClass': 0}
+i
+105
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['105', 'TW_35445346_110000', '105', 'estonia', '58.306419628',
+       '26.8782270549', 'Inf', 'Inf'], dtype='<U21'), 'index': 105, 'lat': '58.306419628', 'long': '26.8782270549', 'nodeType': 'winding', 'substationName': 'SS_35445346', 'voltageClass': 110.0}
+i
+106
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['106', 'SS_30228363_E', '106', 'estonia', '58.3768921444',
+       '26.7842658047', '1', '0'], dtype='<U21'), 'index': 106, 'lat': '58.3768921444', 'long': '26.7842658047', 'nodeType': 'substation', 'voltageClass': 0}
+i
+107
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['107', 'TW_30228363_110000', '107', 'estonia', '58.3768921444',
+       '26.7842658047', 'Inf', 'Inf'], dtype='<U21'), 'index': 107, 'lat': '58.3768921444', 'long': '26.7842658047', 'nodeType': 'winding', 'substationName': 'SS_30228363', 'voltageClass': 110.0}
+i
+108
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['108', 'SS_35594688_E', '108', 'estonia', '58.5853300621',
+       '27.1262842694', '1', '0'], dtype='<U21'), 'index': 108, 'lat': '58.5853300621', 'long': '27.1262842694', 'nodeType': 'substation', 'voltageClass': 0}
+i
+109
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['109', 'TW_35594688_110000', '109', 'estonia', '58.5853300621',
+       '27.1262842694', 'Inf', 'Inf'], dtype='<U21'), 'index': 109, 'lat': '58.5853300621', 'long': '27.1262842694', 'nodeType': 'winding', 'substationName': 'SS_35594688', 'voltageClass': 110.0}
+i
+110
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['110', 'SS_35445348_E', '110', 'estonia', '58.0094402612',
+       '25.8931427517', '1', '0'], dtype='<U21'), 'index': 110, 'lat': '58.0094402612', 'long': '25.8931427517', 'nodeType': 'substation', 'voltageClass': 0}
+i
+111
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['111', 'TW_35445348_110000', '111', 'estonia', '58.0094402612',
+       '25.8931427517', 'Inf', 'Inf'], dtype='<U21'), 'index': 111, 'lat': '58.0094402612', 'long': '25.8931427517', 'nodeType': 'winding', 'substationName': 'SS_35445348', 'voltageClass': 110.0}
+i
+112
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['112', 'SS_35450872_E', '112', 'estonia', '58.1302685128',
+       '25.3865516061', '1', '0'], dtype='<U21'), 'index': 112, 'lat': '58.1302685128', 'long': '25.3865516061', 'nodeType': 'substation', 'voltageClass': 0}
+i
+113
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['113', 'TW_35450872_110000', '113', 'estonia', '58.1302685128',
+       '25.3865516061', 'Inf', 'Inf'], dtype='<U21'), 'index': 113, 'lat': '58.1302685128', 'long': '25.3865516061', 'nodeType': 'winding', 'substationName': 'SS_35450872', 'voltageClass': 110.0}
+i
+114
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['114', 'SS_35450869_E', '114', 'estonia', '57.7932756632',
+       '26.0455994359', '1', '0'], dtype='<U21'), 'index': 114, 'lat': '57.7932756632', 'long': '26.0455994359', 'nodeType': 'substation', 'voltageClass': 0}
+i
+115
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['115', 'TW_35450869_110000', '115', 'estonia', '57.7932756632',
+       '26.0455994359', 'Inf', 'Inf'], dtype='<U21'), 'index': 115, 'lat': '57.7932756632', 'long': '26.0455994359', 'nodeType': 'winding', 'substationName': 'SS_35450869', 'voltageClass': 110.0}
+i
+116
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['116', 'SS_34935436_E', '116', 'estonia', '59.2435665067',
+       '24.699290007', '1', '0'], dtype='<U21'), 'index': 116, 'lat': '59.2435665067', 'long': '24.699290007', 'nodeType': 'substation', 'voltageClass': 0}
+i
+117
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['117', 'TW_34935436_110000', '117', 'estonia', '59.2435665067',
+       '24.699290007', 'Inf', 'Inf'], dtype='<U21'), 'index': 117, 'lat': '59.2435665067', 'long': '24.699290007', 'nodeType': 'winding', 'substationName': 'SS_34935436', 'voltageClass': 110.0}
+i
+118
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['118', 'SS_262229346_E', '118', 'estonia', '59.3179229514',
+       '24.453710676', '1', '0'], dtype='<U21'), 'index': 118, 'lat': '59.3179229514', 'long': '24.453710676', 'nodeType': 'substation', 'voltageClass': 0}
+i
+119
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['119', 'TW_262229346_110000', '119', 'estonia', '59.3179229514',
+       '24.453710676', 'Inf', 'Inf'], dtype='<U21'), 'index': 119, 'lat': '59.3179229514', 'long': '24.453710676', 'nodeType': 'winding', 'substationName': 'SS_262229346', 'voltageClass': 110.0}
+i
+120
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['120', 'SS_34968246_E', '120', 'estonia', '59.39828431',
+       '24.719955655', '1', '0'], dtype='<U21'), 'index': 120, 'lat': '59.39828431', 'long': '24.719955655', 'nodeType': 'substation', 'voltageClass': 0}
+i
+121
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['121', 'TW_34968246_110000', '121', 'estonia', '59.39828431',
+       '24.719955655', 'Inf', 'Inf'], dtype='<U21'), 'index': 121, 'lat': '59.39828431', 'long': '24.719955655', 'nodeType': 'winding', 'substationName': 'SS_34968246', 'voltageClass': 110.0}
+i
+122
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['122', 'SS_34968285_E', '122', 'estonia', '59.3582680796',
+       '24.9060921815', '1', '0'], dtype='<U21'), 'index': 122, 'lat': '59.3582680796', 'long': '24.9060921815', 'nodeType': 'substation', 'voltageClass': 0}
+i
+123
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['123', 'TW_34968285_110000', '123', 'estonia', '59.3582680796',
+       '24.9060921815', 'Inf', 'Inf'], dtype='<U21'), 'index': 123, 'lat': '59.3582680796', 'long': '24.9060921815', 'nodeType': 'winding', 'substationName': 'SS_34968285', 'voltageClass': 110.0}
+i
+124
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['124', 'SS_35379710_E', '124', 'estonia', '59.1678374224',
+       '24.7438094644', '1', '0'], dtype='<U21'), 'index': 124, 'lat': '59.1678374224', 'long': '24.7438094644', 'nodeType': 'substation', 'voltageClass': 0}
+i
+125
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['125', 'TW_35379710_110000', '125', 'estonia', '59.1678374224',
+       '24.7438094644', 'Inf', 'Inf'], dtype='<U21'), 'index': 125, 'lat': '59.1678374224', 'long': '24.7438094644', 'nodeType': 'winding', 'substationName': 'SS_35379710', 'voltageClass': 110.0}
+i
+126
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['126', 'SS_34988535_E', '126', 'estonia', '59.0784222108',
+       '24.2439282816', '1', '0'], dtype='<U21'), 'index': 126, 'lat': '59.0784222108', 'long': '24.2439282816', 'nodeType': 'substation', 'voltageClass': 0}
+i
+127
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['127', 'TW_34988535_110000', '127', 'estonia', '59.0784222108',
+       '24.2439282816', 'Inf', 'Inf'], dtype='<U21'), 'index': 127, 'lat': '59.0784222108', 'long': '24.2439282816', 'nodeType': 'winding', 'substationName': 'SS_34988535', 'voltageClass': 110.0}
+i
+128
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['128', 'SS_34988502_E', '128', 'estonia', '58.9980871389',
+       '24.0726258797', '1', '0'], dtype='<U21'), 'index': 128, 'lat': '58.9980871389', 'long': '24.0726258797', 'nodeType': 'substation', 'voltageClass': 0}
+i
+129
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['129', 'TW_34988502_110000', '129', 'estonia', '58.9980871389',
+       '24.0726258797', 'Inf', 'Inf'], dtype='<U21'), 'index': 129, 'lat': '58.9980871389', 'long': '24.0726258797', 'nodeType': 'winding', 'substationName': 'SS_34988502', 'voltageClass': 110.0}
+i
+130
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['130', 'SS_34968224_E', '130', 'estonia', '59.3839023273',
+       '24.5595434475', '1', '0'], dtype='<U21'), 'index': 130, 'lat': '59.3839023273', 'long': '24.5595434475', 'nodeType': 'substation', 'voltageClass': 0}
+i
+131
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['131', 'TW_34968224_110000', '131', 'estonia', '59.3839023273',
+       '24.5595434475', 'Inf', 'Inf'], dtype='<U21'), 'index': 131, 'lat': '59.3839023273', 'long': '24.5595434475', 'nodeType': 'winding', 'substationName': 'SS_34968224', 'voltageClass': 110.0}
+i
+132
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['132', 'SS_34988471_E', '132', 'estonia', '59.3349302335',
+       '24.6113635681', '1', '0'], dtype='<U21'), 'index': 132, 'lat': '59.3349302335', 'long': '24.6113635681', 'nodeType': 'substation', 'voltageClass': 0}
+i
+133
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['133', 'TW_34988471_110000', '133', 'estonia', '59.3349302335',
+       '24.6113635681', 'Inf', 'Inf'], dtype='<U21'), 'index': 133, 'lat': '59.3349302335', 'long': '24.6113635681', 'nodeType': 'winding', 'substationName': 'SS_34988471', 'voltageClass': 110.0}
+i
+134
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['134', 'SS_34935452_E', '134', 'estonia', '59.3517516188',
+       '24.5959941448', '1', '0'], dtype='<U21'), 'index': 134, 'lat': '59.3517516188', 'long': '24.5959941448', 'nodeType': 'substation', 'voltageClass': 0}
+i
+135
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['135', 'TW_34935452_110000', '135', 'estonia', '59.3517516188',
+       '24.5959941448', 'Inf', 'Inf'], dtype='<U21'), 'index': 135, 'lat': '59.3517516188', 'long': '24.5959941448', 'nodeType': 'winding', 'substationName': 'SS_34935452', 'voltageClass': 110.0}
+i
+136
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['136', 'SS_34920702_E', '136', 'estonia', '59.3569045585',
+       '26.379404896', '1', '0'], dtype='<U21'), 'index': 136, 'lat': '59.3569045585', 'long': '26.379404896', 'nodeType': 'substation', 'voltageClass': 0}
+i
+137
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['137', 'TW_34920702_110000', '137', 'estonia', '59.3569045585',
+       '26.379404896', 'Inf', 'Inf'], dtype='<U21'), 'index': 137, 'lat': '59.3569045585', 'long': '26.379404896', 'nodeType': 'winding', 'substationName': 'SS_34920702', 'voltageClass': 110.0}
+i
+138
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['138', 'SS_29595798_E', '138', 'estonia', '59.4220423054',
+       '24.9194941828', '1', '0'], dtype='<U21'), 'index': 138, 'lat': '59.4220423054', 'long': '24.9194941828', 'nodeType': 'substation', 'voltageClass': 0}
+i
+139
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['139', 'TW_29595798_110000', '139', 'estonia', '59.4220423054',
+       '24.9194941828', 'Inf', 'Inf'], dtype='<U21'), 'index': 139, 'lat': '59.4220423054', 'long': '24.9194941828', 'nodeType': 'winding', 'substationName': 'SS_29595798', 'voltageClass': 110.0}
+i
+140
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['140', 'SS_99350295_E', '140', 'estonia', '59.4164162807',
+       '24.6716303523', '1', '0'], dtype='<U21'), 'index': 140, 'lat': '59.4164162807', 'long': '24.6716303523', 'nodeType': 'substation', 'voltageClass': 0}
+i
+141
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['141', 'TW_99350295_110000', '141', 'estonia', '59.4164162807',
+       '24.6716303523', 'Inf', 'Inf'], dtype='<U21'), 'index': 141, 'lat': '59.4164162807', 'long': '24.6716303523', 'nodeType': 'winding', 'substationName': 'SS_99350295', 'voltageClass': 110.0}
+i
+142
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['142', 'SS_99369449_E', '142', 'estonia', '59.4013003946',
+       '24.6424713205', '1', '0'], dtype='<U21'), 'index': 142, 'lat': '59.4013003946', 'long': '24.6424713205', 'nodeType': 'substation', 'voltageClass': 0}
+i
+143
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['143', 'TW_99369449_110000', '143', 'estonia', '59.4013003946',
+       '24.6424713205', 'Inf', 'Inf'], dtype='<U21'), 'index': 143, 'lat': '59.4013003946', 'long': '24.6424713205', 'nodeType': 'winding', 'substationName': 'SS_99369449', 'voltageClass': 110.0}
+i
+144
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['144', 'SS_34988480_E', '144', 'estonia', '59.4137388077',
+       '24.5429481247', '1', '0'], dtype='<U21'), 'index': 144, 'lat': '59.4137388077', 'long': '24.5429481247', 'nodeType': 'substation', 'voltageClass': 0}
+i
+145
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['145', 'TW_34988480_110000', '145', 'estonia', '59.4137388077',
+       '24.5429481247', 'Inf', 'Inf'], dtype='<U21'), 'index': 145, 'lat': '59.4137388077', 'long': '24.5429481247', 'nodeType': 'winding', 'substationName': 'SS_34988480', 'voltageClass': 110.0}
+i
+146
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['146', 'SS_34968238_E', '146', 'estonia', '59.4512352818',
+       '24.6838308929', '1', '0'], dtype='<U21'), 'index': 146, 'lat': '59.4512352818', 'long': '24.6838308929', 'nodeType': 'substation', 'voltageClass': 0}
+i
+147
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['147', 'TW_34968238_110000', '147', 'estonia', '59.4512352818',
+       '24.6838308929', 'Inf', 'Inf'], dtype='<U21'), 'index': 147, 'lat': '59.4512352818', 'long': '24.6838308929', 'nodeType': 'winding', 'substationName': 'SS_34968238', 'voltageClass': 110.0}
+i
+148
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['148', 'SS_34968239_E', '148', 'estonia', '59.4647511458',
+       '24.7021295422', '1', '0'], dtype='<U21'), 'index': 148, 'lat': '59.4647511458', 'long': '24.7021295422', 'nodeType': 'substation', 'voltageClass': 0}
+i
+149
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['149', 'TW_34968239_110000', '149', 'estonia', '59.4647511458',
+       '24.7021295422', 'Inf', 'Inf'], dtype='<U21'), 'index': 149, 'lat': '59.4647511458', 'long': '24.7021295422', 'nodeType': 'winding', 'substationName': 'SS_34968239', 'voltageClass': 110.0}
+i
+150
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['150', 'SS_85487602_E', '150', 'estonia', '59.4506780271',
+       '24.7211736965', '1', '0'], dtype='<U21'), 'index': 150, 'lat': '59.4506780271', 'long': '24.7211736965', 'nodeType': 'substation', 'voltageClass': 0}
+i
+151
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['151', 'TW_85487602_110000', '151', 'estonia', '59.4506780271',
+       '24.7211736965', 'Inf', 'Inf'], dtype='<U21'), 'index': 151, 'lat': '59.4506780271', 'long': '24.7211736965', 'nodeType': 'winding', 'substationName': 'SS_85487602', 'voltageClass': 110.0}
+i
+152
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['152', 'SS_34968248_E', '152', 'estonia', '59.4250050519',
+       '24.7885340809', '1', '0'], dtype='<U21'), 'index': 152, 'lat': '59.4250050519', 'long': '24.7885340809', 'nodeType': 'substation', 'voltageClass': 0}
+i
+153
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['153', 'TW_34968248_110000', '153', 'estonia', '59.4250050519',
+       '24.7885340809', 'Inf', 'Inf'], dtype='<U21'), 'index': 153, 'lat': '59.4250050519', 'long': '24.7885340809', 'nodeType': 'winding', 'substationName': 'SS_34968248', 'voltageClass': 110.0}
+i
+154
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['154', 'SS_34968251_E', '154', 'estonia', '59.3686263656',
+       '24.8161996978', '1', '0'], dtype='<U21'), 'index': 154, 'lat': '59.3686263656', 'long': '24.8161996978', 'nodeType': 'substation', 'voltageClass': 0}
+i
+155
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['155', 'TW_34968251_110000', '155', 'estonia', '59.3686263656',
+       '24.8161996978', 'Inf', 'Inf'], dtype='<U21'), 'index': 155, 'lat': '59.3686263656', 'long': '24.8161996978', 'nodeType': 'winding', 'substationName': 'SS_34968251', 'voltageClass': 110.0}
+i
+156
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['156', 'SS_72668114_E', '156', 'estonia', '59.4520539277',
+       '24.9219214087', '1', '0'], dtype='<U21'), 'index': 156, 'lat': '59.4520539277', 'long': '24.9219214087', 'nodeType': 'substation', 'voltageClass': 0}
+i
+157
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['157', 'TW_72668114_110000', '157', 'estonia', '59.4520539277',
+       '24.9219214087', 'Inf', 'Inf'], dtype='<U21'), 'index': 157, 'lat': '59.4520539277', 'long': '24.9219214087', 'nodeType': 'winding', 'substationName': 'SS_72668114', 'voltageClass': 110.0}
+i
+158
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['158', 'SS_34968269_E', '158', 'estonia', '59.4253159083',
+       '24.8332848745', '1', '0'], dtype='<U21'), 'index': 158, 'lat': '59.4253159083', 'long': '24.8332848745', 'nodeType': 'substation', 'voltageClass': 0}
+i
+159
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['159', 'TW_34968269_110000', '159', 'estonia', '59.4253159083',
+       '24.8332848745', 'Inf', 'Inf'], dtype='<U21'), 'index': 159, 'lat': '59.4253159083', 'long': '24.8332848745', 'nodeType': 'winding', 'substationName': 'SS_34968269', 'voltageClass': 110.0}
+i
+160
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['160', 'SS_35550404_E', '160', 'estonia', '59.3548185204',
+       '24.0826818029', '1', '0'], dtype='<U21'), 'index': 160, 'lat': '59.3548185204', 'long': '24.0826818029', 'nodeType': 'substation', 'voltageClass': 0}
+i
+161
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['161', 'TW_35550404_110000', '161', 'estonia', '59.3548185204',
+       '24.0826818029', 'Inf', 'Inf'], dtype='<U21'), 'index': 161, 'lat': '59.3548185204', 'long': '24.0826818029', 'nodeType': 'winding', 'substationName': 'SS_35550404', 'voltageClass': 110.0}
+i
+162
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['162', 'SS_35550410_E', '162', 'estonia', '58.7820237906',
+       '24.8134691127', '1', '0'], dtype='<U21'), 'index': 162, 'lat': '58.7820237906', 'long': '24.8134691127', 'nodeType': 'substation', 'voltageClass': 0}
+i
+163
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['163', 'TW_35550410_110000', '163', 'estonia', '58.7820237906',
+       '24.8134691127', 'Inf', 'Inf'], dtype='<U21'), 'index': 163, 'lat': '58.7820237906', 'long': '24.8134691127', 'nodeType': 'winding', 'substationName': 'SS_35550410', 'voltageClass': 110.0}
+i
+164
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['164', 'SS_35550412_E', '164', 'estonia', '58.8140418447',
+       '24.5786965046', '1', '0'], dtype='<U21'), 'index': 164, 'lat': '58.8140418447', 'long': '24.5786965046', 'nodeType': 'substation', 'voltageClass': 0}
+i
+165
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['165', 'TW_35550412_110000', '165', 'estonia', '58.8140418447',
+       '24.5786965046', 'Inf', 'Inf'], dtype='<U21'), 'index': 165, 'lat': '58.8140418447', 'long': '24.5786965046', 'nodeType': 'winding', 'substationName': 'SS_35550412', 'voltageClass': 110.0}
+i
+166
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['166', 'SS_35550415_E', '166', 'estonia', '58.9002421043',
+       '24.8268489467', '1', '0'], dtype='<U21'), 'index': 166, 'lat': '58.9002421043', 'long': '24.8268489467', 'nodeType': 'substation', 'voltageClass': 0}
+i
+167
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['167', 'TW_35550415_110000', '167', 'estonia', '58.9002421043',
+       '24.8268489467', 'Inf', 'Inf'], dtype='<U21'), 'index': 167, 'lat': '58.9002421043', 'long': '24.8268489467', 'nodeType': 'winding', 'substationName': 'SS_35550415', 'voltageClass': 110.0}
+i
+168
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['168', 'SS_94121285_E', '168', 'estonia', '59.3595618751',
+       '28.1858505686', '1', '0'], dtype='<U21'), 'index': 168, 'lat': '59.3595618751', 'long': '28.1858505686', 'nodeType': 'substation', 'voltageClass': 0}
+i
+169
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['169', 'TW_94121285_110000', '169', 'estonia', '59.3595618751',
+       '28.1858505686', 'Inf', 'Inf'], dtype='<U21'), 'index': 169, 'lat': '59.3595618751', 'long': '28.1858505686', 'nodeType': 'winding', 'substationName': 'SS_94121285', 'voltageClass': 110.0}
+i
+170
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['170', 'SS_35594708_E', '170', 'estonia', '59.3735841393',
+       '28.1575609284', '1', '0'], dtype='<U21'), 'index': 170, 'lat': '59.3735841393', 'long': '28.1575609284', 'nodeType': 'substation', 'voltageClass': 0}
+i
+171
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['171', 'TW_35594708_110000', '171', 'estonia', '59.3735841393',
+       '28.1575609284', 'Inf', 'Inf'], dtype='<U21'), 'index': 171, 'lat': '59.3735841393', 'long': '28.1575609284', 'nodeType': 'winding', 'substationName': 'SS_35594708', 'voltageClass': 110.0}
+i
+172
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['172', 'SS_262755193_E', '172', 'estonia', '58.7508346502',
+       '24.262702582', '1', '0'], dtype='<U21'), 'index': 172, 'lat': '58.7508346502', 'long': '24.262702582', 'nodeType': 'substation', 'voltageClass': 0}
+i
+173
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['173', 'TW_262755193_110000', '173', 'estonia', '58.7508346502',
+       '24.262702582', 'Inf', 'Inf'], dtype='<U21'), 'index': 173, 'lat': '58.7508346502', 'long': '24.262702582', 'nodeType': 'winding', 'substationName': 'SS_262755193', 'voltageClass': 110.0}
+i
+174
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['174', 'SS_34968270_E', '174', 'estonia', '59.4471618245',
+       '24.8648597214', '1', '0'], dtype='<U21'), 'index': 174, 'lat': '59.4471618245', 'long': '24.8648597214', 'nodeType': 'substation', 'voltageClass': 0}
+i
+175
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['175', 'TW_34968270_110000', '175', 'estonia', '59.4471618245',
+       '24.8648597214', 'Inf', 'Inf'], dtype='<U21'), 'index': 175, 'lat': '59.4471618245', 'long': '24.8648597214', 'nodeType': 'winding', 'substationName': 'SS_34968270', 'voltageClass': 110.0}
+i
+176
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['176', 'SS_34968274_E', '176', 'estonia', '59.5096743412',
+       '24.8432775726', '1', '0'], dtype='<U21'), 'index': 176, 'lat': '59.5096743412', 'long': '24.8432775726', 'nodeType': 'substation', 'voltageClass': 0}
+i
+177
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['177', 'TW_34968274_110000', '177', 'estonia', '59.5096743412',
+       '24.8432775726', 'Inf', 'Inf'], dtype='<U21'), 'index': 177, 'lat': '59.5096743412', 'long': '24.8432775726', 'nodeType': 'winding', 'substationName': 'SS_34968274', 'voltageClass': 110.0}
+i
+178
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['178', 'SS_29979106_E', '178', 'estonia', '59.4784873065',
+       '25.0074512616', '1', '0'], dtype='<U21'), 'index': 178, 'lat': '59.4784873065', 'long': '25.0074512616', 'nodeType': 'substation', 'voltageClass': 0}
+i
+179
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['179', 'TW_29979106_110000', '179', 'estonia', '59.4784873065',
+       '25.0074512616', 'Inf', 'Inf'], dtype='<U21'), 'index': 179, 'lat': '59.4784873065', 'long': '25.0074512616', 'nodeType': 'winding', 'substationName': 'SS_29979106', 'voltageClass': 110.0}
+i
+180
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['180', 'SS_34968276_E', '180', 'estonia', '59.4846967154',
+       '24.9631772698', '1', '0'], dtype='<U21'), 'index': 180, 'lat': '59.4846967154', 'long': '24.9631772698', 'nodeType': 'substation', 'voltageClass': 0}
+i
+181
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['181', 'TW_34968276_110000', '181', 'estonia', '59.4846967154',
+       '24.9631772698', 'Inf', 'Inf'], dtype='<U21'), 'index': 181, 'lat': '59.4846967154', 'long': '24.9631772698', 'nodeType': 'winding', 'substationName': 'SS_34968276', 'voltageClass': 110.0}
+i
+182
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['182', 'SS_101153487_E', '182', 'estonia', '58.5427399943',
+       '26.5818117197', '1', '0'], dtype='<U21'), 'index': 182, 'lat': '58.5427399943', 'long': '26.5818117197', 'nodeType': 'substation', 'voltageClass': 0}
+i
+183
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['183', 'TW_101153487_110000', '183', 'estonia', '58.5427399943',
+       '26.5818117197', 'Inf', 'Inf'], dtype='<U21'), 'index': 183, 'lat': '58.5427399943', 'long': '26.5818117197', 'nodeType': 'winding', 'substationName': 'SS_101153487', 'voltageClass': 110.0}
+i
+184
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['184', 'SS_552646579_E', '184', 'estonia', '58.3562776487',
+       '26.3068891447', '1', '0'], dtype='<U21'), 'index': 184, 'lat': '58.3562776487', 'long': '26.3068891447', 'nodeType': 'substation', 'voltageClass': 0}
+i
+185
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['185', 'TW_552646579_110000', '185', 'estonia', '58.3562776487',
+       '26.3068891447', 'Inf', 'Inf'], dtype='<U21'), 'index': 185, 'lat': '58.3562776487', 'long': '26.3068891447', 'nodeType': 'winding', 'substationName': 'SS_552646579', 'voltageClass': 110.0}
+i
+186
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['186', 'SS_35555176_E', '186', 'estonia', '59.4054161345',
+       '27.2301278486', '1', '0'], dtype='<U21'), 'index': 186, 'lat': '59.4054161345', 'long': '27.2301278486', 'nodeType': 'substation', 'voltageClass': 0}
+i
+187
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['187', 'TW_35555176_110000', '187', 'estonia', '59.4054161345',
+       '27.2301278486', 'Inf', 'Inf'], dtype='<U21'), 'index': 187, 'lat': '59.4054161345', 'long': '27.2301278486', 'nodeType': 'winding', 'substationName': 'SS_35555176', 'voltageClass': 110.0}
+i
+188
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['188', 'SS_34920683_E', '188', 'estonia', '59.4571348504',
+       '26.8583263644', '1', '0'], dtype='<U21'), 'index': 188, 'lat': '59.4571348504', 'long': '26.8583263644', 'nodeType': 'substation', 'voltageClass': 0}
+i
+189
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['189', 'TW_34920683_110000', '189', 'estonia', '59.4571348504',
+       '26.8583263644', 'Inf', 'Inf'], dtype='<U21'), 'index': 189, 'lat': '59.4571348504', 'long': '26.8583263644', 'nodeType': 'winding', 'substationName': 'SS_34920683', 'voltageClass': 110.0}
+i
+190
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['190', 'SS_34903268_E', '190', 'estonia', '58.7433574379',
+       '25.7655884279', '1', '0'], dtype='<U21'), 'index': 190, 'lat': '58.7433574379', 'long': '25.7655884279', 'nodeType': 'substation', 'voltageClass': 0}
+i
+191
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['191', 'TW_34903268_110000', '191', 'estonia', '58.7433574379',
+       '25.7655884279', 'Inf', 'Inf'], dtype='<U21'), 'index': 191, 'lat': '58.7433574379', 'long': '25.7655884279', 'nodeType': 'winding', 'substationName': 'SS_34903268', 'voltageClass': 110.0}
+i
+192
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['192', 'SS_35343350_E', '192', 'estonia', '59.1335620359',
+       '25.7431023766', '1', '0'], dtype='<U21'), 'index': 192, 'lat': '59.1335620359', 'long': '25.7431023766', 'nodeType': 'substation', 'voltageClass': 0}
+i
+193
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['193', 'TW_35343350_110000', '193', 'estonia', '59.1335620359',
+       '25.7431023766', 'Inf', 'Inf'], dtype='<U21'), 'index': 193, 'lat': '59.1335620359', 'long': '25.7431023766', 'nodeType': 'winding', 'substationName': 'SS_35343350', 'voltageClass': 110.0}
+i
+194
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['194', 'SS_35343349_E', '194', 'estonia', '59.0183214164',
+       '25.729244473', '1', '0'], dtype='<U21'), 'index': 194, 'lat': '59.0183214164', 'long': '25.729244473', 'nodeType': 'substation', 'voltageClass': 0}
+i
+195
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['195', 'TW_35343349_110000', '195', 'estonia', '59.0183214164',
+       '25.729244473', 'Inf', 'Inf'], dtype='<U21'), 'index': 195, 'lat': '59.0183214164', 'long': '25.729244473', 'nodeType': 'winding', 'substationName': 'SS_35343349', 'voltageClass': 110.0}
+i
+196
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['196', 'SS_35343353_E', '196', 'estonia', '58.8316208451',
+       '25.761377453', '1', '0'], dtype='<U21'), 'index': 196, 'lat': '58.8316208451', 'long': '25.761377453', 'nodeType': 'substation', 'voltageClass': 0}
+i
+197
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['197', 'TW_35343353_110000', '197', 'estonia', '58.8316208451',
+       '25.761377453', 'Inf', 'Inf'], dtype='<U21'), 'index': 197, 'lat': '58.8316208451', 'long': '25.761377453', 'nodeType': 'winding', 'substationName': 'SS_35343353', 'voltageClass': 110.0}
+i
+198
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['198', 'SS_34882447_E', '198', 'estonia', '58.6396461168',
+       '25.9738813335', '1', '0'], dtype='<U21'), 'index': 198, 'lat': '58.6396461168', 'long': '25.9738813335', 'nodeType': 'substation', 'voltageClass': 0}
+i
+199
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['199', 'TW_34882447_110000', '199', 'estonia', '58.6396461168',
+       '25.9738813335', 'Inf', 'Inf'], dtype='<U21'), 'index': 199, 'lat': '58.6396461168', 'long': '25.9738813335', 'nodeType': 'winding', 'substationName': 'SS_34882447', 'voltageClass': 110.0}
+i
+200
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['200', 'SS_30222062_E', '200', 'estonia', '58.3832656632',
+       '26.7231989416', '1', '0'], dtype='<U21'), 'index': 200, 'lat': '58.3832656632', 'long': '26.7231989416', 'nodeType': 'substation', 'voltageClass': 0}
+i
+201
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['201', 'TW_30222062_110000', '201', 'estonia', '58.3832656632',
+       '26.7231989416', 'Inf', 'Inf'], dtype='<U21'), 'index': 201, 'lat': '58.3832656632', 'long': '26.7231989416', 'nodeType': 'winding', 'substationName': 'SS_30222062', 'voltageClass': 110.0}
+i
+202
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['202', 'SS_35555175_E', '202', 'estonia', '59.4954436907',
+       '26.5216226887', '1', '0'], dtype='<U21'), 'index': 202, 'lat': '59.4954436907', 'long': '26.5216226887', 'nodeType': 'substation', 'voltageClass': 0}
+i
+203
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['203', 'TW_35555175_110000', '203', 'estonia', '59.4954436907',
+       '26.5216226887', 'Inf', 'Inf'], dtype='<U21'), 'index': 203, 'lat': '59.4954436907', 'long': '26.5216226887', 'nodeType': 'winding', 'substationName': 'SS_35555175', 'voltageClass': 110.0}
+i
+204
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['204', 'SS_35555173_E', '204', 'estonia', '59.4409443472',
+       '26.7629357818', '1', '0'], dtype='<U21'), 'index': 204, 'lat': '59.4409443472', 'long': '26.7629357818', 'nodeType': 'substation', 'voltageClass': 0}
+i
+205
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['205', 'TW_35555173_110000', '205', 'estonia', '59.4409443472',
+       '26.7629357818', 'Inf', 'Inf'], dtype='<U21'), 'index': 205, 'lat': '59.4409443472', 'long': '26.7629357818', 'nodeType': 'winding', 'substationName': 'SS_35555173', 'voltageClass': 110.0}
+i
+206
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['206', 'SS_34920691_E', '206', 'estonia', '59.4318107991',
+       '26.2744624079', '1', '0'], dtype='<U21'), 'index': 206, 'lat': '59.4318107991', 'long': '26.2744624079', 'nodeType': 'substation', 'voltageClass': 0}
+i
+207
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['207', 'TW_34920691_110000', '207', 'estonia', '59.4318107991',
+       '26.2744624079', 'Inf', 'Inf'], dtype='<U21'), 'index': 207, 'lat': '59.4318107991', 'long': '26.2744624079', 'nodeType': 'winding', 'substationName': 'SS_34920691', 'voltageClass': 110.0}
+i
+208
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['208', 'SS_35555163_E', '208', 'estonia', '59.4498727958',
+       '26.038739927', '1', '0'], dtype='<U21'), 'index': 208, 'lat': '59.4498727958', 'long': '26.038739927', 'nodeType': 'substation', 'voltageClass': 0}
+i
+209
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['209', 'TW_35555163_110000', '209', 'estonia', '59.4498727958',
+       '26.038739927', 'Inf', 'Inf'], dtype='<U21'), 'index': 209, 'lat': '59.4498727958', 'long': '26.038739927', 'nodeType': 'winding', 'substationName': 'SS_35555163', 'voltageClass': 110.0}
+i
+210
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['210', 'SS_35555166_E', '210', 'estonia', '59.585530955',
+       '25.7343972342', '1', '0'], dtype='<U21'), 'index': 210, 'lat': '59.585530955', 'long': '25.7343972342', 'nodeType': 'substation', 'voltageClass': 0}
+i
+211
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['211', 'TW_35555166_110000', '211', 'estonia', '59.585530955',
+       '25.7343972342', 'Inf', 'Inf'], dtype='<U21'), 'index': 211, 'lat': '59.585530955', 'long': '25.7343972342', 'nodeType': 'winding', 'substationName': 'SS_35555166', 'voltageClass': 110.0}
+i
+212
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['212', 'SS_35555165_E', '212', 'estonia', '59.5698896925',
+       '25.9745919201', '1', '0'], dtype='<U21'), 'index': 212, 'lat': '59.5698896925', 'long': '25.9745919201', 'nodeType': 'substation', 'voltageClass': 0}
+i
+213
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['213', 'TW_35555165_110000', '213', 'estonia', '59.5698896925',
+       '25.9745919201', 'Inf', 'Inf'], dtype='<U21'), 'index': 213, 'lat': '59.5698896925', 'long': '25.9745919201', 'nodeType': 'winding', 'substationName': 'SS_35555165', 'voltageClass': 110.0}
+i
+214
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['214', 'SS_35555161_E', '214', 'estonia', '59.340307934',
+       '26.1237544364', '1', '0'], dtype='<U21'), 'index': 214, 'lat': '59.340307934', 'long': '26.1237544364', 'nodeType': 'substation', 'voltageClass': 0}
+i
+215
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['215', 'TW_35555161_110000', '215', 'estonia', '59.340307934',
+       '26.1237544364', 'Inf', 'Inf'], dtype='<U21'), 'index': 215, 'lat': '59.340307934', 'long': '26.1237544364', 'nodeType': 'winding', 'substationName': 'SS_35555161', 'voltageClass': 110.0}
+i
+216
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['216', 'SS_36977398_E', '216', 'estonia', '58.4078528629',
+       '25.9789710247', '1', '0'], dtype='<U21'), 'index': 216, 'lat': '58.4078528629', 'long': '25.9789710247', 'nodeType': 'substation', 'voltageClass': 0}
+i
+217
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['217', 'TW_36977398_110000', '217', 'estonia', '58.4078528629',
+       '25.9789710247', 'Inf', 'Inf'], dtype='<U21'), 'index': 217, 'lat': '58.4078528629', 'long': '25.9789710247', 'nodeType': 'winding', 'substationName': 'SS_36977398', 'voltageClass': 110.0}
+i
+218
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['218', 'SS_180118919_E', '218', 'estonia', '58.6696011838',
+       '26.7773760746', '1', '0'], dtype='<U21'), 'index': 218, 'lat': '58.6696011838', 'long': '26.7773760746', 'nodeType': 'substation', 'voltageClass': 0}
+i
+219
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['219', 'TW_180118919_110000', '219', 'estonia', '58.6696011838',
+       '26.7773760746', 'Inf', 'Inf'], dtype='<U21'), 'index': 219, 'lat': '58.6696011838', 'long': '26.7773760746', 'nodeType': 'winding', 'substationName': 'SS_180118919', 'voltageClass': 110.0}
+i
+220
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['220', 'SS_263253461_E', '220', 'estonia', '57.6454710804',
+       '27.0834340367', '1', '0'], dtype='<U21'), 'index': 220, 'lat': '57.6454710804', 'long': '27.0834340367', 'nodeType': 'substation', 'voltageClass': 0}
+i
+221
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['221', 'TW_263253461_110000', '221', 'estonia', '57.6454710804',
+       '27.0834340367', 'Inf', 'Inf'], dtype='<U21'), 'index': 221, 'lat': '57.6454710804', 'long': '27.0834340367', 'nodeType': 'winding', 'substationName': 'SS_263253461', 'voltageClass': 110.0}
+i
+222
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['222', 'SS_235348314_E', '222', 'estonia', '57.4119988267',
+       '27.053550323', '1', '0'], dtype='<U21'), 'index': 222, 'lat': '57.4119988267', 'long': '27.053550323', 'nodeType': 'substation', 'voltageClass': 0}
+i
+223
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['223', 'TW_235348314_110000', '223', 'estonia', '57.4119988267',
+       '27.053550323', 'Inf', 'Inf'], dtype='<U21'), 'index': 223, 'lat': '57.4119988267', 'long': '27.053550323', 'nodeType': 'winding', 'substationName': 'SS_235348314', 'voltageClass': 110.0}
+i
+224
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['224', 'SS_35022081_E', '224', 'estonia', '58.5832448629',
+       '23.2323837611', '1', '0'], dtype='<U21'), 'index': 224, 'lat': '58.5832448629', 'long': '23.2323837611', 'nodeType': 'substation', 'voltageClass': 0}
+i
+225
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['225', 'TW_35022081_110000', '225', 'estonia', '58.5832448629',
+       '23.2323837611', 'Inf', 'Inf'], dtype='<U21'), 'index': 225, 'lat': '58.5832448629', 'long': '23.2323837611', 'nodeType': 'winding', 'substationName': 'SS_35022081', 'voltageClass': 110.0}
+i
+226
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['226', 'SS_34988518_E', '226', 'estonia', '58.553132213',
+       '23.3909473438', '1', '0'], dtype='<U21'), 'index': 226, 'lat': '58.553132213', 'long': '23.3909473438', 'nodeType': 'substation', 'voltageClass': 0}
+i
+227
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['227', 'TW_34988518_110000', '227', 'estonia', '58.553132213',
+       '23.3909473438', 'Inf', 'Inf'], dtype='<U21'), 'index': 227, 'lat': '58.553132213', 'long': '23.3909473438', 'nodeType': 'winding', 'substationName': 'SS_34988518', 'voltageClass': 110.0}
+i
+228
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['228', 'SS_34988522_E', '228', 'estonia', '58.5891596739',
+       '23.3558895675', '1', '0'], dtype='<U21'), 'index': 228, 'lat': '58.5891596739', 'long': '23.3558895675', 'nodeType': 'substation', 'voltageClass': 0}
+i
+229
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['229', 'TW_34988522_110000', '229', 'estonia', '58.5891596739',
+       '23.3558895675', 'Inf', 'Inf'], dtype='<U21'), 'index': 229, 'lat': '58.5891596739', 'long': '23.3558895675', 'nodeType': 'winding', 'substationName': 'SS_34988522', 'voltageClass': 110.0}
+i
+230
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['230', 'SS_29978896_E', '230', 'estonia', '59.4684929435',
+       '25.1625202462', '1', '0'], dtype='<U21'), 'index': 230, 'lat': '59.4684929435', 'long': '25.1625202462', 'nodeType': 'substation', 'voltageClass': 0}
+i
+231
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['231', 'TW_29978896_110000', '231', 'estonia', '59.4684929435',
+       '25.1625202462', 'Inf', 'Inf'], dtype='<U21'), 'index': 231, 'lat': '59.4684929435', 'long': '25.1625202462', 'nodeType': 'winding', 'substationName': 'SS_29978896', 'voltageClass': 110.0}
+i
+232
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['232', 'SS_35384083_E', '232', 'estonia', '59.4472897617',
+       '25.4272431973', '1', '0'], dtype='<U21'), 'index': 232, 'lat': '59.4472897617', 'long': '25.4272431973', 'nodeType': 'substation', 'voltageClass': 0}
+i
+233
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['233', 'TW_35384083_110000', '233', 'estonia', '59.4472897617',
+       '25.4272431973', 'Inf', 'Inf'], dtype='<U21'), 'index': 233, 'lat': '59.4472897617', 'long': '25.4272431973', 'nodeType': 'winding', 'substationName': 'SS_35384083', 'voltageClass': 110.0}
+i
+234
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['234', 'SS_35555171_E', '234', 'estonia', '59.497861929',
+       '25.6103206881', '1', '0'], dtype='<U21'), 'index': 234, 'lat': '59.497861929', 'long': '25.6103206881', 'nodeType': 'substation', 'voltageClass': 0}
+i
+235
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['235', 'TW_35555171_110000', '235', 'estonia', '59.497861929',
+       '25.6103206881', 'Inf', 'Inf'], dtype='<U21'), 'index': 235, 'lat': '59.497861929', 'long': '25.6103206881', 'nodeType': 'winding', 'substationName': 'SS_35555171', 'voltageClass': 110.0}
+i
+236
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['236', 'SS_263282458_E', '236', 'estonia', '58.7290936733',
+       '26.2288329076', '1', '0'], dtype='<U21'), 'index': 236, 'lat': '58.7290936733', 'long': '26.2288329076', 'nodeType': 'substation', 'voltageClass': 0}
+i
+237
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['237', 'TW_263282458_110000', '237', 'estonia', '58.7290936733',
+       '26.2288329076', 'Inf', 'Inf'], dtype='<U21'), 'index': 237, 'lat': '58.7290936733', 'long': '26.2288329076', 'nodeType': 'winding', 'substationName': 'SS_263282458', 'voltageClass': 110.0}
+i
+238
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['238', 'SS_34988486_E', '238', 'estonia', '59.2325527562',
+       '24.2156954556', '1', '0'], dtype='<U21'), 'index': 238, 'lat': '59.2325527562', 'long': '24.2156954556', 'nodeType': 'substation', 'voltageClass': 0}
+i
+239
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['239', 'TW_34988486_110000', '239', 'estonia', '59.2325527562',
+       '24.2156954556', 'Inf', 'Inf'], dtype='<U21'), 'index': 239, 'lat': '59.2325527562', 'long': '24.2156954556', 'nodeType': 'winding', 'substationName': 'SS_34988486', 'voltageClass': 110.0}
+i
+240
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['240', 'SS_34988525_E', '240', 'estonia', '58.8372867477',
+       '23.7882642286', '1', '0'], dtype='<U21'), 'index': 240, 'lat': '58.8372867477', 'long': '23.7882642286', 'nodeType': 'substation', 'voltageClass': 0}
+i
+241
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['241', 'TW_34988525_110000', '241', 'estonia', '58.8372867477',
+       '23.7882642286', 'Inf', 'Inf'], dtype='<U21'), 'index': 241, 'lat': '58.8372867477', 'long': '23.7882642286', 'nodeType': 'winding', 'substationName': 'SS_34988525', 'voltageClass': 110.0}
+i
+242
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['242', 'SS_35594731_E', '242', 'estonia', '58.8861907063',
+       '24.088590894', '1', '0'], dtype='<U21'), 'index': 242, 'lat': '58.8861907063', 'long': '24.088590894', 'nodeType': 'substation', 'voltageClass': 0}
+i
+243
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['243', 'TW_35594731_110000', '243', 'estonia', '58.8861907063',
+       '24.088590894', 'Inf', 'Inf'], dtype='<U21'), 'index': 243, 'lat': '58.8861907063', 'long': '24.088590894', 'nodeType': 'winding', 'substationName': 'SS_35594731', 'voltageClass': 110.0}
+i
+244
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['244', 'SS_101177924_E', '244', 'estonia', '59.0934865346',
+       '23.5884273015', '1', '0'], dtype='<U21'), 'index': 244, 'lat': '59.0934865346', 'long': '23.5884273015', 'nodeType': 'substation', 'voltageClass': 0}
+i
+245
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['245', 'TW_101177924_110000', '245', 'estonia', '59.0934865346',
+       '23.5884273015', 'Inf', 'Inf'], dtype='<U21'), 'index': 245, 'lat': '59.0934865346', 'long': '23.5884273015', 'nodeType': 'winding', 'substationName': 'SS_101177924', 'voltageClass': 110.0}
+i
+246
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['246', 'SS_34988527_E', '246', 'estonia', '58.932325944',
+       '23.5462731437', '1', '0'], dtype='<U21'), 'index': 246, 'lat': '58.932325944', 'long': '23.5462731437', 'nodeType': 'substation', 'voltageClass': 0}
+i
+247
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['247', 'TW_34988527_110000', '247', 'estonia', '58.932325944',
+       '23.5462731437', 'Inf', 'Inf'], dtype='<U21'), 'index': 247, 'lat': '58.932325944', 'long': '23.5462731437', 'nodeType': 'winding', 'substationName': 'SS_34988527', 'voltageClass': 110.0}
+i
+248
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['248', 'SS_34988531_E', '248', 'estonia', '58.9613266606',
+       '23.7035945005', '1', '0'], dtype='<U21'), 'index': 248, 'lat': '58.9613266606', 'long': '23.7035945005', 'nodeType': 'substation', 'voltageClass': 0}
+i
+249
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['249', 'TW_34988531_110000', '249', 'estonia', '58.9613266606',
+       '23.7035945005', 'Inf', 'Inf'], dtype='<U21'), 'index': 249, 'lat': '58.9613266606', 'long': '23.7035945005', 'nodeType': 'winding', 'substationName': 'SS_34988531', 'voltageClass': 110.0}
+i
+250
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['250', 'SS_34988495_E', '250', 'estonia', '59.2087620542',
+       '23.719184418', '1', '0'], dtype='<U21'), 'index': 250, 'lat': '59.2087620542', 'long': '23.719184418', 'nodeType': 'substation', 'voltageClass': 0}
+i
+251
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['251', 'TW_34988495_110000', '251', 'estonia', '59.2087620542',
+       '23.719184418', 'Inf', 'Inf'], dtype='<U21'), 'index': 251, 'lat': '59.2087620542', 'long': '23.719184418', 'nodeType': 'winding', 'substationName': 'SS_34988495', 'voltageClass': 110.0}
+i
+252
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['252', 'SS_35594741_E', '252', 'estonia', '58.3284008567',
+       '26.2996163317', '1', '0'], dtype='<U21'), 'index': 252, 'lat': '58.3284008567', 'long': '26.2996163317', 'nodeType': 'substation', 'voltageClass': 0}
+i
+253
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['253', 'TW_35594741_110000', '253', 'estonia', '58.3284008567',
+       '26.2996163317', 'Inf', 'Inf'], dtype='<U21'), 'index': 253, 'lat': '58.3284008567', 'long': '26.2996163317', 'nodeType': 'winding', 'substationName': 'SS_35594741', 'voltageClass': 110.0}
+i
+254
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['254', 'TW_34968224_330000', '254', 'estonia', '59.3839023273',
+       '24.5595434475', 'Inf', 'Inf'], dtype='<U21'), 'index': 254, 'lat': '59.3839023273', 'long': '24.5595434475', 'nodeType': 'winding', 'substationName': 'SS_34968224', 'voltageClass': 330.0}
+i
+255
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['255', 'TW_34935436_330000', '255', 'estonia', '59.2435665067',
+       '24.699290007', 'Inf', 'Inf'], dtype='<U21'), 'index': 255, 'lat': '59.2435665067', 'long': '24.699290007', 'nodeType': 'winding', 'substationName': 'SS_34935436', 'voltageClass': 330.0}
+i
+256
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['256', 'TW_204914596_330000', '256', 'estonia', '59.3607746722',
+       '25.0411723608', 'Inf', 'Inf'], dtype='<U21'), 'index': 256, 'lat': '59.3607746722', 'long': '25.0411723608', 'nodeType': 'winding', 'substationName': 'SS_204914596', 'voltageClass': 330.0}
+i
+257
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['257', 'TW_34682059_330000', '257', 'estonia', '59.3571835095',
+       '28.1195381005', 'Inf', 'Inf'], dtype='<U21'), 'index': 257, 'lat': '59.3571835095', 'long': '28.1195381005', 'nodeType': 'winding', 'substationName': 'SS_34682059', 'voltageClass': 330.0}
+i
+258
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['258', 'TW_34920675_330000', '258', 'estonia', '59.3689387329',
+       '27.0660716707', 'Inf', 'Inf'], dtype='<U21'), 'index': 258, 'lat': '59.3689387329', 'long': '27.0660716707', 'nodeType': 'winding', 'substationName': 'SS_34920675', 'voltageClass': 330.0}
+i
+259
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['259', 'TW_34920699_330000', '259', 'estonia', '59.3519935716',
+       '26.3300561259', 'Inf', 'Inf'], dtype='<U21'), 'index': 259, 'lat': '59.3519935716', 'long': '26.3300561259', 'nodeType': 'winding', 'substationName': 'SS_34920699', 'voltageClass': 330.0}
+i
+260
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['260', 'SS_34685101_E', '260', 'estonia', '59.2687616341',
+       '27.904963877', '1', '0'], dtype='<U21'), 'index': 260, 'lat': '59.2687616341', 'long': '27.904963877', 'nodeType': 'substation', 'voltageClass': 0}
+i
+261
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['261', 'TW_34685101_330000', '261', 'estonia', '59.2687616341',
+       '27.904963877', 'Inf', 'Inf'], dtype='<U21'), 'index': 261, 'lat': '59.2687616341', 'long': '27.904963877', 'nodeType': 'winding', 'substationName': 'SS_34685101', 'voltageClass': 330.0}
+i
+262
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['262', 'TW_34682089_330000', '262', 'estonia', '58.3794496581',
+       '26.6909671811', 'Inf', 'Inf'], dtype='<U21'), 'index': 262, 'lat': '58.3794496581', 'long': '26.6909671811', 'nodeType': 'winding', 'substationName': 'SS_34682089', 'voltageClass': 330.0}
+i
+263
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['263', 'TW_35450930_330000', '263', 'estonia', '58.4288949203',
+       '24.6703453579', 'Inf', 'Inf'], dtype='<U21'), 'index': 263, 'lat': '58.4288949203', 'long': '24.6703453579', 'nodeType': 'winding', 'substationName': 'SS_35450930', 'voltageClass': 330.0}
+i
+264
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['264', 'TW_35343343_330000', '264', 'estonia', '58.8771109761',
+       '25.5299886727', 'Inf', 'Inf'], dtype='<U21'), 'index': 264, 'lat': '58.8771109761', 'long': '25.5299886727', 'nodeType': 'winding', 'substationName': 'SS_35343343', 'voltageClass': 330.0}
+i
+265
+len(nodesarr)
+266
+len(gic)
+266
+{'savenode': array(['265', 'TW_34685113_330000', '265', 'estonia', '57.8476619498',
+       '26.17738886', 'Inf', 'Inf'], dtype='<U21'), 'index': 265, 'lat': '57.8476619498', 'long': '26.17738886', 'nodeType': 'winding', 'substationName': 'SS_34685113', 'voltageClass': 330.0}
+total nodes
+128
+np.sum(maxprobabilityDamaged)
+0.019500000000000003
+fractiontotaldamaged
+0.00015234375000000003
+r
+0.01
