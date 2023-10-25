@@ -58,7 +58,7 @@ To apply a power fit instead of a log normal fit you would run:
 	- ```getApparentCond(Z,w)```:
 	
 		use impedance Z to calculate the apparent conductivity at the site, at frequency w
-- MTsites: 
+- MTsite: 
 	- ```importFieldRecord(MTsiteName,minindex,maxindex)```:
 	
 		imports the magnetic field record from the netcdf in a sample set of indices of interest
@@ -86,6 +86,7 @@ To apply a power fit instead of a log normal fit you would run:
 
 ## Running the model with the PowerGrid parameter
 ### Environment set up
+
 ```
 conda env create -n geomagmodel --file enivronment.yml
 ```
