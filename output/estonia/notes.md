@@ -31,7 +31,7 @@ https://github.com/allfed/GeomagneticModel/commit/6606bf13ee1a4714e1e7bb67bd47eb
 - Grid:
     - Aside from an odd switch of colours, the grids differ slightly, I'm guessing this is due to me using an older data set (from OpenGridMap instead of transnet_allfed as the latter does not have datasets available)
 
-Unsaved Figures, shown during runtime (is there a flag to change this behaviour?):
+Unsaved Figures, shown during runtime:
 
 - E-field. Does this look right, how do we tell?
 ![efield](E_field.png)
