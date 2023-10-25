@@ -66,3 +66,42 @@ Important functions:
 	GCmodelProcess:
 		Maglat
 
+## Running the model with the PowerGrid parameter
+### Environment set up
+```
+conda env create -n geomagmodel --file enivronment.yml
+```
+```
+conda activate geomagmodel
+```
+- Get global conductivity model from https://globalconductivity.ocean.ru/matlabformat.html
+- Put that file in Data/BigData/ (you need to make this directory yourself).
+- Rename it to ```GCmodel.mat```.
+- Get a poly file from https://download.geofabrik.de/.
+- Rename it to pfile.poly and put in an appropriate folder (see below).
+	- For example to run the model for Estonia we need this file https://download.geofabrik.de/europe/estonia.poly.
+- Get transnet-model file(s) from https://github.com/OpenGridMap/transnet-models and put them in an appropriate folder (see below).
+	- For Estonia, we need those files: https://github.com/OpenGridMap/transnet-models/tree/master/europe/estonia
+- Make sure you have ```transnet``` and ```transnet-models``` directories one level UP from the root of geomagnetic models, with appropriate files in them, see example.
+	- For the Estonia example you want this kind of directory structure:
+	```
+	|-- GeomagneticModelWrapperDirectory
+	|	|-- GeomagneticModel (this is the folder this README is in)
+	|	|	|- ...
+	|	|-- transnet
+	|	|	|-- data
+	|	|	|	|-- europe
+	|	|	|	|	|-- estonia
+	|	|	|	|	|	|-- pfile.poly
+	|	|-- transnet-models
+	|	|	|-- europe
+	|	|	|	|-- estonia
+	|	|	|	|	|-- cim.xml
+	| 	| 	|	|	|-- ...
+	```
+
+### Launch
+```
+python GeomagneticModel.py PowerGrid Region --continent europe --country estonia
+```
+
