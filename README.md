@@ -90,15 +90,15 @@ conda activate geomagmodel
 	| |-- GeomagneticModel (this is the folder this README is in)
 	| | |- ...
 	| |-- transnet
-	| |	|-- data
-	| |	| |-- europe
-	| |	| |	|-- estonia
-	| |	| |	| |-- pfile.poly
+	| | |-- data
+	| | | |-- europe
+	| | | | |-- estonia
+	| | | | | |-- pfile.poly
 	| |-- transnet-models
-	| |	|-- europe
-	| |	| |-- estonia
-	| |	| |	|-- cim.xml
-	| | | |	|-- ...
+	| | |-- europe
+	| | | |-- estonia
+	| | | | |-- cim.xml
+	| | | | |-- ...
 	```
 
 ### Launch
