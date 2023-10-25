@@ -28,25 +28,25 @@ To apply a power fit instead of a log normal fit you would run:
 
 		A csv matching TFsites to MTsites is required for the program to run.  
 
-#### The "Model" parameter
+#### Model modules
 
 ---
 
 ##### WARNING: out-of-date 
 
-```GCmodelImport```, ```GCmodelProcess```, and ```HVtransformers``` are not present in the codebase.
+```GCmodelImport```, ```GCmodelProcess```, are not present in the codebase, and ```HVtransformers``` is neither used or usable (error in code).
 
 ---
 
 
-| Parameter | Description |
+| Module | Description |
 | ----------- | ----------- |
-| TFsites  | Allow estimation of geoelectric field near MTsites using electromagnetic transfer function (EMTF) ground measurements. |
-| MTsites | Provide data over time for EW and NS magnetic field, and use TF sites to calculate corresponding geoelectric fields. |
+| TFsite  | Allow estimation of geoelectric field near MTsites using electromagnetic transfer function (EMTF) ground measurements. |
+| MTsite | Provide data over time for EW and NS magnetic field, and use TF sites to calculate corresponding geoelectric fields. |
 | GCmodelImport | Importing the global conductivity model and determing apparent conductivity allows estimation of variation of geoelectric field over the earth by modelling global ground resistance. |
 | GCmodelProcess | Process the global conductivity model into useful results. |
 | HVtransformers | High voltage transformer properties including statistics on their relative prevalence, GIC thermal time constants and short term thermal sensitivities. |
-| PowerGrids  | Very simple model of global power grid, countries and populations affected by outages. Provides fit function to the MT site data to with duration and repeat rate based field level at a site. |
+| PowerGrid  | Very simple model of global power grid, countries and populations affected by outages. Provides fit function to the MT site data to with duration and repeat rate based field level at a site. |
 
 
 
