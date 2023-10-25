@@ -77,6 +77,7 @@ conda activate geomagmodel
 - Get global conductivity model from https://globalconductivity.ocean.ru/matlabformat.html
 - Put that file in Data/BigData/ (you need to make this directory yourself).
 - Rename it to ```GCmodel.mat```.
+- Make a Data/BigData/Networks directory.
 - Get a poly file from https://download.geofabrik.de/.
 - Rename it to pfile.poly and put in an appropriate folder (see below).
 	- For example to run the model for Estonia we need this file https://download.geofabrik.de/europe/estonia.poly.
