@@ -1,4 +1,3 @@
-from Plotter import Plotter
 import os
 import glob
 import numpy as np
@@ -19,10 +18,12 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 from matplotlib.ticker import LogFormatter 
 import matplotlib.ticker as mticker
 import rasterio
+import rasterio as rio
 import rasterio.features
 import rasterio.warp
 from Model.Network import Network
 from matplotlib.colors import ListedColormap    
+from Plotter import Plotter
 class PowerGrid:
 
 	def __init__(self):
@@ -620,11 +621,183 @@ class PowerGrid:
 		return fraction
 
 
-	# For estimating loss of electricity we use the net consumption by country, and estimate the fraction of people in that country that would lose electricity.
-	# The algorithm is:
-	#     sum over all countries:
-	#         (country consumption)*(fraction population loses electricity in country)
-	def calcElectricityAffected(self):
+	# # For estimating loss of electricity we use the net consumption by country, and estimate the fraction of people in that country that would lose electricity.
+	# # The algorithm is:
+	# #     sum over all countries:
+	# #         (country consumption)*(fraction population loses electricity in country)
+	# def calcElectricityAffected(self):
+
+	# 	#import electricity by nation data
+
+	# 	rawimport=pd.read_csv('Data/SmallData/ElectricityByNation/EleByCountry.csv',skiprows=4,header=0)
+	# 	eleByCountry=pd.DataFrame({'countrycode':rawimport.iloc[1::3,0].values,'country':rawimport.iloc[0::3,1].values,'consumption':rawimport.iloc[2::3,2].values,'generation':rawimport.iloc[1::3,2].values})
+	# 	eleByCountry['countrycode']=eleByCountry['countrycode'].str.slice(start=14,stop=17)
+	# 	codearr=rawimport.iloc[1::3,0].str.split(pat='-').values
+		
+	# 	codes=['']*len(codearr)
+	# 	for i in range(0,len(codearr)):
+	# 		ar=codearr[i]
+	# 		if(len(ar)<2):
+	# 			codes[i]==''
+	# 		else:
+	# 			codes[i]=ar[2]
+
+	# 	eleByCountry['countrycode']=np.array(codes)
+
+	# 	eleByCountry['consumption']=eleByCountry['consumption'].replace('--','0').astype(float)
+	# 	eleByCountry['generation']=eleByCountry['generation'].replace('--','0').astype(float)
+
+	# 	#iterate through the population data, and use the fraction of population in the country to determine loss by net consumption 
+	# 	allPopData=np.load(Params.popCELEdir,allow_pickle=True)
+	# 	for k in range(0,len(allPopData)):
+	# 		r=allPopData[k][0]
+	# 		popCELE=allPopData[k][1]
+	# 		#import the country boundaries, so we can see which country coordinates fall into
+	# 		world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
+	# 		countryshapes=world['geometry'].values
+	# 		dfpoint=pd.DataFrame({'longs':popCELE['longs'].values,'lats':popCELE['lats'].values,'popCELE':popCELE['pop'].values})
+	# 		crs={'init':'epsg:3857'}
+	# 		geometry=[Point(xy) for xy in zip(dfpoint['longs'],dfpoint['lats'])]
+	# 		geo_df=gpd.GeoDataFrame(dfpoint,crs=crs,geometry=geometry)
+	# 		world['countrygeometry']=world['geometry']
+	# 		#get groups of countries which match the coordinates for population losing electricity
+	# 		pointInPolys = sjoin(geo_df, world, how='left')
+
+	# 		grouped = pointInPolys.groupby('index_right')
+
+	# 		eleLostArr=[]
+	# 		fractionEleLostArr=[]
+	# 		elePerCapita=[]
+	# 		eleCountry=[]
+	# 		countrycode=[]
+	# 		geometries=[]
+
+	# 		#for each country
+	# 		netpop=0
+	# 		for key, values in grouped:
+	# 			code=values['iso_a3'].values[0]
+	# 			# eleByCountry['countrycode'].str.match(code)
+	# 			countryele=[]
+	# 			for i in range(0,len(eleByCountry['countrycode'])):
+	# 				if(eleByCountry['countrycode'].values[i]==code):
+	# 					countryele=eleByCountry.iloc[i]
+	# 					break
+	# 			if(len(countryele)==0):
+	# 				continue
+
+	# 			countrypop=values['pop_est'].values[0]
+	# 			popCELE=values['popCELE'].sum()
+	# 			eleconsumption=countryele['consumption']
+	# 			# print('eleconsumption')
+	# 			# print(eleconsumption)
+	# 			# print('popCELE')
+	# 			# print(popCELE)
+	# 			# print('countrypop')
+	# 			# print(countrypop)
+	# 			eleLost=eleconsumption*(popCELE/countrypop)
+	# 			countrycode.append(code)
+	# 			eleCountry.append(eleconsumption)
+	# 			elePerCapita.append(eleconsumption/countrypop)
+	# 			eleLostArr.append(eleLost)
+	# 			fractionEleLostArr.append(eleLost/eleconsumption)
+	# 			geometries.append(values['countrygeometry'].values[0])
+
+	# 		worldElectricity=gpd.GeoDataFrame({'iso_a3':np.array(countrycode),'geometry':np.array(geometries),'fraction':np.array(fractionEleLostArr),'total':np.array(eleCountry),'totalLost':np.array(eleLostArr),'elePerCapita':np.array(elePerCapita)},crs=crs)
+
+	# 		#set area of each country
+	# 		worldElectricity['area']=worldElectricity['geometry'].to_crs({'init': 'epsg:3395'}).map(lambda p: p.area / 10**6) 
+
+	# 		#electricity per km^2
+	# 		worldElectricity['eleDensity']=np.log(worldElectricity['total']/worldElectricity['area'])
+
+	# 		fig, ax = plt.subplots(1, 1)
+	# 		worldElectricity.plot(column='fraction', ax=ax, legend=True,vmin=0,vmax=1)
+			
+	# 		plt.title('Predicted Fraction Electricity By Country \n One in '+str(1/r)+' Year Storm')
+	# 		plt.show()
+
+	# 		totalEleLoss=np.sum(eleLostArr)
+	# 		totalEle=np.sum(eleCountry)
+	# 		print('totalElectricity (GW)')
+	# 		print(totalEle)
+	# 		print('totalEleLoss (GW)')
+	# 		print(totalEleLoss)
+	# 		print('fraction overall')
+	# 		print(totalEleLoss/totalEle)
+
+
+
+
+
+	# 		# fig, ax = plt.subplots(1, 1)
+	# 		# worldElectricity.plot(column='eleDensity', ax=ax, legend=True,vmin=np.min(worldElectricity['eleDensity']),vmax=np.max(worldElectricity['eleDensity']))
+			
+	# 		# plt.title('average Electricity Consumption By Country per unit kilometer')
+	# 		# plt.show()
+
+	# 		# fig, ax = plt.subplots(1, 1)
+	# 		# worldElectricity.plot(column='totalLost', ax=ax, legend=True,vmin=0,vmax=1)
+			
+	# 		# plt.title('Predicted total Electricity lost By Country \n One in '+str(1/r)+' Year Storm')
+	# 		# plt.title('Total Electricity Consumption  By Country')
+	# 		# plt.show()
+
+	# 		pdata=rasterio.open(Params.popDensity15min)
+	# 		ldata=rasterio.open(Params.landArea15min)
+	# 		pArr=pdata.read(1)
+	# 		lArr=ldata.read(1)
+	# 		pArrZeroed = np.where(pArr<0, 0, pArr)
+	# 		lArrZeroed = np.where(lArr<0, 0, lArr)
+	# 		totPop=np.multiply(pArrZeroed,lArrZeroed)
+	# 		longs=[]
+	# 		lats=[]
+	# 		highResEle=[]
+	# 		for latindex in range(0,len(totPop)):
+	# 			for longindex in range(0,len(totPop[0])):
+	# 				lats.append(90-latindex*.25)
+	# 				longs.append(longindex*.25-180)
+	# 				highResEle.append(totPop[latindex,longindex])
+	# 				#figure out if point is inside country
+	# 				# grouped = pointInPolys.groupby('index_right')
+
+	# 				# for key, values in grouped:
+	# 				# 	code=values['iso_a3'].values[0]
+	# 				# 	countryele=[]
+	# 				# 	for i in range(0,len(worldElectricity['iso_a3'])):
+	# 				# 		if(worldElectricity['iso_a3'].values[i]==code):
+	# 				# 			highResEle.append(worldElectricity['elePerCapita'].values[i]*totPop[latindex,longindex])
+
+	# 				# 			break
+	# 				# 	if(len(countryele)==0):
+	# 				# 		continue
+	# 		elemin=np.min(highResEle)+.1
+	# 		elemax=np.max(highResEle)
+	# 		df=pd.DataFrame({'longs':np.array(longs),'lats':np.array(lats),'highResEle':np.array(highResEle)})
+
+	# 		crs={'init':'epsg:3857'}
+	# 		geometry=[Point(xy) for xy in zip(df['longs'],df['lats'])]
+	# 		latdiff=.25
+	# 		longdiff=.25
+	# 		geo_df=Plotter.calcGrid(df,latdiff,longdiff)
+	# 		# geo_df=gpd.GeoDataFrame(df,crs=crs,geometry=geometry)
+
+
+
+	# 		#loop through the 30 minute gridded population density data, and multiply the population in the country by the average electricity per person. Assuming everyone in a country uses about the same electricity, each data point gives the total electricity in that 30 minute square section.
+	# 		ax=geo_df.plot(column='highResEle',legend=True,legend_kwds={'label': 'Coefficient on Reference Field Level','orientation': "horizontal"}, cmap='viridis',norm=colors.LogNorm(vmin=elemin, vmax=elemax))
+
+
+	# 		pp=gplt.polyplot(world,ax=ax,zorder=1)
+	# 		# print(df)
+	# 		self.formatticklabels(elemin,elemax,pp)
+
+	# 		plt.title('Geoelectric Field Multiplier\n Magnetic Latitude\n1 in '+str(1/r)+' Year Storm')
+
+	# 		print('s10')
+	# 		plt.show()
+
+
+	def calcElectricityAffected(self,rateperyears,CELEpopAtRate):
 
 		#import electricity by nation data
 
@@ -646,23 +819,18 @@ class PowerGrid:
 		eleByCountry['consumption']=eleByCountry['consumption'].replace('--','0').astype(float)
 		eleByCountry['generation']=eleByCountry['generation'].replace('--','0').astype(float)
 
-		#iterate through the population data, and use the fraction of population in the country to determine loss by net consumption 
-		allPopData=np.load(Params.popCELEdir,allow_pickle=True)
-		for k in range(0,len(allPopData)):
-			r=allPopData[k][0]
-			popCELE=allPopData[k][1]
-			#import the country boundaries, so we can see which country coordinates fall into
-			world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
-			countryshapes=world['geometry'].values
-			dfpoint=pd.DataFrame({'longs':popCELE['longs'].values,'lats':popCELE['lats'].values,'popCELE':popCELE['pop'].values})
-			crs={'init':'epsg:3857'}
-			geometry=[Point(xy) for xy in zip(dfpoint['longs'],dfpoint['lats'])]
-			geo_df=gpd.GeoDataFrame(dfpoint,crs=crs,geometry=geometry)
-			world['countrygeometry']=world['geometry']
-			#get groups of countries which match the coordinates for population losing electricity
-			pointInPolys = sjoin(geo_df, world, how='left')
+		#import the country boundaries, so we can see which country coordinates fall into
+		world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
+		countryshapes=world['geometry'].values
 
-			grouped = pointInPolys.groupby('index_right')
+		world['countrygeometry']=world['geometry']
+
+		for r in rateperyears:
+			CELEpop=CELEpopAtRate[r]
+			CELEpop.to_pickle("CELEpop.pkl")
+			del CELEpop['index_right']
+			#get groups of countries which match the coordinates for population losing electricity
+			pointInPolys = sjoin(CELEpop, world)
 
 			eleLostArr=[]
 			fractionEleLostArr=[]
@@ -673,8 +841,10 @@ class PowerGrid:
 
 			#for each country
 			netpop=0
-			for key, values in grouped:
-				code=values['iso_a3'].values[0]
+			for countryIndex in set(pointInPolys.index_right.values):
+				row=world[world.index==countryIndex]
+
+				code=row['iso_a3'].values[0]
 				# eleByCountry['countrycode'].str.match(code)
 				countryele=[]
 				for i in range(0,len(eleByCountry['countrycode'])):
@@ -684,23 +854,25 @@ class PowerGrid:
 				if(len(countryele)==0):
 					continue
 
-				countrypop=values['pop_est'].values[0]
-				popCELE=values['popCELE'].sum()
+				countrypop=row['pop_est'].values[0]
+				countryCELEpop=pointInPolys[pointInPolys['index_right'].values==countryIndex]['Z'].sum()
 				eleconsumption=countryele['consumption']
 				# print('eleconsumption')
 				# print(eleconsumption)
 				# print('popCELE')
-				# print(popCELE)
+				# print(countryCELEpop)
 				# print('countrypop')
 				# print(countrypop)
-				eleLost=eleconsumption*(popCELE/countrypop)
+				eleLost=eleconsumption*(countryCELEpop/countrypop)
 				countrycode.append(code)
 				eleCountry.append(eleconsumption)
 				elePerCapita.append(eleconsumption/countrypop)
 				eleLostArr.append(eleLost)
 				fractionEleLostArr.append(eleLost/eleconsumption)
-				geometries.append(values['countrygeometry'].values[0])
+				geometries.append(row['countrygeometry'].values[0])
 
+
+			crs={'init':'epsg:3857'}
 			worldElectricity=gpd.GeoDataFrame({'iso_a3':np.array(countrycode),'geometry':np.array(geometries),'fraction':np.array(fractionEleLostArr),'total':np.array(eleCountry),'totalLost':np.array(eleLostArr),'elePerCapita':np.array(elePerCapita)},crs=crs)
 
 			#set area of each country
@@ -717,6 +889,8 @@ class PowerGrid:
 
 			totalEleLoss=np.sum(eleLostArr)
 			totalEle=np.sum(eleCountry)
+			print('rateperyear')
+			print(r)
 			print('totalElectricity (GW)')
 			print(totalEle)
 			print('totalEleLoss (GW)')
@@ -726,74 +900,6 @@ class PowerGrid:
 
 
 
-
-
-			# fig, ax = plt.subplots(1, 1)
-			# worldElectricity.plot(column='eleDensity', ax=ax, legend=True,vmin=np.min(worldElectricity['eleDensity']),vmax=np.max(worldElectricity['eleDensity']))
-			
-			# plt.title('average Electricity Consumption By Country per unit kilometer')
-			# plt.show()
-
-			# fig, ax = plt.subplots(1, 1)
-			# worldElectricity.plot(column='totalLost', ax=ax, legend=True,vmin=0,vmax=1)
-			
-			# plt.title('Predicted total Electricity lost By Country \n One in '+str(1/r)+' Year Storm')
-			# plt.title('Total Electricity Consumption  By Country')
-			# plt.show()
-
-			pdata=rasterio.open(Params.popDensity15min)
-			ldata=rasterio.open(Params.landArea15min)
-			pArr=pdata.read(1)
-			lArr=ldata.read(1)
-			pArrZeroed = np.where(pArr<0, 0, pArr)
-			lArrZeroed = np.where(lArr<0, 0, lArr)
-			totPop=np.multiply(pArrZeroed,lArrZeroed)
-			longs=[]
-			lats=[]
-			highResEle=[]
-			for latindex in range(0,len(totPop)):
-				for longindex in range(0,len(totPop[0])):
-					lats.append(90-latindex*.25)
-					longs.append(longindex*.25-180)
-					highResEle.append(totPop[latindex,longindex])
-					#figure out if point is inside country
-					# grouped = pointInPolys.groupby('index_right')
-
-					# for key, values in grouped:
-					# 	code=values['iso_a3'].values[0]
-					# 	countryele=[]
-					# 	for i in range(0,len(worldElectricity['iso_a3'])):
-					# 		if(worldElectricity['iso_a3'].values[i]==code):
-					# 			highResEle.append(worldElectricity['elePerCapita'].values[i]*totPop[latindex,longindex])
-
-					# 			break
-					# 	if(len(countryele)==0):
-					# 		continue
-			elemin=np.min(highResEle)+.1
-			elemax=np.max(highResEle)
-			df=pd.DataFrame({'longs':np.array(longs),'lats':np.array(lats),'highResEle':np.array(highResEle)})
-
-			crs={'init':'epsg:3857'}
-			geometry=[Point(xy) for xy in zip(df['longs'],df['lats'])]
-			latdiff=.25
-			longdiff=.25
-			geo_df=Plotter.calcGrid(df,latdiff,longdiff)
-			# geo_df=gpd.GeoDataFrame(df,crs=crs,geometry=geometry)
-
-
-
-			#loop through the 30 minute gridded population density data, and multiply the population in the country by the average electricity per person. Assuming everyone in a country uses about the same electricity, each data point gives the total electricity in that 30 minute square section.
-			ax=geo_df.plot(column='highResEle',legend=True,legend_kwds={'label': 'Coefficient on Reference Field Level','orientation': "horizontal"}, cmap='viridis',norm=colors.LogNorm(vmin=elemin, vmax=elemax))
-
-
-			pp=gplt.polyplot(world,ax=ax,zorder=1)
-			# print(df)
-			self.formatticklabels(elemin,elemax,pp)
-
-			plt.title('Geoelectric Field Multiplier\n Magnetic Latitude\n1 in '+str(1/r)+' Year Storm')
-
-			print('s10')
-			plt.show()
 	def formatticklabels(self,minval,maxval,pp):
 		print('formatting')
 		colourbar = pp.get_figure().get_axes()[1]
@@ -816,77 +922,77 @@ class PowerGrid:
 
 
 
-	#high resolution population estimates (15 minute)
-	def calcPopulationAffected(self):
-		print('calculating population and regions with CELE')
-		pdata=rasterio.open(Params.popDensity15min)
-		ldata=rasterio.open(Params.landArea15min)
-		#latitude resolution in degrees divided by 30 minute resolution of population density data gives us the number of points below and above to sum the population for this transformer location.
-		populationLatN=np.int(np.floor(Params.latituderes/.25))
-		populationLongN=np.int(np.floor(Params.longituderes/.25))
-		pArr=pdata.read(1)
-		lArr=ldata.read(1)
-		pArrZeroed = np.where(pArr<0, 0, pArr)
-		lArrZeroed = np.where(lArr<0, 0, lArr)
-		totPop=np.multiply(pArrZeroed,lArrZeroed)
-		overheatdata=np.load(Params.overheatDataDir,allow_pickle=True)
-		allPopData=[]
-		for i in range(0,int(np.floor(len(overheatdata))/2)):
-			totalPopCELE=0
-			rateindex=i*2
-			dataindex=i*2+1
-			r=overheatdata[rateindex]
-			print('rateperyear'+str(r))
-			df=overheatdata[dataindex]
-			populationaffected=[]
-			for j in range(0,len(df)):
-				isCELE=df['isCELEs'].values[j]
-				latitude=df['lats'].values[j]
-				longitude=df['longs'].values[j]
-				if(not isCELE):
-					indexlat,indexlong=pdata.index(longitude,latitude)
+	# #high resolution population estimates (15 minute)
+	# def calcPopulationAffected(self):
+	# 	print('calculating population and regions with CELE')
+	# 	pdata=rasterio.open(Params.popDensity15min)
+	# 	ldata=rasterio.open(Params.landArea15min)
+	# 	#latitude resolution in degrees divided by 30 minute resolution of population density data gives us the number of points below and above to sum the population for this transformer location.
+	# 	populationLatN=np.int(np.floor(Params.latituderes/.25))
+	# 	populationLongN=np.int(np.floor(Params.longituderes/.25))
+	# 	pArr=pdata.read(1)
+	# 	lArr=ldata.read(1)
+	# 	pArrZeroed = np.where(pArr<0, 0, pArr)
+	# 	lArrZeroed = np.where(lArr<0, 0, lArr)
+	# 	totPop=np.multiply(pArrZeroed,lArrZeroed)
+	# 	overheatdata=np.load(Params.overheatDataDir,allow_pickle=True)
+	# 	allPopData=[]
+	# 	for i in range(0,int(np.floor(len(overheatdata))/2)):
+	# 		totalPopCELE=0
+	# 		rateindex=i*2
+	# 		dataindex=i*2+1
+	# 		r=overheatdata[rateindex]
+	# 		print('rateperyear'+str(r))
+	# 		df=overheatdata[dataindex]
+	# 		populationaffected=[]
+	# 		for j in range(0,len(df)):
+	# 			isCELE=df['isCELEs'].values[j]
+	# 			latitude=df['lats'].values[j]
+	# 			longitude=df['longs'].values[j]
+	# 			if(not isCELE):
+	# 				indexlat,indexlong=pdata.index(longitude,latitude)
 
-					population=0
-					#sum over the populations near the grid point of interest 
-					for k in range(0,populationLatN):
-						newLatIndex=indexlat-populationLatN//2+k
-						for l in range(0,populationLongN):
-							newLongIndex=indexlong-populationLongN//2+l
-							population=population+totPop[newLatIndex,newLongIndex]
-							totalPopCELE=totalPopCELE+totPop[newLatIndex,newLongIndex]
-					populationaffected.append(population)
-				else:
-					populationaffected.append(0)
+	# 				population=0
+	# 				#sum over the populations near the grid point of interest 
+	# 				for k in range(0,populationLatN):
+	# 					newLatIndex=indexlat-populationLatN//2+k
+	# 					for l in range(0,populationLongN):
+	# 						newLongIndex=indexlong-populationLongN//2+l
+	# 						population=population+totPop[newLatIndex,newLongIndex]
+	# 						totalPopCELE=totalPopCELE+totPop[newLatIndex,newLongIndex]
+	# 				populationaffected.append(population)
+	# 			else:
+	# 				populationaffected.append(0)
 
-			#Catastrophic Electricity Loss assumed if spares<overheated transformers	
-			regionsCELE= np.where(np.array(populationaffected)>0, 1, 0) #population affected is always the full population in the region where spares<overheated transformers. Nonzero=>population in grid cell.
-			df=pd.DataFrame({'longs':df['longs'].values,'lats':df['lats'].values,'pop':np.array(populationaffected),'regionsCELE':np.array(regionsCELE)})
-			crs={'init':'epsg:3857'}
-			# nlatcells=(xmax-xmin)/latdiff
-			# nlongcells=(ymax-ymin)/longdiff
+	# 		#Catastrophic Electricity Loss assumed if spares<overheated transformers	
+	# 		regionsCELE= np.where(np.array(populationaffected)>0, 1, 0) #population affected is always the full population in the region where spares<overheated transformers. Nonzero=>population in grid cell.
+	# 		df=pd.DataFrame({'longs':df['longs'].values,'lats':df['lats'].values,'pop':np.array(populationaffected),'regionsCELE':np.array(regionsCELE)})
+	# 		crs={'init':'epsg:3857'}
+	# 		# nlatcells=(xmax-xmin)/latdiff
+	# 		# nlongcells=(ymax-ymin)/longdiff
 
-			#turn the point values into a grid cell with the proper width and height
-			latdiff=Params.latituderes#
-			longdiff=Params.longituderes#
-			geo_df=Plotter.calcGrid(df,latdiff,longdiff)
+	# 		#turn the point values into a grid cell with the proper width and height
+	# 		latdiff=Params.latituderes#
+	# 		longdiff=Params.longituderes#
+	# 		geo_df=Plotter.calcGrid(df,latdiff,longdiff)
 
-			ax=geo_df.plot(column='regionsCELE')
-			world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
-			pp=gplt.polyplot(world,ax=ax,zorder=1)
+	# 		ax=geo_df.plot(column='regionsCELE')
+	# 		world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
+	# 		pp=gplt.polyplot(world,ax=ax,zorder=1)
 			
-			plt.title('Predicted Regions HVT Overheated Exceed Spares \n'+str(1/r)+' Year Storm')
-			# gplt.kdeplot(geo_df,column='E',)
-			print(Params.figuresDir+'/RegionsCELE/regionsAffected'+str(r)+ 'peryear.png')
-			plt.savefig(Params.figuresDir+'/RegionsCELE/regionsAffected'+str(r)+ 'peryear.png')
-			plt.show()
-			print('world population')
-			print(np.sum(totPop))
-			print('world population CELE, 1 in '+str(1/r)+' year storm')
-			print(totalPopCELE)
-			print('fraction world population CELE, 1 in '+str(1/r)+' year storm')
-			print(totalPopCELE/np.sum(totPop))
-			allPopData.append([r,df])
-		np.save(Params.popCELEdir,allPopData)
+	# 		plt.title('Predicted Regions HVT Overheated Exceed Spares \n'+str(1/r)+' Year Storm')
+	# 		# gplt.kdeplot(geo_df,column='E',)
+	# 		print(Params.figuresDir+'/RegionsCELE/regionsAffected'+str(r)+ 'peryear.png')
+	# 		plt.savefig(Params.figuresDir+'/RegionsCELE/regionsAffected'+str(r)+ 'peryear.png')
+	# 		plt.show()
+	# 		print('world population')
+	# 		print(np.sum(totPop))
+	# 		print('world population CELE, 1 in '+str(1/r)+' year storm')
+	# 		print(totalPopCELE)
+	# 		print('fraction world population CELE, 1 in '+str(1/r)+' year storm')
+	# 		print(totalPopCELE/np.sum(totPop))
+	# 		allPopData.append([r,df])
+	# 	np.save(Params.popCELEdir,allPopData)
 
 	def createNetwork(self):
 		#add together the high voltage power grid of ... THE ENTIRE EARTH
@@ -934,6 +1040,58 @@ class PowerGrid:
 		np.save(Params.networkAnalysisDir+'/'+network.region+'/linesData',alllines,allow_pickle=True)
 		print('linedata saved')
 		self.networks=[network]
+	
+
+	def splitIntoStationRegions(self,network,rateperyears):
+		loadNodes=True
+
+		if(loadNodes):
+			network.nodesDict=np.load(Params.networkAnalysisDir+network.region+'/analyzedNodes.npy',allow_pickle=True).item()
+		#use the country boundary polygons
+
+		#find the population for each substation node, by assuming all the nodes serve the areas closest to them
+		indices=[]
+		lats=[]
+		longs=[]
+		failureProbs={}
+		for r in rateperyears:
+			failureProbs[r]=[]
+
+		for n in network.nodesDict.items():
+			node=n[1]
+			if(node['nodeType']=='substation'):
+				if(node['voltageClass']>320):
+					indices.append(node['index'])
+					lats.append(float(node['lat']))
+					longs.append(float(node['long']))
+					for r in rateperyears:
+						if('probFail' in node.keys()):
+							failureProbs[r].append(node['probFail'][r])
+						else:
+							failureProbs[r].append(0)
+		df=pd.DataFrame({'longs':np.array(longs),'lats':np.array(lats)})
+		for r in rateperyears:
+			df[str(r)]=np.array(failureProbs[r])
+		crs={'init':'epsg:3857'}
+
+		geometry=[Point(xy) for xy in zip(df['longs'],df['lats'])]
+		geo_df=gpd.GeoDataFrame(df,crs=crs,geometry=geometry)
+		# ax=geo_df.plot(column='over',legend=True,legend_kwds={'label': 'Peak Temperature (C)','orientation': "horizontal"}, cmap='viridis',vmin=np.min(alltempsTie1),vmax=np.max(alltempsTie1))
+
+		allStationRegions= network.calcVoronoiNodes(geo_df,network.region,rateperyears)
+		print(allStationRegions)
+
+
+		if(not os.path.isdir(Params.networkAnalysisDir+network.region)):
+			os.mkdir(Params.networkAnalysisDir+network.region)
+
+		allStationRegions.to_pickle(Params.networkAnalysisDir+network.region+"/allStationRegions.pkl")
+		# allStationRegions=pd.read_pickle(Params.networkAnalysisDir+network.region+"/allStationRegions.pkl")
+
+		for r in rateperyears:
+			Plotter.plotCombinedVoronoi(allStationRegions,r,False)
+		for r in rateperyears:
+			Plotter.plotCombinedVoronoi(allStationRegions,r,True)
 
 	def plotNetwork(self):
 		if(len(self.networks)>1 or len(self.networks)==0):
@@ -942,6 +1100,8 @@ class PowerGrid:
 			allines=np.load(Params.networkAnalysisDir+'linesData.npy',allow_pickle=True)
 		else:
 			region=self.networks[0].region
+			if(not os.path.isdir(Params.networkAnalysisDir+region)):
+				os.mkdir(Params.networkAnalysisDir+region)
 			allvoltages=np.load(Params.networkAnalysisDir+region+'/voltageData.npy',allow_pickle=True)
 			allines=np.load(Params.networkAnalysisDir+region+'/linesData.npy',allow_pickle=True)
 
@@ -1000,9 +1160,6 @@ class PowerGrid:
 	def calcTransformerFailures(self,network,durationratios,durations,rateperyears):
 		print('5')
 		nodesarr=network.sortednodes
-		print(nodesarr[0])
-		print(nodesarr[1])
-		print(nodesarr[-1])
 		for r in rateperyears:
 			savedata=np.load(Params.networkAnalysisDir+network.region+'/gics'+str(r)+'perYear.npy',allow_pickle=True)
 
@@ -1019,13 +1176,13 @@ class PowerGrid:
 				# if(i==800):
 				# 	quit()
 				# continue
-				print('i')	
-				print(i)	
-				print('len(nodesarr)')	
-				print(len(nodesarr))	
-				print('len(gic)')	
-				print(len(gics))	
-				print(nodesarr[i])
+				# print('i')	
+				# print(i)	
+				# print('len(nodesarr)')	
+				# print(len(nodesarr))	
+				# print('len(gic)')	
+				# print(len(gics))	
+				# print(nodesarr[i])
 				nodetype=nodesarr[i]['nodeType'] #node category
 				voltage=nodesarr[i]['voltageClass'] #max voltage at station, or voltage of winding
 				maxprobabilityDamaged=0
@@ -1053,7 +1210,10 @@ class PowerGrid:
 						if(prob>maxprobabilityDamaged):
 							maxprobabilityDamaged=prob
 					transformerDamageProbs.append(maxprobabilityDamaged)
-
+					#save the probability of damage in the nodesDict for later analysis
+					if(not ('probFail' in network.nodesDict[nodesarr[i]['substationName']].keys())):
+						network.nodesDict[nodesarr[i]['substationName']]['probFail']={}	
+					network.nodesDict[nodesarr[i]['substationName']]['probFail'][r]=maxprobabilityDamaged
 			print('total nodes')
 			print(nnodes)
 			print('np.sum(maxprobabilityDamaged)')
@@ -1062,9 +1222,11 @@ class PowerGrid:
 			print(np.sum(transformerDamageProbs)/nnodes)
 			print('r')
 			print(r)
-			plt.plot(sorted(transformerDamageProbs))
-			plt.show()
-
+			# plt.plot(sorted(transformerDamageProbs))
+			# plt.show()
+		if(not os.path.isdir(Params.networkAnalysisDir+network.region)):
+			os.mkdir(Params.networkAnalysisDir+network.region)
+		np.save(Params.networkAnalysisDir+network.region+'/analyzedNodes.npy',network.nodesDict,allow_pickle=True)
 
 	def calcGICs(networks):
 		gicsEachNetwork=[]
@@ -1072,7 +1234,224 @@ class PowerGrid:
 
 		for n in networks:
 			gicsEachNetwork.append(n.calcGICs())
-			#by duration, calc temperature, and take maximum probability transformer will overheat at any given duration 
+			#by duration, calc temperature, and take maximum probability transformer will erheat at any given duration 
+
+	def combineRegions(self,regions,rateperyears):
+		prevDF=[]
+		for region in regions:
+			if(not os.path.isfile(Params.networkAnalysisDir+region+"/allStationRegions.pkl")):
+				continue
+			regionDF=pd.read_pickle(Params.networkAnalysisDir+region+"/allStationRegions.pkl")
+			if(len(prevDF)>0):
+				combinedDF = pd.concat([prevDF,regionDF],ignore_index=True)
+			else:
+				combinedDF = regionDF
+			prevDF=combinedDF
+		for r in rateperyears:
+			Plotter.plotCombinedVoronoi(combinedDF,r,True)
+		self.combinedDF=combinedDF
+
+	# https://gis.stackexchange.com/questions/384581/raster-to-geopandas
+	def rasterToDF(self):
+		ldata=rasterio.open(Params.landArea15min)
+		lArr=ldata.read(1)
+		lArrZeroed = np.where(lArr<0, 0, lArr)
+		with rio.Env():
+			with rio.open(Params.popDensity15min) as src:
+				crs = src.crs
+
+				# create 1D coordinate arrays (coordinates of the pixel center)
+				xmin, ymax = np.around(src.xy(0.00, 0.00), 9)  # src.xy(0, 0)
+				xmax, ymin = np.around(src.xy(src.height-1, src.width-1), 9)  # src.xy(src.width-1, src.height-1)
+				x = np.linspace(xmin, xmax, src.width)
+				y = np.linspace(ymax, ymin, src.height)  # max -> min so coords are top -> bottom
+
+				
+				# create 2D arrays
+				xs, ys = np.meshgrid(x, y)
+				pArr = src.read(1)
+				pArrZeroed = np.where(pArr<0, 0, pArr)
+				zs=np.multiply(pArrZeroed,lArrZeroed)
+
+		data = {"X": pd.Series(xs.ravel()),
+				"Y": pd.Series(ys.ravel()),
+				"Z": pd.Series(zs.ravel())}
+
+		df = pd.DataFrame(data=data)
+		geometry = gpd.points_from_xy(df.X, df.Y)
+		gdf = gpd.GeoDataFrame(df, crs={'init':'epsg:3857'}, geometry=geometry)
+
+		return gdf
+
+	#high resolution population estimates (15 minute)
+	def calcPopulationPowerOut(self,rateperyears):
+		populationpoints=self.rasterToDF()#.to_crs('EPSG:3857')
+		print('')
+		print('calculating population and regions with CELE')
+
+		print('total population')
+		print(populationpoints['Z'].sum())
+		outageRegionsAllRates={}
+		for rate in rateperyears:
+
+			#determine power outage locations
+			self.combinedDF['powerOut'+str(rate)]=0
+			for index,row in self.combinedDF.iterrows():
+				if(row[str(rate)]>.33):
+					self.combinedDF['powerOut'+str(rate)].iloc[index]=1
+				else:
+					self.combinedDF['powerOut'+str(rate)].iloc[index]=0
+			popsum=0
+			outageRegions=self.combinedDF[self.combinedDF[('powerOut'+str(rate))]==1]
+			# outageRegions.to_pickle("outageRegions.pkl")
+			# populationpoints.to_pickle("populationpoints.pkl")
+
+
+			#this should be done with higher resolution population data at some point, to make sure it is accurate.It will tend to underestimate because it only uses grid points inside the polygon. The problem is the higher population at 2.5 arcsecond will take a very long time to calculate.
+
+
+			pointsInPoly=gpd.sjoin(populationpoints, outageRegions)
+			# print('Population affected at rate '+str(rate) +': ')
+			populationAffectedThisRate=pointsInPoly['Z'].sum()
+			# print(populationAffectedThisRate)
+
+			print('world population CELE, 1 in '+str(1/rate)+' year storm')
+			print(populationAffectedThisRate)
+			print('fraction world population CELE, 1 in '+str(1/rate)+' year storm')
+			print(populationAffectedThisRate/populationpoints['Z'].sum())
+			outageRegionsAllRates[rate]=pointsInPoly
+		return outageRegionsAllRates
+
+	#compare the GIC calculated at the country and the continent
+	#this only works for the simplistic model
+	def compareGICresults(self,continent,country,rateperyears):
+		an=np.load('Data/SmallData/Networks/'+continent+'/analyzedNodes.npy',allow_pickle=True)
+
+		#get the nodes which were used for gics
+		sortednodes=[v for k, v in sorted(an.item().items(), key=lambda item: item[1]['index'])]
+		consubnames=[x['substationName'] for x in sortednodes if ('savenode' in x.keys())]
+		conlats=[x['lat'] for x in sortednodes if ('savenode' in x.keys())]
+		conlongs=[x['long'] for x in sortednodes if ('savenode' in x.keys())]
+		contypes=[x['nodeType'] for x in sortednodes if ('savenode' in x.keys())]
+		convolts=[x['voltageClass'] for x in sortednodes if ('savenode' in x.keys())]
+
+		an=np.load('Data/SmallData/Networks/'+country+'/analyzedNodes.npy',allow_pickle=True)
+
+		#get the nodes which were used for gics
+		sortednodes=[v for k, v in sorted(an.item().items(), key=lambda item: item[1]['index'])]
+		cousubnames=[x['substationName'] for x in sortednodes if ('savenode' in x.keys())]
+		coulats=[x['lat'] for x in sortednodes if ('savenode' in x.keys())]
+		coulongs=[x['long'] for x in sortednodes if ('savenode' in x.keys())]
+		coutypes=[x['nodeType'] for x in sortednodes if ('savenode' in x.keys())]
+		couvolts=[x['voltageClass'] for x in sortednodes if ('savenode' in x.keys())]
+		print(cousubnames)
+		print(coulats)
+		#commented block below should also work, but may not have been updated at same time as analyzedNodes and gics[rate]perYear.npy
+
+		# npf = np.float32
+		#import the nodes from the continent
+		# connetwork=open('Data/BigData/Networks/'+continent+'Nodes.txt','r')
+		# netdata = connetwork.readlines()
+		# nnodes = len(netdata)
+		# consitenum = np.zeros(nnodes, dtype=np.int32)
+		# congeolat, congeolon = np.zeros(nnodes, dtype=npf), np.zeros(nnodes, dtype=npf)
+		# consitename=[]
+		# for i in range(nnodes):
+		# 	data = netdata[i].split("\t")
+		# 	congeolat[i] = float(data[4])
+		# 	congeolon[i] = float(data[5])
+		# 	consitename.append(data[1])
+		# 	consitenum[i] = int(data[0])
+			
+		# #import the nodes from the country
+		# counetwork=open('Data/BigData/Networks/'+country+'Nodes.txt','r')
+		# netdata = counetwork.readlines()
+		# nnodes = len(netdata)
+		# cousitenum = np.zeros(nnodes, dtype=np.int32)
+		# cougeolat, cougeolon = np.zeros(nnodes, dtype=npf), np.zeros(nnodes, dtype=npf)
+		# cousitename=[]
+		# for i in range(nnodes):
+		# 	data = netdata[i].split("\t")
+		# 	cougeolat[i] = float(data[4])
+		# 	cougeolon[i] = float(data[5])
+		# 	cousitename.append(data[1])
+		# 	cousitenum[i] = int(data[0])
+
+		for rate in rateperyears:
+			#import GICs from continent. GIC index is the same as the node index
+			conGICs=np.load('Data/SmallData/Networks/'+continent+'/gics'+str(rate)+'perYear.npy',allow_pickle=True)[0]
+
+			#import GICs from country. GIC index is the same as the node index
+			couGICs=np.load('Data/SmallData/Networks/'+country+'/gics'+str(rate)+'perYear.npy',allow_pickle=True)[0]
+
+			matchedConGICs=[]
+			matchedCouGICs=[]
+
+			matchedconlats=[]
+			matchedconlongs=[]
+			matchedcoulats=[]
+			matchedcoulongs=[]
+			matchedconvolts=[]
+			matchedcouvolts=[]
+			for sn in cousubnames:
+				conindex=np.where(sn==np.array(consubnames))
+				if(len(conindex[0])==0):#not all continent substations match country substation 
+					continue
+				if(len(conindex[0])>1):
+					print('ERROR: MULTIPLE CONTINENT SUBSTATION MATCH NAME')
+					break
+
+				couindex=np.where(sn==np.array(cousubnames))
+				# print(couindex)
+				# print(conindex)
+				if(len(couindex[0])==0):
+					print('ERROR: NO COUNTRY SUBSTATIONS MATCH NAME')
+					break
+				if(len(couindex[0])>1):
+					print('ERROR: MULTIPLE COUNTRY SUBSTATIONS MATCH NAME')
+					break
+
+
+
+				matchedConGICs.append(conGICs[conindex[0][0]])
+				matchedCouGICs.append(couGICs[couindex[0][0]])
+
+				matchedcoulats.append(coulats[couindex[0][0]])
+				matchedcoulongs.append(coulongs[couindex[0][0]])
+				matchedconlats.append(conlats[conindex[0][0]])
+				matchedconlongs.append(conlongs[conindex[0][0]])
+
+				matchedconvolts.append(convolts[conindex[0][0]])
+				matchedcouvolts.append(couvolts[couindex[0][0]])
+				# print(couGICs[couindex[0][0]])
+				# print(conGICs[conindex[0][0]])
+				# print('')
+			plt.figure()
+			plt.scatter(matchedconlats,matchedcoulats)
+			plt.show()
+			plt.figure()
+			plt.scatter(matchedconlongs,matchedcoulongs)
+			plt.show()
+			plt.figure()
+			plt.scatter(matchedconvolts,matchedcouvolts)
+			plt.show()
+			matchedconlats=[]
+			matchedconlats=[]
+			matchedcoulats=[]
+			matchedcoulongs=[]
+			assert(len(matchedCouGICs)==len(matchedConGICs))
+
+			plt.figure()
+			plt.scatter(matchedCouGICs,matchedConGICs)
+			plt.title('rate: '+str(rate))
+			plt.show()
+
+			#
+
+			
+			#import the nodes from the country
+
+
 
 
 

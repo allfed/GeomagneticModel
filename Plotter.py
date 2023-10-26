@@ -10,7 +10,9 @@ import geopandas as gpd
 import geoplot as gplt
 from shapely.geometry import Point
 import Params
+from mpl_toolkits.axes_grid1 import make_axes_locatable
 import mapclassify as mc
+from geovoronoi.plotting import subplot_for_map, plot_voronoi_polys_with_points_in_area
 class Plotter:
 	def __init__(self):
 		pass
@@ -64,7 +66,6 @@ class Plotter:
 		plt.show()
 
 	def plotNetwork(voltages,lines,ax,region):
-		print('wow')
 		n = len(voltages)
 		colornames = plt.cm.coolwarm(np.linspace(0.1,0.9,n))
 		if(len(voltages)==1):
@@ -119,7 +120,7 @@ class Plotter:
 		crs={'init':'epsg:3857'}
 		geometry=[Point(xy) for xy in zip(df['longs'],df['lats'])]
 		# geo_df=gpd.GeoDataFrame(df,crs=crs,geometry=geometry)
-		geo_df=Plotter.calcGrid(df)
+		geo_df=Plotter.calcGridStandard(df)
 		polyGeo_df=gpd.GeoDataFrame({'geometry':polygon})
 		pp=gplt.polyplot(polyGeo_df,ax=ax,zorder=1)
 		world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
@@ -136,13 +137,20 @@ class Plotter:
 	def plotRegionEfields(df,rate,network):
 		minE=np.min(df['E'])
 		maxE=np.max(df['E'])
+		
 
 		crs={'init':'epsg:3857'}
 		geometry=[Point(xy) for xy in zip(df['longs'],df['lats'])]
 		# geo_df=gpd.GeoDataFrame(df,crs=crs,geometry=geometry)
-		geo_df=Plotter.calcGrid(df)
+
+
+		geo_df=Plotter.calcGridStandard(df)
 		ax=geo_df.plot(column='E',legend=True,cmap='viridis',legend_kwds={'label': 'Field Level (V/km)','orientation': "horizontal"})
-		polyGeo_df=gpd.GeoDataFrame({'geometry':network.boundaryPolygon})
+		geo_df.geometry=geometry
+		[newnodes,worldpolys]=network.getPolysWithNodes(geo_df)
+		polyGeo_df=gpd.GeoDataFrame({'geometry':worldpolys})
+
+
 		pp=gplt.polyplot(polyGeo_df,ax=ax,zorder=1)
 		world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
 
@@ -159,7 +167,7 @@ class Plotter:
 		plt.savefig(Params.figuresDir+'Regions/'+network.region+'/'+str(rate)+ 'peryearE.png')
 		plt.show()
 
-	def calcGrid(df):
+	def calcGridStandard(df):
 		latdiff=Params.latituderes#
 		longdiff=Params.longituderes#
 		xmin=np.min(df['lats'])
@@ -179,3 +187,86 @@ class Plotter:
 		geo_df=gpd.GeoDataFrame(df,crs=crs,geometry=cells)
 		return geo_df
 
+	def calcGrid(df,lats,longs,latdiff,longdiff):
+		xmin=np.min(df['lats'])
+		ymin=np.min(df['longs'])
+		xmax=np.max(df['lats'])
+		ymax=np.max(df['longs'])
+		cells=[]
+		for index,row in df.iterrows():
+			if(row['lats']==xmin or row['lats']==xmax or row['longs']==ymin or row['longs']==ymax):
+				cells.append(shapely.geometry.box(0,0,0,0))
+				continue
+
+			cell=shapely.geometry.box(row['longs']-longdiff/2, row['lats']+latdiff/2,row['longs']+longdiff/2 ,row['lats']-latdiff/2)
+			cells.append(cell)
+		crs={'init':'epsg:3857'}
+
+		geo_df=gpd.GeoDataFrame(df,crs=crs,geometry=cells)
+		return geo_df
+
+
+	# def plotVoronoiRegions(failureProbs,geometry,boundary_shape,poly_shapes,regionPointsDict,region,rate):
+	# 	fig, ax = subplot_for_map()
+
+	# 	colors=plt.cm.viridis(failureProbs)#/np.max(nodes['failureProbs']))
+
+	# 	# print('np.max(nodes[failureProbs])')
+	# 	# print(np.max(nodes['failureProbs']))
+	# 	# print('falprobs')
+	# 	# print(nodes['failureProbs'])
+	# 	# print(len(colors))
+	# 	# print(len(poly_shapes))
+	# 	# print('colors')
+	# 	# print(colors)
+	# 	# np.save( 'boundary_shape',boundary_shape,allow_pickle=True)
+	# 	# np.save( 'poly_shapes',poly_shapes,allow_pickle=True)
+	# 	# np.save( 'nodes',nodes,allow_pickle=True)
+	# 	# np.save( 'colors',colors,allow_pickle=True)
+	# 	# nodes.to_pickle("nodes.pkl")
+	# 	# output = pd. read_pickle("a_file.plkl")
+
+	# 	plot_voronoi_polys_with_points_in_area(ax, boundary_shape,poly_shapes,geometry,voronoi_and_points_cmap='viridis',voronoi_color=colors)
+	# 	ax.set_title('Voronoi regions of Substations in '+region+' rate:'+str(rate))
+	# 	plt.tight_layout()
+	# 	plt.show()
+
+	def plotCombinedVoronoi(sRegions,rate,cutoff):
+		if(cutoff):
+
+			fig, ax = plt.subplots(figsize=(12, 10))
+			world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
+			pp=gplt.polyplot(world,ax=ax,zorder=1)
+			sRegions.geometry=sRegions['geometry']
+			sRegions['powerOut'+str(rate)]=0
+
+			for index,row in sRegions.iterrows():
+				if(row[str(rate)]>.33):
+					sRegions['powerOut'+str(rate)].iloc[index]=1
+				else:
+					sRegions['powerOut'+str(rate)].iloc[index]=0
+
+			gplt.choropleth(sRegions, hue=sRegions['powerOut'+str(rate)],	cmap='viridis',ax=ax,legend=True,    edgecolor='None'
+			)
+			# pp2=gplt.polyplot(df,ax=ax,zorder=1)
+			plt.title('Substation at Risk of Electricity Loss, '+str(rate) +'per Year Storm')
+			# df.plot(ax=ax)
+			# plt.show()
+			plt.savefig(Params.figuresDir+str(rate)+ 'peryearOverheat.png')
+
+		else:
+			fig, ax = plt.subplots(figsize=(12, 10))
+			world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
+			pp=gplt.polyplot(world,ax=ax,zorder=1)
+			sRegions.geometry=sRegions['geometry']
+			gplt.choropleth(sRegions, hue=sRegions[str(rate)],	cmap='viridis',ax=ax,legend=True,    edgecolor='None'
+			)
+			# pp2=gplt.polyplot(df,ax=ax,zorder=1)
+			# df.plot(ax=ax)
+			plt.title('Fraction of Transformers at Substations that Overheat, '+str(rate) +'per Year Storm')
+
+			# plt.show()
+
+			plt.savefig(Params.figuresDir+str(rate)+ 'peryearOutage.png')
+	# <AxesSubplot:>
+	# pp1=gplt.polyplot(polygdf,ax=ax,zorder=2)

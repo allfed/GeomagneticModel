@@ -147,7 +147,7 @@ class GIC_Model:
     #####################################################################
     #                       MAIN PROGRAM                                #
     #####################################################################
-    def runModel(self,efilePath,connsAndNodesPath):
+    def runModel(self,efilePath,connsAndNodesPath,isSimplistic):
         print('efilePath')
         print(efilePath)
         print('connsAndNodesPath')
@@ -161,7 +161,6 @@ class GIC_Model:
         # connectionspath =   "network/HortonGrid_Connections.txt"
         networkpath =       connsAndNodesPath+'Nodes.txt'#"network/nodes.txt"
         connectionspath =   connsAndNodesPath+'Connections.txt'#"network/connections.txt"
-        print(networkpath)
         # Read station and transformer data:
         network = open(networkpath, 'r')
         netdata = network.readlines()
@@ -169,6 +168,8 @@ class GIC_Model:
         # Define number of nodes:
         nnodes = len(netdata)
         
+        print('nnodes')
+        print(nnodes)
         # Read data into arrays:
         npf = np.float32
         geolat, geolon = np.zeros(nnodes, dtype=npf), np.zeros(nnodes, dtype=npf)
@@ -185,11 +186,11 @@ class GIC_Model:
             # ---------------
             data = netdata[i].split("\t")
             # Dictionary for station to index:
-            s2i[data[2]] = int(data[0]) - 1
+            s2i[data[2]] = int(data[0])
             # Dictionary for index to station:
-            i2s[int(data[0]) - 1] = data[2]
+            i2s[int(data[0])] = data[2]
             # Site number:
-            sitenum[i] = int(data[0]) - 1           # -1 to simplify python indices
+            sitenum[i] = int(data[0])
             # Site readable names:
             sitename.append(data[1])
             # Site code names:
@@ -212,7 +213,8 @@ class GIC_Model:
 
         # Number of connections:
         nconnects = len(conndata)
-
+        print('nconnects')
+        print(nconnects)
         nodefrom = np.zeros(nconnects, dtype=np.int32)
         nodeto = np.zeros(nconnects, dtype=np.int32)
         res_line = np.zeros(nconnects, dtype=npf)
@@ -323,7 +325,10 @@ class GIC_Model:
         # Create earth impedance matrix:
         # LP1984 eq. (3): **Z**
         # (assuming that nodes are spaced far enough apart to not affect one another)
-        earthimp = np.diag(res_earth + res_trans)
+        if(isSimplistic):
+            earthimp = np.diag(res_earth)
+        else:
+            earthimp = np.diag(res_earth + res_trans)
 
         # Calculate network admittance matrix:
         # LP1984 eq. (10): **Y**

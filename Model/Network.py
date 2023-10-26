@@ -25,13 +25,17 @@ import cycler
 import os
 import sys
 import subprocess
+from geopandas.tools import sjoin
+from geovoronoi import voronoi_regions_from_coords, points_to_coords
+from shapely.ops import cascaded_union
 
 class Network:
 	def __init__(self):
 		#assumptions:
 		#each transformer gets its own winding resistance, and it's assumed that transformers are all connected to the same grounding grid at a substation, with a given resistance per phase of the windings (transformertogroundR). These are all connected together, and there's an earthing resistance (groundingR) for the grounding grid to earth.
-		self.lowestAllowedVoltage=100#kV
-		self.groundingR='1'#ohms
+		self.isSimplistic=True
+		self.lowestAllowedVoltage=10#200#100#kV
+		self.groundingR='.5'#ohms
 		# self.transformertogroundR='.15'#ohms
 		self.allvoltageset=set({})
 		self.region=''
@@ -112,14 +116,20 @@ class Network:
 			if(isinstance(rnd,SynchronousMachine)):
 				self.gens.append(rnd)
 
-		nodesDict=self.importNodes()
+		if(self.isSimplistic):
+			nodesDict=self.importNodesSimplistic()
+		else:
+			nodesDict=self.importNodes()
 
 		#sort nodesdict by index
 		self.sortednodes=[v for k, v in sorted(self.nodesDict.items(), key=lambda item: item[1]['index'])]
 
-		self.importConnections(nodesDict)
+		if(self.isSimplistic):
+			self.importConnections(nodesDict)
+		else:
+			self.importConnectionsSimplistic(nodesDict)
 		self.saveTextFiles()
-		# self.generateConfigFile()
+		self.generateConfigFile()
 		print('')
 		print('')
 		print('')
@@ -129,6 +139,9 @@ class Network:
 		fig=plt.figure()
 		ax = fig.add_subplot(111)
 		Plotter.plotNetwork(self.voltages,self.lines,ax,self.region)
+		plt.show()
+		print('network plotted')
+		quit()
 		return [self.voltages,self.lines]
 
 	def loadPolygon(self):
@@ -152,7 +165,7 @@ class Network:
 		print('cleanupxml done')
 
 
-	def importNodes(self):
+	def importNodesSimplistic(self):
 
 		tree = ET.parse(self.regionDataDir+'cim.xml')
 		root = tree.getroot()
@@ -160,7 +173,6 @@ class Network:
 		conns=[]
 		output=[]
 		windings=[]
-		nodes=[] 
 		nodesDict={}
 
 
@@ -208,13 +220,95 @@ class Network:
 				self.minlong=float(long)
 			if(float(lat)<self.minlat):
 				self.minlat=float(lat)
-			#every winding needs a connection to ground node of substation
+			#every winding has a connection to the ground node of the substation. All such windings can be combined. The highest winding voltage is saved as the voltage class of the transformer at that node. 
+
+			#node 5 is resistance directly to ground from this node
+
+			if(not (subname in nodesDict.keys())):
+				# data format for ground node:
+				# __0__ ____1____ ___2___ ___3___ _4_ __5__ _______6______ _7_
+				# index node name  code   country lat long  gnd resistance  0
+				savenode=np.array([index,subname+'_E',index, self.region, lat, long, self.groundingR,'0'])
+
+				nodesDict[subname] = {'savenode':savenode,'index':index,'lat':lat,'long':long,'nodeType':'substation','substationName':subname,'voltageClass':voltage}
+				index = index + 1
+
+			if(windname in nodesDict.keys()):
+				continue
+
+			savenode = np.array([index,windname,index, self.region, lat, long, 'Inf','Inf'])
+
+			#we assume the voltage class of the substation is the highest voltage of the transformer winding at the substation
+			if(voltage>nodesDict[subname]['voltageClass']):
+				nodesDict[subname]['voltageClass']=voltage
+
+			#subname node points to the ground node. Do not include a savenode.	
+			nodesDict[windname] = {'index':nodesDict[subname]['index'],'lat':lat,'long':long,'nodeType':'winding','substationName':subname,'voltageClass':voltage}#ground has voltage 0
+
+		self.nodesDict=nodesDict
+		return nodesDict
+
+	def importNodes(self):
+
+		tree = ET.parse(self.regionDataDir+'cim.xml')
+		root = tree.getroot()
+
+		conns=[]
+		output=[]
+		windings=[]
+		nodesDict={}
+
+
+		#NOTE: unfortunately PyCIM does not appear to import the Transformerwinding object, so I had to hack together my own import function for this property.  
+		index=0
+		for i in root:
+			if(i.tag.split('}')[-1]=='TransformerWinding'):
+				windings.append(i)
+
+		#obtain transformer winding properties, build a node for each substation ground (_E) and voltage (_[voltage value])
+		for w in windings:
+			for info in w:
+				#name of the winding
+				if(info.tag.split('}')[-1]=='IdentifiedObject.name'):
+					windname=info.text
+				if(info.tag.split('}')[-1]=='TransformerWinding.ratedU'):
+					voltage=float(info.text)/1000 #kV
+				if(info.tag.split('}')[-1]=='TransformerWinding.r'):
+					r=float(info.text)
+				if(info.tag.split('}')[-1]=='TransformerWinding.PowerTransformer'):
+					tid=list(info.attrib.values())[0]
+					uuid=tid[1:]
+			# 	if(info.tag.split('}')[-1]=='TransformerWinding.windingType'):
+			# 		windtype=list(info.attrib.values())[0]
+
+			# #we only care about primary windings, because we've already specified the winding by its voltage in the windname property
+			# if(windtype.split('.')[-1]!="primary"):
+			# 	continue
+
+			#we only care about primary windings, because we've already specified the winding by its voltage in the windname property
+			if(voltage<self.lowestAllowedVoltage):
+				continue
+
+			#build a dictionary for finding the substation name from the transformer winding name
+			transformer=self.rawNetworkData.get(uuid)
+			substation=transformer.getEquipmentContainer()
+			subname=substation.name
+			lat=substation.getLocation().getPositionPoints()[0].yPosition
+			long=substation.getLocation().getPositionPoints()[0].xPosition
+			if(float(lat)>self.maxlat):
+				self.maxlat=float(lat)
+			if(float(long)>self.maxlong):
+				self.maxlong=float(long)
+			if(float(long)<self.minlong):
+				self.minlong=float(long)
+			if(float(lat)<self.minlat):
+				self.minlat=float(lat)
 
 			#every substation has one ground node
 			#node 5 is resistance directly to ground from this node
 			#node 6 is resistance directly to transformer from this node (I think, not really sure about this one)
 			if(not (subname in nodesDict.keys())):
-				# data format for ground node:
+				# data format for simplistic node:
 				# __0__ ____1____ ___2___ ___3___ _4_ __5__ _______6______ _7_
 				# index node name  code   country lat long  gnd resistance  0
 				savenode=np.array([index,subname + '_E',index, self.region, lat, long, self.groundingR,'0'])
@@ -239,21 +333,22 @@ class Network:
 
 			index = index + 1
 
-		#add power station nodes
-		# for g in self.gens:
-		# 	voltage=int(g.getBaseVoltage().nominalVoltage/1000)
-		# 	genname=g.getGeneratingUnit().name
-		# 	genlat=g.getGeneratingUnit().getLocation().getPositionPoints()[0].yPosition
-		# 	genlong=g.getGeneratingUnit().getLocation().getPositionPoints()[0].xPosition
 
-		# 	index=index+1
+			#add power station nodes
+			# for g in self.gens:
+			# 	voltage=int(g.getBaseVoltage().nominalVoltage/1000)
+			# 	genname=g.getGeneratingUnit().name
+			# 	genlat=g.getGeneratingUnit().getLocation().getPositionPoints()[0].yPosition
+			# 	genlong=g.getGeneratingUnit().getLocation().getPositionPoints()[0].xPosition
 
-		# 	# data format for power station transformer node:
-		# 	# __0__ ____1____ ___2___ ___2___ _3_ __4__ _______5______ _6_
-		# 	# index node name  code   country lat long  gnd resistance Inf
-		# 	nodes.append(np.array([index,genname,index,self.region,genlat,genlong,'Inf','Inf']))
+			# 	index=index+1
 
-		# 	nodesDict[genname]=[index,genlat,genlong,'generatingUnit',genname,voltage]
+			# 	# data format for power station transformer node:
+			# 	# __0__ ____1____ ___2___ ___2___ _3_ __4__ _______5______ _6_
+			# 	# index node name  code   country lat long  gnd resistance Inf
+			# 	nodes.append(np.array([index,genname,index,self.region,genlat,genlong,'Inf','Inf']))
+
+			# 	nodesDict[genname]=[index,genlat,genlong,'generatingUnit',genname,voltage]
 		self.nodesDict=nodesDict
 		return nodesDict
 
@@ -329,21 +424,8 @@ class Network:
 			if(not(v in self.transformertogroundR.keys())):
 				self.transformertogroundR[v]=1/np.interp(v,self.windingkV,self.windingConductance)
 			windR=self.transformertogroundR[v]
-			# print('resistancePerKilometer')
-			# print(resistancePerKilometer)
-			# print('windR')
-			# print(windR)
-			# print('voltage')
-			# print(v)
-
-			# print('c.length')
-			# print(c.length)
 
 			r=resistancePerKilometer*(c.length/1000) #Ohms (net resistance of the power line, length converted to kilometers)
-			# print('r')
-			# print(r)
-
-
 
 			# data format for connection to other transformer node:
 			# __0__ ____1____ ___2___ _3_ _4_ _____5____ ____6____
@@ -386,8 +468,6 @@ class Network:
 			p1=Point(float(long1),float(lat1))
 			p2=Point(float(long2),float(lat2))
 			line=LineString([[p1.x, p1.y], [p2.x, p2.y]])
-			# print('[[p1.x, p1.y], [p2.x, p2.y]]')
-			# print([[p1.x, p1.y], [p2.x, p2.y]])
 			vindex=np.where(np.array(voltages)==v)[0]
 			if(len(vindex)==0):
 				voltages.append(v)
@@ -397,12 +477,89 @@ class Network:
 				i=vindex[0]
 			lines[i].append(line)
 
-		# quit()
-
 		self.connections=outputConnections
 		self.lines=lines
 		self.voltages=voltages
 		self.nodesDict=nodesDict
+
+	#each voltage line naively connects to the other through no resistance
+	#the combination of substation grounding and transformer winding is assumed to be 0.5 ohms
+	def importConnectionsSimplistic(self,nodesDict):
+		conns=[]
+
+		#NOTE: again because of the bug with PyCIM, am hacking together a reference by using the names of the AC power lines, rather than the TransformerWinding(A) - Terminal - ConnectivityNode - Terminal - ACLineSegment -Terminal - ConnectivityNode - Terminal - TransformerWinding(B) UUID terminal chain from the cim.xml.
+		outputConnections=[]
+
+		gdfs=[]#for plotting
+		voltages=[]
+		lines=[]
+		startpoints=[]
+		stoppoints=[]
+		index=0
+		for c in self.conns:
+			# print('self.conns')
+			# print(c)
+			v=int(c.getBaseVoltage().nominalVoltage/1000)
+			if(v<self.lowestAllowedVoltage):
+				continue
+			# print(c)
+			# print(c.name)
+			winding1='TW_'+c.name.split('_CN_')[1]
+			winding2='TW_'+c.name.split('_CN_')[2]
+
+			if(winding1 in nodesDict.keys()):
+				assert(nodesDict[winding1]['nodeType']=='winding')
+				index1=nodesDict[winding1]['index']
+				subname1=nodesDict[winding1]['substationName']
+				key1=subname1 #connects directly to the substation
+			else:
+				continue
+				#there isn't a transformer for this connection. It must connect directly to a generating unit (aka power station).
+
+			if(winding2 in nodesDict.keys()):
+				assert(nodesDict[winding2]['nodeType']=='winding')
+				index2=nodesDict[winding2]['index']
+				subname2=nodesDict[winding2]['substationName']
+				key2=subname2 #connects directly to the sublstation
+			else:
+				continue
+				# #there isn't a transformer for this connection. It must connect directly to a generating unit (aka power station). 
+			self.allvoltageset.add(v)
+
+			if(not(v in self.lineResistance.keys())):
+				self.lineResistance[v]=1/np.interp(v,self.linekV,self.lineConductance)
+			resistancePerKilometer=self.lineResistance[v]
+
+			r=resistancePerKilometer*(c.length/1000) #Ohms (net resistance of the power line, length converted to kilometers)
+
+			# data format for connection to other transformer node:
+			# __0__ ____1____ ___2___ _3_ _4_ _____5____ ____6____
+			# index nodefrom  nodeto   0   0  resistance  voltage
+			outputConnections.append([index,index1,index2,'0','0',str(r),str(v)])
+			index = index + 1
+
+			#now we've connected the nodes connected to this power line to substation ground 
+
+			#for plotting
+			lat1=nodesDict[key1]['lat']
+			long1=nodesDict[key1]['long']
+			lat2=nodesDict[key2]['lat']
+			long2=nodesDict[key2]['long']
+			p1=Point(float(long1),float(lat1))
+			p2=Point(float(long2),float(lat2))
+			line=LineString([[p1.x, p1.y], [p2.x, p2.y]])
+			vindex=np.where(np.array(voltages)==v)[0]
+			if(len(vindex)==0):
+				voltages.append(v)
+				lines.append([])
+				i=len(voltages)-1
+			else:
+				i=vindex[0]
+			lines[i].append(line)
+
+		self.connections=outputConnections
+		self.lines=lines
+		self.voltages=voltages
 
 	# def analyzeNetwork(self):
 	# 	print('OOOO')
@@ -460,14 +617,21 @@ class Network:
 			# quit()
 
 	def saveTextFiles(self):
-		#save the text files which will be processed
-		savenodes=[x['savenode'] for x in self.sortednodes]
+		#save the text files which will be processed by GIC_Model
+		savenodes=[x['savenode'] for x in self.sortednodes if ('savenode' in x.keys())]
+		# savenodes=[x['savenode'] for x in self.sortednodes if (('savenode' in x.keys()) and (x['substationName'] in ['SS_516651650', 'SS_197846408', 'SS_180637986', 'SS_88462768', 'SS_254158424', 'SS_264275258', 'SS_183749097', 'SS_456199341', 'SS_264852019', 'SS_194575030', 'SS_255668124', 'SS_88144450', 'SS_266025855', 'SS_35150701', 'SS_186889669', 'SS_104388595', 'SS_207339053', 'SS_207331199', 'SS_42998577', 'SS_179121616', 'SS_194614470', 'SS_185902319', 'SS_191715059', 'SS_79803767', 'SS_150124101', 'SS_147525695', 'SS_185693432', 'SS_89760546', 'SS_288283900', 'SS_207728854', 'SS_27144164', 'SS_96278380', 'SS_104388599', 'SS_361261945', 'SS_208124159', 'SS_137050528', 'SS_166764802', 'SS_148266260', 'SS_137050527', 'SS_230134599', 'SS_142185552', 'SS_402783212', 'SS_227767019', 'SS_227767022', 'SS_339008021', 'SS_260836695']))]
 
-		print(np.array(savenodes))
+		# savenodeindices=[x['index'] for x in self.sortednodes if (x['substationName'] in ['SS_516651650', 'SS_197846408', 'SS_180637986', 'SS_88462768', 'SS_254158424', 'SS_264275258', 'SS_183749097', 'SS_456199341', 'SS_264852019', 'SS_194575030', 'SS_255668124', 'SS_88144450', 'SS_266025855', 'SS_35150701', 'SS_186889669', 'SS_104388595', 'SS_207339053', 'SS_207331199', 'SS_42998577', 'SS_179121616', 'SS_194614470', 'SS_185902319', 'SS_191715059', 'SS_79803767', 'SS_150124101', 'SS_147525695', 'SS_185693432', 'SS_89760546', 'SS_288283900', 'SS_207728854', 'SS_27144164', 'SS_96278380', 'SS_104388599', 'SS_361261945', 'SS_208124159', 'SS_137050528', 'SS_166764802', 'SS_148266260', 'SS_137050527', 'SS_230134599', 'SS_142185552', 'SS_402783212', 'SS_227767019', 'SS_227767022', 'SS_339008021', 'SS_260836695'])]
+		# print(len(savenodeindices))
 		print(self.processedNetworkDir+self.region+'Nodes.txt')
-		# quit()
 		savetxt(self.processedNetworkDir+self.region+'Nodes.txt',np.array(savenodes),delimiter='\t', fmt='%s')
+		# print('self.connections')
+		# print(self.connections)
+		# onlyirelandconnections=[x for x in self.connections if ((x[1] in savenodeindices) and (x[2] in savenodeindices))]
+		# print(len(onlyirelandconnections))
+		# print(len(self.connections))
 		savetxt(self.processedNetworkDir+self.region+'Connections.txt',np.array(self.connections),delimiter='\t', fmt='%s')
+		# savetxt(self.processedNetworkDir+self.region+'Connections.txt',np.array(onlyirelandconnections),delimiter='\t', fmt='%s')
 
 		 
 
@@ -588,7 +752,7 @@ trans_args='%s'
 				savedata=np.save(Params.networkAnalysisDir+self.region+'/gics'+str(r)+'perYear.npy',allow_pickle=True)
 				[gics,lineLengths]=savedata
 			else:
-				[gics,lineLengths]=gicModel.runModel(efilePath,networkFileDir)
+				[gics,lineLengths]=gicModel.runModel(efilePath,networkFileDir,self.isSimplistic)
 				savedata=[gics,lineLengths]
 				print('saved')
 				print('len(gics)')
@@ -652,7 +816,7 @@ trans_args='%s'
 			df.dropna(subset = ["GIC"], inplace=True)
 			print('number of substations')
 			print(len(df))
-			Plotter.plotGICsBubble(df,self,r)
+			# Plotter.plotGICsBubble(df,self,r)
 		# print(sortednodes)
 		
 
@@ -668,4 +832,90 @@ trans_args='%s'
 		#run transnet on all the countries
 		# print('allvoltageset')
 		# print(self.allvoltageset)
-		 
+
+	# https://towardsdatascience.com/how-to-create-voronoi-regions-with-geospatial-data-in-python-adbb6c5f2134
+	def calcVoronoi(self,allnodes,region,rateperyears):
+		# fig, ax = plt.subplots(figsize=(12, 10))
+		# world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
+		# pp=gplt.polyplot(world,zorder=1)
+		
+		# plt.show()
+		# stationShapes=[]
+		# sRegionFailureProbs=np.array([])
+		sRegionFailureProbs=pd.DataFrame()
+		[nodeArrList,polyList]=self.getPolysWithNodes(allnodes)
+		prevprobfails=[]
+		# print('len(polyList)')
+		# print(len(polyList))
+		for i in range(0,len(polyList)):
+			poly=polyList[i]
+			nodes=nodeArrList[i]
+
+			# print('poly')
+			# print(poly)
+			# print('nodes')
+			# print(nodes)
+			shape=gpd.GeoDataFrame({'geometry':[poly]},crs='epsg:3857')
+			boundary = shape.to_crs(epsg=3857)
+			gdf_proj = nodes.to_crs(boundary.crs)
+			boundary_shape = cascaded_union(boundary.geometry)
+			coords = points_to_coords(gdf_proj.geometry)
+			if(len(coords)<2): #voronoi can't handle only one node.
+				continue
+			# Calculate Voronoi Regions (appears to scramble ID of polygons and nodes, which is fixed below)
+			poly_shapes,poly_to_pt_assignment = voronoi_regions_from_coords(coords, boundary_shape)
+			# for r in rateperyears:
+			# 	Plotter.plotVoronoiRegions(nodes[str(r)],nodes['geometry'], boundary_shape, poly_shapes, poly_to_pt_assignment,region, r)
+
+			# probfails=pd.DataFrame()
+			nnodes=len(poly_to_pt_assignment)
+			cols=[str(x) for x in rateperyears]
+			cols.append('geometry')
+			probfails = gpd.GeoDataFrame(0,index=len(prevprobfails)+ np.linspace(0,nnodes-1,nnodes).astype(int), columns=cols,crs='epsg:3857')
+
+			#we need to assign the polygon shapes to a dataframe with the appropriate rateperyear probability of failure of that region
+			for key, item in poly_to_pt_assignment.items():
+				for r in rateperyears:
+					probfails[str(r)].iloc[key]=nodes[str(r)].iloc[item[0]]
+				probfails['geometry'].iloc[key]=poly_shapes[key]
+				#NOTE: assertion below fails somewhere in Europe, not sure why.
+				# assert(probfails['geometry'].iloc[key].contains(nodes['geometry'].iloc[item[0]]))
+			if(len(prevprobfails)>0):
+				newdataframe = pd.concat([prevprobfails,probfails])
+			else:
+				newdataframe = probfails
+			prevprobfails=newdataframe
+		return newdataframe
+
+
+	#return a list of polygons (independent nations or sections of nations) and associated nodes which lie within those polygons
+	# https://gis.stackexchange.com/questions/208546/check-if-a-point-falls-within-a-multipolygon-with-python
+	def getPolysWithNodes(self,nodes):
+		
+		#get a set of country land boundaries
+		world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+
+		points=gpd.GeoSeries(nodes['geometry'])
+
+		#get a list of polygons
+		allpolys=[]
+		for index, row in world.iterrows():
+			if(row['geometry'].geom_type == 'MultiPolygon'):
+				for polygon in row['geometry']:
+					if(points.within(polygon).any()):
+						allpolys.append(polygon)
+			else:
+				if(points.within(row['geometry']).any()):
+					allpolys.append(row['geometry'])
+		# print(len(allpolys))
+		crs={'init':'epsg:3857'}
+		# create the list of points by splitting the dataframe 
+		splitpoints=[]
+		for poly in allpolys:
+			geo_df=gpd.GeoDataFrame({'geometry':[poly]},crs='epsg:3857')
+			pointInPolys = sjoin(nodes, geo_df, how='left')
+			grouped = pointInPolys.groupby('index_right')
+			# print(len(grouped))
+			# print(grouped.head())
+			splitpoints.append(grouped.get_group("index_right"==0))
+		return [splitpoints,allpolys]

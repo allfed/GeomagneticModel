@@ -28,6 +28,7 @@ from Model.ValidateModel import ValidateModel
 
 import Model.Network
 from Model.Network import Network
+from Plotter import Plotter
 
 # import Model.GIC_Model
 # from Model.GIC_Model import GIC_Model
@@ -53,7 +54,7 @@ def get_args():
 		'Function', metavar='function', type=str,
 		nargs='?',
 		help='Specify subpart of geomagnetic model to run (a specific function as part of the model specified). If you want the entirety of this aspect of the model to be run, don\'t include any second argument. Default: entirety of model processed.',
-		choices=['calcEfields','calcRecurrence','calcRecurrenceFit','calcCombinedRecurrence','calcGlobalModel','evalGCmodel','calcEvsDuration','calcTimeBetweenStorms','WorldNetwork','Region','CalculateMagDict'])
+		choices=['calcEfields','calcRecurrence','calcRecurrenceFit','calcCombinedRecurrence','calcGlobalModel','evalGCmodel','calcEvsDuration','calcTimeBetweenStorms','WorldNetwork','Region','CalculateMagDict','LoadRegionE','compareGICresults'])
 
 
 	arg_parser.add_argument(
@@ -124,21 +125,44 @@ if __name__ == '__main__':
 		earthmodel.plotSites(tfsites,mtsites)
 		quit()
 	if(args['Model']=='PowerGrid'): 
+		if(args['Function']=='compareGICresults'):
+			continent=args['continent']
+			country=args['country']
+			powergrid.compareGICresults(continent,country,rateperyears)
+			quit()
 		if(args['Function']=='WorldNetwork'):
+			powergrid.combineRegions(['europe','south-america','africa','north-america','australia-oceania','russia','asia'],rateperyears)
+			popCELEatRate=powergrid.calcPopulationPowerOut(rateperyears)
+			powergrid.calcElectricityAffected(rateperyears,popCELEatRate)
 			# powergrid.createNetwork()
 			# powergrid.createRegionNetwork('europe','')
 
 			# powergrid.createRegionNetwork('europe','')
 			# powergrid.createRegionNetwork('south-america','')
-			powergrid.createRegionNetwork('africa','')
+			# powergrid.createRegionNetwork('africa','')
 			# powergrid.createRegionNetwork('north-america','')
 			# powergrid.createRegionNetwork('australia-oceania','')
 			# powergrid.createRegionNetwork('central-america','')
 			# powergrid.createRegionNetwork('russia','')
 			# powergrid.createRegionNetwork('asia','')
-			powergrid.plotNetwork()
+			# powergrid.plotNetwork()
 			# powergrid.calcGICs()
 			quit()
+		if(args['Function']=='LoadRegionE'):
+
+			continent=args['continent']
+			continents=['europe','south-america','africa','north-america','australia-oceania','central-america','russia','asia']
+			if(len(continent)==0 or not (continent in continents)):
+				print('Error: Continent required to process region. Options are:')
+				print(continents)
+				quit()
+			country=args['country']
+			print('creating region network:'+continent +' '+str(country) )			
+			powergrid.createRegionNetwork(continent,country)
+			network=powergrid.networks[0]
+			earthmodel.loadRegionEfields(rateperyears,network)
+			quit()
+
 		if(args['Function']=='Region'):
 			continent=args['continent']
 			continents=['europe','south-america','africa','north-america','australia-oceania','central-america','russia','asia']
@@ -149,21 +173,23 @@ if __name__ == '__main__':
 			country=args['country']
 			print('creating region network:'+continent +' '+str(country) )			
 			powergrid.createRegionNetwork(continent,country)
-			print('2')
 			earthmodel.loadCombinedFits()
 			earthmodel.loadDurationRatios()
 			earthmodel.loadApparentCond()
-			network=powergrid.networks[0]
 			#the network contains information on the boundary of the region and the name.
+			network=powergrid.networks[0]
 			network.EfieldFiles=earthmodel.calcRegionEfields(rateperyears,network,plot=True)#the first and only network, as we're only calculating one region
+			# network.EfieldFiles=earthmodel.loadRegionEfields(rateperyears,network)#the first and only network, as we're only calculating one region
 			# earthmodel.plotRegionEfields()
 			print('3')
 			network.calcGICs()
-			# powergrid.setWindowedEmaps(earthmodel)
 			print('4')
 			powergrid.calcTransformerFailures(network,earthmodel.allwindowperiods,earthmodel.averagedRatios,rateperyears)
 			#load E fields for the 
 
+			powergrid.splitIntoStationRegions(network,rateperyears)
+
+			print('madeit')
 			# powergrid.createRegionNetwork('europe','estonia')
 			# powergrid.createRegionNetwork('south-america','')
 			# powergrid.createRegionNetwork('africa','')

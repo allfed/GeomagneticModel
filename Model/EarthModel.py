@@ -27,7 +27,7 @@ from shapely.geometry import Point
 import contextily as ctx
 from scipy.stats import pearsonr
 import matplotlib.ticker as mticker
-from numpy import savetxt
+from numpy import savetxt, loadtxt
 import os
 
 class EarthModel:
@@ -497,6 +497,18 @@ class EarthModel:
 			dataPathsDict[r]=filename
 			# print(dataPathsDict)
 		return dataPathsDict
+
+	def loadRegionEfields(self,ratePerYears,network):
+		regionName=network.region
+		for r in ratePerYears:
+			filename=Params.regionEfieldsDir+regionName+'/EfieldHor'+str(r)+'PerYear60Second.txt'
+			efields=np.array(loadtxt(filename,delimiter='\t'))
+			lats=efields[:,0]
+			longs=efields[:,1]
+			Es=efields[:,5]
+			df=pd.DataFrame({'longs':np.array(longs),'lats':np.array(lats),'E':np.array(Es)})
+
+			Plotter.plotRegionEfields(df,r,network)
 
 	# find E -fields at all locations on conductivity map for each duration
 	# Correct for geomagnetic latitude and apparent conductivity
