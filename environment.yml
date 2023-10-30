@@ -1,4 +1,3 @@
-name: geomagmodel
 channels:
   - conda-forge
 dependencies:
@@ -15,12 +14,13 @@ dependencies:
   - rasterio=1.2.1
   - netcdf4==1.5.6
   - mapclassify=2.4.2
+  - pip
   - pip:
     - h5py==3.2.1
     - recordtype==1.3
     - pyexcel-ods==0.6.0
     - pycim==15.15.0
     - spacepy==0.2.3
-    
+    - geovoronoi==0.3.0
     
     
