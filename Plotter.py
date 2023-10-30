@@ -185,7 +185,7 @@ class Plotter:
         )
         geo_df.geometry = geometry
         [newnodes, worldpolys] = network.getPolysWithNodes(geo_df)
-        polyGeo_df = gpd.GeoDataFrame({"geometry": worldpolys})
+        polyGeo_df = gpd.GeoDataFrame({"geometry": network.boundaryPolygon})
 
         pp = gplt.polyplot(polyGeo_df, ax=ax, zorder=1)
         world = geopandas.read_file(geopandas.datasets.get_path("naturalearth_lowres"))
