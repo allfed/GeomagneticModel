@@ -107,6 +107,9 @@ conda activate geomagmodel
 	```
 	|-- GeomagneticModelWrapperDirectory
 	| |-- GeomagneticModel (this is the folder this README is in)
+	| | |-- Data
+	| | | |-- BigData
+	| | | | |-- GCmodel.mat
 	| | |-- ...
 	| |-- transnet
 	| | |-- data
@@ -127,3 +130,7 @@ conda activate geomagmodel
 python GeomagneticModel.py PowerGrid Region --continent europe --country estonia
 ```
 
+### Notes/TODO
+
+- the overheat.pngs do not seem to change with 'r' which is probably a bug
+- the Estonia data mentioned in the manual is out of date
