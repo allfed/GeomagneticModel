@@ -68,20 +68,8 @@ class Plotter:
         # Plotter.plotNetwork(network.voltages,network.lines,ax)
         plt.title("GIC in " + network.region + " for " + str(rate) + " Per Year Storm")
 
-    def plotNetwork(voltages, lines, ax, region):
-        n = len(voltages)
-        colornames = plt.cm.coolwarm(np.linspace(0.1, 0.9, n))
-        if len(voltages) == 1:
-            mycolors = [ListedColormap(colornames[0])]
-        mycolors = [ListedColormap(colornames[i]) for i in range(0, len(voltages))]
-        # f, ax = plt.subplots()
-        maxi = 100000
-        # if(len(voltages)==1):
-        # 	print('AAAh')
-        # 	i=0
-        # 	v=voltages[i]
-        # 	network=gpd.GeoDataFrame({'voltage': np.array(v),'geometry':np.array(lines[i])})
-        # 	gdf=gpd.GeoDataFrame(geometry=lines[i])
+        if not os.path.isdir(Params.figuresDir + "Regions/" + network.region):
+            os.mkdir(Params.figuresDir + "Regions/" + network.region)
 
         plt.savefig(
             Params.figuresDir
@@ -94,7 +82,6 @@ class Plotter:
         plt.show()
 
     def plotNetwork(voltages, lines, ax, region):
-        print("wow")
         n = len(voltages)
         colornames = plt.cm.coolwarm(np.linspace(0.1, 0.9, n))
         if len(voltages) == 1:
@@ -145,6 +132,13 @@ class Plotter:
         if not os.path.isdir(Params.figuresDir + "Regions/" + region):
             os.mkdir(Params.figuresDir + "Regions/" + region)
 
+        plt.savefig(Params.figuresDir + "Regions/" + region + "/Network")
+        return ax
+
+    def plotRegionEfields(df, polygon, network):
+        minE = np.min(df["E"])
+        maxE = np.max(df["E"])
+
         crs = {"init": "epsg:3857"}
         geometry = [Point(xy) for xy in zip(df["longs"], df["lats"])]
         # geo_df=gpd.GeoDataFrame(df,crs=crs,geometry=geometry)
@@ -153,9 +147,26 @@ class Plotter:
         pp = gplt.polyplot(polyGeo_df, ax=ax, zorder=1)
         world = geopandas.read_file(geopandas.datasets.get_path("naturalearth_lowres"))
 
-    def plotRegionEfields(df, polygon, network):
-        minE = np.min(df["E"])
-        maxE = np.max(df["E"])
+        if network.country == "great-britain":
+            shape = world[(world.name == "United Kingdom")]
+        else:
+            shape = gpd.GeoDataFrame(
+                {"geometry": network.boundaryPolygon}, crs="epsg:3857"
+            )
+        ax = geo_df.plot(
+            column="E",
+            legend=True,
+            cmap="viridis",
+            legend_kwds={"label": "Field Level (V/km)", "orientation": "horizontal"},
+        )
+        pp = gplt.polyplot(
+            shape,
+            zorder=1,
+            projection=gcrs.AlbersEqualArea(),
+            extent=shape.total_bounds,
+        )
+        # Plotter.plotNetwork(network.voltages,network.lines,ax)
+        plt.show()
 
     def plotRegionEfields(df, rate, network):
         minE = np.min(df["E"])
@@ -179,23 +190,27 @@ class Plotter:
         pp = gplt.polyplot(polyGeo_df, ax=ax, zorder=1)
         world = geopandas.read_file(geopandas.datasets.get_path("naturalearth_lowres"))
 
-    def plotRegionEfields(df, rate, network):
-        minE = np.min(df["E"])
-        maxE = np.max(df["E"])
-
-        crs = {"init": "epsg:3857"}
-        geometry = [Point(xy) for xy in zip(df["longs"], df["lats"])]
-        # geo_df=gpd.GeoDataFrame(df,crs=crs,geometry=geometry)
-        geo_df = Plotter.calcGrid(df)
-        ax = geo_df.plot(
-            column="E",
-            legend=True,
-            cmap="viridis",
-            legend_kwds={"label": "Field Level (V/km)", "orientation": "horizontal"},
+        # gb_shape=world[(world.name == "United Kingdom")]
+        # pp=gplt.polyplot(gb_shape,ax=ax,zorder=1)
+        # Plotter.plotNetwork(network.voltages,network.lines,ax)
+        if not os.path.isdir(Params.figuresDir + "Regions/" + network.region):
+            os.mkdir(Params.figuresDir + "Regions/" + network.region)
+        plt.title(
+            "E Field in " + network.region + " for " + str(rate) + " Per Year Storm"
         )
-        polyGeo_df = gpd.GeoDataFrame({"geometry": network.boundaryPolygon})
-        pp = gplt.polyplot(polyGeo_df, ax=ax, zorder=1)
-        world = geopandas.read_file(geopandas.datasets.get_path("naturalearth_lowres"))
+
+        if not os.path.isdir(Params.figuresDir + "Regions/" + network.region):
+            os.mkdir(Params.figuresDir + "Regions/" + network.region)
+
+        plt.savefig(
+            Params.figuresDir
+            + "Regions/"
+            + network.region
+            + "/"
+            + str(rate)
+            + "peryearE.png"
+        )
+        plt.show()
 
     def calcGridStandard(df):
         latdiff = Params.latituderes  #
@@ -215,18 +230,17 @@ class Plotter:
                 cells.append(shapely.geometry.box(0, 0, 0, 0))
                 continue
 
-        if not os.path.isdir(Params.figuresDir + "Regions/" + network.region):
-            os.mkdir(Params.figuresDir + "Regions/" + network.region)
+            cell = shapely.geometry.box(
+                row["longs"] - longdiff / 2,
+                row["lats"] + latdiff / 2,
+                row["longs"] + longdiff / 2,
+                row["lats"] - latdiff / 2,
+            )
+            cells.append(cell)
+        crs = {"init": "epsg:3857"}
 
-        plt.savefig(
-            Params.figuresDir
-            + "Regions/"
-            + network.region
-            + "/"
-            + str(rate)
-            + "peryearE.png"
-        )
-        plt.show()
+        geo_df = gpd.GeoDataFrame(df, crs=crs, geometry=cells)
+        return geo_df
 
     def calcGrid(df, lats, longs, latdiff, longdiff):
         xmin = np.min(df["lats"])
