@@ -126,11 +126,25 @@ conda activate geomagmodel
 	```
 
 ### Launch
+
+Example 1.
 ```
-python GeomagneticModel.py PowerGrid Region --continent europe --country estonia
+python GeomagneticModel.py PowerGrid Region --continent europe --country estonia -r 0.01
 ```
+
+### Result
+Example 1.
+- prints some info to stdout
+- save some data to pkl/npy files
+- displays a plot of the power grid
+- save power grid plot to Data/SmallData/Figures/Regions/estonia/Network.png
+- save plot of E field to Data/SmallData/Figures/Regions/estonia/0.01peryearE.png
+- save plot of GICs to Data/SmallData/Figures/Regions/estonia/0.01peryearGIC.png
+- save plot of power outages to Data/SmallData/Figures/0.01peryearOutage.png, WARNING: file path collision
+- save plot of overheating transformers to Data/SmallData/Figures/0.01peryearOverheat.png, WARNING: file path collision + probably broken
 
 ### Notes/TODO
 
 - the overheat.pngs do not seem to change with 'r' which is probably a bug
+- overheat/outage plots are not saved to a region subfolder which can cause unwanted overwrites
 - the Estonia data mentioned in the manual is out of date
