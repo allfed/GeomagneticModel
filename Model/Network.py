@@ -156,7 +156,6 @@ class Network:
         Plotter.plotNetwork(self.voltages, self.lines, ax, self.region)
         plt.show()
         print("network plotted")
-        quit()
         return [self.voltages, self.lines]
 
     def loadPolygon(self):

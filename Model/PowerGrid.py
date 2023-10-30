@@ -1242,9 +1242,7 @@ class PowerGrid:
         geo_df = gpd.GeoDataFrame(df, crs=crs, geometry=geometry)
         # ax=geo_df.plot(column='over',legend=True,legend_kwds={'label': 'Peak Temperature (C)','orientation': "horizontal"}, cmap='viridis',vmin=np.min(alltempsTie1),vmax=np.max(alltempsTie1))
 
-        allStationRegions = network.calcVoronoiNodes(
-            geo_df, network.region, rateperyears
-        )
+        allStationRegions = network.calcVoronoi(geo_df, network.region, rateperyears)
         print(allStationRegions)
 
         if not os.path.isdir(Params.networkAnalysisDir + network.region):
