@@ -930,7 +930,7 @@ trans_args='%s'
             df.dropna(subset=["GIC"], inplace=True)
             print("number of substations")
             print(len(df))
-            # Plotter.plotGICsBubble(df,self,r)
+            Plotter.plotGICsBubble(df, self, r)
         # print(sortednodes)
 
         # now that's done, we have network files located in the directory of
