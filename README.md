@@ -113,6 +113,8 @@ conda activate geomagmodel
 	| | | |-- europe
 	| | | | |-- estonia
 	| | | | | |-- pfile.poly
+	| | |-- configs
+	| | | |-- estonia
 	| |-- transnet-models
 	| | |-- europe
 	| | | |-- estonia
