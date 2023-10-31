@@ -141,11 +141,10 @@ Example 1.
 - save plot of E field to Data/SmallData/Figures/Regions/estonia/0.01peryearE.png
 - save plot of GICs to Data/SmallData/Figures/Regions/estonia/0.01peryearGIC.png
 - save plot of power outages to Data/SmallData/Figures/0.01peryearOutage.png, WARNING: file path collision
-- save plot of overheating transformers to Data/SmallData/Figures/0.01peryearOverheat.png, WARNING: file path collision + probably broken
+- save plot of overheating transformers to Data/SmallData/Figures/0.01peryearOverheat.png, WARNING: file path collision
 
 ### Notes/TODO
 
-- the overheat.pngs do not seem to change with 'r' which is probably a bug
 - overheat/outage plots are not saved to a region subfolder which can cause unwanted overwrites
 - document printed output
 - document other PowerGrid branches
