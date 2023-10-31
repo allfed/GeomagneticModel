@@ -327,7 +327,7 @@ class Plotter:
             )
             # df.plot(ax=ax)
             # plt.show()
-            plt.savefig(Params.figuresDir + str(rate) + "peryearOverheat.png")
+            plt.savefig(Params.figuresDir + str(rate) + "peryearOutage.png")
 
         else:
             fig, ax = plt.subplots(figsize=(12, 10))
@@ -354,7 +354,7 @@ class Plotter:
 
             # plt.show()
 
-            plt.savefig(Params.figuresDir + str(rate) + "peryearOutage.png")
+            plt.savefig(Params.figuresDir + str(rate) + "peryearOverheat.png")
 
     # <AxesSubplot:>
     # pp1=gplt.polyplot(polygdf,ax=ax,zorder=2)
