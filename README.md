@@ -147,4 +147,6 @@ Example 1.
 
 - the overheat.pngs do not seem to change with 'r' which is probably a bug
 - overheat/outage plots are not saved to a region subfolder which can cause unwanted overwrites
+- document printed output
+- document other PowerGrid branches
 - the Estonia data mentioned in the manual is out of date
