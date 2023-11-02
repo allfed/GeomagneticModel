@@ -149,3 +149,6 @@ Example 1.
 - document printed output
 - document other PowerGrid branches
 - the Estonia data mentioned in the manual is out of date
+- Model/Network.py:988: "Assigning CRS to a GeoDataFrame without a geometry column is now deprecated"
+	- WorldNetwork part of PowerGrid requires geopandas >= 0.11 to work.
+	- Region part requires geopandas < 0.11 to work.
