@@ -137,6 +137,11 @@ Example 2.
 python GeomagneticModel.py PowerGrid WorldNetwork -r 0.01
 ```
 
+Example 3.
+```
+python GeomagneticModel.py PowerGrid compareGICresults --continent europe --country estonia -r 0.01
+```
+
 ### Result
 Example 1.
 - prints some info to stdout
@@ -155,9 +160,17 @@ Example 2.
 - saves the first plot to Data/SmallData/Figures/0.01peryearOutage.png. WARNING: collision without other plots of this kind, see Example 1.
 - creates CELEpop.pkl file
 
+Example 3.
+Compares GICs computed for the given continent and country.
+- displays a plot of stations latitudes; x=continent, y=country
+- displays a plot of stations longitudes; x=continent, y=country
+- displays a plot of stations voltages; x=continent, y=country
+- displays a plot of stations detected GICs; x=country, y=continent
+
 ### Notes/TODO
 
 - overheat/outage plots are not saved to a region subfolder which can cause unwanted overwrites
 - document PowerGrid printed output in more detail
 - document other PowerGrid->compareGICresults, and PowerGrid->LoadRegionE
 - the Estonia data mentioned in the manual is out of date
+- what's the purpose of compareGICresults?
