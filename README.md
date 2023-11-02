@@ -132,23 +132,32 @@ Example 1.
 python GeomagneticModel.py PowerGrid Region --continent europe --country estonia -r 0.01
 ```
 
+Example 2.
+```
+python GeomagneticModel.py PowerGrid WorldNetwork -r 0.01
+```
+
 ### Result
 Example 1.
 - prints some info to stdout
-- save some data to pkl/npy files
+- saves some data to pkl/npy files
 - displays a plot of the power grid
-- save power grid plot to Data/SmallData/Figures/Regions/estonia/Network.png
-- save plot of E field to Data/SmallData/Figures/Regions/estonia/0.01peryearE.png
-- save plot of GICs to Data/SmallData/Figures/Regions/estonia/0.01peryearGIC.png
-- save plot of power outages to Data/SmallData/Figures/0.01peryearOutage.png, WARNING: file path collision
-- save plot of overheating transformers to Data/SmallData/Figures/0.01peryearOverheat.png, WARNING: file path collision
+- saves a power grid plot to Data/SmallData/Figures/Regions/estonia/Network.png
+- saves a plot of E field to Data/SmallData/Figures/Regions/estonia/0.01peryearE.png
+- saves a plot of GICs to Data/SmallData/Figures/Regions/estonia/0.01peryearGIC.png
+- saves a plot of power outages to Data/SmallData/Figures/0.01peryearOutage.png, WARNING: file path collision
+- saves a plot of overheating transformers to Data/SmallData/Figures/0.01peryearOverheat.png, WARNING: file path collision
+
+Example 2.
+- prints some info to stdout
+- displays a plot of substations at risk of electricity loss for the whole world. Note: unclear what the colour bar is. 
+- displays a plot of predicted electricity fraction by country Note: meaning unclear.
+- saves the first plot to Data/SmallData/Figures/0.01peryearOutage.png. WARNING: collision without other plots of this kind, see Example 1.
+- creates CELEpop.pkl file
 
 ### Notes/TODO
 
 - overheat/outage plots are not saved to a region subfolder which can cause unwanted overwrites
-- document printed output
-- document other PowerGrid branches
+- document PowerGrid printed output in more detail
+- document other PowerGrid->compareGICresults, and PowerGrid->LoadRegionE
 - the Estonia data mentioned in the manual is out of date
-- Model/Network.py:988: "Assigning CRS to a GeoDataFrame without a geometry column is now deprecated"
-	- WorldNetwork part of PowerGrid requires geopandas >= 0.11 to work.
-	- Region part requires geopandas < 0.11 to work.
