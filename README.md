@@ -161,3 +161,4 @@ Example 2.
 - document PowerGrid printed output in more detail
 - document other PowerGrid->compareGICresults, and PowerGrid->LoadRegionE
 - the Estonia data mentioned in the manual is out of date
+- explain Example 2. plots in more details
