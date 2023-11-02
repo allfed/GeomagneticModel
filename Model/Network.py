@@ -981,16 +981,14 @@ trans_args='%s'
             # for r in rateperyears:
             # 	Plotter.plotVoronoiRegions(nodes[str(r)],nodes['geometry'], boundary_shape, poly_shapes, poly_to_pt_assignment,region, r)
 
-            # probfails=pd.DataFrame()
             nnodes = len(poly_to_pt_assignment)
             cols = [str(x) for x in rateperyears]
             cols.append("geometry")
-            probfails = gpd.GeoDataFrame(
+            probfails = pd.DataFrame(
                 0,
                 index=len(prevprobfails)
                 + np.linspace(0, nnodes - 1, nnodes).astype(int),
                 columns=cols,
-                crs="epsg:3857",
             )
 
             # we need to assign the polygon shapes to a dataframe with the appropriate rateperyear probability of failure of that region
@@ -1000,6 +998,13 @@ trans_args='%s'
                 probfails["geometry"].iloc[key] = poly_shapes[key]
                 # NOTE: assertion below fails somewhere in Europe, not sure why.
                 # assert(probfails['geometry'].iloc[key].contains(nodes['geometry'].iloc[item[0]]))
+
+            probfails = gpd.GeoDataFrame(
+                probfails,
+                crs="epsg:3857",
+                geometry="geometry",
+            )
+
             if len(prevprobfails) > 0:
                 newdataframe = pd.concat([prevprobfails, probfails])
             else:
