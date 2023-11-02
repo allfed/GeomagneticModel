@@ -161,6 +161,7 @@ Example 2.
 - creates CELEpop.pkl file
 
 Example 3.
+
 Compares GICs computed for the given continent and country.
 - displays a plot of stations latitudes; x=continent, y=country
 - displays a plot of stations longitudes; x=continent, y=country
