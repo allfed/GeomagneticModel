@@ -142,11 +142,18 @@ Example 3.
 python GeomagneticModel.py PowerGrid compareGICresults --continent europe --country estonia -r 0.01
 ```
 
+Example 4.
+```
+python GeomagneticModel.py PowerGrid LoadRegionE --continent europe --country estonia -r 0.01
+```
+
 ### Result
 Example 1.
 - prints some info to stdout
 - saves some data to pkl/npy files
-- displays a plot of the power grid
+- displays a plot of Estonia's power grid
+- displays a plot of the E field over Estonia
+- displays a plot of GICs in Estonia
 - saves a power grid plot to Data/SmallData/Figures/Regions/estonia/Network.png
 - saves a plot of E field to Data/SmallData/Figures/Regions/estonia/0.01peryearE.png
 - saves a plot of GICs to Data/SmallData/Figures/Regions/estonia/0.01peryearGIC.png
@@ -162,11 +169,17 @@ Example 2.
 
 Example 3.
 
-Compares GICs computed for the given continent and country.
+Compares GICs computed for the given continent (here, Europe) and country (here, Estonia).
 - displays a plot of stations latitudes; x=continent, y=country
 - displays a plot of stations longitudes; x=continent, y=country
 - displays a plot of stations voltages; x=continent, y=country
 - displays a plot of stations detected GICs; x=country, y=continent
+
+Example 4.
+- prints some info to stdout
+- saves some data to pkl/npy files
+- displays a plot of Estonia's power grid
+- displays a plot of the E field over Estonia
 
 ### Notes/TODO
 
