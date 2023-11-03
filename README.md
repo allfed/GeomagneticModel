@@ -177,9 +177,11 @@ Compares GICs computed for the given continent (here, Europe) and country (here,
 
 Example 4.
 - prints some info to stdout
-- saves some data to pkl/npy files
+- saves some data to Data/SmallData/Networks/estonia/linesData.npy
+- saves some data to Data/SmallData/Networks/estonia/voltageData.npy files
 - displays a plot of Estonia's power grid
 - displays a plot of the E field over Estonia
+- saves a power grid plot to Data/SmallData/Figures/Regions/estonia/Network.png
 
 ### Notes/TODO
 
