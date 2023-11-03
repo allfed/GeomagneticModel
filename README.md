@@ -174,6 +174,10 @@ Example 2.
 Example 3.
 
 Compares GICs computed for the given continent (here, Europe) and country (here, Estonia).
+The check is whether the continent creates longer currents. 
+It should because the longer the power line, the more current is created by induction.
+Thus, the comparison should show more GIC in the continent than the country.
+
 - prints some info to stdout
 - displays a plot of stations latitudes; x=continent, y=country
 - displays a plot of stations longitudes; x=continent, y=country
@@ -192,6 +196,4 @@ Example 4.
 
 - overheat/outage plots are not saved to a region subfolder which can cause unwanted overwrites
 - document PowerGrid printed output in more detail
-- document other PowerGrid->compareGICresults, and PowerGrid->LoadRegionE
-- the Estonia data mentioned in the manual is out of date
-- what's the purpose of compareGICresults?
+- the Estonia data mentioned in this manual's examples is out of date
