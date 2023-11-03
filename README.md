@@ -150,7 +150,11 @@ python GeomagneticModel.py PowerGrid LoadRegionE --continent europe --country es
 ### Result
 Example 1.
 - prints some info to stdout
-- saves some data to pkl/npy files
+- saves some data to Data/SmallData/Networks/estonia/linesData.npy
+- saves some data to Data/SmallData/Networks/estonia/voltageData.npy
+- saves some data to Data/SmallData/Networks/estonia/analyzedNodes.npy
+- saves some data to Data/SmallData/Networks/estonia/gics0.01perYear.npy
+- saves some data to Data/SmallData/Networks/estonia/allStationRegions.pkl
 - displays a plot of Estonia's power grid
 - displays a plot of the E field over Estonia
 - displays a plot of GICs in Estonia
@@ -170,6 +174,7 @@ Example 2.
 Example 3.
 
 Compares GICs computed for the given continent (here, Europe) and country (here, Estonia).
+- prints some info to stdout
 - displays a plot of stations latitudes; x=continent, y=country
 - displays a plot of stations longitudes; x=continent, y=country
 - displays a plot of stations voltages; x=continent, y=country
@@ -178,7 +183,7 @@ Compares GICs computed for the given continent (here, Europe) and country (here,
 Example 4.
 - prints some info to stdout
 - saves some data to Data/SmallData/Networks/estonia/linesData.npy
-- saves some data to Data/SmallData/Networks/estonia/voltageData.npy files
+- saves some data to Data/SmallData/Networks/estonia/voltageData.npy
 - displays a plot of Estonia's power grid
 - displays a plot of the E field over Estonia
 - saves a power grid plot to Data/SmallData/Figures/Regions/estonia/Network.png
