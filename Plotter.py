@@ -317,7 +317,9 @@ class Plotter:
                 cmap="viridis",
                 ax=ax,
                 legend=True,
+                legend_labels=[0, 1],
                 edgecolor="None",
+                scheme=mc.UserDefined(sRegions["powerOut" + str(rate)].values, [0, 1]),
             )
             # pp2=gplt.polyplot(df,ax=ax,zorder=1)
             plt.title(
