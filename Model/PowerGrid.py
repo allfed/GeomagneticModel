@@ -1030,8 +1030,17 @@ class PowerGrid:
                 worldElectricity["total"] / worldElectricity["area"]
             )
 
-            fig, ax = plt.subplots(1, 1)
-            worldElectricity.plot(column="fraction", ax=ax, legend=True, vmin=0, vmax=1)
+            fig, ax = plt.subplots(figsize=(12, 10))
+
+            pp = gplt.polyplot(world, ax=ax, zorder=1)
+            gplt.choropleth(
+                worldElectricity,
+                hue=worldElectricity["fraction"],
+                cmap="viridis",
+                ax=ax,
+                legend=True,
+                edgecolor="None",
+            )
 
             plt.title(
                 "Predicted Fraction Electricity By Country \n One in "
