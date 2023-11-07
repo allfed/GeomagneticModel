@@ -959,7 +959,7 @@ class PowerGrid:
 
         for r in rateperyears:
             CELEpop = CELEpopAtRate[r]
-            CELEpop.to_pickle("CELEpop.pkl")
+            CELEpop.to_pickle("CELEpop_%s.pkl" % str(r))
             del CELEpop["index_right"]
             # get groups of countries which match the coordinates for population losing electricity
             pointInPolys = sjoin(CELEpop, world)
