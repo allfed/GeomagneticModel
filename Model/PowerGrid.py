@@ -1030,7 +1030,34 @@ class PowerGrid:
                 worldElectricity["total"] / worldElectricity["area"]
             )
 
-            fig, ax = plt.subplots(figsize=(12, 10))
+            totalEleLoss = np.sum(eleLostArr)
+            totalEle = np.sum(eleCountry)
+            print("rateperyear")
+            print(r)
+            print("totalElectricity (GW)")
+            print(totalEle)
+            print("totalEleLoss (GW)")
+            print(totalEleLoss)
+            print("fraction overall")
+            print(totalEleLoss / totalEle)
+
+            no_power_out = self.combinedDF[self.combinedDF[("powerOut" + str(r))] == 0]
+            no_power_out = gpd.sjoin(self.rasterDF, no_power_out)
+            no_power_out = no_power_out.drop(columns=["index_right"])
+            no_power_out = no_power_out.sjoin(world)
+            no_power_out = no_power_out[["iso_a3", "powerOut" + str(r)]]
+            no_power_out = no_power_out.drop_duplicates()
+            no_power_out = no_power_out[
+                ~no_power_out["iso_a3"].isin(worldElectricity["iso_a3"])
+            ]
+            no_power_out["fraction"] = no_power_out["powerOut" + str(r)]
+
+            worldElectricity = worldElectricity.append(no_power_out)[
+                ["iso_a3", "fraction"]
+            ]
+            worldElectricity = world.merge(worldElectricity, on="iso_a3")
+
+            fig, ax = plt.subplots()
 
             pp = gplt.polyplot(world, ax=ax, zorder=1)
             gplt.choropleth(
@@ -1043,22 +1070,11 @@ class PowerGrid:
             )
 
             plt.title(
-                "Predicted Fraction Electricity By Country \n One in "
+                "Predicted Fraction Electricity Lost By Country \n One in "
                 + str(1 / r)
                 + " Year Storm"
             )
             plt.show()
-
-            totalEleLoss = np.sum(eleLostArr)
-            totalEle = np.sum(eleCountry)
-            print("rateperyear")
-            print(r)
-            print("totalElectricity (GW)")
-            print(totalEle)
-            print("totalEleLoss (GW)")
-            print(totalEleLoss)
-            print("fraction overall")
-            print(totalEleLoss / totalEle)
 
     def formatticklabels(self, minval, maxval, pp):
         print("formatting")
@@ -1504,7 +1520,7 @@ class PowerGrid:
         df = pd.DataFrame(data=data)
         geometry = gpd.points_from_xy(df.X, df.Y)
         gdf = gpd.GeoDataFrame(df, crs={"init": "epsg:3857"}, geometry=geometry)
-
+        self.rasterDF = gdf  # assign to the object for repeat use
         return gdf
 
     # high resolution population estimates (15 minute)

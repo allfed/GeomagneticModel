@@ -317,7 +317,7 @@ class Plotter:
                 cmap="viridis",
                 ax=ax,
                 legend=True,
-                legend_labels=[0, 1],
+                legend_labels=["", "outage"],
                 edgecolor="None",
                 scheme=mc.UserDefined(sRegions["powerOut" + str(rate)].values, [0, 1]),
             )
