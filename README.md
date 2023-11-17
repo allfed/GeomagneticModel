@@ -167,7 +167,7 @@ Example 1.
 Example 2.
 - prints some info to stdout
 - displays a plot of substations at risk of electricity loss for the whole world. Note: Colour bar is an overkill, result is binary: outage or no outage per sector.
-- displays a plot of predicted electricity loss (as a fraction: amount lost over total consumption) by country. WARNING: doesn't display countries correctly.
+- displays a plot of predicted electricity loss (as a fraction: amount lost over total consumption) by country.
 - saves the first plot to Data/SmallData/Figures/0.01peryearOutage.png. WARNING: collision without other plots of this kind, see Example 1.
 - creates CELEpop.pkl file
 
