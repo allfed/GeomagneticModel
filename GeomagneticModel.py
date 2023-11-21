@@ -393,7 +393,7 @@ if __name__ == "__main__":
     evalgcmodel = False
     calcrecurrence = False
     calcpeakevsduration = False
-    calcEvsDuration = True
+    calcEvsDuration = False
     # Run earthmodel to first adjust mtsites to a consistent reference ground conductivity and geomagnetic latitude
     if args["Model"] == "EarthModel":
         if not recurrencecalculated:
