@@ -197,3 +197,30 @@ Example 4.
 - overheat/outage plots are not saved to a region subfolder which can cause unwanted overwrites
 - document PowerGrid printed output in more detail
 - the Estonia data mentioned in this manual's examples is out of date
+
+## Strom recurrence and duration
+### Environment set up
+
+As in the PowerGrid section, except needed files are to be put in:
+```
+Data/BigData/MTsites
+```
+and the needed files are 
+```
+[xxx].netcdf
+``` 
+where instead of ```[xxx]``` it's the MT site names listed in ```ModelParams.ods``` in the sheet named ```Params for each TF and MT site```, and column ```names of all the MTsites used in the model```. E.g., ```FRN.netcdf```
+
+This data can be acquired from the [SuperMAG project](https://supermag.jhuapl.edu/).
+
+### Launch
+
+Example 1.
+```
+python GeomagneticModel.py --plots "StormRecurrence"
+```
+
+### Result
+
+Example 1.
+- displays plot of the rate of storms per year as a function of geoelectric field for the available MT sites
