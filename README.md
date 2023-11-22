@@ -133,6 +133,8 @@ python GeomagneticModel.py PowerGrid Region --continent europe --country estonia
 ```
 
 Example 2.
+
+It is recommended to run Example 1. for all continents (skip the ```--country``` parameter) before this.
 ```
 python GeomagneticModel.py PowerGrid WorldNetwork -r 0.01
 ```
