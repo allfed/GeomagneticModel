@@ -209,18 +209,32 @@ if __name__ == "__main__":
             powergrid.compareGICresults(continent, country, rateperyears)
             quit()
         if args["Function"] == "WorldNetwork":
-            powergrid.combineRegions(
-                [
-                    "europe",
-                    "south-america",
-                    "africa",
-                    "north-america",
-                    "australia-oceania",
-                    "russia",
-                    "asia",
-                ],
-                rateperyears,
-            )
+            continent = args["continent"]
+            continents = [
+                "europe",
+                "south-america",
+                "africa",
+                "north-america",
+                "australia-oceania",
+                "central-america",
+                "russia",
+                "asia",
+            ]
+            if continent and continent in continents:
+                powergrid.combineRegions([continent], rateperyears)
+            else:
+                powergrid.combineRegions(
+                    [
+                        "europe",
+                        "south-america",
+                        "africa",
+                        "north-america",
+                        "australia-oceania",
+                        "russia",
+                        "asia",
+                    ],
+                    rateperyears,
+                )
             popCELEatRate = powergrid.calcPopulationPowerOut(rateperyears)
             powergrid.calcElectricityAffected(rateperyears, popCELEatRate)
             # powergrid.createNetwork()
