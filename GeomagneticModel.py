@@ -189,7 +189,7 @@ if __name__ == "__main__":
         rateperyears = [rateperyears]
 
     print("initializing models")
-    # tfsites=earthmodel.initTFsites()
+    tfsites = earthmodel.initTFsites()
     mtsites = earthmodel.initMTsites()
     gcmodel = earthmodel.initGCmodel()
     earthmodel.calcGCcoords()

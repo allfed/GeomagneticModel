@@ -213,14 +213,37 @@ where instead of ```[xxx]``` it's the MT site names listed in ```ModelParams.ods
 
 This data can be acquired from the [SuperMAG project](https://supermag.jhuapl.edu/).
 
+It is also necessary to create this folder:
+```
+Data/BigData/MTEfields
+```
+
 ### Launch
 
 Example 1.
 ```
-python GeomagneticModel.py --plots "StormRecurrence"
+python GeomagneticModel.py MTsite calcEfields
+```
+
+Example 2.
+```
+python GeomagneticModel.py MTsite calcRecurrence
+```
+
+Example 3.
+
+It is recommended to run Examples 1. and 2. before this.
+```
+python GeomagneticModel.py --plots StormRecurrence
 ```
 
 ### Result
 
 Example 1.
+- creates *.npy files in ```Data/BigData/MTEfields``` with E field data for each MT site.
+
+Example 2.
+- writes *.npy files to ```Data/SmallData/MTrepeatrates``` and ```Data/SmallData/Storms```
+
+Example 3.
 - displays plot of the rate of storms per year as a function of geoelectric field for the available MT sites
