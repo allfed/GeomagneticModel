@@ -169,7 +169,8 @@ Example 2.
 - displays a plot of substations at risk of electricity loss for the whole world. Note: Colour bar is an overkill, result is binary: outage or no outage per sector.
 - displays a plot of predicted electricity loss (as a fraction: amount lost over total consumption) by country.
 - saves the first plot to Data/SmallData/Figures/0.01peryearOutage.png. WARNING: collision without other plots of this kind, see Example 1.
-- creates CELEpop.pkl file
+- saves the second plot to Data/SmallData/Figures/0.01fraction_electr_lost.png. WARNING: collision without other plots of this kind, see Example 1.
+- creates CELEpop_0.01.pkl file
 
 Example 3.
 

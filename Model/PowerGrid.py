@@ -1074,6 +1074,7 @@ class PowerGrid:
                 + str(1 / r)
                 + " Year Storm"
             )
+            plt.savefig(Params.figuresDir + str(r) + "fraction_electr_lost.png")
             plt.show()
 
     def formatticklabels(self, minval, maxval, pp):
