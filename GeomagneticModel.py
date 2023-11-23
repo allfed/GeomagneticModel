@@ -148,7 +148,7 @@ def get_args():
         metavar="country",
         type=str,
         nargs="?",
-        help="Continent for network analysis. Optional ",
+        help="Country for network analysis. Optional ",
         required=False,
     )
 
@@ -232,6 +232,7 @@ if __name__ == "__main__":
                         "australia-oceania",
                         "russia",
                         "asia",
+                        "central-america",
                     ],
                     rateperyears,
                 )

@@ -200,7 +200,8 @@ Example 4.
 
 - overheat/outage plots are not saved to a region subfolder which can cause unwanted overwrites
 - document PowerGrid printed output in more detail
-- the Estonia data mentioned in this manual's examples is out of date
+- central-america does not work: ```UnboundLocalError: local variable 'newdataframe' referenced before assignment```
+- australia-oceania doesn't show any E field in plot
 
 ## Strom recurrence and duration
 ### Environment set up
