@@ -165,6 +165,7 @@ Example 1.
 - saves a plot of GICs to Data/SmallData/Figures/Regions/estonia/0.01peryearGIC.png
 - saves a plot of power outages to Data/SmallData/Figures/0.01peryearOutage.png, WARNING: file path collision
 - saves a plot of overheating transformers to Data/SmallData/Figures/0.01peryearOverheat.png, WARNING: file path collision
+- produces results like in Example 2., but only for the specified region instead of globally 
 
 Example 2.
 - prints some info to stdout
