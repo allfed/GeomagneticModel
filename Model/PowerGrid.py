@@ -1008,12 +1008,12 @@ class PowerGrid:
             crs = {"init": "epsg:3857"}
             worldElectricity = gpd.GeoDataFrame(
                 {
-                    "iso_a3": np.array(countrycode),
-                    "geometry": np.array(geometries),
-                    "fraction": np.array(fractionEleLostArr),
-                    "total": np.array(eleCountry),
-                    "totalLost": np.array(eleLostArr),
-                    "elePerCapita": np.array(elePerCapita),
+                    "iso_a3": countrycode,
+                    "geometry": geometries,
+                    "fraction": fractionEleLostArr,
+                    "total": eleCountry,
+                    "totalLost": eleLostArr,
+                    "elePerCapita": elePerCapita,
                 },
                 crs=crs,
             )
@@ -1486,6 +1486,19 @@ class PowerGrid:
         for r in rateperyears:
             Plotter.plotCombinedVoronoi(combinedDF, r, True)
         self.combinedDF = combinedDF
+
+    def specifyCombinedRegion(self, continent, country, rateperyears):
+        if country:
+            regionDF = pd.read_pickle(
+                Params.networkAnalysisDir + country + "/allStationRegions.pkl"
+            )
+        else:
+            regionDF = pd.read_pickle(
+                Params.networkAnalysisDir + continent + "/allStationRegions.pkl"
+            )
+        for r in rateperyears:
+            Plotter.plotCombinedVoronoi(regionDF, r, True)
+        self.combinedDF = regionDF
 
     # https://gis.stackexchange.com/questions/384581/raster-to-geopandas
     def rasterToDF(self):

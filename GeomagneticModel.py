@@ -317,6 +317,10 @@ if __name__ == "__main__":
             powergrid.splitIntoStationRegions(network, rateperyears)
 
             print("madeit")
+
+            powergrid.specifyCombinedRegion(continent, country, rateperyears)
+            popCELEatRate = powergrid.calcPopulationPowerOut(rateperyears)
+            powergrid.calcElectricityAffected(rateperyears, popCELEatRate)
             # powergrid.createRegionNetwork('europe','estonia')
             # powergrid.createRegionNetwork('south-america','')
             # powergrid.createRegionNetwork('africa','')
