@@ -242,6 +242,13 @@ It is recommended to run Examples 1. and 2. before this.
 python GeomagneticModel.py --plots StormRecurrence
 ```
 
+Example 4.
+
+It is recommended to run Examples 1. and 2. before this.
+```
+python GeomagneticModel.py --plots EvsDuration
+```
+
 ### Result
 
 Example 1.
@@ -251,4 +258,7 @@ Example 2.
 - writes *.npy files to ```Data/SmallData/MTrepeatrates``` and ```Data/SmallData/Storms```
 
 Example 3.
-- displays plot of the rate of storms per year as a function of geoelectric field for the available MT sites
+- displays a plot of the rate of storms per year as a function of geoelectric field for the available MT sites
+
+Example 4.
+- displays a plot of peak geoelectric pulse ratios for each MT site
