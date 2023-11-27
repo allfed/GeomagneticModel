@@ -34,7 +34,7 @@ To apply a power fit instead of a log normal fit you would run:
 
 ##### WARNING: out-of-date 
 
-```GCmodelImport```, ```GCmodelProcess```, are not present in the codebase, and ```HVtransformers``` is neither used or usable (error in code).
+ ```HVtransformers``` is neither used or usable (error in code).
 
 ---
 
@@ -43,8 +43,7 @@ To apply a power fit instead of a log normal fit you would run:
 | ----------- | ----------- |
 | TFsite  | Allow estimation of geoelectric field near MTsites using electromagnetic transfer function (EMTF) ground measurements. |
 | MTsite | Provide data over time for EW and NS magnetic field, and use TF sites to calculate corresponding geoelectric fields. |
-| GCmodelImport | Importing the global conductivity model and determing apparent conductivity allows estimation of variation of geoelectric field over the earth by modelling global ground resistance. |
-| GCmodelProcess | Process the global conductivity model into useful results. |
+| GCmodel | Importing the global conductivity model and determing apparent conductivity allows estimation of variation of geoelectric field over the earth by modelling global ground resistance. Process the global conductivity model into useful results. |
 | HVtransformers | High voltage transformer properties including statistics on their relative prevalence, GIC thermal time constants and short term thermal sensitivities. |
 | PowerGrid  | Very simple model of global power grid, countries and populations affected by outages. Provides fit function to the MT site data to with duration and repeat rate based field level at a site. |
 
