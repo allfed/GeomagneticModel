@@ -915,7 +915,7 @@ class PowerGrid:
     # 		print('s10')
     # 		plt.show()
 
-    def calcElectricityAffected(self, rateperyears, CELEpopAtRate):
+    def calcElectricityAffected(self, rateperyears, CELEpopAtRate, pkl=False):
         # import electricity by nation data
 
         rawimport = pd.read_csv(
@@ -1056,7 +1056,8 @@ class PowerGrid:
                 ["iso_a3", "fraction"]
             ]
             worldElectricity = world.merge(worldElectricity, on="iso_a3")
-            worldElectricity.to_pickle("Data/SmallData/worldElectricity.pkl")
+            if pkl:
+                worldElectricity.to_pickle("Data/SmallData/worldElectricity.pkl")
 
             fig, ax = plt.subplots()
 

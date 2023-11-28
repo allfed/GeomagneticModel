@@ -297,8 +297,9 @@ class Plotter:
     # 	plt.tight_layout()
     # 	plt.show()
 
-    def plotCombinedVoronoi(sRegions, rate, cutoff):
-        sRegions.to_pickle("Data/SmallData/combinedVoronoi.pkl")
+    def plotCombinedVoronoi(sRegions, rate, cutoff, pkl=False):
+        if pkl:
+            sRegions.to_pickle("Data/SmallData/combinedVoronoi.pkl")
         if cutoff:
             fig, ax = plt.subplots(figsize=(12, 10))
             world = geopandas.read_file(
