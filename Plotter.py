@@ -120,7 +120,7 @@ class Plotter:
                 legend=True,
                 label=str(voltages[i]) + " kV network",
             )
-        ax.legend()
+        ax.legend(loc="center left", bbox_to_anchor=(1, 0.5))
         leg = ax.get_legend()
         for i in range(0, len(voltages)):
             if i == maxi:
@@ -132,7 +132,9 @@ class Plotter:
         if not os.path.isdir(Params.figuresDir + "Regions/" + region):
             os.mkdir(Params.figuresDir + "Regions/" + region)
 
-        plt.savefig(Params.figuresDir + "Regions/" + region + "/Network")
+        plt.savefig(
+            Params.figuresDir + "Regions/" + region + "/Network", bbox_inches="tight"
+        )
         return ax
 
     def plotRegionEfields(df, polygon, network):
