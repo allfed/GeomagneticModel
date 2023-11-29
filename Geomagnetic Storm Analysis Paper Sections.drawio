@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-29T16:34:50.196Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/119.0" etag="DRpVHUV2lCtsk0iuegV4" version="22.1.4" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-29T16:47:23.886Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/119.0" etag="yj6SBKEKUbP4YZe7yeTd" version="22.1.4" type="github">
   <diagram name="Page-1" id="QnFqFEfZWXVsGcKvMmii">
     <mxGraphModel dx="2310" dy="2985" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -510,7 +510,7 @@
             <mxPoint x="634.94" y="-1310" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="9caDIlOXdyggSRcv9oSJ-111" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Estimating Effects of Transformer Overheating on the Population and Electricity Grid&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+        <mxCell id="9caDIlOXdyggSRcv9oSJ-111" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Estimating Effects of Transformer Failure on the Population and Electricity Grid&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="1685" y="780" width="350" height="90" as="geometry" />
         </mxCell>
         <mxCell id="9caDIlOXdyggSRcv9oSJ-112" value="&lt;p id=&quot;docs-internal-guid-943b42af-7fff-5a61-73d2-78b0df983e70&quot; style=&quot;line-height: 1.2; text-indent: 36pt; margin-top: 12pt; margin-bottom: 6pt; font-size: 24px;&quot; dir=&quot;ltr&quot;&gt;&lt;font style=&quot;font-size: 24px;&quot;&gt;Estimating GIC and Transformer Overheating in the High Voltage Power Distribution Network&lt;/font&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
@@ -555,8 +555,8 @@
         <mxCell id="AwBOlusgZ-eaemERiSeo-1" value="" style="swimlane;startSize=0;dashed=1;dashPattern=12 12;" vertex="1" parent="1">
           <mxGeometry x="190" y="425" width="1650" height="260" as="geometry" />
         </mxCell>
-        <mxCell id="AwBOlusgZ-eaemERiSeo-13" value="&lt;b&gt;Calculate probability of Transformer Failures&lt;br&gt;&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="AwBOlusgZ-eaemERiSeo-1">
-          <mxGeometry x="80" y="22" width="160" height="30" as="geometry" />
+        <mxCell id="AwBOlusgZ-eaemERiSeo-13" value="&lt;b&gt;Probability of Transformer Overheating Failure&lt;br&gt;&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="AwBOlusgZ-eaemERiSeo-1">
+          <mxGeometry x="80" y="22" width="220" height="30" as="geometry" />
         </mxCell>
         <mxCell id="AwBOlusgZ-eaemERiSeo-2" value="" style="swimlane;startSize=0;dashed=1;dashPattern=12 12;" vertex="1" parent="1">
           <mxGeometry x="92.82" y="80" width="1567.18" height="340" as="geometry" />
