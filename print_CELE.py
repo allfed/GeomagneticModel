@@ -37,4 +37,5 @@ sb.lineplot(
 )
 axs[1].set_xlabel("Strom recurrence [years]")
 axs[1].set_ylabel("Population in CELE [people]")
+plt.savefig("CELE_values.png", bbox_inches="tight")
 plt.show()
