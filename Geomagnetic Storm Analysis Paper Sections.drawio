@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-29T16:47:23.886Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/119.0" etag="yj6SBKEKUbP4YZe7yeTd" version="22.1.4" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-29T16:52:00.142Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/119.0" etag="FKPfO_hJmoEMiKKANout" version="22.1.4" type="github">
   <diagram name="Page-1" id="QnFqFEfZWXVsGcKvMmii">
     <mxGraphModel dx="2310" dy="2985" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -570,10 +570,10 @@
         <mxCell id="AwBOlusgZ-eaemERiSeo-10" value="" style="swimlane;startSize=0;dashed=1;dashPattern=12 12;" vertex="1" parent="1">
           <mxGeometry x="-130" y="762.5" width="1776" height="167.5" as="geometry" />
         </mxCell>
-        <mxCell id="AwBOlusgZ-eaemERiSeo-11" value="Determine Outage Regions" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" vertex="1" parent="AwBOlusgZ-eaemERiSeo-10">
+        <mxCell id="AwBOlusgZ-eaemERiSeo-11" value="Determining Regions Supplied By Transformer Nodes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" vertex="1" parent="AwBOlusgZ-eaemERiSeo-10">
           <mxGeometry x="20" y="17.5" width="180" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="AwBOlusgZ-eaemERiSeo-12" value="Determine Population and Electricity Effected" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" vertex="1" parent="1">
+        <mxCell id="AwBOlusgZ-eaemERiSeo-12" value="Determine Electricity Loss for Each Region" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" vertex="1" parent="1">
           <mxGeometry x="-120" y="1187.5" width="180" height="30" as="geometry" />
         </mxCell>
         <mxCell id="AwBOlusgZ-eaemERiSeo-14" value="&lt;b&gt;Determine Probable GIC Levels and Transformer Properties&lt;br&gt;&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
