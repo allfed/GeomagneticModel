@@ -1,9 +1,12 @@
-<mxfile host="app.diagrams.net" modified="2023-11-29T16:22:55.316Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/119.0" etag="o7yOaEibf9S9pk_gYvuc" version="22.1.4" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-29T16:34:50.196Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/119.0" etag="DRpVHUV2lCtsk0iuegV4" version="22.1.4" type="github">
   <diagram name="Page-1" id="QnFqFEfZWXVsGcKvMmii">
-    <mxGraphModel dx="3770" dy="3770" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2310" dy="2985" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="AwBOlusgZ-eaemERiSeo-20" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-510" y="-1250" width="2640" height="1310" as="geometry" />
+        </mxCell>
         <mxCell id="9caDIlOXdyggSRcv9oSJ-1" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="-485" y="70" width="2600" height="660" as="geometry" />
         </mxCell>
@@ -82,10 +85,11 @@
         <mxCell id="9caDIlOXdyggSRcv9oSJ-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" parent="1" source="9caDIlOXdyggSRcv9oSJ-19" edge="1" target="9caDIlOXdyggSRcv9oSJ-48">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="1590" y="-860" />
-              <mxPoint x="1590" y="410" />
+              <mxPoint x="1660" y="-860" />
+              <mxPoint x="1660" y="410" />
               <mxPoint x="870" y="410" />
               <mxPoint x="870" y="445" />
+              <mxPoint x="905" y="445" />
             </Array>
             <mxPoint x="889.94" y="142" as="targetPoint" />
           </mxGeometry>
@@ -527,25 +531,25 @@
         <mxCell id="9caDIlOXdyggSRcv9oSJ-120" value="" style="swimlane;startSize=0;dashed=1;dashPattern=12 12;" parent="1" vertex="1">
           <mxGeometry x="-20" y="-780" width="799.94" height="190" as="geometry" />
         </mxCell>
-        <mxCell id="AwBOlusgZ-eaemERiSeo-17" value="&lt;b&gt;Estimate Historical B field levels&lt;br&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="9caDIlOXdyggSRcv9oSJ-120">
+        <mxCell id="AwBOlusgZ-eaemERiSeo-17" value="&lt;b&gt;Estimate Historical B Field Levels&lt;br&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="9caDIlOXdyggSRcv9oSJ-120">
           <mxGeometry x="560" y="136" width="225.85" height="40" as="geometry" />
         </mxCell>
         <mxCell id="9caDIlOXdyggSRcv9oSJ-121" value="" style="swimlane;startSize=0;dashed=1;dashPattern=12 12;" parent="1" vertex="1">
           <mxGeometry x="60" y="-924" width="1860" height="124" as="geometry" />
         </mxCell>
-        <mxCell id="AwBOlusgZ-eaemERiSeo-19" value="&lt;b&gt;Calculate E fields and Fit  &lt;br&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="9caDIlOXdyggSRcv9oSJ-121">
+        <mxCell id="AwBOlusgZ-eaemERiSeo-19" value="&lt;b&gt;Calculate E field and Rates of Recurrence&lt;br&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="9caDIlOXdyggSRcv9oSJ-121">
           <mxGeometry x="1625" y="42" width="175.03" height="40" as="geometry" />
         </mxCell>
         <mxCell id="9caDIlOXdyggSRcv9oSJ-124" value="" style="swimlane;startSize=0;dashed=1;dashPattern=12 12;" parent="1" vertex="1">
           <mxGeometry x="79.97" y="-540" width="1469.22" height="380" as="geometry" />
         </mxCell>
-        <mxCell id="AwBOlusgZ-eaemERiSeo-16" value="&lt;b&gt;Adjust Historical E field levels to Equivalent Field at a Single Location&lt;br&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="9caDIlOXdyggSRcv9oSJ-124">
+        <mxCell id="AwBOlusgZ-eaemERiSeo-16" value="&lt;b&gt;Adjust E Field Levels to Equivalent Field at a Single Location and Find Logfit&lt;br&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="9caDIlOXdyggSRcv9oSJ-124">
           <mxGeometry x="235.03" y="40" width="244.97" height="40" as="geometry" />
         </mxCell>
         <mxCell id="9caDIlOXdyggSRcv9oSJ-125" value="" style="swimlane;startSize=0;dashed=1;dashPattern=12 12;" parent="1" vertex="1">
           <mxGeometry x="-239.19" y="-140" width="1779.19" height="190" as="geometry" />
         </mxCell>
-        <mxCell id="AwBOlusgZ-eaemERiSeo-15" value="&lt;b&gt;Estimate Gridded E field levels for Each Country&lt;br&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="9caDIlOXdyggSRcv9oSJ-125">
+        <mxCell id="AwBOlusgZ-eaemERiSeo-15" value="&lt;b&gt;Estimate Gridded E field Levels for Each Country&lt;br&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="9caDIlOXdyggSRcv9oSJ-125">
           <mxGeometry x="1549.19" y="60" width="209.19" height="40" as="geometry" />
         </mxCell>
         <mxCell id="AwBOlusgZ-eaemERiSeo-1" value="" style="swimlane;startSize=0;dashed=1;dashPattern=12 12;" vertex="1" parent="1">
@@ -574,9 +578,6 @@
         </mxCell>
         <mxCell id="AwBOlusgZ-eaemERiSeo-14" value="&lt;b&gt;Determine Probable GIC Levels and Transformer Properties&lt;br&gt;&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="1390" y="91" width="160" height="39" as="geometry" />
-        </mxCell>
-        <mxCell id="AwBOlusgZ-eaemERiSeo-20" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="-510" y="-1250" width="2640" height="1310" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
