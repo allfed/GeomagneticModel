@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-import geopandas
 import geoplot as gplt
 import pandas as pd
 import mapclassify as mc
