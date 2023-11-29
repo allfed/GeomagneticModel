@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-11-29T15:51:53.331Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/119.0" etag="UDA5f3YHl2ShsHcw1wxA" version="22.1.4" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-29T16:11:05.763Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/119.0" etag="8BzN8bvPY0TMgwgELohX" version="22.1.4" type="github">
   <diagram name="Page-1" id="QnFqFEfZWXVsGcKvMmii">
-    <mxGraphModel dx="2317" dy="3192" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2310" dy="2985" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -90,7 +90,7 @@
             <mxPoint x="889.94" y="142" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="9caDIlOXdyggSRcv9oSJ-18" value="Ratio of Peak Field to 60 Second Peak Field as &lt;br&gt;a function of windowed average duration&lt;br&gt;&lt;br&gt;(averagedRatios)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="9caDIlOXdyggSRcv9oSJ-17" connectable="0" vertex="1">
+        <mxCell id="9caDIlOXdyggSRcv9oSJ-18" value="Ratio of Peak Field to 60 Second Peak Field as &lt;br&gt;a function of windowed average duration&lt;br&gt;&lt;br&gt;(EarthModel.averagedRatios)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="9caDIlOXdyggSRcv9oSJ-17" connectable="0" vertex="1">
           <mxGeometry x="-0.7525" relative="1" as="geometry">
             <mxPoint x="-90" y="-4" as="offset" />
           </mxGeometry>
@@ -120,8 +120,8 @@
             <Array as="points">
               <mxPoint x="1470" y="-290" />
               <mxPoint x="1470" y="-200" />
-              <mxPoint x="599" y="-200" />
-              <mxPoint x="599" y="-75" />
+              <mxPoint x="650" y="-200" />
+              <mxPoint x="650" y="-75" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -521,17 +521,32 @@
         <mxCell id="9caDIlOXdyggSRcv9oSJ-117" value="" style="swimlane;startSize=0;dashed=1;dashPattern=12 12;" parent="1" vertex="1">
           <mxGeometry x="9.94" y="-1244" width="940" height="310" as="geometry" />
         </mxCell>
+        <mxCell id="AwBOlusgZ-eaemERiSeo-18" value="&lt;b&gt;Estimate Apparent Conductivity and Resistivity at TF Sites&lt;br&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="9caDIlOXdyggSRcv9oSJ-117">
+          <mxGeometry x="580" y="14" width="350" height="40" as="geometry" />
+        </mxCell>
         <mxCell id="9caDIlOXdyggSRcv9oSJ-120" value="" style="swimlane;startSize=0;dashed=1;dashPattern=12 12;" parent="1" vertex="1">
           <mxGeometry x="-20" y="-780" width="799.94" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="AwBOlusgZ-eaemERiSeo-17" value="&lt;b&gt;Estimate Historical B field levels&lt;br&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="9caDIlOXdyggSRcv9oSJ-120">
+          <mxGeometry x="560" y="136" width="225.85" height="40" as="geometry" />
         </mxCell>
         <mxCell id="9caDIlOXdyggSRcv9oSJ-121" value="" style="swimlane;startSize=0;dashed=1;dashPattern=12 12;" parent="1" vertex="1">
           <mxGeometry x="60" y="-924" width="1860" height="124" as="geometry" />
         </mxCell>
+        <mxCell id="AwBOlusgZ-eaemERiSeo-19" value="&lt;b&gt;Calculate E fields and Fit  &lt;br&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="9caDIlOXdyggSRcv9oSJ-121">
+          <mxGeometry x="1625" y="42" width="175.03" height="40" as="geometry" />
+        </mxCell>
         <mxCell id="9caDIlOXdyggSRcv9oSJ-124" value="" style="swimlane;startSize=0;dashed=1;dashPattern=12 12;" parent="1" vertex="1">
-          <mxGeometry x="79.97" y="-540" width="1460.03" height="380" as="geometry" />
+          <mxGeometry x="79.97" y="-540" width="1469.22" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="AwBOlusgZ-eaemERiSeo-16" value="&lt;b&gt;Adjust Historical E field levels to Equivalent Field at a Single Location&lt;br&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="9caDIlOXdyggSRcv9oSJ-124">
+          <mxGeometry x="235.03" y="40" width="244.97" height="40" as="geometry" />
         </mxCell>
         <mxCell id="9caDIlOXdyggSRcv9oSJ-125" value="" style="swimlane;startSize=0;dashed=1;dashPattern=12 12;" parent="1" vertex="1">
           <mxGeometry x="-239.19" y="-140" width="1779.19" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="AwBOlusgZ-eaemERiSeo-15" value="&lt;b&gt;Estimate Gridded E field levels for Each Country&lt;br&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="9caDIlOXdyggSRcv9oSJ-125">
+          <mxGeometry x="1549.19" y="60" width="209.19" height="40" as="geometry" />
         </mxCell>
         <mxCell id="AwBOlusgZ-eaemERiSeo-1" value="" style="swimlane;startSize=0;dashed=1;dashPattern=12 12;" vertex="1" parent="1">
           <mxGeometry x="190" y="425" width="1650" height="260" as="geometry" />
@@ -556,6 +571,9 @@
         </mxCell>
         <mxCell id="AwBOlusgZ-eaemERiSeo-12" value="Determine Population and Electricity Effected" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" vertex="1" parent="1">
           <mxGeometry x="-120" y="1187.5" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="AwBOlusgZ-eaemERiSeo-14" value="&lt;b&gt;Determine Probable GIC Levels and Transformer Properties&lt;br&gt;&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1390" y="91" width="160" height="39" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
