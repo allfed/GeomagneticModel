@@ -15,6 +15,7 @@ def plotElectricityLoss(worldElectricity, region, rate):
     _, ax = plt.subplots()
 
     if region == "europe":
+        # http://bboxfinder.com/
         bbox = make_bbox(-36.386719, 29.228890, 60.292969, 74.543330)
         worldElectricity = worldElectricity.overlay(bbox, how="intersection")
 
