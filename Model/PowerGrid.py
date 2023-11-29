@@ -915,7 +915,7 @@ class PowerGrid:
     # 		print('s10')
     # 		plt.show()
 
-    def calcElectricityAffected(self, rateperyears, CELEpopAtRate, pkl=False):
+    def calcElectricityAffected(self, rateperyears, CELEpopAtRate, pkl=True):
         # import electricity by nation data
 
         rawimport = pd.read_csv(
@@ -1498,6 +1498,14 @@ class PowerGrid:
             regionDF = pd.read_pickle(
                 Params.networkAnalysisDir + continent + "/allStationRegions.pkl"
             )
+            # filter Russia out from Europe, since it is its own region
+            if continent == "europe":
+                world = geopandas.read_file(
+                    geopandas.datasets.get_path("naturalearth_lowres")
+                )
+                world = world[world["name"] == "Russia"]
+                inter = geopandas.sjoin(world, regionDF)
+                regionDF = regionDF[~regionDF.index.isin(inter["index_right"])]
         for r in rateperyears:
             Plotter.plotCombinedVoronoi(regionDF, r, True)
         self.combinedDF = regionDF
@@ -1550,12 +1558,7 @@ class PowerGrid:
         outageRegionsAllRates = {}
         for rate in rateperyears:
             # determine power outage locations
-            self.combinedDF["powerOut" + str(rate)] = 0
-            for index, row in self.combinedDF.iterrows():
-                if row[str(rate)] > 0.33:
-                    self.combinedDF["powerOut" + str(rate)].iloc[index] = 1
-                else:
-                    self.combinedDF["powerOut" + str(rate)].iloc[index] = 0
+            self.combinedDF["powerOut" + str(rate)] = self.combinedDF[str(rate)] > 0.33
             popsum = 0
             outageRegions = self.combinedDF[
                 self.combinedDF[("powerOut" + str(rate))] == 1

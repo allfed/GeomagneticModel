@@ -297,7 +297,7 @@ class Plotter:
     # 	plt.tight_layout()
     # 	plt.show()
 
-    def plotCombinedVoronoi(sRegions, rate, cutoff, pkl=False):
+    def plotCombinedVoronoi(sRegions, rate, cutoff, pkl=True):
         if pkl:
             sRegions.to_pickle("Data/SmallData/combinedVoronoi.pkl")
         if cutoff:
@@ -307,13 +307,8 @@ class Plotter:
             )
             pp = gplt.polyplot(world, ax=ax, zorder=1)
             sRegions.geometry = sRegions["geometry"]
-            sRegions["powerOut" + str(rate)] = 0
 
-            for index, row in sRegions.iterrows():
-                if row[str(rate)] > 0.33:
-                    sRegions["powerOut" + str(rate)].iloc[index] = 1
-                else:
-                    sRegions["powerOut" + str(rate)].iloc[index] = 0
+            sRegions["powerOut" + str(rate)] = sRegions[str(rate)] > 0.33
 
             gplt.choropleth(
                 sRegions,

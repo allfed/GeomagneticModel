@@ -176,6 +176,9 @@ Example 2.
 - saves the second plot to Data/SmallData/Figures/0.01fraction_electr_lost.png. WARNING: collision without other plots of this kind, see Example 1.
 - creates CELEpop_0.01.pkl file
 
+Warning: Russia is most likely counted twice as possibly other regions. The reason being that Russia is its own region in the transnet model and it is considered as a part of Europe.
+This is addressed in Example 1. but not here.
+
 Example 3.
 
 Compares GICs computed for the given continent (here, Europe) and country (here, Estonia).
