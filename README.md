@@ -266,4 +266,4 @@ Example 4.
 
 ## Flow chart
 
-![diagram](Geomagnetic Storm Analysis.drawio.svg)
+![diagram](./flow_chart.svg)
