@@ -682,6 +682,7 @@ class EarthModel:
                     "allcs": np.array(allcs),
                 }
             )
+            df.to_pickle("Data/SmallData/globalEfields.pkl")
             crs = {"init": "epsg:3857"}
             geometry = [Point(xy) for xy in zip(df["longs"], df["lats"])]
             geo_df = gpd.GeoDataFrame(df, crs=crs, geometry=geometry)
@@ -702,7 +703,6 @@ class EarthModel:
             )
 
             pp = gplt.polyplot(world, ax=ax, zorder=1)
-            Plotter.formatticklabels(mldmin, mldmax, pp)
 
             plt.title(
                 "Geoelectric Field Multiplier\n Magnetic Latitude\n1 in "
@@ -732,7 +732,6 @@ class EarthModel:
                 norm=colors.LogNorm(vmin=minE, vmax=maxE),
             )
             pp = gplt.polyplot(world, ax=ax, zorder=1)
-            Plotter.formatticklabels(minE, maxE, pp)
             # plt.rcParams['text.usetex'] = True
             plt.title(
                 "Magnitude of Peak "
@@ -787,7 +786,6 @@ class EarthModel:
             norm=colors.LogNorm(vmin=minc, vmax=maxc),
         )
         pp = gplt.polyplot(world, ax=ax, zorder=1)
-        Plotter.formatticklabels(minc, maxc, pp)
         plt.title("Global Conductivity at 1/120 Hz")
 
         plt.savefig(Params.figuresDir + "Conductivity.png")
@@ -811,7 +809,6 @@ class EarthModel:
         )
 
         pp = gplt.polyplot(world, ax=ax, zorder=1)
-        Plotter.formatticklabels(mincadj, maxcadj, pp)
 
         plt.title("Geoelectric Field Multiplier\nGlobal Conductivity")
         plt.savefig(Params.figuresDir + "ConductivityMultiplier.png")
