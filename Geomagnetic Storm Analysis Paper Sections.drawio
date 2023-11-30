@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-11-30T15:27:00.618Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/119.0" etag="t-thyzZv_A5kzfYdwX8a" version="22.1.5" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-30T17:28:34.105Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/119.0" etag="rL3Q9EyWtSs28oZydJN2" version="22.1.5" type="github">
   <diagram name="Page-1" id="QnFqFEfZWXVsGcKvMmii">
-    <mxGraphModel dx="1945" dy="2789" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1823" dy="2723" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -76,8 +76,8 @@
             <mxPoint x="-101" y="-70" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="9caDIlOXdyggSRcv9oSJ-14" value="EarthModel.calcAndSaveRecurrence&lt;br&gt;MTsite.calcEratesPerYear&lt;br&gt;MTsite.SaveERatesPerYear" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="550" y="-892" width="225" height="60" as="geometry" />
+        <mxCell id="9caDIlOXdyggSRcv9oSJ-14" value="EarthModel.calcAndSaveRecurrence&lt;br&gt;MTsite.calcEratesPerYear&lt;br&gt;MTsite.calcWindowEratesPerYear&lt;br&gt;MTsite.getEfieldCounts&lt;br&gt;Fits.combinecounts&lt;br&gt;MTsite.SaveERatesPerYear" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="550" y="-920" width="225" height="100" as="geometry" />
         </mxCell>
         <mxCell id="9caDIlOXdyggSRcv9oSJ-15" value="Each MTsite&#39;s rate per year of E field level adjusted by TFsite ground conductivity&lt;br&gt;(refcumsum&lt;br&gt;refCounts&lt;br&gt;refEfields)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="9caDIlOXdyggSRcv9oSJ-16" target="9caDIlOXdyggSRcv9oSJ-22" edge="1">
           <mxGeometry x="-0.0315" relative="1" as="geometry">
@@ -383,7 +383,7 @@
         <mxCell id="9caDIlOXdyggSRcv9oSJ-74" value="&lt;b&gt;EleByCountry.csv&lt;br&gt;Electricity Consumption&lt;br&gt;&lt;/b&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
           <mxGeometry x="702" y="1137.5" width="150" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="9caDIlOXdyggSRcv9oSJ-75" value="calcElectricityAffected&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; eleLost = eleconsumption * (countryCELEpop / countrypop)" style="whiteSpace=wrap;html=1;fontStyle=0" parent="1" vertex="1">
+        <mxCell id="9caDIlOXdyggSRcv9oSJ-75" value="Powergrid.calcElectricityAffected&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; eleLost = eleconsumption * (countryCELEpop / countrypop)" style="whiteSpace=wrap;html=1;fontStyle=0" parent="1" vertex="1">
           <mxGeometry x="1083" y="1046.5" width="390" height="60" as="geometry" />
         </mxCell>
         <mxCell id="9caDIlOXdyggSRcv9oSJ-76" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="9caDIlOXdyggSRcv9oSJ-77" target="9caDIlOXdyggSRcv9oSJ-97" edge="1">
@@ -656,7 +656,7 @@
         </mxCell>
         <mxCell id="7duthqghRqe5McAWii0W-20" value="MTsite.chunks&lt;br&gt;Raw" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="7duthqghRqe5McAWii0W-17">
           <mxGeometry x="-0.109" relative="1" as="geometry">
-            <mxPoint as="offset" />
+            <mxPoint y="-6" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="7duthqghRqe5McAWii0W-15" value="MTsite.createChunk&lt;br&gt;MTsite.createChunkBFields&lt;br&gt;MTsite.cleanChunkBFields&lt;br&gt;linearly interpolate any missing &quot;nan&quot; values&lt;br&gt;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
