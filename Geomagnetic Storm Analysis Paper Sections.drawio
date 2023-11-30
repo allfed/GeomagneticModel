@@ -1,11 +1,22 @@
-<mxfile host="app.diagrams.net" modified="2023-11-29T16:52:00.142Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/119.0" etag="FKPfO_hJmoEMiKKANout" version="22.1.4" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-30T14:10:09.638Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/119.0" etag="KEAAVhKT7DDKTxrfAtB4" version="22.1.5" type="github">
   <diagram name="Page-1" id="QnFqFEfZWXVsGcKvMmii">
-    <mxGraphModel dx="2310" dy="2985" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1299" dy="2442" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="AwBOlusgZ-eaemERiSeo-20" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="-510" y="-1250" width="2640" height="1310" as="geometry" />
+        <mxCell id="7duthqghRqe5McAWii0W-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="9caDIlOXdyggSRcv9oSJ-19" target="9caDIlOXdyggSRcv9oSJ-16">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1276" y="-860" />
+              <mxPoint x="1660" y="-860" />
+              <mxPoint x="1660" y="-662" />
+              <mxPoint x="1045" y="-662" />
+              <mxPoint x="1045" y="-477" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="AwBOlusgZ-eaemERiSeo-20" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-540" y="-1139" width="2640" height="1310" as="geometry" />
         </mxCell>
         <mxCell id="9caDIlOXdyggSRcv9oSJ-1" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="-485" y="70" width="2600" height="660" as="geometry" />
@@ -51,12 +62,12 @@
         <mxCell id="9caDIlOXdyggSRcv9oSJ-11" value="&lt;div&gt;EarthModel.calcAndSaveEfields&lt;/div&gt;&lt;div&gt;(On a 1 minute basis)&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="359.94" y="-892" width="190" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="9caDIlOXdyggSRcv9oSJ-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="9caDIlOXdyggSRcv9oSJ-14" target="9caDIlOXdyggSRcv9oSJ-16" edge="1">
+        <mxCell id="9caDIlOXdyggSRcv9oSJ-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" parent="1" source="9caDIlOXdyggSRcv9oSJ-14" target="9caDIlOXdyggSRcv9oSJ-16" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="794.94" y="-854" />
-              <mxPoint x="989.94" y="-854" />
-              <mxPoint x="989.94" y="-769" />
+              <mxPoint x="815" y="-854" />
+              <mxPoint x="990" y="-854" />
+              <mxPoint x="990" y="-432" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -82,7 +93,7 @@
         <mxCell id="9caDIlOXdyggSRcv9oSJ-16" value="EarthModel.calcReferenceRateperyear&lt;br&gt;TFsite.getApparentcCloseToWindowPeriod&lt;br&gt;EarthModel.adjustEfieldsToRefCond&lt;br&gt;Fits.FitPower&lt;br&gt;&lt;div&gt;Fits.fitLognormalCDF&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1064.95" y="-500" width="280" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="9caDIlOXdyggSRcv9oSJ-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" parent="1" source="9caDIlOXdyggSRcv9oSJ-19" edge="1" target="9caDIlOXdyggSRcv9oSJ-48">
+        <mxCell id="9caDIlOXdyggSRcv9oSJ-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" parent="1" source="9caDIlOXdyggSRcv9oSJ-19" target="9caDIlOXdyggSRcv9oSJ-48" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1660" y="-860" />
@@ -310,9 +321,9 @@
             <Array as="points">
               <mxPoint x="1465" y="840" />
               <mxPoint x="1500" y="840" />
-              <mxPoint x="1500" y="920" />
-              <mxPoint x="535" y="920" />
-              <mxPoint x="535" y="1042" />
+              <mxPoint x="1500" y="910" />
+              <mxPoint x="535" y="910" />
+              <mxPoint x="535" y="1041" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -384,8 +395,11 @@
         <mxCell id="9caDIlOXdyggSRcv9oSJ-78" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="9caDIlOXdyggSRcv9oSJ-79" target="9caDIlOXdyggSRcv9oSJ-102" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="7duthqghRqe5McAWii0W-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="9caDIlOXdyggSRcv9oSJ-79" target="7duthqghRqe5McAWii0W-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="9caDIlOXdyggSRcv9oSJ-79" value="MT site data: 1min Time series magnetic field data over &amp;gt;20 years for each site &lt;br&gt;(at MTsite.mtsitefn)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fontStyle=1" parent="1" vertex="1">
-          <mxGeometry x="32.44" y="-734" width="142.5" height="130" as="geometry" />
+          <mxGeometry x="-5.060000000000002" y="-734" width="142.5" height="130" as="geometry" />
         </mxCell>
         <mxCell id="9caDIlOXdyggSRcv9oSJ-80" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" target="9caDIlOXdyggSRcv9oSJ-19" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -417,11 +431,11 @@
         <mxCell id="9caDIlOXdyggSRcv9oSJ-87" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.246;entryY=0.63;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="9caDIlOXdyggSRcv9oSJ-75" target="9caDIlOXdyggSRcv9oSJ-86" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="9caDIlOXdyggSRcv9oSJ-89" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" parent="1" source="9caDIlOXdyggSRcv9oSJ-91" target="9caDIlOXdyggSRcv9oSJ-16" edge="1">
+        <mxCell id="9caDIlOXdyggSRcv9oSJ-89" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="9caDIlOXdyggSRcv9oSJ-91" target="9caDIlOXdyggSRcv9oSJ-16" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1010" y="-1134" />
-              <mxPoint x="1010" y="-477" />
+              <mxPoint x="1010" y="-455" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -465,7 +479,7 @@
         <mxCell id="9caDIlOXdyggSRcv9oSJ-98" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="9caDIlOXdyggSRcv9oSJ-99" target="9caDIlOXdyggSRcv9oSJ-11" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="9caDIlOXdyggSRcv9oSJ-99" value="EarthModel.calcChunkEfields" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="9caDIlOXdyggSRcv9oSJ-99" value="MTsite.calcChunkEfields" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="137.44" y="-894" width="185" height="60" as="geometry" />
         </mxCell>
         <mxCell id="9caDIlOXdyggSRcv9oSJ-100" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="9caDIlOXdyggSRcv9oSJ-99" target="9caDIlOXdyggSRcv9oSJ-99" edge="1">
@@ -474,26 +488,35 @@
         <mxCell id="9caDIlOXdyggSRcv9oSJ-101" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="9caDIlOXdyggSRcv9oSJ-102" target="9caDIlOXdyggSRcv9oSJ-105" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="9caDIlOXdyggSRcv9oSJ-102" value="importSite" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="249.94" y="-734" width="120" height="60" as="geometry" />
+        <mxCell id="9caDIlOXdyggSRcv9oSJ-102" value="MTsite.importSite" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="202.44" y="-730" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="9caDIlOXdyggSRcv9oSJ-103" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" parent="1" source="9caDIlOXdyggSRcv9oSJ-105" target="9caDIlOXdyggSRcv9oSJ-99" edge="1">
+        <mxCell id="9caDIlOXdyggSRcv9oSJ-103" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.75;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="7duthqghRqe5McAWii0W-12" target="9caDIlOXdyggSRcv9oSJ-99" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="730" y="-704" />
-              <mxPoint x="730" y="-770" />
+              <mxPoint x="960" y="-685" />
+              <mxPoint x="960" y="-770" />
               <mxPoint x="20" y="-770" />
               <mxPoint x="20" y="-849" />
             </Array>
+            <mxPoint x="700" y="-670" as="sourcePoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="9caDIlOXdyggSRcv9oSJ-104" value="polyFitFunEW, polyFitFunNS" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="9caDIlOXdyggSRcv9oSJ-103" connectable="0" vertex="1">
-          <mxGeometry x="0.0544" y="3" relative="1" as="geometry">
-            <mxPoint y="5" as="offset" />
+        <mxCell id="7duthqghRqe5McAWii0W-21" value="detrendedBNS, detrendedBEW" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9caDIlOXdyggSRcv9oSJ-103">
+          <mxGeometry x="-0.4024" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="9caDIlOXdyggSRcv9oSJ-105" value="MTsite.calcPolyFit&amp;nbsp;&amp;nbsp;&lt;br&gt;(calculate 2nd order polynomial fits to NS and EW B field data)" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="439.44" y="-734" width="210.5" height="60" as="geometry" />
+        <mxCell id="7duthqghRqe5McAWii0W-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="9caDIlOXdyggSRcv9oSJ-105" target="7duthqghRqe5McAWii0W-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7duthqghRqe5McAWii0W-19" value="&lt;div&gt;polyFitFunEW,&amp;nbsp;&lt;/div&gt;&lt;div&gt;polyFitFunNS&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="7duthqghRqe5McAWii0W-18">
+          <mxGeometry x="-0.334" y="-2" relative="1" as="geometry">
+            <mxPoint x="14" y="-17" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9caDIlOXdyggSRcv9oSJ-105" value="MTsite.calcPolyFits&lt;br&gt;(calculate 2nd order polynomial fits to NS and EW B field data)&lt;br&gt;calcChunkEfields" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="348.94" y="-730" width="210.5" height="60" as="geometry" />
         </mxCell>
         <mxCell id="9caDIlOXdyggSRcv9oSJ-106" value="HOW TO READ THIS FLOW CHART:&lt;br&gt;&lt;br&gt;Raw data sources: Cylinders &lt;br&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Python functions: Rectangles&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Lines with description: data passed between functions&lt;br&gt;&lt;/div&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="240" y="-1570" width="490" height="330" as="geometry" />
@@ -525,59 +548,115 @@
         <mxCell id="9caDIlOXdyggSRcv9oSJ-117" value="" style="swimlane;startSize=0;dashed=1;dashPattern=12 12;" parent="1" vertex="1">
           <mxGeometry x="9.94" y="-1244" width="940" height="310" as="geometry" />
         </mxCell>
-        <mxCell id="AwBOlusgZ-eaemERiSeo-18" value="&lt;b&gt;Estimate Apparent Conductivity and Resistivity at TF Sites&lt;br&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="9caDIlOXdyggSRcv9oSJ-117">
+        <mxCell id="AwBOlusgZ-eaemERiSeo-18" value="&lt;b&gt;Estimate Apparent Conductivity and Resistivity at TF Sites&lt;br&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;" parent="9caDIlOXdyggSRcv9oSJ-117" vertex="1">
           <mxGeometry x="580" y="14" width="350" height="40" as="geometry" />
         </mxCell>
         <mxCell id="9caDIlOXdyggSRcv9oSJ-120" value="" style="swimlane;startSize=0;dashed=1;dashPattern=12 12;" parent="1" vertex="1">
-          <mxGeometry x="-20" y="-780" width="799.94" height="190" as="geometry" />
+          <mxGeometry x="-20" y="-780" width="990" height="190" as="geometry" />
         </mxCell>
-        <mxCell id="AwBOlusgZ-eaemERiSeo-17" value="&lt;b&gt;Estimate Historical B Field Levels&lt;br&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="9caDIlOXdyggSRcv9oSJ-120">
-          <mxGeometry x="560" y="136" width="225.85" height="40" as="geometry" />
+        <mxCell id="AwBOlusgZ-eaemERiSeo-17" value="&lt;b&gt;Estimate Historical B Field Levels&lt;br&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;" parent="9caDIlOXdyggSRcv9oSJ-120" vertex="1">
+          <mxGeometry x="769.15" y="136" width="225.85" height="40" as="geometry" />
         </mxCell>
         <mxCell id="9caDIlOXdyggSRcv9oSJ-121" value="" style="swimlane;startSize=0;dashed=1;dashPattern=12 12;" parent="1" vertex="1">
           <mxGeometry x="60" y="-924" width="1860" height="124" as="geometry" />
         </mxCell>
-        <mxCell id="AwBOlusgZ-eaemERiSeo-19" value="&lt;b&gt;Calculate E field and Rates of Recurrence&lt;br&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="9caDIlOXdyggSRcv9oSJ-121">
+        <mxCell id="AwBOlusgZ-eaemERiSeo-19" value="&lt;b&gt;Calculate E field and Rates of Recurrence&lt;br&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;" parent="9caDIlOXdyggSRcv9oSJ-121" vertex="1">
           <mxGeometry x="1625" y="42" width="175.03" height="40" as="geometry" />
         </mxCell>
         <mxCell id="9caDIlOXdyggSRcv9oSJ-124" value="" style="swimlane;startSize=0;dashed=1;dashPattern=12 12;" parent="1" vertex="1">
           <mxGeometry x="79.97" y="-540" width="1469.22" height="380" as="geometry" />
         </mxCell>
-        <mxCell id="AwBOlusgZ-eaemERiSeo-16" value="&lt;b&gt;Adjust E Field Levels to Equivalent Field at a Single Location and Find Logfit&lt;br&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="9caDIlOXdyggSRcv9oSJ-124">
-          <mxGeometry x="235.03" y="40" width="244.97" height="40" as="geometry" />
+        <mxCell id="AwBOlusgZ-eaemERiSeo-16" value="&lt;b&gt;Adjust E Field Levels to Equivalent Field at a Single Location and Find Logfit&lt;br&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;" parent="9caDIlOXdyggSRcv9oSJ-124" vertex="1">
+          <mxGeometry x="27.49000000000001" y="10" width="244.97" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="7duthqghRqe5McAWii0W-5" value="&lt;div&gt;EarthModel.adjustForThresholdShift&lt;/div&gt;estimate how effective magnetic latitude changes as a funtion of rate per year" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="9caDIlOXdyggSRcv9oSJ-124">
+          <mxGeometry x="27.48999999999998" y="90" width="210.02" height="57" as="geometry" />
+        </mxCell>
+        <mxCell id="7duthqghRqe5McAWii0W-3" value="EarthModel.getMagLatDivisor&lt;br&gt;Estimate how much lower E fields a given magnetic latitude is compared to a magnetic latitude of 72 (highest E field magnetic latitutde)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="9caDIlOXdyggSRcv9oSJ-124">
+          <mxGeometry x="430.03" y="40" width="310" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="7duthqghRqe5McAWii0W-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="9caDIlOXdyggSRcv9oSJ-124" source="7duthqghRqe5McAWii0W-5" target="7duthqghRqe5McAWii0W-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="360" y="117" />
+              <mxPoint x="360" y="100" />
+              <mxPoint x="350" y="100" />
+              <mxPoint x="350" y="70" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7duthqghRqe5McAWii0W-11" value="adjustment to new &lt;br&gt;effective magnetic latitude" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="7duthqghRqe5McAWii0W-10">
+          <mxGeometry x="-0.605" y="-1" relative="1" as="geometry">
+            <mxPoint x="57" y="-18" as="offset" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="9caDIlOXdyggSRcv9oSJ-125" value="" style="swimlane;startSize=0;dashed=1;dashPattern=12 12;" parent="1" vertex="1">
           <mxGeometry x="-239.19" y="-140" width="1779.19" height="190" as="geometry" />
         </mxCell>
-        <mxCell id="AwBOlusgZ-eaemERiSeo-15" value="&lt;b&gt;Estimate Gridded E field Levels for Each Country&lt;br&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="9caDIlOXdyggSRcv9oSJ-125">
+        <mxCell id="AwBOlusgZ-eaemERiSeo-15" value="&lt;b&gt;Estimate Gridded E field Levels for Each Country&lt;br&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;" parent="9caDIlOXdyggSRcv9oSJ-125" vertex="1">
           <mxGeometry x="1549.19" y="60" width="209.19" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="AwBOlusgZ-eaemERiSeo-1" value="" style="swimlane;startSize=0;dashed=1;dashPattern=12 12;" vertex="1" parent="1">
+        <mxCell id="AwBOlusgZ-eaemERiSeo-1" value="" style="swimlane;startSize=0;dashed=1;dashPattern=12 12;" parent="1" vertex="1">
           <mxGeometry x="190" y="425" width="1650" height="260" as="geometry" />
         </mxCell>
-        <mxCell id="AwBOlusgZ-eaemERiSeo-13" value="&lt;b&gt;Probability of Transformer Overheating Failure&lt;br&gt;&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="AwBOlusgZ-eaemERiSeo-1">
+        <mxCell id="AwBOlusgZ-eaemERiSeo-13" value="&lt;b&gt;Probability of Transformer Overheating Failure&lt;br&gt;&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="AwBOlusgZ-eaemERiSeo-1" vertex="1">
           <mxGeometry x="80" y="22" width="220" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="AwBOlusgZ-eaemERiSeo-2" value="" style="swimlane;startSize=0;dashed=1;dashPattern=12 12;" vertex="1" parent="1">
+        <mxCell id="AwBOlusgZ-eaemERiSeo-2" value="" style="swimlane;startSize=0;dashed=1;dashPattern=12 12;" parent="1" vertex="1">
           <mxGeometry x="92.82" y="80" width="1567.18" height="340" as="geometry" />
         </mxCell>
-        <mxCell id="AwBOlusgZ-eaemERiSeo-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0.228;entryY=0.338;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="9caDIlOXdyggSRcv9oSJ-64" target="9caDIlOXdyggSRcv9oSJ-86">
+        <mxCell id="AwBOlusgZ-eaemERiSeo-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0.228;entryY=0.338;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="9caDIlOXdyggSRcv9oSJ-64" target="9caDIlOXdyggSRcv9oSJ-86" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="AwBOlusgZ-eaemERiSeo-4" value="" style="swimlane;startSize=0;dashed=1;dashPattern=12 12;" vertex="1" parent="1">
+        <mxCell id="AwBOlusgZ-eaemERiSeo-4" value="" style="swimlane;startSize=0;dashed=1;dashPattern=12 12;" parent="1" vertex="1">
           <mxGeometry x="-130" y="946.5" width="1775" height="283.5" as="geometry" />
         </mxCell>
-        <mxCell id="AwBOlusgZ-eaemERiSeo-10" value="" style="swimlane;startSize=0;dashed=1;dashPattern=12 12;" vertex="1" parent="1">
+        <mxCell id="AwBOlusgZ-eaemERiSeo-10" value="" style="swimlane;startSize=0;dashed=1;dashPattern=12 12;" parent="1" vertex="1">
           <mxGeometry x="-130" y="762.5" width="1776" height="167.5" as="geometry" />
         </mxCell>
-        <mxCell id="AwBOlusgZ-eaemERiSeo-11" value="Determining Regions Supplied By Transformer Nodes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" vertex="1" parent="AwBOlusgZ-eaemERiSeo-10">
+        <mxCell id="AwBOlusgZ-eaemERiSeo-11" value="Determining Regions Supplied By Transformer Nodes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" parent="AwBOlusgZ-eaemERiSeo-10" vertex="1">
           <mxGeometry x="20" y="17.5" width="180" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="AwBOlusgZ-eaemERiSeo-12" value="Determine Electricity Loss for Each Region" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" vertex="1" parent="1">
+        <mxCell id="AwBOlusgZ-eaemERiSeo-12" value="Determine Electricity Loss for Each Region" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" parent="1" vertex="1">
           <mxGeometry x="-120" y="1187.5" width="180" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="AwBOlusgZ-eaemERiSeo-14" value="&lt;b&gt;Determine Probable GIC Levels and Transformer Properties&lt;br&gt;&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="AwBOlusgZ-eaemERiSeo-14" value="&lt;b&gt;Determine Probable GIC Levels and Transformer Properties&lt;br&gt;&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="1390" y="91" width="160" height="39" as="geometry" />
+        </mxCell>
+        <mxCell id="7duthqghRqe5McAWii0W-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="7duthqghRqe5McAWii0W-3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="915" y="-460.00000000000045" as="sourcePoint" />
+            <mxPoint x="1065" y="-420" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="955" y="-470" />
+              <mxPoint x="955" y="-420" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7duthqghRqe5McAWii0W-9" value="ratio of expected field &lt;br&gt;to 72 degrees mag lat" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="7duthqghRqe5McAWii0W-4">
+          <mxGeometry x="-0.2419" relative="1" as="geometry">
+            <mxPoint x="-43" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7duthqghRqe5McAWii0W-12" value="First few lines of&lt;br&gt;&lt;div&gt;MTsite.calcChunkEFields:&lt;br&gt;detrend B field data with 2nd order&lt;/div&gt;&lt;div&gt;polynomial&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="729.94" y="-715" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="7duthqghRqe5McAWii0W-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="7duthqghRqe5McAWii0W-13" target="7duthqghRqe5McAWii0W-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7duthqghRqe5McAWii0W-13" value="&lt;div&gt;MTsite.__init__&lt;/div&gt;&lt;div&gt;MTsite.createChunks&lt;br&gt;&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="202.44" y="-664" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="7duthqghRqe5McAWii0W-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="7duthqghRqe5McAWii0W-15" target="7duthqghRqe5McAWii0W-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7duthqghRqe5McAWii0W-20" value="MTsite.chunks&lt;br&gt;Raw" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="7duthqghRqe5McAWii0W-17">
+          <mxGeometry x="-0.109" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7duthqghRqe5McAWii0W-15" value="MTsite.createChunk&lt;br&gt;MTsite.createChunkBFields&lt;br&gt;MTsite.cleanChunkBFields&lt;br&gt;linearly interpolate any missing &quot;nan&quot; values&lt;br&gt;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="359.94" y="-664" width="240.06" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
