@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from shapely.geometry import Point
 import matplotlib.colors as colors
 from shapely.geometry import Polygon
+import numpy as np
 
 
 def make_bbox(long0, lat0, long1, lat1):
@@ -15,7 +16,6 @@ def make_bbox(long0, lat0, long1, lat1):
 
 def plotEfield(Efields_df, region):
     world = gpd.read_file(gpd.datasets.get_path("naturalearth_lowres"))
-    # world = world.to_crs(3857)
     geometry = [Point(xy) for xy in zip(Efields_df["longs"], Efields_df["lats"])]
     Efields_df = gpd.GeoDataFrame(Efields_df, crs=4326, geometry=geometry)
 
@@ -31,17 +31,24 @@ def plotEfield(Efields_df, region):
         Efields_df = Efields_df.overlay(bbox, how="intersection")
         world = world.overlay(bbox, how="intersection")
 
-    ax = Efields_df.plot(
-        column="E",
-        legend=True,
-        cmap="viridis",
-        legend_kwds={
-            "label": "Field Level (V/km)",
-            "orientation": "horizontal",
-        },
+    Emesh = Efields_df.pivot(values="E", columns="longs", index="lats").values
+    fig, ax = plt.subplots()
+    ECmap = ax.imshow(
+        Emesh,
+        origin="lower",
         norm=colors.LogNorm(vmin=Efields_df.E.min(), vmax=Efields_df.E.max()),
+        extent=[
+            Efields_df["longs"].min(),
+            Efields_df["longs"].max(),
+            Efields_df["lats"].min(),
+            Efields_df["lats"].max(),
+        ],
     )
+    cbar = fig.colorbar(ECmap, ax=ax, orientation="horizontal")
+    cbar.ax.set_xlabel("Field Level (V/km)")
+
     gplt.polyplot(world, ax=ax, zorder=1)
+
     plt.title(
         "Magnitude of Peak "
         + str(60)
@@ -49,12 +56,11 @@ def plotEfield(Efields_df, region):
         + str(1 / 0.01)
         + " Year Storm"
     )
-    # # this is broken for some reason, the borders are shifted and don't match the E fields
-    # plt.savefig(
-    #     "Data/SmallData/Figures/Europe_USA/" + region + "Efield.png",
-    #     bbox_inches="tight",
-    # )
-    # need to show and save to file manually
+    plt.savefig(
+        "Data/SmallData/Figures/Europe_USA/" + region + "Efield.png",
+        bbox_inches="tight",
+        dpi=600,
+    )
     plt.show()
 
 
