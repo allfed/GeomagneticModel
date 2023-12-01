@@ -49,10 +49,12 @@ def plotEfield(Efields_df, region):
         + str(1 / 0.01)
         + " Year Storm"
     )
-    plt.savefig(
-        "Data/SmallData/Figures/Europe_USA/" + region + "Efield.png",
-        bbox_inches="tight",
-    )
+    # # this is broken for some reason, the borders are shifted and don't match the E fields
+    # plt.savefig(
+    #     "Data/SmallData/Figures/Europe_USA/" + region + "Efield.png",
+    #     bbox_inches="tight",
+    # )
+    # need to show and save to file manually
     plt.show()
 
 
