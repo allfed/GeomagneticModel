@@ -1059,30 +1059,25 @@ class EarthModel:
             combinedcumsum = np.append(combinedcumsum, self.refcumsum[i][j])
             combinedcounts = np.append(combinedcounts, self.refCounts[i][j])
 
-        [EfinalAll, cumsumfinalAll, countsfinalAll] = fits.combinecounts(
-            combinedEfields, combinedcounts
-        )
-        mask = EfinalAll > EfinalAll[0] / 10
-        Efinal = EfinalAll[mask]
-        cumsumfinal = cumsumfinalAll[mask]
-        countsfinal = countsfinalAll[mask]
-        # Efinal=EfinalAll
-        # cumsumfinal=cumsumfinalAll
-        # countsfinal=countsfinalAll
-
         print("combinedyears")
         print(combinedyears)
-        rates = cumsumfinal / combinedyears
-        probtoRPYratio = np.max(cumsumfinal) / combinedyears
+        rates = combinedrates / combinedyears
+        probtoRPYratio = np.max(combinedrates) / combinedyears
 
-        [exponent] = fits.fitPower(Efinal, cumsumfinal / np.max(cumsumfinal))
+        [exponent] = fits.fitPower(
+            combinedEfields, combinedrates / np.max(combinedrates)
+        )
         # self.combinedmatchedpowerfits = self.combinedmatchedpowerfits + [[windowperiod,linearfit[0],np.exp(linearfit[1])]]
         # use PDF to determine mean and standard deviation of underlying normal distribution
-        [guessMean, guessStd] = fits.getGuesses(Efinal, countsfinal, False)
+        [guessMean, guessStd] = fits.getGuesses(combinedEfields, combinedcounts, False)
 
         # fit to the datapoints (CDF has a probability of 1 at the first datapoint)
         [mean, std, loc] = fits.fitLognormalCDF(
-            Efinal, cumsumfinal / np.max(cumsumfinal), guessMean, guessStd, False
+            combinedEfields,
+            combinedrates / np.max(combinedrates),
+            guessMean,
+            guessStd,
+            False,
         )
 
         self.combinedlogfits = self.combinedlogfits + [
@@ -1090,42 +1085,40 @@ class EarthModel:
         ]
         np.save(Params.combinedFitParamsLoc, self.combinedlogfits, allow_pickle=True)
         if plot:
-            plt.figure()
-            # plt.loglog()
-            # plt.plot(rates,fits.logcdfxfromy(rates/,mean,std,loc))
-            # plt.plot(cumsumfinal/max(cumsumfinal),fits.logcdfxfromy(cumsumfinal/max(cumsumfinal),mean,std,loc))
             print("s13")
-            # plt.show()
-
-            plt.figure()
-            plt.loglog()
-            plt.plot(
-                Efinal,
-                fits.powerlaw(Efinal, exponent) * probtoRPYratio,
-                lw=1,
-                label="Powerfit, field averaged over " + str(windowperiod) + " seconds",
-            )
-            # plt.plot(Efinal,E**linearfit[0]*np.exp(linearfit[1]), lw=1,label = "Powerfit, field averaged over "+str(windowperiod)+" seconds")
-            print("np.array(Efinal),mean,np.abs(std),loc")
-            print(mean)
-            print(np.abs(std))
-            print(loc)
-
-            plt.plot(
-                Efinal,
-                fits.logcdf(np.array(Efinal), mean, np.abs(std), loc) * probtoRPYratio,
-                lw=1,
-                label="Logfit, field averaged over " + str(windowperiod) + " seconds",
-            )
-
-            plt.plot(
-                Efinal,
+            plt.loglog(
+                combinedEfields,
                 rates,
                 ".",
                 lw=1,
                 label="Field averaged over " + str(windowperiod) + " seconds",
             )
-            # plt.plot(fits.logcdfxfromy(rates/probtoRPYratio,mean,std,loc),rates,'.', lw=1,label = "xfromy")
+
+            powerfit = fits.powerlaw(combinedEfields, exponent) * probtoRPYratio
+            powerfit = np.vstack((combinedEfields, powerfit)).T
+            powerfit = powerfit[powerfit[:, 0].argsort()[::-1]]
+            plt.loglog(
+                powerfit[:, 0],
+                powerfit[:, 1],
+                lw=1.5,
+                label="Powerfit, field averaged over " + str(windowperiod) + " seconds",
+            )
+            print("np.array(Efinal),mean,np.abs(std),loc")
+            print(mean)
+            print(np.abs(std))
+            print(loc)
+
+            logfit = (
+                fits.logcdf(combinedEfields, mean, np.abs(std), loc) * probtoRPYratio
+            )
+            logfit = np.vstack((combinedEfields, logfit)).T
+            logfit = logfit[logfit[:, 0].argsort()[::-1]]
+            plt.loglog(
+                logfit[:, 0],
+                logfit[:, 1],
+                lw=1.5,
+                label="Logfit, field averaged over " + str(windowperiod) + " seconds",
+            )
 
             plt.legend()
             plt.title("Rate geoelectric field is above threshold")
