@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-12-05T11:13:08.782Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0" etag="80kIGlDWm4sQA-1og5E2" version="22.1.5" type="github">
+<mxfile host="app.diagrams.net" modified="2023-12-07T12:47:37.197Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0" etag="Bh6lGxZnb25iELtD8pae" version="22.1.6" type="github">
   <diagram name="Page-1" id="QnFqFEfZWXVsGcKvMmii">
-    <mxGraphModel dx="1772" dy="3017" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="3419" dy="3405" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -82,14 +82,13 @@
         <mxCell id="9caDIlOXdyggSRcv9oSJ-16" value="EarthModel.calcReferenceRateperyear&lt;br&gt;TFsite.getApparentcCloseToWindowPeriod&lt;br&gt;EarthModel.adjustEfieldsToRefCond&lt;br&gt;Fits.FitPower&lt;br&gt;&lt;div&gt;Fits.fitLognormalCDF&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1064.95" y="-500" width="280" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="9caDIlOXdyggSRcv9oSJ-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" parent="1" source="9caDIlOXdyggSRcv9oSJ-19" target="9caDIlOXdyggSRcv9oSJ-48" edge="1">
+        <mxCell id="9caDIlOXdyggSRcv9oSJ-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.122;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="9caDIlOXdyggSRcv9oSJ-19" target="9caDIlOXdyggSRcv9oSJ-48" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="1660" y="-860" />
-              <mxPoint x="1660" y="410" />
-              <mxPoint x="870" y="410" />
-              <mxPoint x="870" y="445" />
-              <mxPoint x="905" y="445" />
+              <mxPoint x="1670" y="-860" />
+              <mxPoint x="1670" y="430" />
+              <mxPoint x="870" y="430" />
+              <mxPoint x="870" y="452" />
             </Array>
             <mxPoint x="889.94" y="142" as="targetPoint" />
           </mxGeometry>
@@ -132,13 +131,13 @@
         <mxCell id="9caDIlOXdyggSRcv9oSJ-26" value="EarthModel.calcMatchedCombinedRates" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1194.95" y="-320" width="230" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="9caDIlOXdyggSRcv9oSJ-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="9caDIlOXdyggSRcv9oSJ-29" target="9caDIlOXdyggSRcv9oSJ-48" edge="1">
+        <mxCell id="9caDIlOXdyggSRcv9oSJ-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.001;entryY=0.262;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="9caDIlOXdyggSRcv9oSJ-29" target="9caDIlOXdyggSRcv9oSJ-48" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1455" y="210" />
               <mxPoint x="1455" y="360" />
               <mxPoint x="845" y="360" />
-              <mxPoint x="845" y="460" />
+              <mxPoint x="845" y="461" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -183,7 +182,7 @@
             <mxPoint y="1" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="9caDIlOXdyggSRcv9oSJ-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" parent="1" source="9caDIlOXdyggSRcv9oSJ-38" target="9caDIlOXdyggSRcv9oSJ-48" edge="1">
+        <mxCell id="9caDIlOXdyggSRcv9oSJ-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="9caDIlOXdyggSRcv9oSJ-38" target="9caDIlOXdyggSRcv9oSJ-48" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1055" y="245" />
@@ -242,10 +241,10 @@
         <mxCell id="9caDIlOXdyggSRcv9oSJ-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="9caDIlOXdyggSRcv9oSJ-48" target="9caDIlOXdyggSRcv9oSJ-53" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="1285" y="462" />
-              <mxPoint x="1285" y="532" />
-              <mxPoint x="435" y="532" />
-              <mxPoint x="435" y="616" />
+              <mxPoint x="1286" y="470" />
+              <mxPoint x="1286" y="540" />
+              <mxPoint x="436" y="540" />
+              <mxPoint x="436" y="624" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -254,17 +253,18 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="9caDIlOXdyggSRcv9oSJ-48" value="PowerGrid.calcTransformerFailures" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="905" y="432" width="320" height="60" as="geometry" />
+        <mxCell id="9caDIlOXdyggSRcv9oSJ-48" value="PowerGrid.calcTransformerFailures&lt;br&gt;calculates adjust" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="922" y="445" width="320" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="9caDIlOXdyggSRcv9oSJ-49" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="9caDIlOXdyggSRcv9oSJ-51" target="9caDIlOXdyggSRcv9oSJ-56" edge="1">
+        <mxCell id="9caDIlOXdyggSRcv9oSJ-49" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="9caDIlOXdyggSRcv9oSJ-51" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="1350" y="617" />
-              <mxPoint x="1350" y="707" />
-              <mxPoint x="140" y="707" />
-              <mxPoint x="140" y="840" />
+              <mxPoint x="1351" y="625" />
+              <mxPoint x="1351" y="715" />
+              <mxPoint x="141" y="715" />
+              <mxPoint x="141" y="848" />
             </Array>
+            <mxPoint x="185.5" y="848" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="9caDIlOXdyggSRcv9oSJ-50" value="Probability of failure of each transformer (node)&lt;br&gt;&lt;div&gt;PowerGrid.nodesDict now has additional property&lt;/div&gt;&lt;div&gt;&amp;nbsp;of &#39;probFail&#39; at a given rate per year&lt;/div&gt;&lt;br&gt;saved as &quot;analyzedNodes.npy&quot;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="9caDIlOXdyggSRcv9oSJ-49" connectable="0" vertex="1">
@@ -273,13 +273,13 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="9caDIlOXdyggSRcv9oSJ-51" value="PowerGrid.calcProbabilityDamageFromGIC&lt;br&gt;NOTE: Some assumptions about&lt;br&gt; transformers are hardcoded here &lt;br&gt;in the code. GICperE from the notebook used here.as well as &quot;temprise&quot; from Params.ods" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="705" y="572" width="270" height="90" as="geometry" />
+          <mxGeometry x="706" y="580" width="270" height="90" as="geometry" />
         </mxCell>
         <mxCell id="9caDIlOXdyggSRcv9oSJ-52" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="9caDIlOXdyggSRcv9oSJ-53" target="9caDIlOXdyggSRcv9oSJ-51" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="9caDIlOXdyggSRcv9oSJ-53" value="PowerGrid.calcTemp" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="454.5" y="586" width="120" height="60" as="geometry" />
+          <mxGeometry x="455.5" y="594" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="9caDIlOXdyggSRcv9oSJ-54" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="9caDIlOXdyggSRcv9oSJ-56" target="9caDIlOXdyggSRcv9oSJ-59" edge="1">
           <mxGeometry relative="1" as="geometry" />
@@ -590,7 +590,7 @@
           <mxGeometry x="1549.19" y="60" width="209.19" height="40" as="geometry" />
         </mxCell>
         <mxCell id="AwBOlusgZ-eaemERiSeo-1" value="" style="swimlane;startSize=0;dashed=1;dashPattern=12 12;" parent="1" vertex="1">
-          <mxGeometry x="190" y="425" width="1650" height="260" as="geometry" />
+          <mxGeometry x="190" y="434" width="1830" height="260" as="geometry" />
         </mxCell>
         <mxCell id="AwBOlusgZ-eaemERiSeo-13" value="&lt;b&gt;Probability of Transformer Overheating Failure&lt;br&gt;&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="AwBOlusgZ-eaemERiSeo-1" vertex="1">
           <mxGeometry x="80" y="22" width="220" height="30" as="geometry" />
@@ -682,6 +682,12 @@
           <mxGeometry x="-0.0121" y="-4" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="agt4DrOsU9NpCOOoRZ52-2" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="320" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="agt4DrOsU9NpCOOoRZ52-3" value="calcProbabilityDamageFromGIC" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1451" y="440" width="180" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
