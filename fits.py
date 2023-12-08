@@ -93,6 +93,12 @@ def fitLognormalCDF(xdata, ydata, guessmu, guesssigma, plot):
     # mean,std=params
     # loc=0
     mean, std, loc = params
+
+    residuals = ydata - logcdf(xdata, *params)
+    ss_res = np.sum(residuals**2)
+    ss_tot = np.sum((ydata - np.mean(ydata)) ** 2)
+    r_squared = 1 - (ss_res / ss_tot)
+    print("logfit rsquared: ", r_squared)
     # print('mean')
     # print(mean)
     # print('std')
@@ -147,6 +153,11 @@ def fitPower(xdata, ydata):
 
     pinit = [exponentguess]
     out = optimize.leastsq(errfunc, pinit, args=(logx, logy), full_output=1)
+
+    ss_tot = ((ydata - ydata.mean()) ** 2).sum()
+    ss_err = (out[2]["fvec"] ** 2).sum()
+    rsquared = 1 - (ss_err / ss_tot)
+    print("powerfit rquared: ", rsquared)
 
     pfinal = out[0]
     # print(pfinal)
