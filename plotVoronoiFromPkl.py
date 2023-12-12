@@ -13,7 +13,7 @@ def make_bbox(long0, lat0, long1, lat1):
 
 
 def plotCombinedVoronoi(sRegions, region, rate):
-    _, ax = plt.subplots(figsize=(12, 10))
+    _, ax = plt.subplots(figsize=(18, 22))
 
     sRegions["powerOut" + str(rate)] = sRegions[str(rate)] > 0.33
 
@@ -25,21 +25,22 @@ def plotCombinedVoronoi(sRegions, region, rate):
     gplt.choropleth(
         sRegions,
         hue=sRegions["powerOut" + str(rate)],
-        cmap="viridis",
+        cmap="Set1_r",
         ax=ax,
         legend=False,
         # legend_labels=["", "outage"],
         edgecolor="None",
         scheme=mc.UserDefined(sRegions["powerOut" + str(rate)].values, [0, 1]),
     )
-    plt.title(
-        "Substation at Risk of Electricity Loss, " + str(rate) + " per Year Storm"
-    )
+    # plt.title(
+    #     "Substation at Risk of Electricity Loss, " + str(rate) + " per Year Storm"
+    # )
     plt.savefig(
-        "Data/SmallData/Figures/Europe_USA/" + region + str(rate) + "peryearOutage.png",
+        "Data/SmallData/Figures/Europe_USA/" + region + str(rate) + "peryearOutage.eps",
         bbox_inches="tight",
+        dpi=72,
     )
-    plt.show()
+    # plt.show()
 
 
 # file = "Data/SmallData/combinedVoronoi_europe_0.0001.pkl"
