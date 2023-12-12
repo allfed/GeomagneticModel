@@ -33,7 +33,7 @@ def plotEfield(Efields_df, region):
         world = world.overlay(bbox, how="intersection")
 
     Emesh = Efields_df.pivot(values="E", columns="longs", index="lats").values
-    fig, ax = plt.subplots(figsize=(18, 22))
+    fig, ax = plt.subplots(figsize=(18, 22), tight_layout=True)
     ECmap = ax.imshow(
         Emesh,
         origin="lower",
