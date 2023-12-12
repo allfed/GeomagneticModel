@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 from shapely.geometry import Point
 import matplotlib.colors as colors
 from shapely.geometry import Polygon
-import numpy as np
+
+plt.rcParams.update({"font.size": 32})
 
 
 def make_bbox(long0, lat0, long1, lat1):
@@ -32,7 +33,7 @@ def plotEfield(Efields_df, region):
         world = world.overlay(bbox, how="intersection")
 
     Emesh = Efields_df.pivot(values="E", columns="longs", index="lats").values
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(18, 22))
     ECmap = ax.imshow(
         Emesh,
         origin="lower",
@@ -44,27 +45,34 @@ def plotEfield(Efields_df, region):
             Efields_df["lats"].max(),
         ],
     )
-    cbar = fig.colorbar(ECmap, ax=ax, orientation="horizontal")
+    cbar = fig.colorbar(
+        ECmap,
+        ax=ax,
+        orientation="horizontal",
+        fraction=0.034,
+        pad=0,
+    )
+
     cbar.ax.set_xlabel("Field Level (V/km)")
 
     gplt.polyplot(world, ax=ax, zorder=1)
 
-    plt.title(
-        "Magnitude of Peak "
-        + str(60)
-        + " Second Geoelectric Field\n1 in "
-        + str(1 / 0.01)
-        + " Year Storm"
-    )
+    # plt.title(
+    #     "Magnitude of Peak "
+    #     + str(60)
+    #     + " Second Geoelectric Field\n1 in "
+    #     + str(1 / 0.01)
+    #     + " Year Storm"
+    # )
     plt.savefig(
-        "Data/SmallData/Figures/Europe_USA/" + region + "Efield.png",
+        "Data/SmallData/Figures/Europe_USA/" + region + "Efield.eps",
         bbox_inches="tight",
-        dpi=600,
+        dpi=72,
     )
-    plt.show()
+    # plt.show()
 
 
 f = pd.read_pickle("Data/SmallData/globalEfields.pkl")
 plotEfield(f, "europe")
-plotEfield(f, "usa")
+# plotEfield(f, "usa")
 plotEfield(f, "northamerica")
