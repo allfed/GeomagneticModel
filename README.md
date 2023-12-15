@@ -32,21 +32,13 @@ To apply a power fit instead of a log normal fit you would run:
 
 #### Model modules
 
----
-
-##### WARNING: out-of-date 
-
- ```HVtransformers``` is neither used or usable (error in code).
-
----
-
 
 | Module | Description |
 | ----------- | ----------- |
 | TFsite  | Allow estimation of geoelectric field near MTsites using electromagnetic transfer function (EMTF) ground measurements. |
 | MTsite | Provide data over time for EW and NS magnetic field, and use TF sites to calculate corresponding geoelectric fields. |
 | GCmodel | Importing the global conductivity model and determing apparent conductivity allows estimation of variation of geoelectric field over the earth by modelling global ground resistance. Process the global conductivity model into useful results. |
-| HVtransformers | High voltage transformer properties including statistics on their relative prevalence, GIC thermal time constants and short term thermal sensitivities. |
+| GIC_Model | Implementation of the GIC calculation was performed using the open-source GEOMAGICA package with minor modifications to allow for arbitrary geolocation. See https://github.com/geomagpy/GEOMAGICA/blob/master/GIC_Model_Horton.py |
 | PowerGrid  | Very simple model of global power grid, countries and populations affected by outages. Provides fit function to the MT site data to with duration and repeat rate based field level at a site. |
 
 
@@ -88,11 +80,17 @@ To apply a power fit instead of a log normal fit you would run:
 ## Running the model with the PowerGrid parameter
 ### Environment set up
 
+The environment setup was tested with mamba. If you use conda, it may be too slow, although there may be a new release which makes conda work fast enough (untested).
+
+So first, install mamba. Then create the python environment with the following commands.
+
+The installation has been tested with python versions 3.7 and 3.9.
+
 ```
-conda env create -n geomagmodel --file enivronment.yml
+mamba env create -n geomagmodel --file environment.yml
 ```
 ```
-conda activate geomagmodel
+mamba activate geomagmodel
 ```
 - Get global conductivity model from https://globalconductivity.ocean.ru/matlabformat.html
 - Put that file in Data/BigData/ (you need to make this directory yourself).
