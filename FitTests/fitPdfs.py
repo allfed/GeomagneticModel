@@ -4,7 +4,6 @@ from scipy.stats import lognorm, powerlaw, pareto
 from scipy.optimize import curve_fit, fsolve
 from sklearn.metrics import r2_score
 import pandas as pd
-from sklearn.utils.extmath import density
 
 
 def lognorm_wrapper(x, s, loc, scale):
