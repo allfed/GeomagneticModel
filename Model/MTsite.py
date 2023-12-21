@@ -99,6 +99,7 @@ class MTsite:
                 [],
                 [],
                 [],
+                [],
             ]
         self.calcPolyFits()
 
@@ -399,36 +400,36 @@ class MTsite:
     def saveEratesPerYear(self):
         # add or replace the data for each window that has been created so far
         # if(self.loadWindowedCounts()):
-        # 	loadeddurations=np.array([])
-        # 	for i in range(0,int(np.floor(len(self.windowedCounts))/3)):
-        # 		durationindex = i*3
-        # 		efieldindex = i*3+1
-        # 		ratesindex = i*3+2
+        #   loadeddurations=np.array([])
+        #   for i in range(0,int(np.floor(len(self.windowedCounts))/3)):
+        #       durationindex = i*3
+        #       efieldindex = i*3+1
+        #       ratesindex = i*3+2
 
-        # 		#as long as the saved windows match up with modelparams specified windows, keep old values even if this window value was not just calculated.
-        # 		if(durationindex<=len(self.windows) and (self.windows[i]*self.sampleperiod == self.windowedCounts[durationindex])):
+        #       #as long as the saved windows match up with modelparams specified windows, keep old values even if this window value was not just calculated.
+        #       if(durationindex<=len(self.windows) and (self.windows[i]*self.sampleperiod == self.windowedCounts[durationindex])):
 
-        # 			duration = self.windowedCounts[durationindex]
-        # 			loadeddurations=np.append(loadeddurations,duration)
+        #           duration = self.windowedCounts[durationindex]
+        #           loadeddurations=np.append(loadeddurations,duration)
 
-        # 	for i in range(0,int(np.floor(len(self.windowedCountsTmp))/3)):
-        # 		durationindex = i*3
-        # 		efieldindex = i*3+1
-        # 		ratesindex = i*3+2
+        #   for i in range(0,int(np.floor(len(self.windowedCountsTmp))/3)):
+        #       durationindex = i*3
+        #       efieldindex = i*3+1
+        #       ratesindex = i*3+2
 
-        # 		duration = self.windowedCountsTmp[durationindex]
-        # 		Efields = self.windowedCountsTmp[efieldindex]
-        # 		rates = self.windowedCountsTmp[ratesindex]
+        #       duration = self.windowedCountsTmp[durationindex]
+        #       Efields = self.windowedCountsTmp[efieldindex]
+        #       rates = self.windowedCountsTmp[ratesindex]
 
-        # 		if(len(rates)!=0):#if data has been processed for this window
-        # 			loadeddurationindex=np.where(loadeddurations==duration)[0]
+        #       if(len(rates)!=0):#if data has been processed for this window
+        #           loadeddurationindex=np.where(loadeddurations==duration)[0]
 
-        # 			if(len(loadeddurationindex)==0):
-        # 				self.windowedCounts=np.append(self.windowedCounts,[duration,Efields,rates])
-        # 			else:
-        # 				self.windowedCounts[loadeddurationindex[0]*3] = duration
-        # 				self.windowedCounts[loadeddurationindex[0]*3+1]=Efields
-        # 				self.windowedCounts[loadeddurationindex[0]*3+2]=rates
+        #           if(len(loadeddurationindex)==0):
+        #               self.windowedCounts=np.append(self.windowedCounts,[duration,Efields,rates])
+        #           else:
+        #               self.windowedCounts[loadeddurationindex[0]*3] = duration
+        #               self.windowedCounts[loadeddurationindex[0]*3+1]=Efields
+        #               self.windowedCounts[loadeddurationindex[0]*3+2]=rates
         # else:
         self.windowedCounts = self.windowedCountsTmp
         np.save(
@@ -620,22 +621,22 @@ class MTsite:
         return cumsum / self.cumulativeyears
 
     # def fitToRateperyear(self):
-    # 	plt.figure()
-    # 	plt.loglog()
-    # 	for i in range(0,int(np.floor(len(self.windowedCounts))/3)):
-    # 		durationindex = i*3
-    # 		efieldindex = i*3+1
-    # 		ratesindex = i*3+2
+    #   plt.figure()
+    #   plt.loglog()
+    #   for i in range(0,int(np.floor(len(self.windowedCounts))/3)):
+    #       durationindex = i*3
+    #       efieldindex = i*3+1
+    #       ratesindex = i*3+2
 
-    # 		windowperiod = self.windowedCounts[durationindex]
-    # 		Efields = self.windowedCounts[efieldindex]
-    # 		rates = self.windowedCounts[ratesindex]
-    # 	plt.legend()
-    # 	plt.title('Rate geoelectric field is above threshold')
-    # 	plt.xlabel('Geoelectric Field (V/km)')
-    # 	plt.ylabel('Average rate per year distinct contiguous sample average is above E field (counts/year)')
+    #       windowperiod = self.windowedCounts[durationindex]
+    #       Efields = self.windowedCounts[efieldindex]
+    #       rates = self.windowedCounts[ratesindex]
+    #   plt.legend()
+    #   plt.title('Rate geoelectric field is above threshold')
+    #   plt.xlabel('Geoelectric Field (V/km)')
+    #   plt.ylabel('Average rate per year distinct contiguous sample average is above E field (counts/year)')
 
-    # 	plt.show()
+    #   plt.show()
     def calcStorms(self, plot):
         for i in range(0, self.nchunks):
             self.calcChunkStorms(i)
@@ -769,8 +770,8 @@ class MTsite:
     # returns an array structured as:
     # [Storms,Peaks]
     # where
-    # 	Storms=[[storm indices],[storm E fields],...]
-    # 	Peaks=[[peaks window 0],[peaks window 1],...]
+    #   Storms=[[storm indices],[storm E fields],...]
+    #   Peaks=[[peaks window 0],[peaks window 1],...]
     # and storm indices, storm E fields, and peaks window [x] are numpy arrays, but the outer layer which combines them is the default array type.
     # each of these datatypes is stored for each chunk
     def calcChunkStorms(self, chunkindex):
@@ -1000,19 +1001,19 @@ class MTsite:
         # ranges.append(group[0])
 
         # for group in groupby(stormindices, lambda x: x[0]):
-        # 	isstorm,field = next(group)
-        # 	# print('nWindows')
-        # 	# print(nwindows)
-        # 	elems = len(list(group)) + 1
-        # 	stormE=[np.array([])]*nwindows
+        #   isstorm,field = next(group)
+        #   # print('nWindows')
+        #   # print(nwindows)
+        #   elems = len(list(group)) + 1
+        #   stormE=[np.array([])]*nwindows
         # df=pd.DataFrame({'indices':np.array(self.allstorms[0]),'vals':np.array(self.allstorms[1]),'hourwin':np.array(self.allstorms[2])})
         tmp = np.append(differences0, 0) == 1
         mask = tmp
         print(mask)
         print(np.sum(mask))
         # for i in range(1,len(tmp)):
-        # 	if(tmp[i]!=tmp[i-1]):
-        # 		mask[i]=True
+        #   if(tmp[i]!=tmp[i-1]):
+        #       mask[i]=True
 
         storms = []
         # stormpeaks=[np.array([])]*nwindows
