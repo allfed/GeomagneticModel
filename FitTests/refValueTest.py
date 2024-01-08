@@ -23,7 +23,7 @@ logfit = lognorm_wrapper(data[:, 0], *popt)
 y = 1 / 50
 z = fsolve(lambda x: lognorm_wrapper(x, *popt) - y, x0=25)
 print(z)
-
+g = 25 / z
 
 fig, ax = plt.subplots()
 ax.set_yscale("log")
@@ -32,4 +32,8 @@ ax.set_xscale("log")
 plt.plot(data[:, 0], data[:, 1], ".")
 plt.plot(data[:, 0], logfit, "-")
 plt.plot(z, y, "ro", markersize=10)
+
+plt.plot(data[:, 0] * g, logfit, "-")
+plt.plot(25, y, "go", markersize=10)
+
 plt.show()
