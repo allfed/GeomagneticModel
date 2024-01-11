@@ -485,9 +485,9 @@ if __name__ == "__main__":
 
     if calccombinedrates:
         earthmodel.calcReferenceRateperyear(tfsites, mtsites, args["fit"], plotadjusted)
-        earthmodel.calcCombinedRates(plotcombined)
-        earthmodel.adjustEfieldsToMatch(plotcombined)
-        earthmodel.calcMatchedCombinedRates(plotcombined)
+        earthmodel.calcCombinedRates(mtsites, plotcombined)
+        earthmodel.adjustEfieldsToMatch(mtsites, plotcombined)
+        earthmodel.calcMatchedCombinedRates(mtsites, plotcombined)
         print("calcCombinedRates ran")
 
     if calcglobalmodel:

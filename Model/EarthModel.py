@@ -830,6 +830,11 @@ class EarthModel:
             plt.figure()
         for i in range(0, len(mtsites)):
             if not Params.useMTsite[i]:
+                allcumsum.append([])
+                allE.append([])
+                allmatchedE.append([])
+                allCounts.append([])
+                allYears.append([])
                 continue
             tfsite = tfsites[i]
             mtsite = mtsites[i]
@@ -989,7 +994,7 @@ class EarthModel:
 
         return np.sqrt(apparentcond) / np.sqrt(self.refconductivity) * np.array(Efields)
 
-    def adjustEfieldsToMatch(self, plot):
+    def adjustEfieldsToMatch(self, mtsites, plot):
         # for j in range(0,len(self.allwindowperiods)):
         j = 0
         if plot and (j == 0):
@@ -1004,9 +1009,10 @@ class EarthModel:
         # combinedcounts=np.array([])
         # combinedyears=0
 
-        for i in range(0, len(self.refYears)):
-            # if(not Params.useMTsite[i]):
-            # 	continue
+        # for i in range(0, len(self.refYears)):
+        for i in range(0, len(mtsites)):
+            if not Params.useMTsite[i]:
+                continue
             print("self.refYears")
             print(len(self.refYears))
             years = self.refYears[i][j]
@@ -1042,7 +1048,7 @@ class EarthModel:
     def loadCombinedFits(self):
         self.combinedlogfits = np.load(Params.combinedFitParamsLoc, allow_pickle=True)
 
-    def calcMatchedCombinedRates(self, plot):
+    def calcMatchedCombinedRates(self, mtsites, plot):
         self.combinedexponents = []
         # combine the fields into one distribution
         # for j in range(0,len(self.allwindowperiods)):
@@ -1054,7 +1060,8 @@ class EarthModel:
         combinedcounts = np.array([])
         combinedyears = 0
 
-        for i in range(0, len(self.refYears)):
+        # for i in range(0, len(self.refYears)):
+        for i in range(0, len(mtsites)):
             if not Params.useMTsite[i]:
                 continue
             combinedyears = combinedyears + self.refYears[i][j]
@@ -1135,7 +1142,7 @@ class EarthModel:
             print("s14")
             plt.show()
 
-    def calcCombinedRates(self, plot):
+    def calcCombinedRates(self, mtsites, plot):
         self.combinedexponents = []
         # combine the fields into one distribution
         for j in range(0, len(self.allwindowperiods)):
@@ -1146,7 +1153,8 @@ class EarthModel:
             combinedcounts = np.array([])
             combinedyears = 0
 
-            for i in range(0, len(self.refYears)):
+            # for i in range(0, len(self.refYears)):
+            for i in range(0, len(mtsites)):
                 if not Params.useMTsite[i]:
                     continue
                 combinedyears = combinedyears + self.refYears[i][j]
