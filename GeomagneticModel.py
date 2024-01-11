@@ -191,6 +191,9 @@ if __name__ == "__main__":
     print("initializing models")
     tfsites = earthmodel.initTFsites()
     mtsites = earthmodel.initMTsites()
+    # this means there is only one site used so we want to ignore tha power law adjustment
+    if len(mtsites) - sum([mtsite == [] for mtsite in mtsites]) == 1:
+        earthmodel.ignoreAdjustment = True
     gcmodel = earthmodel.initGCmodel()
     earthmodel.calcGCcoords()
 

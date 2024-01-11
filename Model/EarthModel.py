@@ -50,6 +50,7 @@ class EarthModel:
         self.averagedRatios = []
         self.GClatitudes = []
         self.GClongitudes = []
+        self.ignoreAdjustment = False
 
     def loadApparentCond(self):
         self.apparentCondMap = np.load(Params.apparentcondloc, allow_pickle=True)
@@ -1019,9 +1020,15 @@ class EarthModel:
 
             # mean ratio between the average powerfit value and the E fields for this data.
             # adjustment=np.mean(linfitEfields/Efields[rates>1])
-            adjustment = np.mean(linfitEfields / Efields)
+            if self.ignoreAdjustment:
+                adjustment = 1
+            else:
+                adjustment = np.mean(linfitEfields / Efields)
             print("adjustment")
-            print(adjustment)
+            if self.ignoreAdjustment:
+                print("ignored")
+            else:
+                print(adjustment)
 
             self.refmatchedEfields[i][j] = adjustment
             if plot and (j == 0):
