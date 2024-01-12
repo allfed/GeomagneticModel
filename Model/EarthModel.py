@@ -1075,8 +1075,7 @@ class EarthModel:
 
         print("combinedyears")
         print(combinedyears)
-        rates = combinedrates / combinedyears
-        probtoRPYratio = np.max(combinedrates) / combinedyears
+        probtoRPYratio = np.max(combinedrates)
 
         [exponent] = fits.fitPower(
             combinedEfields, combinedrates / np.max(combinedrates)
@@ -1102,7 +1101,7 @@ class EarthModel:
             print("s13")
             plt.loglog(
                 combinedEfields,
-                rates,
+                combinedrates,
                 ".",
                 lw=1,
                 label="Field averaged over " + str(windowperiod) + " seconds",
