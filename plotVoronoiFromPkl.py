@@ -4,8 +4,8 @@ import pandas as pd
 import mapclassify as mc
 from shapely.geometry import Polygon
 import geopandas
-from matplotlib.colors import LinearSegmentedColormap
-from mpl_toolkits.axes_grid1 import make_axes_locatable
+from matplotlib.colors import LinearSegmentedColormap, PowerNorm
+import numpy as np
 
 
 def make_bbox(long0, lat0, long1, lat1):
@@ -35,6 +35,7 @@ def plotCombinedVoronoi(sRegions, region, rate, cutoff=True):
         cmap="Set1_r" if cutoff else no_cutoff_cmap,
         ax=ax,
         legend=not cutoff,
+        norm=PowerNorm(gamma=0.5, vmin=0, vmax=1),
         # legend_labels=["", "outage"],
         legend_kwargs={"shrink": 0.35} if not cutoff else None,
         edgecolor="None",
@@ -55,7 +56,7 @@ def plotCombinedVoronoi(sRegions, region, rate, cutoff=True):
         + region
         + str(rate)
         + no_cutoff_str
-        + "peryearOutage2.png",
+        + "peryearOutage.eps",
         bbox_inches="tight",
         dpi=72,
     )
