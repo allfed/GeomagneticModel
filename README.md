@@ -198,12 +198,6 @@ Example 4.
 - displays a plot of the E field over Estonia
 - saves a power grid plot to Data/SmallData/Figures/Regions/estonia/Network.png
 
-### Notes/TODO
-
-- overheat/outage plots are not saved to a region subfolder which can cause unwanted overwrites
-- document PowerGrid printed output in more detail
-- central-america does not work: ```UnboundLocalError: local variable 'newdataframe' referenced before assignment```
-- australia-oceania doesn't show any E field in plot
 
 ## Storm recurrence and duration
 ### Environment set up
@@ -265,6 +259,66 @@ Example 3.
 Example 4.
 - displays a plot of peak geoelectric pulse ratios for each MT site
 
+## Reproducing main results
+#### TODO
+Add link to the article.
+### Preparation
+- Set up the environment as prescribed in previous sections
+- Run in order:
+
+```
+python GeomagneticModel.py TFsite
+```
+```
+python GeomagneticModel.py MTsite
+```
+```
+python GeomagneticModel.py GCmodel
+```
+```
+python GeomagneticModel.py EarthModel
+```
+
+### Fig. 2
+```
+python plotEfieldsFromPkl.py
+```
+
+### Fig. 3
+```
+python GeomagneticModel.py PowerGrid Region --continent europe -r 0.01
+```
+- "europe" can be substituted with "north-america"
+- "0.01" can be subtituted with 0.1, 0.001, and 0.0001; this is the rate of storm recurrence
+
+Each time this is run one must reade the values of CELE from the output (stdout) and manually write them into
+```
+CELE_region_values.csv
+```
+Then, run
+```
+python barplot_CELE.py
+```
+
+### Fig. 4 and 5
+```
+python GeomagneticModel.py PowerGrid Region --continent europe -r 0.0001
+```
+This file will be created:
+```
+Data/SmallData/combinedVoronoi.pkl
+```
+Move it to
+```
+Data/SmallData/combinedVoronoi_europe_0.0001.pkl
+```
+Run
+```
+python plotVoronoiFromPkl.py
+```
+For Fig. 5 replace "europe" with "north-america" in the first command and "northamerica" in the file name to which we move the output file.
+
 ## Flow chart
 
 ![diagram](./flow_chart.svg)
+
