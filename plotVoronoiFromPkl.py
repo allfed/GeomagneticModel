@@ -56,9 +56,11 @@ def plotCombinedVoronoi(sRegions, region, rate, cutoff=True):
     )
 
 
-file = "Data/SmallData/combinedVoronoi_europe_0.0001.pkl"
+plt.rcParams.update({"font.size": 24})
+
+# file = "Data/SmallData/combinedVoronoi_europe_0.0001.pkl"
 # file = "Data/SmallData/combinedVoronoi_usa_0.0001.pkl"
-# file = "Data/SmallData/combinedVoronoi_northamerica_0.0001.pkl"
+file = "Data/SmallData/combinedVoronoi_northamerica_0.0001.pkl"
 
 sRegions = pd.read_pickle(file)
 rate = float(file[file.rfind("_") + 1 : file.rfind(".")])

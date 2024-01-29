@@ -3,8 +3,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sb
 
-# plt.rcParams.update({"font.size": 32})
 sb.set_context("poster")
+plt.rcParams.update({"font.size": 24})
 # europe pop taken from https://www.worldometers.info/world-population/europe-population/
 # usa from Data/SmallData/ElectricityByNation/PopByCountry.csv
 # year=2018
