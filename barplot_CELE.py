@@ -25,7 +25,7 @@ sb.barplot(
     ax=axs[0],
     palette=palette,
 )
-axs[0].set_xlabel("Strom recurrence [years]")
+axs[0].set_xlabel("Storm recurrence [years]")
 axs[0].set_ylabel("Population in CELE [%]")
 sb.barplot(
     x,
@@ -36,7 +36,7 @@ sb.barplot(
     ax=axs[1],
     palette=palette,
 )
-axs[1].set_xlabel("Strom recurrence [years]")
+axs[1].set_xlabel("Storm recurrence [years]")
 axs[1].set_ylabel("Population in CELE [people]")
 sb.barplot(
     x,
@@ -47,7 +47,7 @@ sb.barplot(
     ax=axs[2],
     palette=palette,
 )
-axs[2].set_xlabel("Strom recurrence [years]")
+axs[2].set_xlabel("Storm recurrence [years]")
 axs[2].set_ylabel("Electricity loss [GW]")
 plt.savefig("CELE_bar.eps", bbox_inches="tight", dpi=72)
 # plt.show()
