@@ -36,20 +36,14 @@ def plotCombinedVoronoi(sRegions, region, rate, cutoff=True):
         ax=ax,
         legend=not cutoff,
         norm=PowerNorm(gamma=0.5, vmin=0, vmax=1),
-        # legend_labels=["", "outage"],
-        legend_kwargs={"shrink": 0.35} if not cutoff else None,
+        legend_kwargs={"shrink": 0.35, "label": "HVT failure rate"}
+        if not cutoff
+        else None,
         edgecolor="None",
         scheme=mc.UserDefined(sRegions["powerOut" + str(rate)].values, [0, 1])
         if cutoff
         else None,
     )
-    # if not cutoff:
-    #     divider = make_axes_locatable(plt.gca())
-    #     cax = divider.append_axes("right", size="5%", pad=0.05)
-    #     plt.colorbar(cax=cax)
-    # plt.title(
-    #     "Substation at Risk of Electricity Loss, " + str(rate) + " per Year Storm"
-    # )
     no_cutoff_str = "" if cutoff else "no_cutoff"
     plt.savefig(
         "Data/SmallData/Figures/Europe_USA/"
@@ -60,12 +54,11 @@ def plotCombinedVoronoi(sRegions, region, rate, cutoff=True):
         bbox_inches="tight",
         dpi=72,
     )
-    # plt.show()
 
 
-# file = "Data/SmallData/combinedVoronoi_europe_0.0001.pkl"
+file = "Data/SmallData/combinedVoronoi_europe_0.0001.pkl"
 # file = "Data/SmallData/combinedVoronoi_usa_0.0001.pkl"
-file = "Data/SmallData/combinedVoronoi_northamerica_0.0001.pkl"
+# file = "Data/SmallData/combinedVoronoi_northamerica_0.0001.pkl"
 
 sRegions = pd.read_pickle(file)
 rate = float(file[file.rfind("_") + 1 : file.rfind(".")])
