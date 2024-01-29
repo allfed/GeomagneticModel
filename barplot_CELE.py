@@ -9,6 +9,8 @@ sb.set_context("poster")
 # usa from Data/SmallData/ElectricityByNation/PopByCountry.csv
 # year=2018
 x = pd.read_csv("CELE_region_values.csv")
+x.replace("europe", "Europe", inplace=True)
+x.replace("north-america", "North America", inplace=True)
 # x = x[x["region"] != "usa"]
 x["popRatio"] = (x["populationCELE"] / x["population"]) * 100
 x["oneInXyears"] = (1 / x["rate"]).astype(int)
