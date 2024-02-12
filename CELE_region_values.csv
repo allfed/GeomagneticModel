@@ -1,0 +1,9 @@
+region,populationCELE,rate,population,totalGWloss
+europe,7406319.5,0.0001,745359130,49.71
+europe,2268774.0,0.001,745359130,12.83
+europe,0,0.01,745359130,0
+europe,0.0,0.1,745359130,0
+north-america,4192030.8,0.0001,490010820,56.12
+north-america,169803.02,0.001,490010820,2.09
+north-america,0,0.01,490010820,0
+north-america,0,0.1,490010820,0
