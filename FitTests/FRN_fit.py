@@ -51,9 +51,14 @@ print("r2 power: ", r2_score(data[:, 1], powerfit))
 print("sk r2 power: ", sk_r2_score(data[:, 1], powerfit))
 print("RMSE power: ", mean_squared_error(data[:, 1], powerfit, squared=False))
 
+extrapolated_x = np.concatenate(
+    (data[:, 0], np.linspace(data[-1, 0], 100 * data[-1, 0], 100))
+)
+extrapolated_powerfit = fits.powerlaw(extrapolated_x, exponent) * probtoRPYratio
+
 plt.plot(
-    data[:, 0],
-    powerfit,
+    extrapolated_x,
+    extrapolated_powerfit,
     lw=1.5,
     label="Powerfit, field averaged over " + str(windowperiod) + " seconds",
 )
@@ -63,9 +68,12 @@ print("r2 log: ", r2_score(data[:, 1], logfit))
 print("sk r2 log: ", sk_r2_score(data[:, 1], logfit))
 print("RMSE log: ", mean_squared_error(data[:, 1], logfit, squared=False))
 
+extrapolated_logfit = (
+    fits.logcdf(extrapolated_x, mean, np.abs(std), loc) * probtoRPYratio
+)
 plt.plot(
-    data[:, 0],
-    logfit,
+    extrapolated_x,
+    extrapolated_logfit,
     lw=1.5,
     label="Logfit, field averaged over " + str(windowperiod) + " seconds",
 )
