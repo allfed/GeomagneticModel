@@ -46,37 +46,57 @@ plt.plot(
     label="Field averaged over " + str(windowperiod) + " seconds",
 )
 
-powerfit = fits.powerlaw(data[:, 0], exponent) * probtoRPYratio
-print("r2 power: ", r2_score(data[:, 1], powerfit))
-print("sk r2 power: ", sk_r2_score(data[:, 1], powerfit))
-print("RMSE power: ", mean_squared_error(data[:, 1], powerfit, squared=False))
+extrapolate = False
+power = False
 
-extrapolated_x = np.concatenate(
-    (data[:, 0], np.linspace(data[-1, 0], 100 * data[-1, 0], 100))
-)
-extrapolated_powerfit = fits.powerlaw(extrapolated_x, exponent) * probtoRPYratio
+if power:
+    powerfit = fits.powerlaw(data[:, 0], exponent) * probtoRPYratio
+    print("r2 power: ", r2_score(data[:, 1], powerfit))
+    print("sk r2 power: ", sk_r2_score(data[:, 1], powerfit))
+    print("RMSE power: ", mean_squared_error(data[:, 1], powerfit, squared=False))
 
-plt.plot(
-    extrapolated_x,
-    extrapolated_powerfit,
-    lw=1.5,
-    label="Powerfit, field averaged over " + str(windowperiod) + " seconds",
-)
+    if extrapolate:
+        extrapolated_x = np.concatenate(
+            (data[:, 0], np.linspace(data[-1, 0], 100 * data[-1, 0], 100))
+        )
+        extrapolated_powerfit = fits.powerlaw(extrapolated_x, exponent) * probtoRPYratio
+
+        plt.plot(
+            extrapolated_x,
+            extrapolated_powerfit,
+            lw=1.5,
+            label="Powerfit, field averaged over " + str(windowperiod) + " seconds",
+        )
+    else:
+        plt.plot(
+            data[:, 0],
+            powerfit,
+            lw=1.5,
+            label="Powerfit, field averaged over " + str(windowperiod) + " seconds",
+        )
 
 logfit = fits.logcdf(data[:, 0], mean, np.abs(std), loc) * probtoRPYratio
 print("r2 log: ", r2_score(data[:, 1], logfit))
 print("sk r2 log: ", sk_r2_score(data[:, 1], logfit))
 print("RMSE log: ", mean_squared_error(data[:, 1], logfit, squared=False))
 
-extrapolated_logfit = (
-    fits.logcdf(extrapolated_x, mean, np.abs(std), loc) * probtoRPYratio
-)
-plt.plot(
-    extrapolated_x,
-    extrapolated_logfit,
-    lw=1.5,
-    label="Logfit, field averaged over " + str(windowperiod) + " seconds",
-)
+if extrapolate:
+    extrapolated_logfit = (
+        fits.logcdf(extrapolated_x, mean, np.abs(std), loc) * probtoRPYratio
+    )
+    plt.plot(
+        extrapolated_x,
+        extrapolated_logfit,
+        lw=1.5,
+        label="Logfit, field averaged over " + str(windowperiod) + " seconds",
+    )
+else:
+    plt.plot(
+        data[:, 0],
+        logfit,
+        lw=1.5,
+        label="Logfit, field averaged over " + str(windowperiod) + " seconds",
+    )
 
 plt.legend()
 plt.title("Rate geoelectric field is above threshold")
